@@ -1,7 +1,18 @@
 System and User Setup and Config
 ================================
 
-Provisioning of an Arch Linux based development setup.
+Provisioning of an Arch Linux based development setup on
+a ThinkPad X1 Carbon 6th gen (Coffe Lake).
+
+BIOS
+----
+
+- Switch Fn/Ctrl
+- Disable fingerprint reader
+- Disable secure boot
+- Disable Wale-on-LAN
+- Disable card reader
+- Enable Thunderbold BIOS Assist Mode
 
 Bootstrap
 ---------
