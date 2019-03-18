@@ -3,6 +3,8 @@
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
 DOTFILES=$ROOT/dotfiles
 
+. $ROOT/lib.sh
+
 ##
 ## Dotfiles
 ##
