@@ -210,6 +210,21 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #
+# Colors:
+#
+set $Black           '#000000'
+set $Grey85          '#dadada'
+set $LightCyan1      '#d7ffff'
+set $Plum2           '#d7afff'
+set $LightGoldenrod2 '#ffd787'
+
+# Legend:               border           background       text   indicator        child_border
+client.focused          $LightGoldenrod2 $LightGoldenrod2 $Black $LightGoldenrod2 $LightGoldenrod2
+client.focused_inactive $LightCyan1      $LightCyan1      $Black $LightCyan1      $LightCyan1
+client.unfocused        $Grey85          $Grey85          $Black $Grey85          $Grey85
+client.urgent           $Plum2           $Plum2           $Black $Plum2           $Plum2
+
+#
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
@@ -218,12 +233,16 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    status_command while date +'%Y-%m-%d %H:%M'; do sleep 1; done
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline $Black
+        background $Grey85
+        # Legend:          border           background       text
+        focused_workspace  $LightGoldenrod2 $LightGoldenrod2 $Black
+        active_workspace   $LightCyan1      $LightCyan1      $Black
+        inactive_workspace $Grey85          $Grey85          $Black
+        urgent_workspace   $Plum2           $Plum2           $Black
     }
 }
 
