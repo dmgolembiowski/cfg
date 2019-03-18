@@ -1,8 +1,10 @@
 System and User Setup and Config
 ================================
 
-Manual steps
-------------
+Bootstrap
+---------
+
+Create a user and clone this repo with:
 
     useradd -m -G wheel,adm $USER
     passwd $USER
