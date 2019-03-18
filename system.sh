@@ -30,6 +30,7 @@ pkg go
 pkg '
 	sway
 	xorg-server-xwayland
+	i3status
 	alacritty
 	firefox
 '
