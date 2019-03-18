@@ -78,7 +78,7 @@ Boot Arch Linux Installer and run the following commands:
     options rd.luks.name=$uuid=cryptroot root=/dev/mapper/cryptroot rw quiet
     EOF
 
-passwd
+    passwd
 
 Bootstrap
 ---------
