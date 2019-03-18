@@ -42,10 +42,10 @@ battery all {
         low_threshold = 10
 }
 
-tztime local {
-        format = "%Y-%m-%d %H:%M "
-}
-
 load {
         format = "L: %1min"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M "
 }
