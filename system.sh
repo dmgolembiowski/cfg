@@ -64,6 +64,7 @@ pkg '
 	pulseaudio
 	pulsemixer
 	mpv
+	libva-intel-driver
 '
 
 # Autologin to TTY 1:
