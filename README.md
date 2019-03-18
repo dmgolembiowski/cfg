@@ -14,3 +14,11 @@ Create a user and clone this repo with:
     cd ~/src
     git clone git@github.com:uggedal/susc
     cd susc
+
+Vim
+---
+
+Install plugins and plugin dependencies with:
+
+    :PlugInstall
+    :GoInstallBinaries
