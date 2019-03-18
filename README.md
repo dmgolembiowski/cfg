@@ -80,13 +80,15 @@ passwd
 Bootstrap
 ---------
 
-Create a user and clone this repo with:
+Create a user:
 
     useradd -m -G wheel,adm $USER
     passwd $USER
+
+Clone this repo with with the newly created user:
+
     mkdir ~/src ~/.ssh
     cp $SAFEPLACE/id_* ~/.ssh
-    su - $USER
     cd ~/src
     git clone git@github.com:uggedal/susc
     cd susc
