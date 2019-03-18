@@ -53,3 +53,6 @@ pkg git openssh vim
 ##
 
 pkg sway xorg-server-xwayland alacritty firefox
+
+# Autologin to TTY 1:
+tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
