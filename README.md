@@ -1,6 +1,8 @@
 System and User Setup and Config
 ================================
 
+Provisioning of an Arch Linux based development setup.
+
 Bootstrap
 ---------
 
