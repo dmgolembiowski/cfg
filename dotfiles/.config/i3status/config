@@ -47,5 +47,5 @@ tztime local {
 }
 
 load {
-        format = "%1min"
+        format = "L: %1min"
 }
