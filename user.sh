@@ -33,3 +33,13 @@ for d in $ff_profile_dir/*.default $ff_profile_dir/*.priv; do
 	tmpl "$d"/chrome/userChrome.css \
 		/home/user/.mozilla/firefox/profile/chrome/userChrome.css
 done
+
+##
+## Vim
+##
+
+f=~/.vim/autoload/plug.vim
+[ -e $f ] ||
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+unset f
