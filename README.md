@@ -96,15 +96,16 @@ Clone this repo with with the newly created user:
 Setup and config
 ----------------
 
-Fill a `env` file with the following environment variables:
+Fill a `env` file in the root of the chekcout of this repo
+with the following environment variables:
 
     export AUTOLOGIN_USER=your_username
 
-Run system setup and config:
+Run system setup and config with root:
 
     su -c ./system.sh
 
-Run user setup and config:
+Run user setup and config with your normal user:
 
     ./user.sh
 
