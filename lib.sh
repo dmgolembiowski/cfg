@@ -10,7 +10,7 @@ diff() {
 }
 
 pkg() {
-	for p; do
+	for p in $*; do
 		pacman -Q $p >/dev/null 2>&1 || pacman -S $p
 	done
 }
