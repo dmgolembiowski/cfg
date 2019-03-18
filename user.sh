@@ -21,3 +21,15 @@ find $DOTFILES -type f -print0 | while IFS= read -r -d '' f; do
 	fi
 done
 
+##
+## Firefox
+##
+
+ff_profile_dir=~/.mozilla/firefox
+
+for d in $ff_profile_dir/*.default $ff_profile_dir/*.priv; do
+	[ -d "$d" ] || continue
+
+	tmpl "$d"/chrome/userChrome.css \
+		/home/user/.mozilla/firefox/profile/chrome/userChrome.css
+done
