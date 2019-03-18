@@ -85,7 +85,7 @@ Bootstrap
 
 Create a user:
 
-    useradd -m -G wheel,adm $USER
+    useradd -m -G wheel,adm,video,audio $USER
     passwd $USER
 
 Clone this repo with with the newly created user:
