@@ -230,6 +230,7 @@ client.urgent           $Plum2           $Plum2           $Black $Plum2         
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
+    separator_symbol " | "
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
