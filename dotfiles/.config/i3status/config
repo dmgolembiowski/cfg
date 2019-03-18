@@ -19,6 +19,7 @@ order += "disk /"
 order += "wireless _first_"
 order += "battery all"
 order += "load"
+order += "volume master"
 order += "tztime local"
 
 disk "/" {
@@ -44,6 +45,12 @@ battery all {
 
 load {
         format = "L: %1min"
+}
+
+volume master {
+        device = pulseaudio
+	format = "V: %volume"
+	format_muted = "V: %%0"
 }
 
 tztime local {
