@@ -21,6 +21,11 @@ order += "battery all"
 order += "load"
 order += "tztime local"
 
+disk "/" {
+        format = "/ %percentage_used"
+        low_threshold = 20
+}
+
 wireless _first_ {
         format_up = "W: (%quality at %essid) %ip"
         format_down = "W: down"
@@ -38,9 +43,3 @@ tztime local {
 load {
         format = "%1min"
 }
-
-disk "/" {
-        format = "/ %percentage_used"
-        low_threshold = 20
-}
-
