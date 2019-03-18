@@ -29,6 +29,16 @@ else
 	PS1='\w '
 fi
 
+case ${TERM} in
+  xterm*)
+    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s\007" "${PWD/#$HOME/\~}"'
+
+    ;;
+  screen*)
+    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s\033\\" "${PWD/#$HOME/\~}"'
+    ;;
+esac
+
 PAGER=less
 LESS=-iFXR
 EDITOR=vi
