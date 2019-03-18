@@ -23,6 +23,7 @@ pkg '
 	openssh
 	vim
 	bash-completion
+	ncdu
 '
 
 ##
