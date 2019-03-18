@@ -9,7 +9,7 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 ## CLI
 ##
 
-pkg git openssh vim ps_mem
+pkg git openssh vim ps_mem bash-completion
 
 ##
 ## Dev
