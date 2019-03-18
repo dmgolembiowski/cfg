@@ -7,3 +7,7 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
+
+if [ "$(tty)" = "/dev/tty1" ]; then
+	exec sway
+fi
