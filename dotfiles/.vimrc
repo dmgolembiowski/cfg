@@ -170,6 +170,9 @@ nnoremap <leader>s :GitGutterToggle<CR>
 call plug#begin('~/.vim/plugged')
 
 	Plug 'robertmeta/nofrils'
+	Plug 'ap/vim-buftabline'
+	Plug 'tpope/vim-commentary'
+	Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
