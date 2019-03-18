@@ -11,7 +11,7 @@ diff() {
 	fi
 }
 
-p() {
+pkg() {
 	for p; do
 		pacman -Q $p >/dev/null 2>&1 || pacman -S $p
 	done
@@ -31,10 +31,10 @@ f() {
 ## CLI
 ##
 
-p git openssh vim
+pkg git openssh vim
 
 ##
 ## Desktop
 ##
 
-p sway xorg-server-xwayland alacritty firefox
+pkg sway xorg-server-xwayland alacritty firefox
