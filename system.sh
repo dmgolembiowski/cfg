@@ -16,4 +16,4 @@ p git openssh vim
 ## Desktop
 ##
 
-p sway alacritty firefox
+p sway xorg-server-xwayland alacritty firefox
