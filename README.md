@@ -18,7 +18,7 @@ Install
 -------
 
 
-* Boot Arch Linux Installer
+Boot Arch Linux Installer and run the following commands:
 
     sgdisk -Z /dev/nvme0n1
 
