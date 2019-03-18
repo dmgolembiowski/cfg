@@ -6,4 +6,14 @@ p() {
 	done
 }
 
+##
+## CLI
+##
+
 p git openssh vim
+
+##
+## Desktop
+##
+
+p sway alacritty firefox
