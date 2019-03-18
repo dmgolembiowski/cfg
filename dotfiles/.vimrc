@@ -159,6 +159,7 @@ nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 nnoremap <leader>c :noh<CR>
 
+" intentional trailing space:
 nnoremap <leader>f :find 
 nnoremap <leader>g :silent! grep -r  .<Left><Left>
 nnoremap <leader>G :silent! grep -r "\b<C-R><C-W>\b" .<CR>
