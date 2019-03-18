@@ -21,7 +21,10 @@ pkg '
 ## Dev
 ##
 
-pkg go
+pkg '
+	make
+	go
+'
 
 ##
 ## Desktop
