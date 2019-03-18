@@ -69,6 +69,8 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_options caps:escape,compose:ralt
 }
 
+seat * hide_cursor 3000
+
 ### Key bindings
 #
 # Basics:
