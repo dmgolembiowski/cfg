@@ -62,6 +62,7 @@ pkg '
 pkg '
 	pulseaudio
 	pulsemixer
+	mpv
 '
 
 # Autologin to TTY 1:
