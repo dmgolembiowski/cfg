@@ -62,17 +62,20 @@ Boot Arch Linux Installer and run the following commands:
     echo $HOSTNAME > /etc/hostname
     echo 127.0.0.1 $FQDN $HOSTNAME >> /etc/hosts
 
-    sed -i 's/^\(HOOKS=\).*/\1(systemd autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck)/' /etc/mkinitcpio.conf
+    hs='systemd autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck'
+    sed -i "s/^\(HOOKS=\).*/\1($hs)/" /etc/mkinitcpio.conf
     mkinitcpio -p linux
 
     bootctl --path=/boot install
+
+    uuid=$(blkid -s UUID /dev/nvme0n1p2 | awk '{ print $2 }' | tr -d '"')
 
     cat <<EOF > /boot/loader/entries/arch.conf
     title  Arch Linux
     linux  /vmlinuz-linux
     initrd  /intel-ucode.img
     initrd /initramfs-linux.img
-    options rd.luks.name=$(blkid -s UUID /dev/nvme0n1p2 | awk '{ print $2 }' | tr -d '"')=cryptroot root=/dev/mapper/cryptroot rw quiet
+    options rd.luks.name=$uuid=cryptroot root=/dev/mapper/cryptroot rw quiet
     EOF
 
 passwd
