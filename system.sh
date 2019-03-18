@@ -32,6 +32,7 @@ pkg '
 
 pkg '
 	sway
+	swaylock
 	xorg-server-xwayland
 	i3status
 	alacritty
