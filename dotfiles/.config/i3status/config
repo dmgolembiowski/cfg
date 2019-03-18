@@ -15,7 +15,6 @@ general {
         interval = 5
 }
 
-order += "ipv6"
 order += "disk /"
 order += "wireless _first_"
 order += "battery all"
