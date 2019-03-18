@@ -22,8 +22,15 @@ pkg '
 	git
 	openssh
 	vim
-	ps_mem
 	bash-completion
+'
+
+##
+## Debug
+##
+
+pkg '
+	ps_mem
 '
 
 ##
