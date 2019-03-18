@@ -6,6 +6,15 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 . $ROOT/lib.sh
 
 ##
+## Base
+##
+
+pkg '
+	pacman-contrib
+	sudo
+'
+
+##
 ## CLI
 ##
 
