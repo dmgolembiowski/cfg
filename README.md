@@ -14,6 +14,69 @@ BIOS
 - Disable card reader
 - Enable Thunderbold BIOS Assist Mode
 
+Install
+-------
+
+
+* Boot Arch Linux Installer
+
+    sgdisk -Z /dev/nvme0n1
+
+    gdisk /dev/nvme0n1 <<EOF
+    n
+
+
+    512M
+    ef00
+    n
+    
+    
+    
+    
+    w
+    YES
+    EOF
+
+    cryptsetup --type luks2 luksFormat /dev/nvme0n1p2
+    cryptsetup luksOpen /dev/nvme0n1p2 cryptroot
+
+    mkfs.vfat -F32 /dev/nvme0n1p1
+    mkfs.ext4 -m1 -L root /dev/mapper/cryptroot
+
+    mount /dev/mapper/cryptroot /mnt
+    mkdir /mnt/boot
+    mount /dev/nvme0n1p1 /mnt/boot
+
+    pacstrap /mnt base terminus-font intel-ucode git
+
+    genfstab -U /mnt >> /mnt/etc/fstab
+
+    arch-chroot /mnt
+
+    ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime
+    hwclock --systohc
+    sed -i 's/^#\(en_US.UTF\)/\1/' /etc/locale.gen
+    locale-gen
+    echo LANG=en_US.UTF-8 > /etc/locale.conf
+    echo FONT=ter-118n > /etc/vconsole.conf
+    echo $HOSTNAME > /etc/hostname
+    echo 127.0.0.1 $FQDN $HOSTNAME >> /etc/hosts
+
+    sed -i 's/^\(HOOKS=\).*/\1(systemd autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck)/' /etc/mkinitcpio.conf
+    mkinitcpio -p linux
+
+    bootctl --path=/boot install
+
+    cat <<EOF > /boot/loader/entries/arch.conf
+    title  Arch Linux
+    linux  /vmlinuz-linux
+    initrd  /intel-ucode.img
+    initrd /initramfs-linux.img
+    options rd.luks.name=$(blkid -s UUID /dev/nvme0n1p2 | awk '{ print $2 }' | tr -d '"')=cryptroot root=/dev/mapper/cryptroot rw quiet
+    EOF
+
+passwd
+
 Bootstrap
 ---------
 
