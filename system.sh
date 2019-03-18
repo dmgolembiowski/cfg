@@ -38,5 +38,14 @@ pkg '
 	firefox
 '
 
+##
+## Media
+##
+
+pkg '
+	pulseaudio
+	pulsemixer
+'
+
 # Autologin to TTY 1:
 tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
