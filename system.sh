@@ -25,7 +25,7 @@ _f() {
 	local src=$2
 	mkdir -p $(dirname $dst)
 	if [ -e $dst ]; then
-		diff $dst $src
+		diff $dst $src || :
 	fi
 	cp $src $dst
 }
