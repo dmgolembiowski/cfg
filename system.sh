@@ -12,6 +12,12 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 pkg git openssh vim
 
 ##
+## Dev
+##
+
+pkg go
+
+##
 ## Desktop
 ##
 
