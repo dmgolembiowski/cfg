@@ -44,6 +44,18 @@ pkg '
 '
 
 ##
+## Sec
+##
+
+pkg '
+	 yubikey-manager
+'
+
+for a in enable start; do
+	systemctl $a pcscd.socket
+done
+
+##
 ## Desktop
 ##
 
