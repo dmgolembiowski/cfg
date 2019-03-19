@@ -4,4 +4,4 @@ exec alacritty \
 	--class AlacrittyMenu \
 	-d 40 20 \
 	-e /bin/bash -c \
-		'compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec'
+		'compgen -c | sort -u | fzf --color=light | xargs -r swaymsg -t command exec'
