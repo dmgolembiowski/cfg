@@ -22,6 +22,12 @@ find $DOTFILES -type f -print0 | while IFS= read -r -d '' f; do
 done
 
 ##
+## SSH Agent
+##
+
+svc ssh-agent --user
+
+##
 ## Firefox
 ##
 
