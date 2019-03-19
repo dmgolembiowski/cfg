@@ -39,6 +39,9 @@ case ${TERM} in
     ;;
 esac
 
+MANWIDTH=80
+export MANWIDTH
+
 PAGER=less
 LESS=-iFXR
 EDITOR=vi
