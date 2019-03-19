@@ -12,6 +12,7 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 pkg '
 	pacman-contrib
 	sudo
+	fwupd
 '
 
 ##
