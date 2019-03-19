@@ -46,7 +46,10 @@ tmpl() {
 }
 
 svc() {
+	local s=$1
+	shift
+
 	for a in enable start; do
-		systemctl $a $1
+		systemctl "$@" $a $s
 	done
 }
