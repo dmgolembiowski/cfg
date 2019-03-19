@@ -54,6 +54,7 @@ unset f
 ## Flatpak
 ##
 
-flat tv.plex.PlexMediaPlayer \
+flat pms \
+	tv.plex.PlexMediaPlayer \
 	https://knapsu.eu/data/plex/tv.plex.PlexMediaPlayer.flatpakref
-flat com.spotify.Client
+flat spotify com.spotify.Client

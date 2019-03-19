@@ -55,8 +55,9 @@ svc() {
 }
 
 flat() {
-	local name=$1
-	local url=$2
+	local bin=$1
+	local name=$2
+	local url=$3
 
 	if ! flatpak list --app --columns=application | grep -q $name; then
 		if [ "$url" ]; then
@@ -64,5 +65,14 @@ flat() {
 		else
 			flatpak install flathub $name
 		fi
+	fi
+
+	if ! [ -e $HOME/bin/$bin ]; then
+		cat <<-EOF > $HOME/bin/$bin
+		#!/bin/sh
+		exec flatpak run $name
+		EOF
+
+		chmod +x $HOME/bin/$bin
 	fi
 }
