@@ -66,6 +66,7 @@ pkg '
 	i3status
 	alacritty
 	firefox
+	flatpak
 '
 
 ##
