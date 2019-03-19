@@ -53,3 +53,16 @@ svc() {
 		systemctl "$@" $a $s
 	done
 }
+
+flat() {
+	local name=$1
+	local url=$2
+
+	if ! flatpak list --app --columns=application | grep -q $name; then
+		if [ "$url" ]; then
+			flatpak install $url
+		else
+			flatpak install flathub $name
+		fi
+	fi
+}
