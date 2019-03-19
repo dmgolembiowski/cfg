@@ -15,9 +15,6 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term alacritty
-# Your preferred application launcher
-# Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | dmenu | xargs swaymsg exec
 # Colors
 set $Black           '#000000'
 set $Grey85          '#dadada'
@@ -85,7 +82,7 @@ seat * hide_cursor 3000
     bindsym $mod+Shift+q kill
 
     # start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+p exec ~/bin/alacritty_menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -209,8 +206,11 @@ client.unfocused        $Grey85          $Grey85          $Black $Grey85        
 client.urgent           $Plum2           $Plum2           $Black $Plum2           $Plum2
 
 #
-# Status Bar:
+# Window rules:
 #
+for_window [app_id="AlacrittyMenu"] border pixel 2
+for_window [app_id="AlacrittyMenu"] floating enable
+
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
