@@ -44,3 +44,9 @@ tmpl() {
 	envsubst "$@" < $src > $tmp
 	_f $dst $tmp
 }
+
+svc() {
+	for a in enable start; do
+		systemctl $a $1
+	done
+}
