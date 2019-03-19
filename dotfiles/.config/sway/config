@@ -165,6 +165,17 @@ seat * hide_cursor 3000
 
     # move focus to the parent container
     bindsym $mod+a focus parent
+
+#
+# Custom keybindings:
+#
+# Play/pause spotify
+bindsym XF86Favorites exec \
+	dbus-send --print-reply \
+	--dest=org.mpris.MediaPlayer2.spotify \
+	/org/mpris/MediaPlayer2 \
+	org.mpris.MediaPlayer2.Player.PlayPause
+
 #
 # Scratchpad:
 #
