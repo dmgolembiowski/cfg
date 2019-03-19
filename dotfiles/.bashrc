@@ -69,6 +69,9 @@ fi
 
 FZF_DEFAULT_OPTS='--color=light'
 export FZF_DEFAULT_OPTS
-if [ -e /usr/share/fzf/key-bindings.bash ]; then
-	. /usr/share/fzf/key-bindings.bash
-fi
+for _n in key-bindings completion; do
+	if [ -e /usr/share/fzf/$_n.bash ]; then
+		. /usr/share/fzf/$_n.bash
+	fi
+done
+unset _n
