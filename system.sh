@@ -62,6 +62,7 @@ done
 pkg '
 	sway
 	swaylock
+	swayidle
 	xorg-server-xwayland
 	i3status
 	alacritty
