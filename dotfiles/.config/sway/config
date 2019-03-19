@@ -197,13 +197,15 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #
-# Colors:
+# Style:
 #
 # Legend:               border           background       text   indicator        child_border
 client.focused          $LightGoldenrod2 $LightGoldenrod2 $Black $LightGoldenrod2 $LightGoldenrod2
 client.focused_inactive $LightCyan1      $LightCyan1      $Black $LightCyan1      $LightCyan1
 client.unfocused        $Grey85          $Grey85          $Black $Grey85          $Grey85
 client.urgent           $Plum2           $Plum2           $Black $Plum2           $Plum2
+
+font IBM Plex Mono 10
 
 #
 # Window rules:

@@ -68,6 +68,7 @@ pkg '
 	alacritty
 	firefox
 	flatpak
+	ttf-ibm-plex
 '
 
 ##

@@ -1,3 +1,9 @@
+font:
+  normal:
+    family: IBM Plex Mono
+    style: Regular
+  size: 11.0
+
 # XTerm's default colors with acme background
 colors:
   # Default colors
