@@ -47,7 +47,7 @@ Boot Arch Linux Installer and run the following commands:
     mkdir /mnt/boot
     mount /dev/nvme0n1p1 /mnt/boot
 
-    pacstrap /mnt base terminus-font intel-ucode git
+    pacstrap /mnt base terminus-font intel-ucode git wpa_supplicant
 
     genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -82,6 +82,30 @@ Boot Arch Linux Installer and run the following commands:
 
 Bootstrap
 ---------
+
+Setup wireless:
+
+    cat <<EOF >/etc/wpa_supplicant/wpa_supplicant-wlp2s0.conf
+    network={
+      ssid="foo"
+      psk="bar"
+    }
+    EOF
+    systemctl enable wpa_supplicant@wlp2s0
+    systemctl start wpa_supplicant@wlp2s0
+
+    cat <<EOF >/etc/systemd/network/wireless.network
+    [Match]
+    Name=wlp2s0
+
+    [Network]
+    DHCP=ipv4
+    EOF
+
+    systemctl enable systemd-networkd systemd-resolved
+    systemctl start systemd-networkd systemd-resolved
+
+    ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 Create a user:
 
