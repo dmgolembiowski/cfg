@@ -16,6 +16,12 @@ pkg '
 '
 
 ##
+## Net
+##
+
+file /etc/systemd/resolved.conf.d/static.conf
+
+##
 ## CLI
 ##
 
