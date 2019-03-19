@@ -66,3 +66,9 @@ export GOPATH
 if [ -d $GOPATH/bin ]; then
 	PATH=$PATH:$GOPATH/bin
 fi
+
+FZF_DEFAULT_OPTS='--color=light'
+export FZF_DEFAULT_OPTS
+if [ -e /usr/share/fzf/key-bindings.bash ]; then
+	. /usr/share/fzf/key-bindings.bash
+fi
