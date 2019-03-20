@@ -8,6 +8,7 @@ AUR_URL='https://aur.archlinux.org'
 AUR_PACKAGES='
 	brightnessctl
 	plex-media-player
+	spotify
 '
 
 mkdir -p $CHROOT
