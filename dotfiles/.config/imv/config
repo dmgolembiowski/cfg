@@ -2,3 +2,13 @@
 scaling_mode=shrink
 loop_input=false
 overlay_font=IBM Plex Mono:14
+
+[binds]
+q=quit
+f=fullscreen
+o=overlay
+n=select_rel 1
+p=select_rel -1
+zi=zoom 1.5
+zo=zoom -1.5
+zz=zoom actual
