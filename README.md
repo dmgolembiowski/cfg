@@ -136,6 +136,7 @@ with the following environment variables:
 
     export AUTOLOGIN_USER=your_username
     export SSH_TUNNEL_HOST=your.host.name
+    export TODOIST_API_TOKEN=abcdef1234567890abcdef1234567890abcdef12
 
 Run system setup and config with root:
 
