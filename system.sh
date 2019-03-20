@@ -77,6 +77,8 @@ pkg '
 	sway
 	swaylock
 	swayidle
+	grim
+	slurp
 	xorg-server-xwayland
 	i3status
 	alacritty
