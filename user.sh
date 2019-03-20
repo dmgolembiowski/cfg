@@ -3,6 +3,7 @@
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
 DOTFILES=$ROOT/dotfiles
 
+. $ROOT/env
 . $ROOT/lib.sh
 
 ##
@@ -55,3 +56,11 @@ unset f
 ##
 
 mkdir -p ~/pic
+
+##
+## Todoist
+##
+
+tmpl ~/.todoist.config.json \
+	/home/user/.todoist.config.json \
+	'$TODOIST_API_TOKEN'
