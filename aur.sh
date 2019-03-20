@@ -9,6 +9,7 @@ AUR_PACKAGES='
 	brightnessctl
 	plex-media-player
 	spotify
+	todoist
 '
 
 mkdir -p $CHROOT
