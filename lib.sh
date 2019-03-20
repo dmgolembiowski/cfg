@@ -21,6 +21,8 @@ _f() {
 	mkdir -p $(dirname $dst)
 	if [ -e $dst ]; then
 		diff $dst $src || :
+	else
+		diff /dev/null $src || :
 	fi
 	cp $src $dst
 }
