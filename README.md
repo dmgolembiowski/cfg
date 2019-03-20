@@ -132,6 +132,10 @@ Run system setup and config with root:
 
     su -c ./system.sh
 
+Build and install AUR packages:
+
+    ./aur.sh
+
 Run user setup and config with your normal user:
 
     ./user.sh

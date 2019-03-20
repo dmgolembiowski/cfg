@@ -35,6 +35,14 @@ pkg '
 '
 
 ##
+## Build
+##
+
+pkg '
+	devtools
+'
+
+##
 ## Debug
 ##
 
