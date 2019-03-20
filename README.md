@@ -135,6 +135,7 @@ Fill a `env` file in the root of the chekcout of this repo
 with the following environment variables:
 
     export AUTOLOGIN_USER=your_username
+    export SSH_TUNNEL_HOST=your.host.name
 
 Run system setup and config with root:
 
