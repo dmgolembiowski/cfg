@@ -49,12 +49,3 @@ f=~/.vim/autoload/plug.vim
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 unset f
-
-##
-## Flatpak
-##
-
-flat pms \
-	tv.plex.PlexMediaPlayer \
-	https://knapsu.eu/data/plex/tv.plex.PlexMediaPlayer.flatpakref
-flat spotify com.spotify.Client

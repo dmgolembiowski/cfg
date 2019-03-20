@@ -81,7 +81,6 @@ pkg '
 	i3status
 	alacritty
 	firefox
-	flatpak
 	ttf-ibm-plex
 '
 
