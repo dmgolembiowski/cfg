@@ -83,6 +83,7 @@ pkg '
 	i3status
 	alacritty
 	firefox
+	imv
 	ttf-ibm-plex
 '
 
