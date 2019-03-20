@@ -6,6 +6,7 @@ CHROOT=$ROOT/chroot/root
 AUR_URL='https://aur.archlinux.org'
 
 AUR_PACKAGES='
+	brightnessctl
 '
 
 mkdir -p $CHROOT
