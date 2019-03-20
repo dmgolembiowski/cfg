@@ -1,0 +1,11 @@
+[Unit]
+Description=SSH tunnel
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+ExecStart=/usr/bin/ssh -N -o ServerAliveInterval=3 -D 1337 $SSH_TUNNEL_HOST
+
+[Install]
+WantedBy=default.target

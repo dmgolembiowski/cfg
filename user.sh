@@ -23,10 +23,14 @@ find $DOTFILES -type f -print0 | while IFS= read -r -d '' f; do
 done
 
 ##
-## SSH Agent
+## SSH
 ##
 
 svc ssh-agent --user
+tmpl ~/.config/systemd/user/ssh-tunnel.service \
+	/home/user/.config/systemd/user/ssh-tunnel.service \
+	'$SSH_TUNNEL_HOST'
+svc ssh-tunnel --user
 
 ##
 ## Firefox
