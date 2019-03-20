@@ -24,11 +24,15 @@ for p in $AUR_PACKAGES; do
 	)
 done
 
-for d in $ROOT/aur/*; do
-	n=$(basename $d)
+for n in $AUR_PACKAGES; do
+	d=$ROOT/aur/$n
 	v=$(awk -F= '/^pkgver=/ { print $2 }' $d/PKGBUILD)
 	r=$(awk -F= '/^pkgrel=/ { print $2 }' $d/PKGBUILD)
-	p=$d/${n}-${v}-${r}-x86_64.pkg.tar.xz
+	e=$(awk -F= '/^epoch=/ { print $2 }' $d/PKGBUILD)
+	if [ "$e" ]; then
+		e=$e:
+	fi
+	p=$d/${n}-${e}${v}-${r}-x86_64.pkg.tar.xz
 
 	if [ -e $p ]; then
 		continue
