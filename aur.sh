@@ -14,6 +14,10 @@ mkdir -p $CHROOT
 
 [ -d $CHROOT/root ] || mkarchroot $CHROOT/root base-devel
 
+
+mkdir -p ~/.gnupg
+echo 'keyserver-options auto-key-retrieve' > ~/.gnupg/gpg.conf
+
 arch-nspawn $CHROOT/root pacman -Syu
 
 for p in $AUR_PACKAGES; do
