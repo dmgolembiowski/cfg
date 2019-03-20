@@ -3,7 +3,7 @@ FILES=$ROOT/files
 
 diff() {
 	if command -v git >/dev/null; then
-		git diff --no-index "$@"
+		git --no-pager diff --no-index "$@"
 	else
 		comamnd diff -u "$@"
 	fi
