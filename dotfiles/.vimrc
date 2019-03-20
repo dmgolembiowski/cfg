@@ -173,6 +173,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'ap/vim-buftabline'
 	Plug 'tpope/vim-commentary'
 	Plug 'ctrlpvim/ctrlp.vim'
+	Plug 'duggiefresh/vim-easydir', { 'tag': '1.1' }
 	Plug 'fatih/vim-go', { 'tag': '*' }
 
 call plug#end()
