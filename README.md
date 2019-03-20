@@ -202,3 +202,7 @@ Without Firefox Sync the following tasks needs to be completed:
 	- Monospace: Noto Sans Mono
   - Privacy & Security
     - Disable: Ask to save logins and passwords
+  - Firefox Account
+    - Only sync:
+      - Add-ons
+      - Preferences
