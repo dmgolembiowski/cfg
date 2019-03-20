@@ -15,6 +15,8 @@ pkg '
 	fwupd
 '
 
+file /etc/pacman.d/mirrorlist
+
 ##
 ## Net
 ##
