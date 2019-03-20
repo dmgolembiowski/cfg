@@ -7,12 +7,20 @@ a ThinkPad X1 Carbon 6th gen (Coffe Lake).
 BIOS
 ----
 
-- Switch Fn/Ctrl
-- Disable fingerprint reader
-- Disable secure boot
-- Disable Wale-on-LAN
-- Disable card reader
-- Enable Thunderbold BIOS Assist Mode
+Update BIOS to >= 0.1.37.
+
+- Config
+  - Keyboard/Mouse
+    - Fn and Ctrl Key swap: Enabled
+  - Power
+    - Sleep State: Linux
+- Security
+  - I/O Port Access
+    - Wireless WAN: Disabled
+    - Memory Card Slot: Disabled
+    - Fingerprint Reader: Disabled
+  - Secure Boot Configuration
+    - Secure Boot: Disabled
 
 Install
 -------
