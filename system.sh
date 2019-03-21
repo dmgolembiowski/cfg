@@ -17,6 +17,12 @@ pkg '
 
 file /etc/pacman.d/mirrorlist
 
+# Autologin to TTY 1:
+tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
+
+# Passwordless sudo for wheel:
+echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
+
 ##
 ## Net
 ##
@@ -99,9 +105,3 @@ pkg '
 	mpv
 	libva-intel-driver
 '
-
-# Autologin to TTY 1:
-tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
-
-# Passwordless sudo for wheel:
-echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
