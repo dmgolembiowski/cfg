@@ -20,6 +20,11 @@ file /etc/pacman.d/mirrorlist
 # Autologin to TTY 1:
 tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
 
+# Keep no pacman cache for uninstalled packages and 2 versions of
+# installed packages:
+file /etc/systemd/system/paccache.service.d/override.conf
+svc paccache.timer
+
 # Passwordless sudo for wheel:
 echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
 
