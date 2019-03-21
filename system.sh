@@ -15,6 +15,7 @@ pkg '
 	fwupd
 '
 
+file /etc/pacman.conf
 file /etc/pacman.d/mirrorlist
 
 # Autologin to TTY 1:
