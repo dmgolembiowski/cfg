@@ -83,7 +83,7 @@ Boot Arch Linux Installer and run the following commands:
     linux  /vmlinuz-linux
     initrd  /intel-ucode.img
     initrd /initramfs-linux.img
-    options rd.luks.name=$uuid=cryptroot root=/dev/mapper/cryptroot rw quiet
+    options rd.luks.name=$uuid=cryptroot rd.luks.options=discard root=/dev/mapper/cryptroot rw quiet
     EOF
 
     passwd
