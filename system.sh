@@ -15,6 +15,9 @@ pkg '
 	fwupd
 '
 
+# Periodic TRIM:
+svc fstrim.timer
+
 file /etc/pacman.conf
 file /etc/pacman.d/mirrorlist
 
