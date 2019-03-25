@@ -124,6 +124,7 @@ pkg '
 	alacritty
 	firefox
 	imv
+	noto-fonts
 	ttf-ibm-plex
 '
 
