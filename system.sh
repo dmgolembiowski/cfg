@@ -15,6 +15,29 @@ pkg '
 	fwupd
 '
 
+# Unneeded base packages:
+UNNEEDED_PKGS='
+	dhcpcd
+	jfsutils
+	linux
+	lvm2
+	mdadm
+	nano
+	netctl
+	psmisc
+	reiserfsprogs
+	s-nail
+	systemd-sysvcompat
+	xfsprogs
+'
+
+for p in $UNNEEDED_PKGS; do
+	if pacman -Q $p >/dev/null 2>&1; then
+		pacman -Rs $p
+	fi
+done
+unset p
+
 # Periodic TRIM:
 svc fstrim.timer
 
