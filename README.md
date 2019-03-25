@@ -55,7 +55,7 @@ Boot Arch Linux Installer and run the following commands:
     mkdir /mnt/boot
     mount /dev/nvme0n1p1 /mnt/boot
 
-    pacstrap /mnt base terminus-font intel-ucode git wpa_supplicant
+    pacstrap /mnt base linux-lts terminus-font intel-ucode git wpa_supplicant
 
     genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -72,17 +72,17 @@ Boot Arch Linux Installer and run the following commands:
 
     hs='systemd autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck'
     sed -i "s/^\(HOOKS=\).*/\1($hs)/" /etc/mkinitcpio.conf
-    mkinitcpio -p linux
+    mkinitcpio -p linux-lts
 
-    bootctl --path=/boot install
+    bootctl install
 
     uuid=$(blkid -s UUID /dev/nvme0n1p2 | awk '{ print $2 }' | tr -d '"')
 
-    cat <<EOF > /boot/loader/entries/arch.conf
-    title  Arch Linux
-    linux  /vmlinuz-linux
+    cat <<EOF > /boot/loader/entries/arch-lts.conf
+    title  Arch Linux LTS
+    linux  /vmlinuz-linux-lts
     initrd  /intel-ucode.img
-    initrd /initramfs-linux.img
+    initrd /initramfs-linux-lts.img
     options rd.luks.name=$uuid=cryptroot rd.luks.options=discard root=/dev/mapper/cryptroot rw quiet
     EOF
 
