@@ -9,7 +9,7 @@ if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
 	exec sway
 fi
 
-[[ $DISPLAY ]] && shopt -s checkwinsize
+[[ $WAYLAND_DISPLAY ]] && shopt -s checkwinsize
 
 shopt -s histappend
 shopt -s extglob
