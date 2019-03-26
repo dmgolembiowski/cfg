@@ -62,7 +62,14 @@ GOPATH=$HOME/src/go
 export GOPATH
 
 if [ -d $GOPATH/bin ]; then
-	PATH=$PATH:$GOPATH/bin
+	case $PATH in
+	*$GOPATH/bin*)
+		:
+		;;
+	*)
+		PATH=$PATH:$GOPATH/bin
+		;;
+	esac
 fi
 
 FZF_DEFAULT_OPTS='--color=light'
