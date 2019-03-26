@@ -5,10 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-	exec sway
-fi
-
 [[ $WAYLAND_DISPLAY ]] && shopt -s checkwinsize
 
 shopt -s histappend
@@ -77,3 +73,7 @@ for _n in key-bindings completion; do
 	fi
 done
 unset _n
+
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+	exec sway
+fi
