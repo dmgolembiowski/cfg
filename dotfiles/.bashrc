@@ -44,11 +44,11 @@ EDITOR=vi
 export PAGER LESS EDITOR
 
 case $PATH in
-*$HOME/bin*)
+*$HOME/.local/bin*)
 	:
 	;;
 *)
-	PATH=$HOME/bin:$PATH
+	PATH=$HOME/.local/bin:$PATH
 	;;
 esac
 
