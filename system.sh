@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+[ "$UID" = 0 ] || exec sudo $0
+
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
 
 . $ROOT/env
