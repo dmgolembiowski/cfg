@@ -73,6 +73,7 @@ pkg '
 	vim
 	bash-completion
 	fzf
+	task
 	ncdu
 '
 

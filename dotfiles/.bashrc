@@ -56,7 +56,7 @@ command -v vim >/dev/null && EDITOR=vim
 
 alias ls='ls -1F'
 
-alias t=todoist
+alias t=task
 
 GOPATH=$HOME/src/go
 export GOPATH

@@ -33,6 +33,14 @@ tmpl ~/.config/systemd/user/ssh-tunnel.service \
 svc ssh-tunnel --user
 
 ##
+## Taskwarrior
+##
+
+tmpl ~/.taskrc \
+	/home/user/.taskrc \
+	'$TASKD_CREDENTIALS'
+
+##
 ## Firefox
 ##
 
