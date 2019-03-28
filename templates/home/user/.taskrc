@@ -13,6 +13,8 @@
 # Files
 data.location=~/.task
 
+weekstart=Monday
+
 # Color theme (uncomment one to use)
 include /usr/share/doc/task/rc/light-256.theme
 
