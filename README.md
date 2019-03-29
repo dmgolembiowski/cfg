@@ -147,6 +147,10 @@ Build and install AUR packages:
 
     ./aur.sh
 
+To update AUR PKGBUILDs run (and follow the previous step to build/install):
+
+    ./aur.sh -u
+
 Run user setup and config with your normal user:
 
     ./user.sh
