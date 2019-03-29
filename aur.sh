@@ -40,7 +40,7 @@ else
 		if [ "$e" ]; then
 			e=$e:
 		fi
-		p=$d/${n}-${e}${v}-${r}-x86_64.pkg.tar.xz
+		p=$d/${n}-${e}${v}-${r}-*.pkg.tar.xz
 
 		if [ -e $p ]; then
 			continue
