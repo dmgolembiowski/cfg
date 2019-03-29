@@ -72,6 +72,7 @@ pkg '
 	openssh
 	vim
 	bash-completion
+	ripgrep
 	fzf
 	task
 	ncdu
