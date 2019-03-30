@@ -7,6 +7,7 @@ AUR_URL='https://aur.archlinux.org'
 
 AUR_PACKAGES='
 	brightnessctl
+	needrestart
 	plex-media-player
 	spotify
 '
