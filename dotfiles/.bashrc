@@ -72,15 +72,6 @@ if [ -d $GOPATH/bin ]; then
 	esac
 fi
 
-FZF_DEFAULT_OPTS='--color=light'
-export FZF_DEFAULT_OPTS
-for _n in key-bindings completion; do
-	if [ -e /usr/share/fzf/$_n.bash ]; then
-		. /usr/share/fzf/$_n.bash
-	fi
-done
-unset _n
-
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
 	exec sway
 fi

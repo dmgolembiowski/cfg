@@ -73,7 +73,7 @@ pkg '
 	vim
 	bash-completion
 	ripgrep
-	fzf
+	fzy
 	task
 	ncdu
 '

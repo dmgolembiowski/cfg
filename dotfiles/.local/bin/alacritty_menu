@@ -4,6 +4,6 @@ PATH=$PATH:$HOME/bin
 
 exec alacritty \
 	--class AlacrittyMenu \
-	-d 40 20 \
+	-d 40 11 \
 	-e /bin/bash -c \
-		'compgen -c | sort -u | fzf --color=light | xargs -r swaymsg -t command exec'
+		'compgen -c | sort -u | fzy | xargs -r swaymsg -t command exec'
