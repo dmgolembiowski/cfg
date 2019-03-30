@@ -15,6 +15,7 @@ pkg '
 	pacman-contrib
 	sudo
 	fwupd
+	lostfiles
 '
 
 # Unneeded base packages:
