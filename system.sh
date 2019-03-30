@@ -110,7 +110,7 @@ pkg '
 ##
 
 pkg '
-	 yubikey-manager
+	arch-audit
 '
 
 svc pcscd.socket
