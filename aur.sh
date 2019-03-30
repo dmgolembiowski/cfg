@@ -9,7 +9,6 @@ AUR_PACKAGES='
 	brightnessctl
 	plex-media-player
 	spotify
-	vit
 '
 
 UPDATE=$([ "$1" != -u ] || echo yes)
