@@ -45,6 +45,7 @@ svc fstrim.timer
 
 file /etc/pacman.conf
 file /etc/pacman.d/mirrorlist
+file /etc/pacman.d/hooks/needrestart.hook
 
 # Autologin to TTY 1:
 tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
