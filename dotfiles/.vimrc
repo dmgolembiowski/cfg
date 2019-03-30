@@ -174,6 +174,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-commentary'
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'duggiefresh/vim-easydir', { 'tag': '1.1' }
+	Plug 'farmergreg/vim-lastplace', { 'tag': '*' }
 	Plug 'fatih/vim-go', { 'tag': '*' }
 
 call plug#end()
@@ -215,13 +216,3 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-augroup vimrcEx
-	au!
-	" always jump to the last known cursor position
-	autocmd BufReadPost *
-	\ if &filetype !~ 'commit\c' &&
-	\     line("'\"") > 0 && line("'\"") <= line("$") |
-	\ 	exe "normal g`\"" |
-	\ endif
-augroup END
