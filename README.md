@@ -185,7 +185,7 @@ section is handled automatically. Then configure the following:
   - Density: compact
   - Remove: home and refresh buttons
   - Move the following to overflow: library, sidebars, all extensions
-    except 1Password
+    except Bitwarden
 - Alternative profile
   - firefox -ProfileManager
   - Create priv profile
@@ -201,7 +201,7 @@ Without Firefox Sync the following tasks needs to be completed:
   - uBlock Origin
     - https://github.com/yourduskquibbles/webannoyances
   - Tridactyl
-  - 1Password
+  - Bitwarden
   - Nano Defender
 - Preferences:
   - General
