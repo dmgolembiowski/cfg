@@ -130,6 +130,7 @@ pkg '
 	imv
 	noto-fonts
 	ttf-ibm-plex
+	unzip
 '
 
 ##
