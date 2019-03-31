@@ -22,6 +22,6 @@ include /usr/share/doc/task/rc/light-256.theme
 taskd.certificate=~/.config/task/private.certificate.pem
 taskd.key=~/.config/task/private.key.pem
 taskd.ca=~/.config/task/ca.cert.pem
-taskd.server=taskwarrior.inthe.am:53589
+taskd.server=app.wingtask.com:53589
 taskd.credentials=$TASKD_CREDENTIALS
 taskd.trust=ignore hostname

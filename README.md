@@ -169,7 +169,7 @@ Install plugins and plugin dependencies with:
 
 ### Taskwarrior
 
-Download the following from inthe.am:
+Download the following from wingtask.com:
 
 - ~/.config/task/private.certificate.pem
 - ~/.config/task/private.key.pem
