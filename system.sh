@@ -113,8 +113,6 @@ pkg '
 	arch-audit
 '
 
-svc pcscd.socket
-
 ##
 ## Desktop
 ##
