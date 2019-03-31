@@ -6,6 +6,7 @@ CHROOT=$ROOT/chroot/root
 AUR_URL='https://aur.archlinux.org'
 
 AUR_PACKAGES='
+	bitwarden-cli
 	brightnessctl
 	needrestart
 	plex-media-player
