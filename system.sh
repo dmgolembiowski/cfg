@@ -121,6 +121,7 @@ pkg '
 	sway
 	swaylock
 	swayidle
+	light
 	grim
 	slurp
 	xorg-server-xwayland
