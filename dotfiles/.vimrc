@@ -1,6 +1,8 @@
 " vim: filetype=vim
 
-" general
+""
+"" General
+""
 set nocompatible
 set undofile
 set history=100
@@ -17,7 +19,9 @@ set number
 set shortmess+=I
 
 
-" syntax
+""
+"" Syntax
+""
 syntax enable
 set synmaxcol=200
 filetype plugin indent on
@@ -28,7 +32,9 @@ let b:ruby_no_expensive=1
 let &t_ut=''
 
 
-" ui
+""
+"" UI
+""
 set backspace=indent,eol,start
 
 set complete-=i
@@ -67,7 +73,9 @@ set nrformats-=octal
 autocmd QuickFixCmdPost *grep* cwindow
 
 
-" keybinding
+""
+"" Keybindings
+""
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -94,7 +102,9 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 
-" text
+""
+"" Text
+""
 set wrap
 set colorcolumn=80
 set linebreak
@@ -118,7 +128,9 @@ set nofoldenable
 
 set formatoptions+=j
 
-" languages
+""
+"" Languages
+""
 function Spaces(n)
 	setl expandtab
 	exec 'setl softtabstop='.a:n
@@ -134,7 +146,9 @@ au FileType yaml call Spaces(2)
 au BufRead,BufNewFile *.nix call Spaces(2)
 
 
-" leader
+""
+"" Leader
+""
 let mapleader = ","
 
 nnoremap <leader>b :ls<CR>
@@ -161,7 +175,9 @@ nnoremap <leader>c :noh<CR>
 
 nnoremap <leader>s :GitGutterToggle<CR>
 
-" plugins
+""
+"" Plugins
+""
 call plug#begin('~/.vim/plugged')
 
 	Plug 'robertmeta/nofrils'
@@ -174,19 +190,24 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
+" colorscheme
 colorscheme nofrils-acme
 
+" netrw
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 nmap - :E %:h/<CR>
 
+" buftabline
 let g:buftabline_show=1
 let g:buftabline_numbers=1
 let g:buftabline_indicators=1
 
+" ctrlp
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'find %s -type f']
 let g:ctrlp_line_prefix = ''
 
+" vimwiki
 let g:vimwiki_global_ext = 0
 let wiki_1 = {}
 let wiki_1.path = '~/src/wiki/'
@@ -196,4 +217,5 @@ let wiki_1.ext = '.md'
 let g:vimwiki_list = [wiki_1]
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 
+" taskwiki
 let g:taskwiki_markup_syntax = 'markdown'
