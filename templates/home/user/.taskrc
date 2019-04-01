@@ -15,6 +15,11 @@ data.location=~/.task
 
 weekstart=Monday
 
+# Make L prio lower than none:
+uda.priority.values = H,M,,L
+urgency.uda.priority.L.coefficient=0
+urgency.uda.priority..coefficient=1.8
+
 # Color theme (uncomment one to use)
 include /usr/share/doc/task/rc/light-256.theme
 
