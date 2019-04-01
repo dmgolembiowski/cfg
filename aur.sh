@@ -12,6 +12,7 @@ AUR_PACKAGES='
 	python-tasklib
 	taskopen
 	spotify
+	vim-taskwiki
 	vim-vimwiki
 '
 
