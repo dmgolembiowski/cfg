@@ -20,6 +20,9 @@ uda.priority.values = H,M,,L
 urgency.uda.priority.L.coefficient=0
 urgency.uda.priority..coefficient=1.8
 
+# Use ancestral urgency if higher than own
+urgency.inherit=on
+
 # Color theme (uncomment one to use)
 include /usr/share/doc/task/rc/light-256.theme
 
