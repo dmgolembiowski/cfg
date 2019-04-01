@@ -18,7 +18,7 @@ weekstart=Monday
 # Color theme (uncomment one to use)
 include /usr/share/doc/task/rc/light-256.theme
 
-# Inthe.AM sync
+# wingtask sync
 taskd.certificate=~/.config/task/private.certificate.pem
 taskd.key=~/.config/task/private.key.pem
 taskd.ca=~/.config/task/ca.cert.pem
