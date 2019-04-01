@@ -25,6 +25,19 @@ mkdir -p $CHROOT
 mkdir -p ~/.gnupg
 echo 'keyserver-options auto-key-retrieve' > ~/.gnupg/gpg.conf
 
+pkgf() {
+	local d=$1
+	local v=$(awk -F= '/^pkgver=/ { print $2 }' $d/PKGBUILD)
+	local r=$(awk -F= '/^pkgrel=/ { print $2 }' $d/PKGBUILD)
+	local e=$(awk -F= '/^epoch=/ { print $2 }' $d/PKGBUILD)
+
+	if [ "$e" ]; then
+		e=$e:
+	fi
+
+	echo $d/$(basename $d)-${e}${v}-${r}-*.pkg.tar.xz
+}
+
 if [ "$UPDATE" ]; then
 	for p in $AUR_PACKAGES; do
 		(
@@ -38,13 +51,7 @@ else
 
 	for n in $AUR_PACKAGES; do
 		d=$ROOT/aur/$n
-		v=$(awk -F= '/^pkgver=/ { print $2 }' $d/PKGBUILD)
-		r=$(awk -F= '/^pkgrel=/ { print $2 }' $d/PKGBUILD)
-		e=$(awk -F= '/^epoch=/ { print $2 }' $d/PKGBUILD)
-		if [ "$e" ]; then
-			e=$e:
-		fi
-		p=$d/${n}-${e}${v}-${r}-*.pkg.tar.xz
+		p=$(pkgf $d)
 
 		if [ -e $p ]; then
 			continue
@@ -52,7 +59,17 @@ else
 
 		(
 			cd $d
-			makechrootpkg -c -r $CHROOT
+			case $n in
+				vim-taskwiki)
+					echo $(pkgf $ROOT/aur/python-tasklib)
+					makechrootpkg -c -r $CHROOT \
+						-I $(pkgf $ROOT/aur/python-tasklib) \
+						-I $(pkgf $ROOT/aur/vim-vimwiki)
+					;;
+				*)
+					makechrootpkg -c -r $CHROOT
+					;;
+			esac
 		)
 
 		sudo pacman -U $p
