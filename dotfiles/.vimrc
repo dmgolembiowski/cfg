@@ -189,30 +189,5 @@ let g:buftabline_show=1
 let g:buftabline_numbers=1
 let g:buftabline_indicators=1
 
-let g:pyindent_open_paren = '&sw'
-let g:pyindent_continue = '&sw'
-
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'find %s -type f']
 let g:ctrlp_line_prefix = ''
-
-let g:gitgutter_enabled = 0
-
-function! s:goyo_enter()
-	let g:buftabline_show=0
-	call buftabline#update(0)
-	set showtabline=0
-endfunction
-
-function! s:goyo_leave()
-	let g:buftabline_show=1
-	call buftabline#update(0)
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
