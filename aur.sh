@@ -9,6 +9,7 @@ AUR_PACKAGES='
 	bitwarden-cli
 	needrestart
 	plex-media-player
+	python-tasklib
 	taskopen
 	spotify
 	vim-vimwiki
