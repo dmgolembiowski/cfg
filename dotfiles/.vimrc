@@ -195,3 +195,5 @@ let wiki_1.ext = '.md'
 
 let g:vimwiki_list = [wiki_1]
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+
+let g:taskwiki_markup_syntax = 'markdown'
