@@ -11,6 +11,7 @@ AUR_PACKAGES='
 	plex-media-player
 	taskopen
 	spotify
+	vim-vimwiki
 '
 
 UPDATE=$([ "$1" != -u ] || echo yes)
