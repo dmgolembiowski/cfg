@@ -143,7 +143,6 @@ command! Spaces :call Spaces(4)
 
 au FileType python call Spaces(4)
 au FileType yaml call Spaces(2)
-au BufRead,BufNewFile *.nix call Spaces(2)
 
 
 ""
