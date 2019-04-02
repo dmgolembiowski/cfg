@@ -213,6 +213,7 @@ let wiki_1 = {}
 let wiki_1.path = '~/src/wiki/'
 let wiki_1.syntax = 'markdown'
 let wiki_1.ext = '.md'
+let wiki_1.index = 'README'
 
 let g:vimwiki_list = [wiki_1]
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
