@@ -9,10 +9,8 @@ AUR_PACKAGES='
 	bitwarden-cli
 	needrestart
 	plex-media-player
-	python-tasklib
 	taskopen
 	spotify
-	vim-taskwiki
 	vim-vimwiki
 '
 
@@ -60,12 +58,6 @@ else
 		(
 			cd $d
 			case $n in
-				vim-taskwiki)
-					echo $(pkgf $ROOT/aur/python-tasklib)
-					makechrootpkg -c -r $CHROOT \
-						-I $(pkgf $ROOT/aur/python-tasklib) \
-						-I $(pkgf $ROOT/aur/vim-vimwiki)
-					;;
 				*)
 					makechrootpkg -c -r $CHROOT
 					;;
