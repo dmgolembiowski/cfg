@@ -76,7 +76,6 @@ pkg '
 	bash-completion
 	ripgrep
 	fzy
-	task
 	ncdu
 '
 

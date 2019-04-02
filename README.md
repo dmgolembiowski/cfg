@@ -136,8 +136,6 @@ with the following environment variables:
 
     export AUTOLOGIN_USER=your_username
     export SSH_TUNNEL_HOST=your.host.name
-    export TODOIST_API_TOKEN=abcdef1234567890abcdef1234567890abcdef12
-    export TASKD_CREDENTIALS=inthe_am/username/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
 
 Run system setup and config with root:
 
@@ -166,14 +164,6 @@ Install plugins and plugin dependencies with:
 
     :PlugInstall
     :GoInstallBinaries
-
-### Taskwarrior
-
-Download the following from wingtask.com:
-
-- ~/.config/task/private.certificate.pem
-- ~/.config/task/private.key.pem
-- ~/.config/task/ca.cert.pem
 
 ### Firefox
 
