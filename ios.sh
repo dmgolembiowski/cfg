@@ -20,6 +20,7 @@ pkg '
 
 pkg '
 	vim
+	git-perl
 	less
 	bash
 	bash-completion
