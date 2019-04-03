@@ -19,7 +19,7 @@ pkg() {
 					pacman -S $p
 				;;
 			alpine)
-				apk info | grep -q "^$p\$" ||
+				grep -q "^$p\$" /etc/apk/world ||
 					apk add $p
 				;;
 		esac
