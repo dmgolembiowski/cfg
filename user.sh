@@ -58,11 +58,48 @@ fi
 ## Vim
 ##
 
-f=~/.vim/autoload/plug.vim
-[ -e $f ] ||
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-unset f
+vimpack() {
+	local u=$1
+	local n=$2
+	local v=$3
+	local r=$HOME/.vim/pack/dist/start
+
+	mkdir -p $r
+
+	if [ -d $r/$n/.git ]; then
+		git -C $r/$n fetch
+	else
+		git clone https://github.com/$u/$n $r/$n
+	fi
+
+	local h=$(git -C $r/$n rev-parse HEAD)
+
+	if [ "$v" ]; then
+		local th=$(git -C $r/$n rev-list --tags --max-count=1)
+	else
+		local th=$(git -C $r/$n rev-parse origin/HEAD)
+	fi
+
+	if [ "$h" != "$th" ]; then
+		echo $n
+		echo '  cur:' $h
+		echo '  upd:' $th
+
+		git -C $r/$n checkout $th
+		vim +'helptags ALL' +q
+	fi
+}
+
+vimpack robertmeta nofrils
+vimpack ap vim-buftabline
+vimpack tpope vim-commentary
+vimpack ctrlpvim ctrlp.vim
+vimpack duggiefresh vim-easydir tag
+vimpack farmergreg vim-lastplace tag
+vimpack vimwiki vimwiki tag
+if [ "$HEADLESS" != yes ]; then
+	vimpack fatih vim-go tag
+fi
 
 ##
 ## Dirs

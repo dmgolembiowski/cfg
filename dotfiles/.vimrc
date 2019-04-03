@@ -179,17 +179,6 @@ nnoremap <leader>s :GitGutterToggle<CR>
 ""
 "" Plugins
 ""
-call plug#begin('~/.vim/plugged')
-
-	Plug 'robertmeta/nofrils'
-	Plug 'ap/vim-buftabline'
-	Plug 'tpope/vim-commentary'
-	Plug 'ctrlpvim/ctrlp.vim'
-	Plug 'duggiefresh/vim-easydir', { 'tag': '1.1' }
-	Plug 'farmergreg/vim-lastplace', { 'tag': '*' }
-	Plug 'fatih/vim-go', { 'tag': '*' }
-
-call plug#end()
 
 " colorscheme
 colorscheme nofrils-acme
