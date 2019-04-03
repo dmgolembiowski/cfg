@@ -23,6 +23,10 @@ find $DOTFILES -type f | while read -r f; do
 	fi
 done
 
+if ! [ -L $HOME/.bash_profile ]; then
+	ln -sf $HOME/.bashrc $HOME/.bash_profile
+fi
+
 ##
 ## SSH
 ##
