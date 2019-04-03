@@ -1,14 +1,19 @@
 System and User Setup and Config
 ================================
 
-Provisioning of an Arch Linux based development
-setup on a ThinkPad X1 Carbon 6th gen (Coffe
-Lake).
+Provisioning of the following systems:
 
-BIOS
-----
+* An Arch Linux based development setup on a
+  ThinkPad X1 Carbon 6th gen Coffe Lake.
+* An Alpine Linux based bare development setup on an
+  iOS iSH environment.
 
-Update BIOS to >= 0.1.37.
+Install
+-------
+
+### ThinkPad X1 Carbon
+
+Update BIOS to >= 0.1.37 and configure it:
 
 - Config
   - Keyboard/Mouse
@@ -22,10 +27,6 @@ Update BIOS to >= 0.1.37.
     - Fingerprint Reader: Disabled
   - Secure Boot Configuration
     - Secure Boot: Disabled
-
-Install
--------
-
 
 Boot Arch Linux Installer and run the following commands:
 
@@ -89,8 +90,7 @@ Boot Arch Linux Installer and run the following commands:
 
     passwd
 
-Bootstrap
----------
+Reboot into the newly created system.
 
 Setup wireless:
 
@@ -121,38 +121,65 @@ Create a user:
     useradd -m -G wheel,adm,video,audio $USER
     passwd $USER
 
-Clone this repo with with the newly created user:
+### iOS iSH
 
-    mkdir ~/src ~/.ssh
-    cp $SAFEPLACE/id_* ~/.ssh
-    cd ~/src
-    git clone git@github.com:uggedal/susc
-    cd susc
+Install iSH from TestFlight. Run the following commands:
+
+    apk add git openssh-client curl
 
 Setup and config
 ----------------
 
-Fill a `env` file in the root of the chekcout of this repo
-with the following environment variables:
+* Setup SSH keys:
+    * ThinkPad X1 Carbon:
 
-    export AUTOLOGIN_USER=your_username
-    export SSH_TUNNEL_HOST=your.host.name
+            mkdir ~/src ~/.ssh
+            cp $SAFEPLACE/id_* ~/.ssh
 
-Run system setup and config with root:
+    * iOS iSH:
 
-    su -c ./system.sh
+            ssh-keygen -t ed25519
+            cat .ssh/id_ed25519.pub | curl -F 'sprunge=<-' http://sprunge.us
 
-Build and install AUR packages:
+* Clone this repo:
 
-    ./aur.sh
+        cd ~/src
+        git clone git@github.com:uggedal/susc
+        cd susc
 
-To update AUR PKGBUILDs run (and follow the previous step to build/install):
+* Fill a `env` file in the root of the chekcout of this repo
+  with the following environment variables:
+    * ThinkPad X1 Carbon:
 
-    ./aur.sh -u
+            export AUTOLOGIN_USER=your_username
+            export SSH_TUNNEL_HOST=your.host.name
 
-Run user setup and config with your normal user:
+    * iOS iSH:
 
-    ./user.sh
+            export HEADLESS=yes
+
+* Run system setup and configuration:
+    * ThinkPad X1 Carbon:
+        * Run system setup and config:
+
+                ./system.sh
+
+        * Build and install AUR packages:
+
+                ./aur.sh
+
+        * To update AUR PKGBUILDs run (and follow the previous step to
+          build/install):
+
+                ./aur.sh -u
+
+    * iOS iSH:
+
+            ./ios.sh
+
+* Run user setup and config:
+
+        ./user.sh
 
 Manual configuration
 --------------------
