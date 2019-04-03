@@ -1,6 +1,8 @@
 TEMPLATES=$ROOT/templates
 FILES=$ROOT/files
 
+DISTRO=$(awk -F= '/^ID=/ { print $2 }' /etc/os-release)
+
 diff() {
 	if command -v git >/dev/null; then
 		git --no-pager diff --no-index "$@"
@@ -11,7 +13,16 @@ diff() {
 
 pkg() {
 	for p in $*; do
-		pacman -Q $p >/dev/null 2>&1 || pacman -S $p
+		case $DISTRO in
+			arch)
+				pacman -Q $p >/dev/null 2>&1 ||
+					pacman -S $p
+				;;
+			alpine)
+				apk info | grep -q "^$p\$" ||
+					apk add $p
+				;;
+		esac
 	done
 }
 
