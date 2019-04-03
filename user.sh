@@ -27,24 +27,28 @@ done
 ## SSH
 ##
 
-svc ssh-agent --user
-tmpl ~/.config/systemd/user/ssh-tunnel.service \
-	/home/user/.config/systemd/user/ssh-tunnel.service \
-	'$SSH_TUNNEL_HOST'
-svc ssh-tunnel --user
+if [ "$HEADLESS" != yes ]; then
+	svc ssh-agent --user
+	tmpl ~/.config/systemd/user/ssh-tunnel.service \
+		/home/user/.config/systemd/user/ssh-tunnel.service \
+		'$SSH_TUNNEL_HOST'
+	svc ssh-tunnel --user
+fi
 
 ##
 ## Firefox
 ##
 
-ff_profile_dir=~/.mozilla/firefox
+if [ "$HEADLESS" != yes ]; then
+	ff_profile_dir=~/.mozilla/firefox
 
-for d in $ff_profile_dir/*.default $ff_profile_dir/*.priv; do
-	[ -d "$d" ] || continue
+	for d in $ff_profile_dir/*.default $ff_profile_dir/*.priv; do
+		[ -d "$d" ] || continue
 
-	tmpl "$d"/chrome/userChrome.css \
-		/home/user/.mozilla/firefox/profile/chrome/userChrome.css
-done
+		tmpl "$d"/chrome/userChrome.css \
+			/home/user/.mozilla/firefox/profile/chrome/userChrome.css
+	done
+fi
 
 ##
 ## Vim
@@ -60,4 +64,6 @@ unset f
 ## Dirs
 ##
 
-mkdir -p ~/pic
+if [ "$HEADLESS" != yes ]; then
+	mkdir -p ~/pic
+fi

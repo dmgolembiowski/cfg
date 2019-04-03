@@ -23,3 +23,5 @@ pkg '
 	bash
 	bash-completion
 '
+
+# TODO: change shell to bash
