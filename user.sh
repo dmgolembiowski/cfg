@@ -10,7 +10,7 @@ DOTFILES=$ROOT/dotfiles
 ## Dotfiles
 ##
 
-find $DOTFILES -type f -print0 | while IFS= read -r -d '' f; do
+find $DOTFILES -type f | while read -r f; do
 	rel=${f##$DOTFILES/}
 	src="$DOTFILES/$rel"
 	dst="$HOME/$rel"
