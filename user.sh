@@ -60,11 +60,3 @@ unset f
 ##
 
 mkdir -p ~/pic
-
-##
-## Todoist
-##
-
-tmpl ~/.todoist.config.json \
-	/home/user/.todoist.config.json \
-	'$TODOIST_API_TOKEN'
