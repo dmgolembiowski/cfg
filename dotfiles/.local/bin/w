@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd ~/src/wiki
+vim README.md
+git ci -am sync && git push
