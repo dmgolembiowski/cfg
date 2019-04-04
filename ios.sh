@@ -26,6 +26,7 @@ pkg '
 	less
 	bash
 	bash-completion
+	fzy@testing
 '
 
 # TODO: change shell to bash
