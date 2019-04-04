@@ -102,6 +102,7 @@ vimpack robertmeta nofrils
 vimpack ap vim-buftabline
 vimpack tpope vim-commentary
 vimpack srstevenson vim-picker
+vimpack tpope vim-eunuch tag
 vimpack duggiefresh vim-easydir tag
 vimpack farmergreg vim-lastplace tag
 vimpack vimwiki vimwiki tag
