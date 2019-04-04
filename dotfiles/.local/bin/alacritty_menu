@@ -1,7 +1,5 @@
 #!/bin/sh
 
-PATH=$PATH:$HOME/bin
-
 exec alacritty \
 	--class AlacrittyMenu \
 	-d 40 11 \
