@@ -90,16 +90,26 @@ vimpack() {
 	fi
 }
 
+vimpurge() {
+	local n=$1
+	local r=$HOME/.vim/pack/dist/start
+
+	echo $n rm
+	rm -rf $r/$n
+}
+
 vimpack robertmeta nofrils
 vimpack ap vim-buftabline
 vimpack tpope vim-commentary
-vimpack ctrlpvim ctrlp.vim
+vimpack srstevenson vim-picker
 vimpack duggiefresh vim-easydir tag
 vimpack farmergreg vim-lastplace tag
 vimpack vimwiki vimwiki tag
 if [ "$HEADLESS" != yes ]; then
 	vimpack fatih vim-go tag
 fi
+
+vimpurge ctrlp.vim
 
 ##
 ## Dirs

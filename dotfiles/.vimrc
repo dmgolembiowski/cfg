@@ -193,9 +193,8 @@ let g:buftabline_show=1
 let g:buftabline_numbers=1
 let g:buftabline_indicators=1
 
-" ctrlp
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'find %s -type f']
-let g:ctrlp_line_prefix = ''
+" vim-picker
+nmap <c-p> <Plug>PickerEdit
 
 " vimwiki
 let g:vimwiki_global_ext = 0
