@@ -14,6 +14,8 @@ pkg '
 	gettext
 '
 
+tmpl /etc/apk/repositories
+
 ##
 ## CLI
 ##
