@@ -14,7 +14,8 @@ pkg '
 	gettext
 '
 
-tmpl /etc/apk/repositories
+export ALPINE_V=v3.9
+tmpl /etc/apk/repositories '$ALPINE_V'
 
 ##
 ## CLI
