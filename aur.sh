@@ -10,7 +10,6 @@ AUR_PACKAGES='
 	needrestart
 	plex-media-player
 	spotify
-	vim-vimwiki
 '
 
 UPDATE=$([ "$1" != -u ] || echo yes)
