@@ -188,9 +188,8 @@ Hopefully this will be a very short section.
 
 ### Vim
 
-Install plugins and plugin dependencies with:
+Install plugin dependencies with:
 
-    :PlugInstall
     :GoInstallBinaries
 
 ### Firefox
