@@ -46,6 +46,8 @@ fi
 if [ "$HEADLESS" != yes ]; then
 	systemctl --user enable swayidle
 	systemctl --user start swayidle
+	systemctl --user enable mako
+	systemctl --user start mako
 fi
 
 ##

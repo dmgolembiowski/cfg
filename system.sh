@@ -121,6 +121,8 @@ pkg '
 	swaylock
 	swayidle
 	wl-clipboard
+	mako
+	libnotify
 	light
 	grim
 	slurp
