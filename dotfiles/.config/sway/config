@@ -179,11 +179,8 @@ seat * hide_cursor 3000
 # Custom keybindings:
 #
 # Play/pause spotify
-bindsym XF86Favorites exec \
-	dbus-send --print-reply \
-	--dest=org.mpris.MediaPlayer2.spotify \
-	/org/mpris/MediaPlayer2 \
-	org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86Favorites exec spotifyctl PlayPause
+bindsym XF86AudioPlay exec spotifyctl PlayPause
 
 # Volume up/down
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
