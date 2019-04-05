@@ -120,6 +120,7 @@ pkg '
 	sway
 	swaylock
 	swayidle
+	wl-clipboard
 	light
 	grim
 	slurp
