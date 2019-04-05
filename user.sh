@@ -40,6 +40,15 @@ if [ "$HEADLESS" != yes ]; then
 fi
 
 ##
+## Desktop
+##
+
+if [ "$HEADLESS" != yes ]; then
+	systemctl --user enable swayidle
+	systemctl --user start swayidle
+fi
+
+##
 ## Firefox
 ##
 
