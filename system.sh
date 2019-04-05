@@ -134,6 +134,11 @@ pkg '
 	unzip
 '
 
+file /etc/udev/rules.d/99-sway-monitor-hotplug.rules
+file /usr/local/bin/sway-monitor-hotplug.sh
+chmod +x /usr/local/bin/sway-monitor-hotplug.sh
+udevadm control --reload
+
 ##
 ## Bluetooth
 ##

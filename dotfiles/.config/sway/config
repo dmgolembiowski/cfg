@@ -278,4 +278,6 @@ bar {
     }
 }
 
+exec --no-startup-id systemctl --user import-environment
+
 include /etc/sway/config.d/*
