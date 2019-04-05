@@ -65,6 +65,10 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     natural_scroll enabled
 }
 
+input "1133:45088:MX_Vertical_Mouse" {
+    natural_scroll enabled
+}
+
 input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout us
     xkb_options caps:escape,compose:ralt
