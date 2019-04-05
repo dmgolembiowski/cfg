@@ -186,6 +186,15 @@ Manual configuration
 
 Hopefully this will be a very short section.
 
+### Bluetooth
+
+    bluetoothctl default-agent
+    bluetoothctl power on
+    bluetoothctl scan on
+    bluetoothctl pair <ID>
+    bluetoothctl trust <ID>
+    bluetoothctl connect <ID>
+
 ### Vim
 
 Install plugin dependencies with:

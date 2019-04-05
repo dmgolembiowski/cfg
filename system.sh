@@ -134,6 +134,20 @@ pkg '
 '
 
 ##
+## Bluetooth
+##
+
+pkg '
+	bluez
+	bluez-utils
+'
+
+file /etc/bluetooth/main.conf
+
+svc bluetooth
+
+
+##
 ## Media
 ##
 
