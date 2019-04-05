@@ -156,7 +156,7 @@ nnoremap <leader>b :ls<CR>
 nnoremap <leader>p :bp<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>d :bd<CR>
-nnoremap <leader>g :b#<CR>
+nnoremap <leader># :b#<CR>
 nnoremap <leader>1 :1b<CR>
 nnoremap <leader>2 :2b<CR>
 nnoremap <leader>3 :3b<CR>
@@ -173,8 +173,6 @@ nnoremap <leader>i :set invpaste<CR>
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 nnoremap <leader>c :noh<CR>
-
-nnoremap <leader>s :GitGutterToggle<CR>
 
 ""
 "" Plugins
@@ -213,3 +211,4 @@ function GitCi(n)
 endfunction
 
 command! GitCi :call GitCi(4)
+nnoremap <leader>g :GitCi<CR>
