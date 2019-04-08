@@ -142,6 +142,13 @@ chmod +x /usr/local/bin/sway-monitor-hotplug.sh
 udevadm control --reload
 
 ##
+## Laptop
+##
+
+file /etc/sysctl.d/disable_watchdog.conf
+file /etc/modprobe.d/audio_powersave.conf
+
+##
 ## Bluetooth
 ##
 
