@@ -29,7 +29,13 @@ pkg() {
 _f() {
 	local dst=$1
 	local src=$2
-	mkdir -p $(dirname $dst)
+
+	[ -d $(dirname $dst) ] || mkdir -p $(dirname $dst)
+
+	if cmp -s $src $dst; then
+		return
+	fi
+
 	if [ -e $dst ]; then
 		diff $dst $src || :
 	else
