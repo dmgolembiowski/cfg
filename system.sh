@@ -110,7 +110,11 @@ pkg '
 
 pkg '
 	arch-audit
+	nftables
 '
+
+file /etc/nftables.conf
+svc nftables
 
 ##
 ## Desktop
