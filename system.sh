@@ -116,6 +116,10 @@ pkg '
 file /etc/nftables.conf
 svc nftables
 
+chmod 700 \
+	/boot \
+	/etc/nftables.conf
+
 ##
 ## Desktop
 ##
