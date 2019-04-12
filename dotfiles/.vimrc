@@ -204,6 +204,7 @@ let wiki_1.index = 'README'
 
 let g:vimwiki_list = [wiki_1]
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+let g:vimwiki_markdown_link_ext = 1
 
 " git commit
 function GitCi(n)
