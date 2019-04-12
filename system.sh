@@ -120,6 +120,8 @@ chmod 700 \
 	/boot \
 	/etc/nftables.conf
 
+file /etc/sysctl.d/50-dmesg-restrict.conf
+
 ##
 ## Desktop
 ##
