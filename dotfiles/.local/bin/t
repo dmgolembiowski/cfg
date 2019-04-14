@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if tmux has-session; then
+	exec tmux attach -d
+else
+	exec tmux
+fi
