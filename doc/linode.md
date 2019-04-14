@@ -51,7 +51,7 @@ Setup and config
 with the following environment variables:
 
     ```sh
-    # TODO
+    export HEADLESS=yes
     ```
 
 5. Run system setup and configuration:
