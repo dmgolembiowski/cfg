@@ -56,6 +56,13 @@ command -v vim >/dev/null && EDITOR=vim
 
 alias ls='ls -1F'
 
+alias g=git
+alias ga='git add -p'
+alias gc='git ci'
+alias gd='git diff'
+alias gp='git push'
+alias gl='git pull'
+
 GOPATH=$HOME/src/go
 export GOPATH
 
