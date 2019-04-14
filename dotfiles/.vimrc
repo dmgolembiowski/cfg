@@ -14,7 +14,6 @@ set autoread
 
 set ruler
 set showcmd
-set relativenumber
 set number
 
 set shortmess+=I
