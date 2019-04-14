@@ -14,9 +14,14 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 pkg '
 	pacman-contrib
 	sudo
-	fwupd
 	lostfiles
 '
+
+if [ "$HEADLESS" != yes ]; then
+	pkg '
+		fwupd
+	'
+fi
 
 # Unneeded base packages:
 UNNEEDED_PKGS='
@@ -41,15 +46,20 @@ for p in $UNNEEDED_PKGS; do
 done
 unset p
 
-# Periodic TRIM:
-svc fstrim.timer
+if [ "$HEADLESS" != yes ]; then
+	# Periodic TRIM:
+	svc fstrim.timer
+fi
 
 file /etc/pacman.conf
+# TODO: better geo loc for servers:
 file /etc/pacman.d/mirrorlist
 file /etc/pacman.d/hooks/needrestart.hook
 
-# Autologin to TTY 1:
-tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
+if [ "$HEADLESS" != yes ]; then
+	# Autologin to TTY 1:
+	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
+fi
 
 # Keep no pacman cache for uninstalled packages and 2 versions of
 # installed packages:
@@ -63,7 +73,9 @@ echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
 ## Net
 ##
 
-file /etc/systemd/resolved.conf.d/static.conf
+if [ "$HEADLESS" != yes ]; then
+	file /etc/systemd/resolved.conf.d/static.conf
+fi
 
 ##
 ## CLI
@@ -83,7 +95,7 @@ pkg '
 ## Build
 ##
 
-pkg '
+[ "$HEADLESS" = yes ] || pkg '
 	devtools
 '
 
@@ -99,7 +111,7 @@ pkg '
 ## Dev
 ##
 
-pkg '
+[ "$HEADLESS" = yes ] || pkg '
 	make
 	go
 '
@@ -113,8 +125,11 @@ pkg '
 	nftables
 '
 
-file /etc/nftables.conf
-svc nftables
+# TODO: enable with ssh limit for servers
+if [ "$HEADLESS" != yes ]; then
+	file /etc/nftables.conf
+	svc nftables
+fi
 
 chmod 700 \
 	/boot \
@@ -126,57 +141,63 @@ file /etc/sysctl.d/50-dmesg-restrict.conf
 ## Desktop
 ##
 
-pkg '
-	sway
-	swaylock
-	swayidle
-	wl-clipboard
-	mako
-	libnotify
-	light
-	grim
-	slurp
-	xorg-server-xwayland
-	i3status
-	alacritty
-	firefox
-	imv
-	noto-fonts
-	ttf-ibm-plex
-	unzip
-'
+if [ "$HEADLESS" != yes ]; then
+	pkg '
+		sway
+		swaylock
+		swayidle
+		wl-clipboard
+		mako
+		libnotify
+		light
+		grim
+		slurp
+		xorg-server-xwayland
+		i3status
+		alacritty
+		firefox
+		imv
+		noto-fonts
+		ttf-ibm-plex
+		unzip
+	'
 
-file /etc/udev/rules.d/99-sway-monitor-hotplug.rules
-file /usr/local/bin/sway-monitor-hotplug.sh
-chmod +x /usr/local/bin/sway-monitor-hotplug.sh
-udevadm control --reload
+	file /etc/udev/rules.d/99-sway-monitor-hotplug.rules
+	file /usr/local/bin/sway-monitor-hotplug.sh
+	chmod +x /usr/local/bin/sway-monitor-hotplug.sh
+	udevadm control --reload
+fi
 
 ##
 ## Laptop
 ##
 
-file /etc/sysctl.d/disable_watchdog.conf
-file /etc/modprobe.d/audio_powersave.conf
+if [ "$HEADLESS" != yes ]; then
+	file /etc/sysctl.d/disable_watchdog.conf
+	file /etc/modprobe.d/audio_powersave.conf
+fi
 
 ##
 ## Bluetooth
 ##
 
-pkg '
-	bluez
-	bluez-utils
-'
+if [ "$HEADLESS" != yes ]; then
+	pkg '
+		bluez
+		bluez-utils
+	'
 
-file /etc/bluetooth/main.conf
+	file /etc/bluetooth/main.conf
 
-svc bluetooth
+	svc bluetooth
+fi
 
 
 ##
 ## Media
 ##
 
-pkg '
+[ "$HEADLESS" = yes ] || pkg '
 	pulseaudio
 	pulsemixer
 	mpv
