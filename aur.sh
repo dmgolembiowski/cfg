@@ -6,11 +6,17 @@ CHROOT=$ROOT/chroot/root
 AUR_URL='https://aur.archlinux.org'
 
 AUR_PACKAGES='
-	bitwarden-cli
 	needrestart
-	plex-media-player
-	spotify
 '
+
+if [ "$HEADLESS" != yes ]; then
+	AUR_PACKAGES="
+		$AUR_PACKAGES
+		bitwarden-cli
+		plex-media-player
+		spotify
+	"
+fi
 
 UPDATE=$([ "$1" != -u ] || echo yes)
 
