@@ -105,8 +105,10 @@ vimpurge() {
 	local n=$1
 	local r=$HOME/.vim/pack/dist/start
 
-	echo $n rm
-	rm -rf $r/$n
+	if [ -d $r/$n ]; then
+		echo $n rm
+		rm -rf $r/$n
+	fi
 }
 
 vimpack robertmeta nofrils
