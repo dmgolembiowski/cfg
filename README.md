@@ -7,6 +7,7 @@ Provisioning and configuration of the following systems:
   [ThinkPad X1 Carbon](doc/x1.md) 6th gen Coffe Lake.
 * An Alpine Linux based bare development setup on an
   [iOS iSH](doc/ios.md) environment.
+* An Arch Linux based server setup on [Linode](doc/linode.md).
 
 Follow the links to respective systems for detailed install and
 configuration instructions.
