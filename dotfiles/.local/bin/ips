@@ -1,0 +1,5 @@
+#!/bin/sh
+
+ip addr |
+	grep -oP 'inet \K[\d.]+' |
+	egrep -v '^(127|169\.254)'
