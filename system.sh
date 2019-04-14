@@ -86,6 +86,7 @@ pkg '
 	openssh
 	vim
 	bash-completion
+	tmux
 	ripgrep
 	fzy
 	ncdu
