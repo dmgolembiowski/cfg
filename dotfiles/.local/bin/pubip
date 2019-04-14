@@ -1,0 +1,10 @@
+#!/bin/sh
+
+ip=$(curl -s https://api.ipify.org)
+
+if command -v whois >/dev/null; then
+	whois -h whois.cymru.com $ip |
+		sed 's/^[^|]*| //'
+else
+	echo $ip
+fi
