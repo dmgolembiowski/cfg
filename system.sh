@@ -96,7 +96,7 @@ pkg '
 ## Build
 ##
 
-[ "$HEADLESS" = yes ] || pkg '
+pkg '
 	devtools
 '
 
