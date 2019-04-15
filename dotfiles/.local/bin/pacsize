@@ -1,0 +1,18 @@
+#!/bin/bash
+
+size() {
+	awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}'
+}
+
+deps() {
+	comm -23 <(pactree -u $1 | sort) <(pacman -Qgq base | sort) |
+		grep -v "^$1\$"
+}
+
+pacman -Qi $(pacman -Qetq) | size | sort -hr | while read -r s n; do
+	echo $s $n
+	for d in $(deps $n); do
+		pacman -Qi $d | size | sed 's/^/  /'
+	done | sort -hr
+done | $PAGER
+
