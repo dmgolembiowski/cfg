@@ -98,6 +98,7 @@ vimpack() {
 
 		git -C $r/$n checkout $th
 		vim +'helptags ALL' +q
+		git log $h..$th
 	fi
 }
 
