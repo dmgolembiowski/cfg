@@ -78,6 +78,8 @@ pkg_provides = {}
 pkg_size = {}
 
 for dir in os.listdir(LOCAL_DB_PATH):
+    if not os.path.isdir(os.path.join(LOCAL_DB_PATH, dir)):
+        continue
     pkg = dir[0:dir.rfind("-",0,dir.rfind("-"))]
     pkg_list.append(pkg)
     parse_package_info(pkg, dir)
