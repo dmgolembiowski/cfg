@@ -1,18 +1,87 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-size() {
-	awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}'
-}
+import sys
+import glob
+import subprocess
 
-deps() {
-	comm -23 <(pactree -u $1 | sort) <(pacman -Qgq base | sort) |
-		grep -v "^$1\$"
-}
 
-pacman -Qi $(pacman -Qetq) | size | sort -hr | while read -r s n; do
-	echo $s $n
-	for d in $(deps $n); do
-		pacman -Qi $d | size | sed 's/^/  /'
-	done | sort -hr
-done | $PAGER
+VERBOSE = len(sys.argv) > 1 and sys.argv[1] == '-v'
 
+
+size_lookup = {}
+
+
+def human(n):
+    suffixes = ['B', 'KB', 'MB', 'GB', 'TB']
+
+    n = float(n)
+
+    if n == 0:
+        return '0'
+
+    i = 0
+    while n >= 1024 and i < len(suffixes)-1:
+        n /= 1024.
+        i += 1
+
+    return '%s%s' % (('%.2f' % n).rstrip('0').rstrip('.'), suffixes[i])
+
+
+def shlst(c):
+    return subprocess.check_output(c.split(' ')).decode('ascii').splitlines()
+
+
+def size(p):
+    if p in size_lookup:
+        return size_lookup[p]
+
+    f = glob.glob('/var/lib/pacman/local/{}-*/desc'.format(p))[0]
+
+    with open(f, 'r') as fp:
+        for l in fp:
+            if l.startswith('%SIZE%'):
+                size_lookup[p] = int(next(fp, '').strip())
+                return size_lookup[p]
+
+
+pkgs = {}
+maxpkg = 0
+basepkgs = shlst('pacman -Qgq base')
+
+for p in shlst('pacman -Qetq'):
+    pkgs[p] = {
+        'size': size(p),
+        'deps': {}
+    }
+
+    maxpkg = max(maxpkg, len(p))
+
+    for d in shlst('pactree -u {}'.format(p)):
+        # pactree includes given package in dep list:
+        if d != p and d not in basepkgs:
+            pkgs[p]['deps'][d] = size(d)
+
+            if VERBOSE:
+                maxpkg = max(maxpkg, len(d))
+
+
+    pkgs[p]['total'] = (
+            pkgs[p]['size'] +
+            sum([s for s in pkgs[p]['deps'].values()])
+    )
+
+pkgfmt = '{:' + str(maxpkg + 4 if VERBOSE else maxpkg) + '} '
+
+sys.stdout.write(pkgfmt.format('PACKAGE'))
+sys.stdout.write('{:>9} '.format('SIZE'))
+sys.stdout.write('{:>9}\n'.format('TOTAL'))
+
+for p in sorted(pkgs.items(), key=lambda p: p[1]['total'], reverse=True):
+    sys.stdout.write(pkgfmt.format(p[0]))
+    sys.stdout.write('{:>9} '.format(human(p[1]['size'])))
+    sys.stdout.write('{:>9}\n'.format(human(p[1]['total'])))
+
+    if VERBOSE:
+        for d in sorted(p[1]['deps'].items(), key=lambda d: d[1], reverse=True):
+            sys.stdout.write(pkgfmt.format('    ' + d[0]))
+            sys.stdout.write('{:>9}\n'.format(human(d[1])))
