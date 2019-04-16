@@ -89,19 +89,19 @@ pkg_deptree = {}
 for pkg in pkg_list:
     pkg_deptree[pkg] = pkg_deps[pkg]
     for dep in pkg_deptree[pkg]:
-            if dep in pkg_deps:
-                for rdep in pkg_deps[dep]:
-                    if not rdep in pkg_deptree[pkg]:
-                        pkg_deptree[pkg].append(rdep);
-            else:
-                for key in pkg_provides:
-                    if dep in pkg_provides[key]:
-                        pkg_deptree[pkg][pkg_deptree[pkg].index(dep)] = key
-                        dep = key
-                        break
-                for rdep in pkg_deps[dep]:
-                    if not rdep in pkg_deptree[pkg]:
-                        pkg_deptree[pkg].append(rdep);				
+        if dep in pkg_deps:
+            for rdep in pkg_deps[dep]:
+                if not rdep in pkg_deptree[pkg]:
+                    pkg_deptree[pkg].append(rdep);
+        else:
+            for key in pkg_provides:
+                if dep in pkg_provides[key]:
+                    pkg_deptree[pkg][pkg_deptree[pkg].index(dep)] = key
+                    dep = key
+                    break
+            for rdep in pkg_deps[dep]:
+                if not rdep in pkg_deptree[pkg]:
+                    pkg_deptree[pkg].append(rdep)
 
 needed_by = {}
 for pkg in pkg_list:
