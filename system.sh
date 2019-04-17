@@ -26,16 +26,23 @@ fi
 # Unneeded base packages:
 UNNEEDED_PKGS='
 	dhcpcd
+	haveged
+	iotop
 	jfsutils
 	linux
+	lsof
 	lvm2
 	mdadm
+	mtr
 	nano
+	net-tools
 	netctl
 	psmisc
 	reiserfsprogs
 	s-nail
+	sysstat
 	systemd-sysvcompat
+	whois
 	xfsprogs
 '
 
