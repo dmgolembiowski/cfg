@@ -2,8 +2,10 @@
 
 import sys
 import glob
+import signal
 import subprocess
 
+signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
 VERBOSE = len(sys.argv) > 1 and sys.argv[1] == '-v'
 
@@ -24,7 +26,7 @@ def human(n):
         n /= 1024.
         i += 1
 
-    return '%s%s' % (('%.2f' % n).rstrip('0').rstrip('.'), suffixes[i])
+    return '%s%s' % (('%.2f' % n).rstrip('.'), suffixes[i])
 
 
 def shlst(c):
@@ -45,6 +47,7 @@ def size(p):
 
 
 pkgs = {}
+deps = {}
 maxpkg = 0
 basepkgs = shlst('pacman -Qgq base')
 
@@ -56,32 +59,68 @@ for p in shlst('pacman -Qetq'):
 
     maxpkg = max(maxpkg, len(p))
 
-    for d in shlst('pactree -u {}'.format(p)):
+    for d in set(shlst('pactree -u {}'.format(p))):
         # pactree includes given package in dep list:
         if d != p and d not in basepkgs:
-            pkgs[p]['deps'][d] = size(d)
+            pkgs[p]['deps'][d] = {'size': size(d)}
 
             if VERBOSE:
                 maxpkg = max(maxpkg, len(d))
 
+        # track number of rdeps:
+        if d in deps:
+            deps[d] += 1
+        else:
+            deps[d] = 1
 
-    pkgs[p]['total'] = (
-            pkgs[p]['size'] +
-            sum([s for s in pkgs[p]['deps'].values()])
-    )
+
+for _, p in pkgs.items():
+    p['total'] = p['size']
+    p['wtotal'] = p['size']
+
+    for dn, d in p['deps'].items():
+        p['total'] += d['size']
+        d['wsize'] = d['size'] / float(deps[dn])
+        p['wtotal'] += d['wsize']
+
 
 pkgfmt = '{:' + str(maxpkg + 4 if VERBOSE else maxpkg) + '} '
+w = 47
+vw = w + 31
 
-sys.stdout.write(pkgfmt.format('PACKAGE'))
-sys.stdout.write('{:>9} '.format('SIZE'))
-sys.stdout.write('{:>9}\n'.format('TOTAL'))
+def head():
+    sys.stdout.write(pkgfmt.format('Package'))
+    sys.stdout.write('{:>9} '.format('Size'))
+    sys.stdout.write('{:>9} '.format('Total'))
+    sys.stdout.write('{:>9} '.format('W Total'))
+    if VERBOSE:
+        sys.stdout.write('{:>6} '.format('Rdeps'))
+        sys.stdout.write('{:>9}\n'.format('W Size'))
+        sys.stdout.write('-' * vw)
+    else:
+        sys.stdout.write('\n')
+        sys.stdout.write('-' * w)
+    sys.stdout.write('\n')
 
-for p in sorted(pkgs.items(), key=lambda p: p[1]['total'], reverse=True):
+if not VERBOSE:
+    head()
+
+for p in sorted(pkgs.items(), key=lambda p: p[1]['wtotal'], reverse=True):
+    if VERBOSE:
+        head()
     sys.stdout.write(pkgfmt.format(p[0]))
     sys.stdout.write('{:>9} '.format(human(p[1]['size'])))
-    sys.stdout.write('{:>9}\n'.format(human(p[1]['total'])))
+    sys.stdout.write('{:>9} '.format(human(p[1]['total'])))
+    sys.stdout.write('{:>9}\n'.format(human(p[1]['wtotal'])))
 
     if VERBOSE:
-        for d in sorted(p[1]['deps'].items(), key=lambda d: d[1], reverse=True):
+        sys.stdout.write('-' * vw)
+        sys.stdout.write('\n')
+        for d in sorted(p[1]['deps'].items(), key=lambda d: d[1]['wsize'], reverse=True):
             sys.stdout.write(pkgfmt.format('    ' + d[0]))
-            sys.stdout.write('{:>9}\n'.format(human(d[1])))
+            sys.stdout.write('{:>9} '.format(human(d[1]['size'])))
+            sys.stdout.write('{:>9} '.format(''))
+            sys.stdout.write('{:>9} '.format(''))
+            sys.stdout.write('{:>6} '.format(deps[d[0]]))
+            sys.stdout.write('{:>9}\n'.format(human(d[1]['wsize'])))
+        sys.stdout.write('\n')
