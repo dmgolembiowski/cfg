@@ -82,7 +82,7 @@ seat * hide_cursor 3000
     # start your launcher
     bindsym $mod+p exec alacritty_menu
 
-    bindsym $mod+Shift+w exec alacritty_wiki
+    bindsym $mod+w exec alacritty_wiki
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
