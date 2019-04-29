@@ -17,7 +17,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	if role server; then
 		case "$f" in
-			*/systemd*|*/sway|*/alacritty*|*/gtk*|*/i3*|*/imv/*)
+			*/systemd*|*/sway*|*/alacritty*|*/gtk*|*/i3*|*/imv/*)
 				continue
 				;;
 			*/mpv/*|*firefox*|*pacsize|*spotify*|*pam_env*)
