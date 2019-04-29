@@ -11,67 +11,83 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 ## Base
 ##
 
-pkg '
-	pacman-contrib
-	sudo
-	lostfiles
-'
+pkg sudo
 
-if [ "$HEADLESS" != yes ]; then
-	pkg '
-		fwupd
-	'
+if distro arch; then
+	pkg pacman-contrib lostfiles openssh
 fi
 
-# Unneeded base packages:
-UNNEEDED_PKGS='
-	dhcpcd
-	haveged
-	iotop
-	jfsutils
-	linux
-	lsof
-	lvm2
-	mdadm
-	mtr
-	nano
-	net-tools
-	netctl
-	psmisc
-	reiserfsprogs
-	s-nail
-	sysstat
-	systemd-sysvcompat
-	whois
-	xfsprogs
-'
+if distro alpine; then
+	pkg openssh-client
 
-for p in $UNNEEDED_PKGS; do
-	if pacman -Q $p >/dev/null 2>&1; then
-		pacman -Rs $p
+	if role server; then
+		pkg openssh-server
 	fi
-done
-unset p
+fi
 
-if [ "$HEADLESS" != yes ]; then
+if distro arch; then
+	role vm || pkg fwupd
+elif distro alpine; then
+	role vm || pkg fwup
+fi
+
+if distro arch; then
+	# Unneeded base packages:
+	UNNEEDED_PKGS='
+		dhcpcd
+		haveged
+		iotop
+		jfsutils
+		linux
+		lsof
+		lvm2
+		mdadm
+		mtr
+		nano
+		net-tools
+		netctl
+		psmisc
+		reiserfsprogs
+		s-nail
+		sysstat
+		systemd-sysvcompat
+		whois
+		xfsprogs
+	'
+
+	for p in $UNNEEDED_PKGS; do
+		if pacman -Q $p >/dev/null 2>&1; then
+			pacman -Rs $p
+		fi
+	done
+	unset p
+fi
+
+if role desktop; then
 	# Periodic TRIM:
 	svc fstrim.timer
 fi
 
-file /etc/pacman.conf
-# TODO: better geo loc for servers:
-file /etc/pacman.d/mirrorlist
-file /etc/pacman.d/hooks/needrestart.hook
+if distro arch; then
+	file /etc/pacman.conf
+	# TODO: better geo loc for servers:
+	file /etc/pacman.d/mirrorlist
+	file /etc/pacman.d/hooks/needrestart.hook
+fi
 
-if [ "$HEADLESS" != yes ]; then
+if role desktop; then
 	# Autologin to TTY 1:
 	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
 fi
 
-# Keep no pacman cache for uninstalled packages and 2 versions of
-# installed packages:
-file /etc/systemd/system/paccache.service.d/override.conf
-svc paccache.timer
+if distro arch; then
+	# Keep no pacman cache for uninstalled packages and 2 versions of
+	# installed packages:
+	file /etc/systemd/system/paccache.service.d/override.conf
+	svc paccache.timer
+fi
+
+# TODO: add normal user on alpine to wheel
 
 # Passwordless sudo for wheel:
 echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
@@ -80,7 +96,7 @@ echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
 ## Net
 ##
 
-if [ "$HEADLESS" != yes ]; then
+if distro arch && role desktop; then
 	file /etc/systemd/resolved.conf.d/static.conf
 fi
 
@@ -88,55 +104,63 @@ fi
 ## CLI
 ##
 
-pkg '
-	git
-	openssh
-	vim
-	bash-completion
-	tmux
-	ripgrep
-	fzy
-	ncdu
-'
+if role dev; then
+	pkg '
+		git
+		vim
+		bash-completion
+		tmux
+		the_silver_searcher
+		ncdu
+	'
+
+	# TODO: install fzy from testing in alpine
+	if distro arch; then
+		pkg fzy
+	fi
+fi
 
 ##
 ## Build
 ##
 
-pkg '
-	devtools
-'
+if distro arch; then
+	pkg devtools
+fi
 
 ##
 ## Debug
 ##
 
-pkg '
-	ps_mem
-'
+if distro arch; then
+	pkg ps_mem
+fi
 
 ##
 ## Dev
 ##
 
-[ "$HEADLESS" = yes ] || pkg '
-	make
-	go
-'
+if role work; then
+	pkg '
+		make
+		go
+	'
+fi
 
 ##
 ## Sec
 ##
 
-pkg '
-	arch-audit
-	nftables
-'
+pkg nftables
 
 # TODO: enable with ssh limit for servers
-if [ "$HEADLESS" != yes ]; then
+if role desktop; then
 	file /etc/nftables.conf
 	svc nftables
+fi
+
+if distro arch; then
+	pkg arch-audit
 fi
 
 chmod 700 \
@@ -149,7 +173,7 @@ file /etc/sysctl.d/50-dmesg-restrict.conf
 ## Desktop
 ##
 
-if [ "$HEADLESS" != yes ]; then
+if role desktop; then
 	pkg '
 		sway
 		swaylock
@@ -180,7 +204,7 @@ fi
 ## Laptop
 ##
 
-if [ "$HEADLESS" != yes ]; then
+if role desktop; then
 	file /etc/sysctl.d/disable_watchdog.conf
 	file /etc/modprobe.d/audio_powersave.conf
 fi
@@ -189,7 +213,7 @@ fi
 ## Bluetooth
 ##
 
-if [ "$HEADLESS" != yes ]; then
+if role desktop; then
 	pkg '
 		bluez
 		bluez-utils
@@ -205,9 +229,11 @@ fi
 ## Media
 ##
 
-[ "$HEADLESS" = yes ] || pkg '
-	pulseaudio
-	pulsemixer
-	mpv
-	libva-intel-driver
-'
+if role desktop; then
+	pkg '
+		pulseaudio
+		pulsemixer
+		mpv
+		libva-intel-driver
+	'
+fi

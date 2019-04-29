@@ -3,6 +3,20 @@ FILES=$ROOT/files
 
 DISTRO=$(awk -F= '/^ID=/ { print $2 }' /etc/os-release)
 
+role() {
+	case "$ROLES" in
+		$1|$1:*|*:$1|*:$1:*)
+			return 0
+			;;
+	esac
+
+	return 1
+}
+
+distro() {
+	[ "$DISTRO" = "$1" ]
+}
+
 diff() {
 	if command -v git >/dev/null; then
 		git --no-pager diff --no-index "$@"
