@@ -157,15 +157,14 @@ pkg nftables
 if role desktop; then
 	file /etc/nftables.conf
 	svc nftables
+	chmod 700 /etc/nftables.conf
 fi
 
 if distro arch; then
 	pkg arch-audit
 fi
 
-chmod 700 \
-	/boot \
-	/etc/nftables.conf
+chmod 700 /boot
 
 file /etc/sysctl.d/50-dmesg-restrict.conf
 
