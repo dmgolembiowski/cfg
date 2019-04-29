@@ -124,8 +124,6 @@ if [ "$HEADLESS" != yes ]; then
 	vimpack fatih vim-go tag
 fi
 
-vimpurge ctrlp.vim
-
 ##
 ## Dirs
 ##
