@@ -26,6 +26,7 @@ Setup and config
     ```sh
     addgroup $u
     adduser -s/bin/bash -G $u $u
+    adduser $u wheel
     chmod 2750 /home/$u
     mkdir /home/$u/.ssh
     cp someplace/authorized_keys /home/$u/.ssh/
