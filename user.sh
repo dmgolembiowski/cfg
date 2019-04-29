@@ -15,6 +15,17 @@ find $DOTFILES -type f | while read -r f; do
 	src="$DOTFILES/$rel"
 	dst="$HOME/$rel"
 
+	if role server; then
+		case "$f" in
+			*/systemd*|*/sway|*/alacritty*|*/gtk*|*/i3*|*/imv/*)
+				continue
+				;;
+			*/mpv/*|*firefox*|*pacsize|*spotify*|*pam_env*)
+				continue
+				;;
+		esac
+	fi
+
 	mkdir -p "$(dirname "$dst")"
 
 	if ! [ -L "$dst" ]; then
@@ -31,7 +42,7 @@ fi
 ## SSH
 ##
 
-if [ "$HEADLESS" != yes ]; then
+if role desktop; then
 	svc ssh-agent --user
 	tmpl ~/.config/systemd/user/ssh-tunnel.service \
 		/home/user/.config/systemd/user/ssh-tunnel.service \
@@ -43,7 +54,7 @@ fi
 ## Desktop
 ##
 
-if [ "$HEADLESS" != yes ]; then
+if role desktop; then
 	systemctl --user enable swayidle
 	systemctl --user start swayidle
 	systemctl --user enable mako
@@ -54,7 +65,7 @@ fi
 ## Firefox
 ##
 
-if [ "$HEADLESS" != yes ]; then
+if role desktop; then
 	ff_profile_dir=~/.mozilla/firefox
 
 	for d in $ff_profile_dir/*.default $ff_profile_dir/*.priv; do
@@ -112,22 +123,24 @@ vimpurge() {
 	fi
 }
 
-vimpack robertmeta nofrils
-vimpack ap vim-buftabline
-vimpack tpope vim-commentary
-vimpack srstevenson vim-picker
-vimpack tpope vim-eunuch tag
-vimpack duggiefresh vim-easydir tag
-vimpack farmergreg vim-lastplace tag
-vimpack vimwiki vimwiki tag
-if [ "$HEADLESS" != yes ]; then
-	vimpack fatih vim-go tag
+if role dev; then
+	vimpack robertmeta nofrils
+	vimpack ap vim-buftabline
+	vimpack tpope vim-commentary
+	vimpack srstevenson vim-picker
+	vimpack tpope vim-eunuch tag
+	vimpack duggiefresh vim-easydir tag
+	vimpack farmergreg vim-lastplace tag
+	vimpack vimwiki vimwiki tag
+	if role work; then
+		vimpack fatih vim-go tag
+	fi
 fi
 
 ##
 ## Dirs
 ##
 
-if [ "$HEADLESS" != yes ]; then
+if role desktop; then
 	mkdir -p ~/pic
 fi
