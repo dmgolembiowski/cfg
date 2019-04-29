@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec tmux -AD
+exec tmux new-session -AD
