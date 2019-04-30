@@ -16,6 +16,8 @@ Setup and config
     hostname -F /etc/hostname
     echo 127.0.0.1 $FQDN $HOSTNAME >> /etc/hosts
 
+    apk del acct iotop mtr nano syslinux sysstat
+
     apk update && apk upgrade
 
     apk add bash bash-completion git
