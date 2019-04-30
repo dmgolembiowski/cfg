@@ -118,6 +118,10 @@ if role dev; then
 	if distro arch; then
 		pkg fzy
 	fi
+
+	if distro alpine; then
+		pkg less
+	fi
 fi
 
 ##
