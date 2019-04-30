@@ -109,7 +109,11 @@ vimpack() {
 
 		git -C $r/$n checkout $th
 		vim +'helptags ALL' +q
-		git log $h..$th
+
+		# Skip logging if this is a fresh checkout and we're rewinding:
+		if [ "$(git rev-parse origin/master)" != "$h" ]; then
+			git log --pretty=oneline $h..$th | sed 's/^/  /'
+		fi
 	fi
 }
 
