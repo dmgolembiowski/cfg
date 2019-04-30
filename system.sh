@@ -115,13 +115,9 @@ if role dev; then
 		bash-completion
 		tmux
 		the_silver_searcher
+		fzy
 		ncdu
 	'
-
-	# TODO: install fzy from testing in alpine
-	if distro arch; then
-		pkg fzy
-	fi
 
 	if distro alpine; then
 		pkg less
