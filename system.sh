@@ -120,7 +120,11 @@ if role dev; then
 	'
 
 	if distro alpine; then
-		pkg less
+		pkg '
+			less
+			git-email
+			git-perl
+		'
 	fi
 fi
 
