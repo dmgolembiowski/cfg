@@ -85,12 +85,14 @@ vimpack() {
 	local n=$2
 	local v=$3
 	local r=$HOME/.vim/pack/dist/start
+	local fresh
 
 	mkdir -p $r
 
 	if [ -d $r/$n/.git ]; then
 		git -C $r/$n fetch
 	else
+		fresh=yes
 		git clone https://github.com/$u/$n $r/$n
 	fi
 
@@ -111,7 +113,7 @@ vimpack() {
 		vim +'helptags ALL' +q
 
 		# Skip logging if this is a fresh checkout and we're rewinding:
-		if [ "$(git rev-parse origin/master)" != "$h" ]; then
+		if [ "$fresh" != yes ]; then
 			git log --pretty=oneline $h..$th | sed 's/^/  /'
 		fi
 	fi
