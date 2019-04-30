@@ -1,3 +1,7 @@
 #!/bin/sh
 
-exec tmux new-session -AD
+if tmux has-session; then
+	exec env TERM=xterm-256color tmux -u attach -d
+else
+	exec env TERM=xterm-256color tmux -u
+fi
