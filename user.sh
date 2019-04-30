@@ -130,7 +130,6 @@ vimpurge() {
 }
 
 if role dev; then
-	vimpack robertmeta nofrils
 	vimpack ap vim-buftabline
 	vimpack tpope vim-commentary
 	vimpack srstevenson vim-picker
@@ -141,6 +140,8 @@ if role dev; then
 	if role work; then
 		vimpack fatih vim-go tag
 	fi
+
+	vimpurge nofrils
 fi
 
 ##
