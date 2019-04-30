@@ -75,6 +75,10 @@ if distro arch; then
 	file /etc/pacman.d/hooks/needrestart.hook
 fi
 
+if distro alpine; then
+	file /etc/apk/repositories
+fi
+
 if role desktop; then
 	# Autologin to TTY 1:
 	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
