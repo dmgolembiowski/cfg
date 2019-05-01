@@ -231,7 +231,6 @@ if role desktop; then
 	svc bluetooth
 fi
 
-
 ##
 ## Media
 ##
@@ -243,4 +242,17 @@ if role desktop; then
 		mpv
 		libva-intel-driver
 	'
+fi
+
+##
+## Bouncer
+##
+
+if role bouncer; then
+	pkg znc znc-extra
+	if [ -e /var/lib/znc/configs/znc.conf ]; then
+		svc znc
+	else
+		echo Run /etc/init.d/znc setup
+	fi
 fi

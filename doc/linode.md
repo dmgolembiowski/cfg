@@ -56,7 +56,7 @@ Setup and config
 with the following environment variables:
 
     ```sh
-    export ROLES=server:vm:dev
+    export ROLES=server:vm:dev:bouncer
     ```
 
 6. Run system setup and configuration:
