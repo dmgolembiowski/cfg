@@ -144,6 +144,8 @@ if distro arch; then
 	pkg ps_mem
 fi
 
+pkg htop
+
 ##
 ## Dev
 ##
