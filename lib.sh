@@ -82,7 +82,20 @@ svc() {
 	local s=$1
 	shift
 
-	for a in enable start; do
-		systemctl "$@" $a $s
-	done
+	case $DISTRO in
+		arch)
+			local a
+			for a in enable start; do
+				systemctl "$@" $a $s
+			done
+			;;
+		alpine)
+			if ! /etc/init.d/$s -q status; then
+				/etc/init.d/$s start
+			fi
+			if [ ! -e /etc/runlevels/default/$s ]; then
+				rc-update add $s
+			fi
+			;;
+	esac
 }
