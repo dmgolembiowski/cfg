@@ -421,7 +421,7 @@ mynetworks_style = host
 # Basically, the software tries user+foo and .forward+foo before
 # trying user and .forward.
 #
-#recipient_delimiter = +
+recipient_delimiter = +
 
 # DELIVERY TO MAILBOX
 #
