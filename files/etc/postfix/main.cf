@@ -309,6 +309,7 @@ mynetworks_style = host
 # permit_mx_backup restriction description in postconf(5).
 #
 #relay_domains = $mydestination
+relay_domains =
 
 # INTERNET OR INTRANET
 
