@@ -11,6 +11,10 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 ## Base
 ##
 
+if distro alpine; then
+	pkg gettext  # for envsubst
+fi
+
 pkg sudo
 
 if distro arch; then
@@ -270,5 +274,7 @@ fi
 if role mailsrv; then
 	pkg postfix
 
-	file /etc/postfix/main.cf
+	tmpl /etc/postfix/main.cf '$MAIL_DOMAIN'
+
+	svc postfix
 fi

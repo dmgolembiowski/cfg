@@ -58,6 +58,7 @@ with the following environment variables:
 
     ```sh
     export ROLES=server:vm:dev:build:bouncer:mailsrv
+    export MAIL_DOMAIN=mymaildomain.tld
     ```
 
 6. Run system setup and configuration:
