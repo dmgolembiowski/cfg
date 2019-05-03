@@ -255,7 +255,7 @@ fi
 ##
 
 if role bouncer; then
-	pkg znc znc-extra
+	pkg znc znc-extra znc-playback
 	if [ -e /var/lib/znc/configs/znc.conf ]; then
 		svc znc
 	else
