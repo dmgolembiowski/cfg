@@ -29,6 +29,7 @@ Setup and config
     addgroup $u
     adduser -s/bin/bash -G $u $u
     adduser $u wheel
+    adduser $u abuild
     chmod 2750 /home/$u
     mkdir /home/$u/.ssh
     cp someplace/authorized_keys /home/$u/.ssh/
@@ -56,7 +57,7 @@ Setup and config
 with the following environment variables:
 
     ```sh
-    export ROLES=server:vm:dev:bouncer
+    export ROLES=server:vm:dev:build:bouncer
     ```
 
 6. Run system setup and configuration:

@@ -136,6 +136,10 @@ if distro arch; then
 	pkg devtools
 fi
 
+if distro alpine && role build; then
+	pkg alpine-sdk
+fi
+
 ##
 ## Debug
 ##
