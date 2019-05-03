@@ -57,7 +57,7 @@ Setup and config
 with the following environment variables:
 
     ```sh
-    export ROLES=server:vm:dev:build:bouncer
+    export ROLES=server:vm:dev:build:bouncer:mailsrv
     ```
 
 6. Run system setup and configuration:

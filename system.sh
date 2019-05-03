@@ -262,3 +262,13 @@ if role bouncer; then
 		echo Run /etc/init.d/znc setup
 	fi
 fi
+
+##
+## Mailserver
+##
+
+if role mailsrv; then
+	pkg postfix
+
+	file /etc/postfix/main.cf
+fi
