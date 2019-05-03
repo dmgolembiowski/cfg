@@ -432,6 +432,7 @@ recipient_delimiter = +
 #
 #home_mailbox = Mailbox
 #home_mailbox = Maildir/
+home_mailbox = .maildir/
  
 # The mail_spool_directory parameter specifies the directory where
 # UNIX-style mailboxes are kept. The default setting depends on the
