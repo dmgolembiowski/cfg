@@ -285,4 +285,11 @@ if role mailsrv; then
 	tmpl /etc/postfix/main.cf '$MAIL_DOMAIN'
 
 	svc postfix
+
+	a=/etc/postfix/aliases
+	if [ ! -e $a.db -o $a -nt $a.db ]; then
+		echo Generating new $a.db
+		newaliases
+	fi
+	unset a
 fi
