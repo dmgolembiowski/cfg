@@ -21,13 +21,14 @@ macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index a "<save-message>+.Archive<enter>y" "move a message to Archive"
 
 set header_cache=~/.cache/mutt
 
 # User config:
 set from="Eivind Uggedal <eu@eju.no>"
 
-# Inbox behavior:
+# Index:
 set sort=threads
 
 # Sidebar:
