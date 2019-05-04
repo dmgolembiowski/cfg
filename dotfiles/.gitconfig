@@ -1,6 +1,6 @@
 [user]
 	name = Eivind Uggedal
-	email = eivind@uggedal.com
+	email = eu@eju.no
 [alias]
 	co = checkout
 	ci = commit -v
