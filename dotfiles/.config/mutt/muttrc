@@ -23,3 +23,14 @@ macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 
 set header_cache=~/.cache/mutt
+
+# User config:
+set from="Eivind Uggedal <eu@eju.no>"
+
+# Inbox behavior:
+set sort=threads
+
+# Sidebar:
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
