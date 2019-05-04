@@ -255,6 +255,14 @@ if role desktop; then
 fi
 
 ##
+## Mail
+##
+
+if role mail; then
+	pkg mutt
+fi
+
+##
 ## Bouncer
 ##
 
