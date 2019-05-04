@@ -283,8 +283,7 @@ if role mailsrv; then
 	pkg postfix
 
 	tmpl /etc/postfix/main.cf '$MAIL_DOMAIN'
-
-	svc postfix
+	tmpl /etc/postfix/aliases '$MAIL_OWNER'
 
 	a=/etc/postfix/aliases
 	if [ ! -e $a.db -o $a -nt $a.db ]; then
@@ -292,4 +291,6 @@ if role mailsrv; then
 		newaliases
 	fi
 	unset a
+
+	svc postfix
 fi
