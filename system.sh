@@ -280,7 +280,7 @@ fi
 ##
 
 if role mailsrv; then
-	pkg postfix
+	pkg postfix dovecot dovecot-lmtpd
 
 	tmpl /etc/postfix/main.cf '$MAIL_DOMAIN'
 	tmpl /etc/postfix/aliases '$MAIL_OWNER'
@@ -293,4 +293,8 @@ if role mailsrv; then
 	unset a
 
 	svc postfix
+
+	tmpl /etc/dovecot/conf.d/00-local.conf
+
+	svc dovecot
 fi

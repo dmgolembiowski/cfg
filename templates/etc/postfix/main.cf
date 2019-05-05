@@ -59,9 +59,9 @@ recipient_delimiter = +
 
 # DELIVERY TO MAILBOX
 #
-# The home_mailbox parameter specifies the optional pathname of a
-# mailbox file relative to a user's home directory.
-home_mailbox = .maildir/
+# The mailbox_transport specifies the optional transport in master.cf
+# to use after processing aliases and .forward files.
+mailbox_transport = lmtp:unix:private/dovecot-lmtp
 
 # INSTALL-TIME CONFIGURATION INFORMATION
 #
