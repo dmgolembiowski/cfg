@@ -169,12 +169,14 @@ fi
 
 pkg nftables
 
-# TODO: enable with ssh limit for servers
-if role desktop; then
-	file /etc/nftables.conf
-	svc nftables
-	chmod 700 /etc/nftables.conf
+tmpl /etc/nftables.conf
+chmod 700 /etc/nftables.conf
+
+if distro alpine; then
+	file /etc/conf.d/nftables
 fi
+
+svc nftables
 
 if distro arch; then
 	pkg arch-audit
