@@ -74,7 +74,6 @@ fi
 
 if distro arch; then
 	file /etc/pacman.conf
-	# TODO: better geo loc for servers:
 	file /etc/pacman.d/mirrorlist
 	file /etc/pacman.d/hooks/needrestart.hook
 fi
