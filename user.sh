@@ -3,7 +3,6 @@
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
 DOTFILES=$ROOT/dotfiles
 
-. $ROOT/env
 . $ROOT/lib.sh
 
 ##
@@ -45,8 +44,7 @@ fi
 if role desktop; then
 	svc ssh-agent --user
 	tmpl ~/.config/systemd/user/ssh-tunnel.service \
-		/home/user/.config/systemd/user/ssh-tunnel.service \
-		'$SSH_TUNNEL_HOST'
+		/home/user/.config/systemd/user/ssh-tunnel.service
 	svc ssh-tunnel --user
 fi
 

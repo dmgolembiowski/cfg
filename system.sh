@@ -4,7 +4,6 @@
 
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
 
-. $ROOT/env
 . $ROOT/lib.sh
 
 ##
@@ -12,7 +11,9 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 ##
 
 if distro alpine; then
-	pkg gettext  # for envsubst
+	pkg py3-jinja2 py3-yaml
+elif distro arch; then
+	pkg python-jinja2 python-yaml
 fi
 
 pkg sudo
@@ -84,7 +85,7 @@ fi
 
 if role desktop; then
 	# Autologin to TTY 1:
-	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf '$AUTOLOGIN_USER'
+	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf
 fi
 
 if distro arch; then
@@ -277,10 +278,15 @@ fi
 ##
 
 if role mailsrv; then
-	pkg postfix dovecot dovecot-lmtpd
+	pkg '
+		postfix
+		dovecot
+		dovecot-lmtpd
+		dovecot-pigeonhole-plugin
+	'
 
-	tmpl /etc/postfix/main.cf '$MAIL_DOMAIN'
-	tmpl /etc/postfix/aliases '$MAIL_OWNER'
+	tmpl /etc/postfix/main.cf
+	tmpl /etc/postfix/aliases
 
 	a=/etc/postfix/aliases
 	if [ ! -e $a.db -o $a -nt $a.db ]; then

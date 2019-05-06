@@ -2,8 +2,17 @@ TEMPLATES=$ROOT/templates
 FILES=$ROOT/files
 
 DISTRO=$(awk -F= '/^ID=/ { print $2 }' /etc/os-release)
+ROLES=$(python3 -c "
+import sys
+import yaml
+
+data = yaml.safe_load(open('$ROOT/env.yml', 'r'))
+
+sys.stdout.write(':'.join(data['roles']))
+")
 
 role() {
+
 	case "$ROLES" in
 		$1|$1:*|*:$1|*:$1:*)
 			return 0
@@ -67,14 +76,23 @@ tmpl() {
 
 	if [ -e $TEMPLATES$dst ]; then
 		local src=$TEMPLATES$dst
-		shift
 	else
 		local src=$TEMPLATES$2
-		shift 2
 	fi
 
 	local tmp=/tmp/$(echo $dst | sed 's#/#_#g')
-	envsubst "$@" < $src > $tmp
+
+	python3 - $src <<-EOF > $tmp
+	import sys
+	import yaml
+	import jinja2
+
+	tmpl = jinja2.Template(open(sys.argv[1]).read(), trim_blocks=True, lstrip_blocks=True, keep_trailing_newline=True)
+	data = yaml.safe_load(open('$ROOT/env.yml', 'r'))
+
+	sys.stdout.write(tmpl.render(data))
+	EOF
+
 	_f $dst $tmp
 }
 

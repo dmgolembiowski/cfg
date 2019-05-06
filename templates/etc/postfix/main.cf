@@ -19,7 +19,7 @@ mail_owner = postfix
 # INTERNET HOST AND DOMAIN NAMES
 #
 # The mydomain parameter specifies the local internet domain name.
-mydomain = $MAIL_DOMAIN
+mydomain = {{ mail.domain }}
 
 # SENDING MAIL
 #

@@ -57,9 +57,23 @@ Setup and config
 with the following environment variables:
 
     ```sh
-    export ROLES=server:vm:dev:mail:build:bouncer:mailsrv
-    export MAIL_DOMAIN=mymaildomain.tld
-    export MAIL_OWNER=myuser
+    roles:
+      - server
+      - vm
+      - dev
+      - mail
+      - build
+      - bouncer
+      - mailsrv
+    nftables:
+      tcp_accept:
+       - smtp
+       - 6697  # znc
+      tcp_limit:
+        - ssh
+    mail:
+      domain: youdomain.tld
+      owner: youruser
     ```
 
 6. Run system setup and configuration:
