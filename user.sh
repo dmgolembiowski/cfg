@@ -88,10 +88,10 @@ vimpack() {
 	mkdir -p $r
 
 	if [ -d $r/$n/.git ]; then
-		git -C $r/$n fetch
+		git -C $r/$n fetch -q
 	else
 		fresh=yes
-		git clone https://github.com/$u/$n $r/$n
+		git clone -q https://github.com/$u/$n $r/$n
 	fi
 
 	local h=$(git -C $r/$n rev-parse HEAD)
