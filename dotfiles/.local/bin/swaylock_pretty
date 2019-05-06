@@ -1,0 +1,24 @@
+#!/bin/sh
+
+exec swaylock \
+	--font 'IBM Plex Mono' \
+	--color eeeeee \
+	--text-color 4d4d4c \
+	--text-clear-color 4d4d4c \
+	--text-ver-color 4d4d4c \
+	--text-wrong-color 4d4d4c \
+	--key-hl-color 005f87  \
+	--bs-hl-color d7005f \
+	--ring-color 0087af \
+	--ring-clear-color d75f00 \
+	--ring-ver-color 8959a8 \
+	--ring-wrong-color d7005f \
+	--separator-color eeeeee \
+	--inside-color eeeeee \
+	--inside-clear-color eeeeee \
+	--inside-ver-color eeeeee \
+	--inside-wrong-color eeeeee \
+	--line-uses-inside \
+	--indicator-radius 100 \
+	--indicator-thickness 30 \
+	"$@"

@@ -92,7 +92,7 @@ seat * hide_cursor 3000
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
     # lock screen
-    bindsym Mod4+l exec swaylock
+    bindsym Mod4+l exec swaylock_pretty
 #
 # Moving around:
 #
