@@ -28,14 +28,6 @@ find $DOTFILES -type f | while read -r f; do
 		esac
 	fi
 
-	if role desktop; then
-		case "$f" in
-			*/.dovecot.sieve)
-				continue
-				;;
-		esac
-	fi
-
 	mkdir -p "$(dirname "$dst")"
 
 	if ! [ -L "$dst" ]; then
@@ -161,4 +153,13 @@ fi
 
 if role desktop; then
 	mkdir -p ~/pic
+fi
+
+##
+## Mail
+##
+
+if role mail; then
+	tmpl ~/.sieve/default.sieve /home/user/.sieve/default.sieve
+	ln -s ~/.sieve/default.sieve ~/.dovecot.sieve
 fi
