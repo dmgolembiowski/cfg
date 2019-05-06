@@ -179,7 +179,8 @@ nnoremap <leader>c :noh<CR>
 ""
 
 " colorscheme
-colorscheme default
+set background=light
+colorscheme PaperColor
 
 " netrw
 let g:netrw_liststyle=3

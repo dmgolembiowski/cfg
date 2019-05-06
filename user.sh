@@ -136,6 +136,7 @@ vimpurge() {
 }
 
 if role dev; then
+	vimpack NLKNguyen papercolor-theme
 	vimpack ap vim-buftabline
 	vimpack tpope vim-commentary
 	vimpack srstevenson vim-picker
