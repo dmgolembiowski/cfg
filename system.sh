@@ -94,8 +94,6 @@ if distro arch; then
 	svc paccache.timer
 fi
 
-# TODO: add normal user on alpine to wheel
-
 # Passwordless sudo for wheel:
 echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
 
