@@ -299,7 +299,7 @@ if role mailsrv; then
 
 	svc postfix
 
-	tmpl /etc/dovecot/conf.d/00-local.conf
+	file /etc/dovecot/conf.d/00-local.conf
 
 	svc dovecot
 fi
