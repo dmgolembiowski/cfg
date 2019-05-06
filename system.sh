@@ -300,6 +300,7 @@ if role mailsrv; then
 	svc postfix
 
 	file /etc/dovecot/conf.d/00-local.conf
+	file /etc/dovecot/conf.d/99-local.conf
 
 	svc dovecot
 fi
