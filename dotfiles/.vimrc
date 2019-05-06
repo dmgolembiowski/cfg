@@ -180,6 +180,21 @@ nnoremap <leader>c :noh<CR>
 
 " colorscheme
 set background=light
+let g:PaperColor_Theme_Options = {
+	\   'theme': {
+	\     'default.light': {
+	\       'override' : {
+	\         'buftabline_bg':          ['#eeeeee', '255'],
+	\         'buftabline_current_fg':  ['#eeeeee', '255'],
+	\         'buftabline_current_bg':  ['#005f87', '24'],
+	\         'buftabline_active_fg':   ['#eeeeee', '255'],
+	\         'buftabline_active_bg':   ['#0087af', '31'],
+	\         'buftabline_inactive_fg': ['#444444', '238'],
+	\         'buftabline_inactive_bg': ['#e4e4e4', '254']
+	\       }
+	\     }
+	\   }
+	\ }
 colorscheme PaperColor
 
 " netrw
