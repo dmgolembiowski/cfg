@@ -22,6 +22,9 @@ find $DOTFILES -type f | while read -r f; do
 			*/mpv/*|*firefox*|*pacsize|*spotify*|*pam_env*)
 				continue
 				;;
+			*/mako/*)
+				continue
+				;;
 		esac
 	fi
 
