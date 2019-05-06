@@ -25,6 +25,14 @@ find $DOTFILES -type f | while read -r f; do
 		esac
 	fi
 
+	if role desktop; then
+		case "$f" in
+			*/.dovecot.sieve)
+				continue
+				;;
+		esac
+	fi
+
 	mkdir -p "$(dirname "$dst")"
 
 	if ! [ -L "$dst" ]; then
