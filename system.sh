@@ -13,7 +13,7 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 if distro alpine; then
 	pkg py3-jinja2 py3-yaml
 elif distro arch; then
-	pkg python-jinja2 python-yaml
+	pkg python-jinja python-yaml
 fi
 
 pkg sudo
