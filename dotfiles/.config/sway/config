@@ -15,12 +15,6 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term alacritty
-# Colors
-set $Black           '#000000'
-set $Grey85          '#dadada'
-set $LightCyan1      '#d7ffff'
-set $Plum2           '#d7afff'
-set $LightGoldenrod2 '#ffd787'
 
 ### Output configuration
 #
@@ -229,21 +223,25 @@ bindsym $mod+r mode "resize"
 #
 # Style:
 #
-# Legend:               border           background       text   indicator        child_border
-client.focused          $LightGoldenrod2 $LightGoldenrod2 $Black $LightGoldenrod2 $LightGoldenrod2
-client.focused_inactive $LightCyan1      $LightCyan1      $Black $LightCyan1      $LightCyan1
-client.unfocused        $Grey85          $Grey85          $Black $Grey85          $Grey85
-client.urgent           $Plum2           $Plum2           $Black $Plum2           $Plum2
+set $bg_fo '#ffd787'
+set $fg_fo '#444444'
+set $bg_fi '#afd7ff'
+set $fg_fi '#0087af'
+set $bg_uf '#e4e4e4'
+set $fg_uf '#444444'
+set $bg_ur '#ffd7ff'
+set $fg_ur '#af0000'
+
+set $fg_st '#4d4d4c'
+set $bg_st '#eeeeee'
+
+client.focused          $bg_fo $bg_fo $fg_fo $bg_fo $bg_fo
+client.focused_inactive $bg_fi $bg_fi $fg_fi $bg_fi $bg_fi
+client.unfocused        $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
+client.urgent           $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
 
 font IBM Plex Mono 10
 
-#
-# Window rules:
-#
-for_window [app_id="AlacrittyMenu"] border pixel 2
-for_window [app_id="AlacrittyMenu"] floating enable
-
-# Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
     separator_symbol " | "
@@ -253,15 +251,22 @@ bar {
     status_command i3status
 
     colors {
-        statusline $Black
-        background $Grey85
-        # Legend:          border           background       text
-        focused_workspace  $LightGoldenrod2 $LightGoldenrod2 $Black
-        active_workspace   $LightCyan1      $LightCyan1      $Black
-        inactive_workspace $Grey85          $Grey85          $Black
-        urgent_workspace   $Plum2           $Plum2           $Black
+        statusline $fg_st
+        background $bg_st
+
+        focused_workspace  $bg_fo $bg_fo $fg_fo
+        active_workspace   $bg_fi $bg_fi $fg_fi
+        inactive_workspace $bg_st $bg_st $fg_st
+        urgent_workspace   $bg_ur $bg_ur $fg_ur
     }
 }
+
+
+#
+# Window rules:
+#
+for_window [app_id="AlacrittyMenu"] border pixel 2
+for_window [app_id="AlacrittyMenu"] floating enable
 
 exec --no-startup-id systemctl --user import-environment
 exec --no-startup-id systemctl --user start sway-session.target
