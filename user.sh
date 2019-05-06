@@ -102,6 +102,7 @@ vimpack() {
 		git -C $r/$n fetch -q
 	else
 		fresh=yes
+		echo $n: clone
 		git clone -q https://github.com/$u/$n $r/$n
 	fi
 
