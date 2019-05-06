@@ -2,16 +2,21 @@ TEMPLATES=$ROOT/templates
 FILES=$ROOT/files
 
 DISTRO=$(awk -F= '/^ID=/ { print $2 }' /etc/os-release)
-ROLES=$(python3 -c "
+ROLES=
+
+_ROLE_PY="
 import sys
 import yaml
 
 data = yaml.safe_load(open('$ROOT/env.yml', 'r'))
 
 sys.stdout.write(':'.join(data['roles']))
-")
+"
 
 role() {
+	if [ -z "$ROLES" ]; then
+		ROLES=$(python3 -c "$_ROLE_PY")
+	fi
 
 	case "$ROLES" in
 		$1|$1:*|*:$1|*:$1:*)
