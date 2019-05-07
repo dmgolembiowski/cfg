@@ -45,8 +45,9 @@ set header_cache=~/.cache/mutt
 ## Keybindings
 ##
 
-macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
-macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+bind index,pager \Cp sidebar-prev
+bind index,pager \Cn sidebar-next
+bind index,pager \Co sidebar-open
 
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro index a "<save-message>+.Archive<enter>y" "move a message to Archive"
