@@ -32,6 +32,9 @@ set sort=threads
 set strict_threads=yes
 set index_format="%3C %Z %{%F %R} %-18.18n %s"
 
+# Pager:
+set pager_index_lines=6
+
 # Sidebar:
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
