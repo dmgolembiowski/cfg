@@ -146,6 +146,8 @@ au FileType yaml call Spaces(2)
 au FileType markdown call Spaces(4)
 au FileType vimwiki call Spaces(4)
 
+au FileType mail setlocal textwidth=72
+
 
 ""
 "" Leader
