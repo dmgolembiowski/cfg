@@ -50,3 +50,14 @@ macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro index a "<save-message>+.Archive<enter>y" "move a message to Archive"
+
+##
+## Colors
+##
+
+# Basic:
+color status color238 color252
+color indicator color254 color24
+
+# Message body:
+color quoted color5 default
