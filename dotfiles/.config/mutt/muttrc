@@ -1,3 +1,7 @@
+##
+## Mailbox
+##
+
 # Local extended maildir setup:
 set mbox_type=Maildir
 set spoolfile="~/.maildir"
@@ -16,14 +20,9 @@ for file in ~/.maildir/.*; do \
   fi; \
 done`
 
-
-macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
-macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
-
-macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
-macro index a "<save-message>+.Archive<enter>y" "move a message to Archive"
-
-set header_cache=~/.cache/mutt
+##
+## Settings:
+##
 
 # User config:
 set from="Eivind Uggedal <eu@eju.no>"
@@ -38,3 +37,16 @@ set mail_check_stats
 
 # Compose:
 set edit_headers=yes
+
+# Header cache location:
+set header_cache=~/.cache/mutt
+
+##
+## Keybindings
+##
+
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index a "<save-message>+.Archive<enter>y" "move a message to Archive"
