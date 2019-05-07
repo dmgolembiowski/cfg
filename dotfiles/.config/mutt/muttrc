@@ -29,6 +29,7 @@ set from="Eivind Uggedal <eu@eju.no>"
 
 # Index:
 set sort=threads
+set strict_threads=yes
 
 # Sidebar:
 set sidebar_visible
