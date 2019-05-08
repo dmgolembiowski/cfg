@@ -1,5 +1,5 @@
-System and User Setup and Config
-================================
+cfg
+===
 
 Provisioning and configuration of the following systems:
 

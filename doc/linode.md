@@ -49,8 +49,8 @@ Setup and config
     ```sh
     mkdir ~/src
     cd ~/src
-    git clone git@github.com:uggedal/susc
-    cd susc
+    git clone git@git.sr.ht:~eju/cfg
+    cd cfg
     ```
 
 5. Fill a `env` file in the root of the chekcout of this repo
