@@ -30,7 +30,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	mkdir -p "$(dirname "$dst")"
 
-	if ! [ -L "$dst" ]; then
+	if [ ! -L "$dst" -o "$(readlink $dst)" != "$src" ]; then
 		printf '%s -> %s\n'  "$src" "$dst"
 		ln -sf "$src" "$dst"
 	fi
