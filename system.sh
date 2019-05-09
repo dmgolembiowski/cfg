@@ -273,6 +273,18 @@ if role bouncer; then
 	else
 		echo Run /etc/init.d/znc setup
 	fi
+
+	pkg weechat
+	grep -q ^weechat: /etc/group ||
+		addgroup -S weechat
+	grep -q ^weechat: /etc/passwd ||
+		adduser -S -D -H -h /var/lib/weechat -s /bin/sh \
+			-G weechat -g weechat weechat
+
+	mkdir -p /var/lib/weechat
+	chown weechat: /var/lib/weechat
+	chmod 750 /var/lib/weechat
+	file /etc/init.d/weechat
 fi
 
 ##
