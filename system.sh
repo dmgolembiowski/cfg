@@ -286,10 +286,14 @@ _w_set() {
 	local cfg=${set_key%%.*}
 	local cfg_key=$(echo $set_key | cut -d. -f3-)
 
-	case $val in
-		''|*[!0-9a-z]*) val="\"$val\"" ;;
-		*) : ;;
-	esac
+	if echo "$val" | egrep -vq '^[a-z0-9]{1,14}$'; then
+		val="\"$val\""
+	fi
+
+	if [ "$val" = $IRC_NICK ]; then
+		val="\"$val\""
+	fi
+
 
 	if ! _w_has "$cfg_key = $val" $cfg; then
 		echo weechat $set_key $val
