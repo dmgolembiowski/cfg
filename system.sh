@@ -330,6 +330,9 @@ if role irc; then
 	_w_set weechat.bar.title.hidden on
 	_w_set weechat.bar.status.hidden on
 	_w_set weechat.bar.nicklist.hidden on
+	#TODO: > not working
+	_w_set weechat.bar.input.items \
+		'${color:102}>${color:reset},[input_search],[input_paste],[scroll],input_text'
 
 	# TODO: unable to set fg color:
 	_w_set buflist.format.buffer_current '${color:,157}${format_buffer}'
