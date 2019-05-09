@@ -71,6 +71,11 @@ with the following environment variables:
        - 6697  # znc
       tcp_limit:
         - ssh
+    irc:
+      nick: you
+      freenode:
+        sasl: qwer1234
+        join: '#chan1,#chan2'
     mail:
       domain: youdomain.tld
       owner: youruser
