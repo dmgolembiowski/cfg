@@ -326,6 +326,8 @@ if role bouncer; then
 
 	_w_set weechat.look.separator_horizontal ' '
 
+	_w_set irc.look.server_buffer independent
+
 	_w_set weechat.bar.title.color_bg 254
 	_w_set weechat.bar.status.color_bg 254
 	# TODO: unable to set fg color:
