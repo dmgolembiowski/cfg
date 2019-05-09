@@ -323,6 +323,13 @@ if role bouncer; then
 
 	_w_set weechat.plugin.autoload \
 		'*,!script,!trigger,!xfer,!exec,!fset'
+
+	_w_set weechat.look.separator_horizontal ' '
+
+	_w_set weechat.bar.title.color_bg 254
+	_w_set weechat.bar.status.color_bg 254
+	# TODO: unable to set fg color:
+	_w_set buflist.format.buffer_current '${color:,157}${format_buffer}'
 fi
 
 ##
