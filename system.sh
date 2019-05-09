@@ -299,13 +299,6 @@ _w_set() {
 }
 
 if role irc; then
-	pkg znc znc-extra znc-playback
-	if [ -e /var/lib/znc/configs/znc.conf ]; then
-		svc znc
-	else
-		echo Run /etc/init.d/znc setup
-	fi
-
 	pkg weechat
 	grep -q ^weechat: /etc/group ||
 		addgroup -S weechat
