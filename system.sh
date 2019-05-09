@@ -298,7 +298,7 @@ _w_set() {
 	fi
 }
 
-if role bouncer; then
+if role irc; then
 	pkg znc znc-extra znc-playback
 	if [ -e /var/lib/znc/configs/znc.conf ]; then
 		svc znc

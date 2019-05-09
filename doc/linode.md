@@ -63,7 +63,7 @@ with the following environment variables:
       - dev
       - mail
       - build
-      - bouncer
+      - irc
       - mailsrv
     nftables:
       tcp_accept:
