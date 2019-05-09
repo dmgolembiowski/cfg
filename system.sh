@@ -328,8 +328,9 @@ if role bouncer; then
 
 	_w_set irc.look.server_buffer independent
 
-	_w_set weechat.bar.title.color_bg 254
-	_w_set weechat.bar.status.color_bg 254
+	_w_set weechat.bar.title.hidden on
+	_w_set weechat.bar.status.hidden on
+
 	# TODO: unable to set fg color:
 	_w_set buflist.format.buffer_current '${color:,157}${format_buffer}'
 
