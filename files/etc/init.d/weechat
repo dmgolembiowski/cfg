@@ -24,5 +24,6 @@ status() {
 stop() {
 	ebegin "Stopping $RC_SVCNAME"
 	su - weechat -c '/usr/bin/tmux -L weechat kill-session'
+	rm -f /var/lib/weechat/weechat_fifo
 	eend $?
 }
