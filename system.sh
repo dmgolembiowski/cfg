@@ -338,6 +338,9 @@ if role irc; then
 	_w_set weechat.bar.buflist.separator off
 	# TODO: unable to set fg color:
 	_w_set buflist.format.buffer_current '${color:,157}${format_buffer}'
+	_w_set buflist.format.hotlist_low '${color:102}'
+	_w_set buflist.format.indent ''
+	_w_set buflist.format.number '${color:102}${number}${if:${number_displayed}? :}'
 
 	_w_set irc.server_default.sasl_mechanism plain
 	_w_set irc.server_default.sasl_username $IRC_NICK
