@@ -334,6 +334,8 @@ if role irc; then
 	_w_set weechat.bar.input.items \
 		'${color:102}>${color:reset},[input_search],[input_paste],[scroll],input_text'
 
+	_w_set weechat.bar.buflist.position top
+	_w_set weechat.bar.buflist.separator off
 	# TODO: unable to set fg color:
 	_w_set buflist.format.buffer_current '${color:,157}${format_buffer}'
 
