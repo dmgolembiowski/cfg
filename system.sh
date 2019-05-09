@@ -342,6 +342,9 @@ if role irc; then
 	_w_set buflist.format.indent ''
 	_w_set buflist.format.number '${color:102}${number}${if:${number_displayed}? :}'
 
+
+	_w_set irc.server_default.msg_part ''
+	_w_set irc.server_default.msg_quit ''
 	_w_set irc.server_default.sasl_mechanism plain
 	_w_set irc.server_default.sasl_username $IRC_NICK
 	_w_set irc.server_default.nicks $IRC_NICK
