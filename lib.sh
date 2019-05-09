@@ -2,8 +2,27 @@ TEMPLATES=$ROOT/templates
 FILES=$ROOT/files
 
 DISTRO=$(awk -F= '/^ID=/ { print $2 }' /etc/os-release)
-ROLES=
 
+# Read YAML file into shell vars
+eval $(python3 -c "
+import yaml
+
+def p(n, d):
+    for k, v in d.items():
+        if isinstance(v, str):
+            s = '_'.join(n + [k]).upper()
+            print('{}="{}"'.format(s, v))
+        elif isinstance(v, dict):
+            n.append(k)
+            p(n, v)
+    if len(n):
+        n.pop()
+
+p([], yaml.safe_load(open('$ROOT/env.yml', 'r')))
+
+")
+
+ROLES=
 _ROLE_PY="
 import sys
 import yaml
