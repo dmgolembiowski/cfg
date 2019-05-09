@@ -285,6 +285,7 @@ if role bouncer; then
 	chown weechat: /var/lib/weechat
 	chmod 750 /var/lib/weechat
 	file /etc/init.d/weechat
+	file /var/lib/weechat/.tmux.conf
 fi
 
 ##
