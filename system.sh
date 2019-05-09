@@ -340,8 +340,8 @@ if role irc; then
 	_w_set weechat.bar.buflist.items buflist
 	_w_set weechat.bar.buflist.position top
 	_w_set weechat.bar.buflist.separator off
-	# TODO: unable to set fg color:
-	_w_set buflist.format.buffer_current '${color:,157}${format_buffer}'
+	_w_set buflist.format.buffer '${format_number}${indent}${format_nick_prefix}${if:${current_buffer}?${color:green}:${color_hotlist}}${format_name}'
+	_w_set buflist.format.buffer_current '${color:,default}${format_buffer}'
 	_w_set buflist.format.hotlist_low '${color:102}'
 	_w_set buflist.format.indent ''
 	_w_set buflist.format.number '${color:102}${number}${if:${number_displayed}? :}'
