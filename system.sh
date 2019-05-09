@@ -332,6 +332,11 @@ if role bouncer; then
 	_w_set weechat.bar.status.color_bg 254
 	# TODO: unable to set fg color:
 	_w_set buflist.format.buffer_current '${color:,157}${format_buffer}'
+
+	if ! _w_has 'irc_smart = on;*;irc_smart_filter;*' weechat; then
+		_w_run '/filter add irc_smart * irc_smart_filter *'
+		_w_run '/save'
+	fi
 fi
 
 ##
