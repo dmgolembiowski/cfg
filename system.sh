@@ -339,12 +339,14 @@ if role irc; then
 
 	_w_set weechat.bar.buflist.items buflist
 	_w_set weechat.bar.buflist.position top
+	_w_set weechat.bar.buflist.filling_top_bottom horizontal
 	_w_set weechat.bar.buflist.separator off
-	_w_set buflist.format.buffer '${format_number}${indent}${format_nick_prefix}${if:${current_buffer}?${color:green}:${color_hotlist}}${format_name}'
-	_w_set buflist.format.buffer_current '${color:,default}${format_buffer}'
+	_w_set weechat.bar.buflist.color_bg 254
+	_w_set buflist.format.buffer ' ${if:${current_buffer}?${color:255}:${color:default}}${format_number}${indent}${format_nick_prefix}${if:${current_buffer}?${color:255}:${color_hotlist}}${format_name} '
+	_w_set buflist.format.buffer_current '${color:255,24}${format_buffer}'
 	_w_set buflist.format.hotlist_low '${color:102}'
 	_w_set buflist.format.indent ''
-	_w_set buflist.format.number '${color:102}${number}${if:${number_displayed}? :}'
+	_w_set buflist.format.number '${number}${if:${number_displayed}? :}'
 
 
 	_w_set irc.server_default.msg_part ''
