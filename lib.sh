@@ -113,7 +113,7 @@ svc() {
 			done
 			;;
 		alpine)
-			if ! /etc/init.d/$s -q status; then
+			if ! /etc/init.d/$s -q status >/dev/null; then
 				/etc/init.d/$s start
 			fi
 			if [ ! -e /etc/runlevels/default/$s ]; then
