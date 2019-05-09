@@ -266,6 +266,38 @@ fi
 ## Bouncer
 ##
 
+_w_run() {
+	local f=/var/lib/weechat/weechat_fifo
+
+	echo "$1" | sed 's/^/*/' > $f
+}
+
+_w_has() {
+	local kv="$1"
+	local cfg="$2"
+	local r=/var/lib/weechat
+
+	fgrep -q "$kv" $r/$cfg.conf
+}
+
+_w_set() {
+	local set_key=$1
+	local val="$2"
+	local cfg=${set_key%%.*}
+	local cfg_key=$(echo $set_key | cut -d. -f3-)
+
+	case $val in
+		''|*[!0-9a-z]*) val="\"$val\"" ;;
+		*) : ;;
+	esac
+
+	if ! _w_has "$cfg_key = $val" $cfg; then
+		echo weechat $set_key $val
+		_w_run "/set $set_key $val"
+		_w_run '/save'
+	fi
+}
+
 if role bouncer; then
 	pkg znc znc-extra znc-playback
 	if [ -e /var/lib/znc/configs/znc.conf ]; then
@@ -288,6 +320,9 @@ if role bouncer; then
 	file /var/lib/weechat/.tmux.conf
 
 	svc weechat
+
+	_w_set weechat.plugin.autoload \
+		'*,!script,!trigger,!xfer,!exec,!fset'
 fi
 
 ##
