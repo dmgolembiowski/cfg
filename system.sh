@@ -360,6 +360,11 @@ if role irc; then
 		_w_run '/filter add irc_smart * irc_smart_filter *'
 		_w_run '/save'
 	fi
+
+	_w_set logger.look.backlog 0
+	_w_set logger.file.mask '$plugin.$name.log'
+	_w_set logger.mask.irc '$server-$channel-%Y-%m.log'
+	_w_set logger.level.irc 1
 fi
 
 ##
