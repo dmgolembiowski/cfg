@@ -339,6 +339,17 @@ if role irc; then
 	# TODO: unable to set fg color:
 	_w_set buflist.format.buffer_current '${color:,157}${format_buffer}'
 
+	_w_set irc.server_default.sasl_mechanism plain
+	_w_set irc.server_default.sasl_username $IRC_NICK
+	_w_set irc.server_default.nicks $IRC_NICK
+
+	if ! _w_has 'freenode.autoconnect = on' irc; then
+		_w_run '/server add freenode chat.freenode.net/6697 -ssl -autoconnect'
+		_w_run '/save'
+	fi
+	_w_set irc.server.freenode.sasl_password $IRC_FREENODE_SASL
+	_w_set irc.server.freenode.autojoin $IRC_FREENODE_JOIN
+
 	if ! _w_has 'irc_smart = on;*;irc_smart_filter;*' weechat; then
 		_w_run '/filter add irc_smart * irc_smart_filter *'
 		_w_run '/save'
