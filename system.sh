@@ -323,8 +323,7 @@ if role irc; then
 	_w_set weechat.plugin.autoload \
 		'*,!script,!trigger,!xfer,!exec,!fset'
 
-	# TODO: color not working
-	_w_set weechat.look.buffer_time_format '${182}%H:%M'
+	_w_set weechat.look.buffer_time_format '${color:102}%H:%M'
 	_w_set weechat.look.prefix_suffix ''
 	_w_set weechat.look.prefix_align none
 	_w_set weechat.look.align_end_of_lines prefix
