@@ -323,6 +323,9 @@ if role irc; then
 	_w_set weechat.plugin.autoload \
 		'*,!script,!trigger,!xfer,!exec,!fset'
 
+	_w_set weechat.color.chat_highlight white
+	_w_set weechat.color.chat_highlight_bg red
+
 	_w_set weechat.look.buffer_time_format '${color:102}%H:%M'
 	_w_set weechat.look.prefix_suffix ''
 	_w_set weechat.look.prefix_align none
