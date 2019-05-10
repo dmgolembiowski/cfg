@@ -337,7 +337,6 @@ if role irc; then
 	#TODO: > not working
 	_w_set weechat.bar.input.items \
 		'${color:102}>${color:reset},[input_search],[input_paste],[scroll],input_text'
-	_w_set weechat.bar.input.color_bg 254
 
 	_w_set weechat.bar.buflist.items buflist
 	_w_set weechat.bar.buflist.position top
