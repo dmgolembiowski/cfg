@@ -363,6 +363,9 @@ if role irc; then
 	_w_set irc.server.freenode.sasl_password $IRC_FREENODE_SASL
 	_w_set irc.server.freenode.autojoin $IRC_FREENODE_JOIN
 
+	_w_set irc.color.topic_new default
+	_w_set irc.color.topic_old 102
+
 	if ! _w_has 'irc_smart = on;*;irc_smart_filter;*' weechat; then
 		_w_run '/filter add irc_smart * irc_smart_filter *'
 		_w_run '/save'
