@@ -331,6 +331,7 @@ if role irc; then
 	_w_set weechat.look.prefix_align none
 	_w_set weechat.look.align_end_of_lines prefix
 
+	_w_set irc.look.highlight_channel '(?-i)$nick:,(?-i)$nick '
 	_w_set irc.look.server_buffer independent
 
 	_w_set weechat.bar.title.hidden on
