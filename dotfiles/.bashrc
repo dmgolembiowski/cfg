@@ -59,6 +59,7 @@ alias ls='ls -1F'
 alias g=git
 alias ga='git add -p'
 alias gc='git ci'
+alias gs='git st'
 alias gd='git diff'
 alias gp='git push'
 alias gl='git pull'
