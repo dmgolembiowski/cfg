@@ -1,0 +1,9 @@
+http://dl-cdn.alpinelinux.org/alpine/{{ alpine.version }}/main
+http://dl-cdn.alpinelinux.org/alpine/{{ alpine.version }}/community
+http://dl-cdn.alpinelinux.org/alpine/edge/testing
+
+{% if 'build' in roles %}
+/home/{{ build.user }}/packages/main/x86_64
+/home/{{ build.user }}/packages/communty/x86_64
+/home/{{ build.user }}/packages/testing/x86_64
+{% endif %}

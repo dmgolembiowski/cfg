@@ -65,12 +65,16 @@ with the following environment variables:
       - build
       - irc
       - mailsrv
+    alpine:
+      version: edge
     nftables:
       tcp_accept:
        - smtp
        - 6697  # znc
       tcp_limit:
         - ssh
+    build:
+      user: youruser
     irc:
       nick: you
       freenode:

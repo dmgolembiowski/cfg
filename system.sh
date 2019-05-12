@@ -80,7 +80,7 @@ if distro arch; then
 fi
 
 if distro alpine; then
-	file /etc/apk/repositories
+	tmpl /etc/apk/repositories
 fi
 
 if role desktop; then
