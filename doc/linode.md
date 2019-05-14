@@ -22,7 +22,7 @@ Setup and config
 
     apk update && apk upgrade
 
-    apk add bash bash-completion git
+    apk add bash git
     ```
 
 2. Create a unprivileged user:
