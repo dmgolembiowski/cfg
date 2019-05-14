@@ -16,7 +16,9 @@ Setup and config
     hostname -F /etc/hostname
     echo 127.0.0.1 $FQDN $HOSTNAME >> /etc/hosts
 
-    apk del acct iotop mtr nano syslinux sysstat
+    rc-update del chronyd
+    /etc/init.d/chrond stop
+    apk del acct iotop mtr nano syslinux sysstat chrony
 
     apk update && apk upgrade
 

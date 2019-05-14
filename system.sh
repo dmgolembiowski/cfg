@@ -98,6 +98,10 @@ fi
 # Passwordless sudo for wheel:
 echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
 
+if distro alpine; then
+	svc ntpd
+fi
+
 ##
 ## Net
 ##
