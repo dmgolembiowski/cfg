@@ -11,7 +11,7 @@ def p(n, d):
     for k, v in d.items():
         if isinstance(v, str):
             s = '_'.join(n + [k]).upper()
-            print('{}="{}"'.format(s, v))
+            print('{}=\"{}\"'.format(s, v))
         elif isinstance(v, dict):
             n.append(k)
             p(n, v)
