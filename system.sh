@@ -102,6 +102,10 @@ if distro alpine; then
 	svc ntpd
 fi
 
+if distro arch; then
+	scv systemd-timesyncd
+fi
+
 ##
 ## Net
 ##
