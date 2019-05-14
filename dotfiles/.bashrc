@@ -61,6 +61,7 @@ alias ga='git add -p'
 alias gc='git ci'
 alias gs='git st'
 alias gd='git diff'
+alias gb='git branch'
 alias gp='git push'
 alias gl='git pull'
 
