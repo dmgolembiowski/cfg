@@ -366,12 +366,6 @@ if role irc; then
 	_w_set irc.server.freenode.sasl_password $IRC_FREENODE_SASL
 	_w_set irc.server.freenode.autojoin $IRC_FREENODE_JOIN
 
-	if ! _w_has 'oftc.autoconnect = on' irc; then
-		_w_run '/server add oftc irc.oftc.net/6697 -ssl -autoconnect'
-		_w_run '/save'
-	fi
-	_w_set irc.server.oftc.command "/msg NickServ IDENTIFY $IRC_OFTC_PASS; /mode eu +g"
-
 	_w_set irc.color.topic_new default
 	_w_set irc.color.topic_old 102
 
