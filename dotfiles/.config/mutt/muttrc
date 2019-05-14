@@ -38,6 +38,8 @@ set pager_index_lines=6
 # Sidebar:
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_width = 24
+set sidebar_divider_char = ' '
 set mail_check_stats
 
 # Compose:
@@ -70,3 +72,8 @@ color indicator color254 color24
 
 # Message body:
 color quoted color5 default
+
+# Sidebar:
+color sidebar_highlight default color252
+color sidebar_flagged red default
+color sidebar_new green default
