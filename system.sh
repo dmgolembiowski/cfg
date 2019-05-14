@@ -139,7 +139,7 @@ if distro arch; then
 fi
 
 if distro alpine && role build; then
-	pkg alpine-sdk
+	pkg alpine-sdk atools
 fi
 
 ##
