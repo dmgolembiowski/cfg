@@ -51,6 +51,10 @@ if role desktop; then
 	svc ssh-tunnel --user
 fi
 
+if role build; then
+	tmpl ~/.abuild/abuild.conf /home/user/.abuild/abuild.conf
+fi
+
 ##
 ## Desktop
 ##

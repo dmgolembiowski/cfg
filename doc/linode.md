@@ -77,6 +77,9 @@ with the following environment variables:
         - ssh
     build:
       user: youruser
+      privkey: /path/to/your/abuild.privkey
+      jobs: 4
+      packager: Your Name <your@email.tld>
     irc:
       nick: you
       freenode:
