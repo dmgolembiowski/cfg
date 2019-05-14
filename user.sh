@@ -161,5 +161,7 @@ fi
 
 if role mail; then
 	tmpl ~/.sieve/default.sieve /home/user/.sieve/default.sieve
-	ln -s ~/.sieve/default.sieve ~/.dovecot.sieve
+	if ! [ -L ~/.dovecot.sieve ]; then
+		ln -s ~/.sieve/default.sieve ~/.dovecot.sieve
+	fi
 fi
