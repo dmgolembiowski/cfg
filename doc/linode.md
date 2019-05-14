@@ -80,6 +80,8 @@ with the following environment variables:
       freenode:
         sasl: qwer1234
         join: '#chan1,#chan2'
+      oftc:
+        pass: qwer1234
     mail:
       domain: youdomain.tld
       owner: youruser
