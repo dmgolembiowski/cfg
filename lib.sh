@@ -15,6 +15,11 @@ def p(n, d):
         elif isinstance(v, dict):
             n.append(k)
             p(n, v)
+        elif isinstance(v, list):
+            for i in v:
+                if isinstance(i, str):
+                    s = '_'.join(n + [k, i]).upper()
+                    print('{}=\"{}\"'.format(s, 'yes'))
     if len(n):
         n.pop()
 
@@ -22,28 +27,9 @@ p([], yaml.safe_load(open('$ROOT/env.yml', 'r')))
 
 ")
 
-ROLES=
-_ROLE_PY="
-import sys
-import yaml
-
-data = yaml.safe_load(open('$ROOT/env.yml', 'r'))
-
-sys.stdout.write(':'.join(data['roles']))
-"
-
 role() {
-	if [ -z "$ROLES" ]; then
-		ROLES=$(python3 -c "$_ROLE_PY")
-	fi
-
-	case "$ROLES" in
-		$1|$1:*|*:$1|*:$1:*)
-			return 0
-			;;
-	esac
-
-	return 1
+	local n=ROLES_$(echo $1 | tr '[a-z]' '[A-Z]')
+	eval [ \"\$$n\" = yes ]
 }
 
 distro() {
