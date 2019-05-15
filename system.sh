@@ -413,3 +413,11 @@ if role mailsrv; then
 
 	svc dovecot
 fi
+
+##
+## WWW
+##
+
+if role www; then
+	pkg nginx
+fi

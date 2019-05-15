@@ -67,6 +67,7 @@ with the following environment variables:
       - build
       - irc
       - mailsrv
+      - www
     alpine:
       version: edge
     nftables:
