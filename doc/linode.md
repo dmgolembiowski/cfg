@@ -66,6 +66,7 @@ with the following environment variables:
       - mail
       - build
       - irc
+      - tls
       - mailsrv
       - www
     alpine:
@@ -91,6 +92,8 @@ with the following environment variables:
     mail:
       domain: youdomain.tld
       owner: youruser
+    linode:
+      token: abcdefgh
     ```
 
 6. Run system setup and configuration:

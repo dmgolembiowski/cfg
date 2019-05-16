@@ -385,6 +385,16 @@ if role irc; then
 fi
 
 ##
+## TLS
+##
+
+if role tls; then
+	pkg uacme jq drill
+	tmpl /usr/local/bin/lindns
+	chmod 700 /usr/local/bin/lindns
+fi
+
+##
 ## Mailserver
 ##
 

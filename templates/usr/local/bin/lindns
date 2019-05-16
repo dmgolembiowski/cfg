@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# Query and update Linode DNS
+
+U='https://api.linode.com/v4'
+TOKEN='{{ linode.token }}'
+
+c() {
+	local p=$1
+	shift
+	curl -s "$@" \
+		-H 'Accept: application/json' \
+		-H 'Content-Type: application/json' \
+		-H "Authorization: Bearer $TOKEN" \
+		$U/$p
+}
+
+id() {
+	c domains | jq -a ".data[] | select(.domain == \"$1\") | .id"
+}
+
+records() {
+	c domains/$(id $1)/records
+}
+
+list() {
+	records "$@" | jq '.data'
+}
+
+list "$@"
