@@ -72,6 +72,8 @@ with the following environment variables:
       version: edge
     nftables:
       tcp_accept:
+       - http
+       - https
        - smtp
        - 6697  # znc
       tcp_limit:
