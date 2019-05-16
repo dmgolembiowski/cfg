@@ -420,4 +420,5 @@ fi
 
 if role www; then
 	pkg nginx
+	svc nginx
 fi
