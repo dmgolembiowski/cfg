@@ -16,7 +16,7 @@ c() {
 }
 
 id() {
-	c domains | jq -a ".data[] | select(.domain == \"$1\") | .id"
+	c domains | jq -r ".data[] | select(.domain == \"$1\") | .id"
 }
 
 records() {
@@ -27,4 +27,20 @@ list() {
 	records "$@" | jq '.data'
 }
 
-list "$@"
+get() {
+	local d=$1
+	shift
+	records $d |
+		jq ".data[] |
+			select(.type==\"$1\") |
+			select(.name==\"$2\")"
+}
+
+cmd=$1
+shift
+
+case "$cmd" in
+	list|get)
+		$cmd "$@"
+		;;
+esac
