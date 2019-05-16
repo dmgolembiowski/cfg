@@ -25,3 +25,5 @@
 	conflictstyle = diff3
 [status]
 	showUntrackedFiles = all
+[sendemail]
+	annotate = yes
