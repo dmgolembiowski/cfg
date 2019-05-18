@@ -5,5 +5,5 @@ uacme -vy \
 	-t EC \
 	-b 384 \
 	-h /usr/share/uacme/lindns-hook \
-	issue '{{ d.subj }}' '{{ d.alt }}' 2>&1 | ts >> /var/log/uacme.log
+	issue '{{ d.subj }}' '{{ d.alt }}' 2>&1 | ts %FT%T%z >> /var/log/uacme.log
 {% endfor %}
