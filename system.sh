@@ -439,5 +439,9 @@ fi
 
 if role www; then
 	pkg nginx
+
+	file /etc/nginx/ffdhe4096.pem
+	tmpl /etc/nginx/conf.d/site.conf
+
 	svc nginx
 fi
