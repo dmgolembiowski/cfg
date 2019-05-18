@@ -389,9 +389,18 @@ fi
 ##
 
 if role tls; then
-	pkg uacme jq drill
+	pkg uacme jq drill moreutils
+
 	tmpl /usr/local/bin/lindns
 	chmod 700 /usr/local/bin/lindns
+
+	file /usr/share/uacme/lindns-hook
+	chmod 755 /usr/share/uacme/lindns-hook
+
+	svc crond
+
+	tmpl /etc/periodic/daily/uacme
+	chmod 755 /etc/periodic/daily/uacme
 fi
 
 ##

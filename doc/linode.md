@@ -89,6 +89,9 @@ with the following environment variables:
       freenode:
         sasl: qwer1234
         join: '#chan1,#chan2'
+    tls:
+      - subj: domain.tld
+        alt: '*.domain.tld'
     mail:
       domain: youdomain.tld
       owner: youruser
@@ -106,4 +109,21 @@ with the following environment variables:
 
     ```sh
     ./user.sh
+    ```
+
+Manual steps
+------------
+
+### Letsencrypt
+
+1. Create a letsencrypt account:
+
+    ```sh
+    uacme -y new your@email.tld
+    ```
+
+2. Issue all confugured certs:
+
+    ```sh
+    /etc/periodic/daily/uacme
     ```
