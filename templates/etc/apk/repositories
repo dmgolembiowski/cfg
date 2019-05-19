@@ -4,6 +4,6 @@ http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
 {% if 'build' in roles %}
 /home/{{ build.user }}/packages/main
-/home/{{ build.user }}/packages/communty
+/home/{{ build.user }}/packages/community
 /home/{{ build.user }}/packages/testing
 {% endif %}
