@@ -103,7 +103,7 @@ if distro alpine; then
 fi
 
 if distro arch; then
-	scv systemd-timesyncd
+	svc systemd-timesyncd
 fi
 
 ##
