@@ -443,5 +443,11 @@ if role www; then
 	file /etc/nginx/ffdhe4096.pem
 	tmpl /etc/nginx/conf.d/site.conf
 
+	tmplexec <<-EOF
+	{% for w in www %}
+	mkdir -p /var/www/{{ w.fqdn }}
+	{% endfor %}
+	EOF
+
 	svc nginx
 fi
