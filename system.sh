@@ -450,4 +450,6 @@ if role www; then
 	EOF
 
 	svc nginx
+
+	pkg rsync cmark
 fi
