@@ -149,6 +149,9 @@ if role dev; then
 	fi
 
 	vimpurge nofrils
+
+	mkdir -p ~/.vim/tmp/undo
+	mkdir -p ~/.vim/tmp/swap
 fi
 
 ##
