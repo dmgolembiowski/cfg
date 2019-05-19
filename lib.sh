@@ -92,18 +92,34 @@ tmpl() {
 
 	local tmp=/tmp/$(echo $dst | sed 's#/#_#g')
 
-	python3 - $src <<-EOF > $tmp
-	import sys
-	import yaml
-	import jinja2
-
-	tmpl = jinja2.Template(open(sys.argv[1]).read(), trim_blocks=True, lstrip_blocks=True, keep_trailing_newline=True)
-	data = yaml.safe_load(open('$ROOT/env.yml', 'r'))
-
-	sys.stdout.write(tmpl.render(data))
-	EOF
-
+	cat $src | _tmpl > $tmp
 	_f $dst $tmp
+	rm $tmp
+}
+
+_tmpl() {
+	cat | python3 -c "
+import sys
+import yaml
+import jinja2
+
+tmpl = jinja2.Template(
+    sys.stdin.read(),
+    trim_blocks=True,
+    lstrip_blocks=True,
+    keep_trailing_newline=True
+)
+data = yaml.safe_load(open('$ROOT/env.yml', 'r'))
+
+sys.stdout.write(tmpl.render(data))
+"
+}
+
+tmplexec() {
+	cat | _tmpl > /tmp/tmplexec
+
+	. /tmp/tmplexec
+	rm /tmp/tmplexec
 }
 
 svc() {
