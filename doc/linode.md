@@ -70,7 +70,7 @@ with the following environment variables:
       - mailsrv
       - www
     alpine:
-      version: edge
+      version: v3.10
     nftables:
       tcp_accept:
        - http
