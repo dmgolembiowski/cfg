@@ -89,6 +89,8 @@ with the following environment variables:
       freenode:
         sasl: qwer1234
         join: '#chan1,#chan2'
+      oftc:
+        join: '#chan1,#chan2'
     tls:
       - subj: domain.tld
         alt: '*.domain.tld'
