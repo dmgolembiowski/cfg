@@ -86,10 +86,10 @@ with the following environment variables:
       packager: Your Name <your@email.tld>
     irc:
       nick: you
+      oftc:
+        join: '#chan1,#chan2'
       freenode:
         sasl: qwer1234
-        join: '#chan1,#chan2'
-      oftc:
         join: '#chan1,#chan2'
     tls:
       - subj: domain.tld
