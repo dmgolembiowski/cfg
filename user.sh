@@ -14,6 +14,13 @@ find $DOTFILES -type f | while read -r f; do
 	src="$DOTFILES/$rel"
 	dst="$HOME/$rel"
 
+	# TODO: port to kitty/i3:
+	case "$f" in
+		*/alacritty*|/systemd*|/sway*)
+			continue
+			;;
+	esac
+
 	if role server; then
 		case "$f" in
 			*/systemd*|*/sway*|*/alacritty*|*/gtk*|*/i3*|*/imv/*)
@@ -51,20 +58,16 @@ if role desktop; then
 	svc ssh-tunnel --user
 fi
 
-if role build; then
-	tmpl ~/.abuild/abuild.conf /home/user/.abuild/abuild.conf
-fi
-
 ##
 ## Desktop
 ##
 
-if role desktop; then
-	systemctl --user enable swayidle
-	systemctl --user start swayidle
-	systemctl --user enable mako
-	systemctl --user start mako
-fi
+# TODO: fix for i3
+# if role desktop; then
+# 	systemctl --user enable swayidle systemctl --user start swayidle
+# 	systemctl --user enable mako
+# 	systemctl --user start mako
+# fi
 
 ##
 ## Firefox
@@ -73,7 +76,7 @@ fi
 if role desktop; then
 	ff_profile_dir=~/.mozilla/firefox
 
-	for d in $ff_profile_dir/*.default $ff_profile_dir/*.priv; do
+	for d in $ff_profile_dir/*.default-release $ff_profile_dir/*.priv; do
 		[ -d "$d" ] || continue
 
 		tmpl "$d"/chrome/userChrome.css \

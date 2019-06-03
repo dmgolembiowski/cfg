@@ -10,77 +10,21 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 ## Base
 ##
 
-if distro alpine; then
-	pkg py3-jinja2 py3-yaml
-elif distro arch; then
-	pkg python-jinja python-yaml
-fi
+pkg python3-jinja2 python3-yaml
 
 pkg sudo
 
-if distro arch; then
-	pkg pacman-contrib lostfiles openssh
+pkg openssh-client
+
+if role server; then
+	pkg ssh
 fi
 
-if distro alpine; then
-	pkg openssh-client
-
-	if role server; then
-		pkg openssh-server
-	fi
-fi
-
-if distro arch; then
-	role vm || pkg fwupd
-elif distro alpine; then
-	role vm || pkg fwup
-fi
-
-if distro arch; then
-	# Unneeded base packages:
-	UNNEEDED_PKGS='
-		dhcpcd
-		haveged
-		iotop
-		jfsutils
-		linux
-		lsof
-		lvm2
-		mdadm
-		mtr
-		nano
-		net-tools
-		netctl
-		psmisc
-		reiserfsprogs
-		s-nail
-		sysstat
-		systemd-sysvcompat
-		whois
-		xfsprogs
-	'
-
-	for p in $UNNEEDED_PKGS; do
-		if pacman -Q $p >/dev/null 2>&1; then
-			pacman -Rs $p
-		fi
-	done
-	unset p
-fi
+role vm || pkg fwupd
 
 if role desktop; then
 	# Periodic TRIM:
 	svc fstrim.timer
-fi
-
-if distro arch; then
-	file /etc/pacman.conf
-	file /etc/pacman.d/mirrorlist
-	file /etc/pacman.d/hooks/needrestart.hook
-fi
-
-if distro alpine; then
-	tmpl /etc/apk/repositories
 fi
 
 if role desktop; then
@@ -88,29 +32,16 @@ if role desktop; then
 	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf
 fi
 
-if distro arch; then
-	# Keep no pacman cache for uninstalled packages and 2 versions of
-	# installed packages:
-	file /etc/systemd/system/paccache.service.d/override.conf
-	svc paccache.timer
-fi
+# Passwordless sudo:
+echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 
-# Passwordless sudo for wheel:
-echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
-
-if distro alpine; then
-	svc ntpd
-fi
-
-if distro arch; then
-	svc systemd-timesyncd
-fi
+svc systemd-timesyncd
 
 ##
 ## Net
 ##
 
-if distro arch && role desktop; then
+if role desktop; then
 	file /etc/systemd/resolved.conf.d/static.conf
 fi
 
@@ -120,43 +51,32 @@ fi
 
 if role dev; then
 	pkg '
+		man-db
 		git
-		vim
 		bash-completion
 		tmux
-		the_silver_searcher
+		vim-nox
 		fzy
 		ncdu
+		silversearcher-ag
 	'
-
-	if distro alpine; then
-		pkg '
-			less
-			git-email
-			git-perl
-		'
-	fi
-fi
-
-##
-## Build
-##
-
-if distro arch; then
-	pkg devtools
-fi
-
-if distro alpine && role build; then
-	pkg alpine-sdk atools tpaste
 fi
 
 ##
 ## Debug
 ##
 
-if distro arch; then
-	pkg ps_mem
-fi
+(
+	v=3.12
+	u=https://raw.githubusercontent.com/pixelb/ps_mem/v$v/ps_mem.py
+	b=/usr/local/bin/ps_mem
+	if ! grep -q "^# V$v" $b 2>/dev/null; then
+		curl -L  > $b
+			sed -i 's/env python/env python3/' $b
+			chmod +x $b
+	fi
+	unset psv
+)
 
 pkg htop
 
@@ -165,10 +85,16 @@ pkg htop
 ##
 
 if role work; then
-	pkg '
-		make
-		go
-	'
+	(
+		# TODO: add /opt/go/bin/to $PATH
+		v=1.12.5
+		u=https://dl.google.com/go/go$v.linux-amd64.tar.gz
+
+		if ! /opt/go/bin/go version | grep -q go$v 2>/dev/null; then
+			curl -L $u | tar -C /opt -xz
+		fi
+	)
+	pkg make
 fi
 
 ##
@@ -180,15 +106,7 @@ pkg nftables
 tmpl /etc/nftables.conf
 chmod 700 /etc/nftables.conf
 
-if distro alpine; then
-	file /etc/conf.d/nftables
-fi
-
 svc nftables
-
-if distro arch; then
-	pkg arch-audit
-fi
 
 chmod 700 /boot
 
@@ -200,29 +118,36 @@ file /etc/sysctl.d/50-dmesg-restrict.conf
 
 if role desktop; then
 	pkg '
-		sway
-		swaylock
-		swayidle
-		wl-clipboard
-		mako
-		libnotify
-		light
-		grim
-		slurp
-		xorg-server-xwayland
+		xserver-xorg-core
+		xserver-xorg-input-libinput
+		xinit
+		i3-wm
+		i3lock
 		i3status
-		alacritty
-		firefox
-		imv
-		noto-fonts
-		ttf-ibm-plex
-		unzip
+		kitty
+		fonts-noto-core
+		fonts-noto-mono
+		fonts-noto-color-emoji
+		fonts-ibm-plex
 	'
 
-	file /etc/udev/rules.d/99-sway-monitor-hotplug.rules
-	file /usr/local/bin/sway-monitor-hotplug.sh
-	chmod +x /usr/local/bin/sway-monitor-hotplug.sh
-	udevadm control --reload
+	# TODO: adapt to i3:
+	# file /etc/udev/rules.d/99-sway-monitor-hotplug.rules
+	# file /usr/local/bin/sway-monitor-hotplug.sh
+	# chmod +x /usr/local/bin/sway-monitor-hotplug.sh
+	# udevadm control --reload
+
+	pkg curl bzip2 libgtk-3-0 libdbus-glib-1-2
+
+	# TODO: enable auto updates (change ownership to autologin user)
+	# TODO: /usr/local/bin/firefox symlink
+	(
+		u='https://download.mozilla.org/'
+		u="$u?product=firefox-latest&os=linux64&lang=en-US"
+		if ! [ -e /opt/firefox/firefox ]; then
+			curl -L $u | tar -C /opt -xj
+		fi
+	)
 fi
 
 ##
@@ -239,10 +164,7 @@ fi
 ##
 
 if role desktop; then
-	pkg '
-		bluez
-		bluez-utils
-	'
+	pkg bluez
 
 	file /etc/bluetooth/main.conf
 
@@ -258,7 +180,7 @@ if role desktop; then
 		pulseaudio
 		pulsemixer
 		mpv
-		libva-intel-driver
+		i965-va-driver
 	'
 fi
 

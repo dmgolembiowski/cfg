@@ -80,5 +80,5 @@ if [ -d $GOPATH/bin ]; then
 fi
 
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-	exec sway
+	exec startx
 fi

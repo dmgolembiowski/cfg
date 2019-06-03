@@ -1,6 +1,0 @@
-#!/bin/sh
-
-exec alacritty \
-	--class AlacrittyWiki \
-	-d 80 20 \
-	-e /bin/bash -c 'if w; then exit; else read -p "OK?" v; fi'

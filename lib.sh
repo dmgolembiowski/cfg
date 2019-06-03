@@ -46,16 +46,8 @@ diff() {
 
 pkg() {
 	for p in $*; do
-		case $DISTRO in
-			arch)
-				pacman -Q $p >/dev/null 2>&1 ||
-					pacman -S $p
-				;;
-			alpine)
-				grep -q "^$p\$" /etc/apk/world ||
-					apk add $p
-				;;
-		esac
+		dpkg-query -Wf '${Package}\n' | grep -q "^$p\$" ||
+			apt install $p
 	done
 }
 
@@ -126,20 +118,8 @@ svc() {
 	local s=$1
 	shift
 
-	case $DISTRO in
-		arch)
-			local a
-			for a in enable start; do
-				systemctl "$@" $a $s
-			done
-			;;
-		alpine)
-			if ! /etc/init.d/$s -q status >/dev/null; then
-				/etc/init.d/$s start
-			fi
-			if [ ! -e /etc/runlevels/default/$s ]; then
-				rc-update add $s
-			fi
-			;;
-	esac
+	local a
+	for a in enable start; do
+		systemctl "$@" $a $s
+	done
 }

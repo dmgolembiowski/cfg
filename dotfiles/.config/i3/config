@@ -1,0 +1,215 @@
+# i3 config file (v4)
+#
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod1
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term kitty
+
+### Key bindings
+#
+# Basics:
+#
+# start a terminal
+bindsym $mod+Shift+Return exec $term
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start your launcher
+bindsym $mod+p exec alacritty_menu
+
+bindsym $mod+w exec alacritty_wiki
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# exit i3
+bindsym $mod+Shift+e exec i3nag -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3?' -b 'Yes, exit i3' 'i3msg exit'
+
+# lock screen
+bindsym Mod4+l exec i3lock
+
+#
+# Moving around:
+#
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# _move_ the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+#
+# Workspaces:
+#
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+#
+# Outputs:
+#
+
+bindsym Mod4+Left focus output left
+bindsym Mod4+Down focus output down
+bindsym Mod4+Up focus output up
+bindsym Mod4+Right focus output right
+
+bindsym Mod4+Shift+Left move worskpace to output left
+bindsym Mod4+Shift+Down move worskpace to output down
+bindsym Mod4+Shift+Up move worskpace to output up
+bindsym Mod4+Shift+Right move worskpace to output right
+
+#
+# Layout stuff:
+#
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
+# move focus to the parent container
+bindsym $mod+a focus parent
+
+#
+# Custom keybindings:
+#
+# Play/pause spotify
+bindsym XF86Favorites exec spotifyctl PlayPause
+bindsym XF86AudioPlay exec spotifyctl PlayPause
+
+# Volume up/down
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Brightness
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec light -A 5
+
+# Screenshots
+bindsym Print exec grim -g "$(slurp)" \
+	~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')
+
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 40px
+    bindsym $down resize grow height 40px
+    bindsym $up resize shrink height 40px
+    bindsym $right resize grow width 40px
+
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#
+# Style:
+#
+set $bg_fo #ffd787
+set $fg_fo #444444
+set $bg_fi #afd7ff
+set $fg_fi #0087af
+set $bg_uf #e4e4e4
+set $fg_uf #444444
+set $bg_ur #ffd7ff
+set $fg_ur #af0000
+
+set $fg_st #4d4d4c
+set $bg_st #eeeeee
+
+client.focused          $bg_fo $bg_fo $fg_fo $bg_fo $bg_fo
+client.focused_inactive $bg_fi $bg_fi $fg_fi $bg_fi $bg_fi
+client.unfocused        $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
+client.urgent           $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
+
+font IBM Plex Mono 10
+
+bar {
+    position top
+    separator_symbol " | "
+
+    status_command i3status
+
+    colors {
+        statusline $fg_st
+        background $bg_st
+
+        focused_workspace  $bg_fo $bg_fo $fg_fo
+        active_workspace   $bg_fi $bg_fi $fg_fi
+        inactive_workspace $bg_st $bg_st $fg_st
+        urgent_workspace   $bg_ur $bg_ur $fg_ur
+    }
+}
+
+
+#
+# Window rules:
+#
+# TODO: port to kitty
+# for_window [app_id="AlacrittyMenu"] border pixel 2
+# for_window [app_id="AlacrittyMenu"] floating enable
+
+# TOOD: port to i3:
+# exec --no-startup-id systemctl --user import-environment
+# exec --no-startup-id systemctl --user start sway-session.target

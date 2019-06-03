@@ -1,9 +1,0 @@
-http://dl-cdn.alpinelinux.org/alpine/{{ alpine.version }}/main
-http://dl-cdn.alpinelinux.org/alpine/{{ alpine.version }}/community
-http://dl-cdn.alpinelinux.org/alpine/edge/testing
-
-{% if 'build' in roles %}
-/home/{{ build.user }}/packages/main
-/home/{{ build.user }}/packages/community
-/home/{{ build.user }}/packages/testing
-{% endif %}

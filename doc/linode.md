@@ -4,7 +4,7 @@ Linode
 Install
 -------
 
-Create a new Alpine Linux Linode node.
+Create a new Debian Linode node.
 
 Setup and config
 ----------------
@@ -12,26 +12,43 @@ Setup and config
 1. Configure the pre-installed system:
 
     ```sh
+    cat <<EOF >/etc/apt/apt.conf.d/norecommends
+    APT::Install-Recommends "false";
+    APT::AutoRemove::RecommendsImportant "false";
+    APT::AutoRemove::SuggestsImportant "false";
+    EOF
+    apt autoremove
+    apt purge --autoremove pciutils eject laptop-detect discover
+    apt purge --autoremove installation-report popularity-contest
+    apt purge --autoremove lsof telnet hdparm debian-faq
+    apt purge --autoremove apt-listchanges doc-debian traceroute
+    apt purge --autoremove netcat-traditional krb5-locales
+    apt purge --autoremove iotop mtr-tiny nano sysstat whois
+    apt purge --autoremove debconf-i18n iptables keyboard-configuration
+    apt purge --autoremove python3-reportbug
+    apt purge --autoremove python python-minimal python2.7-minimal
+    apt purge $(dpkg -l | grep '^rc' | awk '{print $2}')
+
+    cat <<EOF >/etc/apt/sources.list
+    deb http://ftp2.de.debian.org/debian buster main contrib non-free
+    deb http://ftp2.de.debian.org/debian buster-updates main contrib non-free
+    deb http://security.debian.org buster/updates main
+    EOF
+
+    apt update && apt dist-upgrade
+
     echo $HOSTNAME > /etc/hostname
     hostname -F /etc/hostname
     echo 127.0.0.1 $FQDN $HOSTNAME >> /etc/hosts
 
-    rc-update del chronyd
-    /etc/init.d/chrond stop
-    apk del acct iotop mtr nano syslinux sysstat chrony
-
-    apk update && apk upgrade
-
-    apk add bash git
+    apt install git
     ```
 
 2. Create a unprivileged user:
 
     ```sh
-    addgroup $u
-    adduser -s/bin/bash -G $u $u
-    adduser $u wheel
-    adduser $u abuild
+    useradd -s /bin/bash -mG sudo $u
+
     chmod 2750 /home/$u
     mkdir /home/$u/.ssh
     cp someplace/authorized_keys /home/$u/.ssh/
@@ -43,7 +60,7 @@ Setup and config
     ```sh
     sed -i 's/^\(PermitRootLogin\) yes/#\1 prohibit-password/' \
         /etc/ssh/sshd_config
-    /etc/init.d/sshd restart
+    systemctl restart ssh
     ```
 
 4. Login as the unprivileged user and clone this repo:
@@ -69,8 +86,6 @@ with the following environment variables:
       - tls
       - mailsrv
       - www
-    alpine:
-      version: v3.10
     nftables:
       tcp_accept:
        - http
@@ -79,11 +94,6 @@ with the following environment variables:
        - 6697  # znc
       tcp_limit:
         - ssh
-    build:
-      user: youruser
-      privkey: /path/to/your/abuild.privkey
-      jobs: 4
-      packager: Your Name <your@email.tld>
     irc:
       nick: you
       oftc:
