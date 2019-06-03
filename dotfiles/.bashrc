@@ -52,6 +52,10 @@ case $PATH in
 	;;
 esac
 
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+	. /usr/share/bash-completion/bash_completion
+fi
+
 command -v vim >/dev/null && EDITOR=vim
 
 alias ls='ls -1F'
