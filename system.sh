@@ -182,6 +182,7 @@ if role desktop; then
 		pulsemixer
 		mpv
 		i965-va-driver
+		flatpak
 	'
 fi
 
