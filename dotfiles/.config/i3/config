@@ -183,7 +183,7 @@ client.focused_inactive $bg_fi $bg_fi $fg_fi $bg_fi $bg_fi
 client.unfocused        $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
 client.urgent           $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
 
-font IBM Plex Mono 10
+font pango:IBM Plex Mono 10
 
 bar {
     position top
