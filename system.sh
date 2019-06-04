@@ -48,6 +48,9 @@ for f in auth daemon kern lpr mail user syslog debug messages; do
 	rm -f /var/log/$f*
 done
 
+# Persistend systemd yournal:
+mkdir -p /var/log/journal
+
 role vm || pkg fwupd intel-microcode
 
 if role desktop; then
