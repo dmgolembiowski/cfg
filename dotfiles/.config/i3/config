@@ -20,13 +20,13 @@ set $term xterm
 bindsym $mod+Shift+Return exec $term
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c kill
 
 # start your launcher
 bindsym $mod+p exec --no-startup-id xterm_menu
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r reload
 
 # exit i3
 bindsym $mod+Shift+e exit
