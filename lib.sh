@@ -44,10 +44,12 @@ diff() {
 	fi
 }
 
+_pkg_installed() {
+	dpkg-query -Wf '${Package}\n' | grep -q "^$p\$"
+}
 pkg() {
 	for p in $*; do
-		dpkg-query -Wf '${Package}\n' | grep -q "^$p\$" ||
-			apt install $p
+		_pkg_installed || apt install $p
 	done
 }
 

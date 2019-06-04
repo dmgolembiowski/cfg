@@ -25,6 +25,17 @@ for f in norecommends autoremove periodicclean; do
 done
 unset f
 
+_UNNEEDED_PKGS='
+nano
+tasksel
+'
+for p in $_UNNEEDED_PKGS; do
+	if _pkg_installed; then
+		apt purge $p
+	fi
+done
+unset p
+
 role vm || pkg fwupd intel-microcode
 
 if role desktop; then
