@@ -3,7 +3,7 @@
 id=tv.plex.PlexMediaPlayer
 url=https://knapsu.eu/data/plex/$id.flatpakref
 
-if ! flatpak info $d >/dev/null 2>&1; then
+if ! flatpak info $id >/dev/null 2>&1; then
 	flatpak install $url
 fi
 

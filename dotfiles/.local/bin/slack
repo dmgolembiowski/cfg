@@ -2,7 +2,7 @@
 
 id=com.slack.Slack
 
-if ! flatpak info $d >/dev/null 2>&1; then
+if ! flatpak info $id >/dev/null 2>&1; then
 	flatpak install flathub $id
 fi
 
