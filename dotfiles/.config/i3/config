@@ -195,3 +195,6 @@ bar {
 for_window [class="XtermMenu"] border pixel 2
 for_window [class="XtermMenu"] floating enable
 for_window [class="XtermMenu"] move position center
+
+exec --no-startup-id systemctl --user import-environment
+exec --no-startup-id systemctl --user start wm-session.target
