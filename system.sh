@@ -159,7 +159,9 @@ if role desktop; then
 
 		file /usr/share/applications/firefox-stable.desktop
 
-		ln -s /opt/firefox/firefox /usr/local/bin/firefox
+		if ! [ -e /usr/local/bin/firefox ]; then
+			ln -s /opt/firefox/firefox /usr/local/bin/firefox
+		fi
 	)
 fi
 
