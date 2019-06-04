@@ -14,6 +14,8 @@ pkg python3-jinja2 python3-yaml
 
 pkg sudo
 
+pkg needrestart
+
 pkg openssh-client
 
 if role server; then
