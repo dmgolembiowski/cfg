@@ -178,7 +178,6 @@ if role desktop; then
 	pkg curl bzip2 libgtk-3-0 libdbus-glib-1-2
 
 	# TODO: enable auto updates (change ownership to autologin user)
-	# TODO: /usr/local/bin/firefox symlink
 	(
 		u='https://download.mozilla.org/'
 		u="$u?product=firefox-latest&os=linux64&lang=en-US"
