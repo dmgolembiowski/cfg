@@ -29,7 +29,7 @@ bindsym $mod+p exec --no-startup-id xterm_menu
 bindsym $mod+Shift+c reload
 
 # exit i3
-bindsym $mod+Shift+e exec i3nag -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3?' -b 'Yes, exit i3' 'i3msg exit'
+bindsym $mod+Shift+e exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3?' -b 'Yes, exit i3' 'i3msg exit'
 
 # lock screen
 bindsym Mod4+l exec i3lock
