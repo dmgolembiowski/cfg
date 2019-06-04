@@ -129,6 +129,7 @@ if role desktop; then
 		brightnessctl
 		brightness-udev
 		xterm
+		maim
 		fonts-noto-core
 		fonts-noto-mono
 		fonts-noto-color-emoji
