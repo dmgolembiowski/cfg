@@ -135,6 +135,8 @@ if role desktop; then
 		fonts-ibm-plex
 	'
 
+	file /etc/X11/xorg.conf.d/00-keyboard.conf
+
 	# TODO: adapt to i3:
 	# file /etc/udev/rules.d/99-sway-monitor-hotplug.rules
 	# file /usr/local/bin/sway-monitor-hotplug.sh
@@ -153,6 +155,8 @@ if role desktop; then
 		fi
 
 		file /usr/share/applications/firefox-stable.desktop
+
+		ln -s /opt/firefox/firefox /usr/local/bin/firefox
 	)
 fi
 
