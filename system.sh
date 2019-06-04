@@ -233,6 +233,7 @@ if role desktop; then
 		mpv
 		i965-va-driver
 		youtube-dl
+		lftp
 	'
 fi
 
