@@ -178,6 +178,9 @@ if role desktop; then
 	tmpl /etc/udev/rules.d/99-x-monitor-hotplug.rules
 	udevadm control --reload
 
+	tmpl /etc/systemd/system/i3lock.service
+	systemctl enable i3lock
+
 	pkg curl bzip2 libgtk-3-0 libdbus-glib-1-2
 
 	# TODO: enable auto updates (change ownership to autologin user)
