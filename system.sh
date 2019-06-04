@@ -420,6 +420,7 @@ if role www; then
 	pkg nginx
 
 	file /etc/nginx/ffdhe4096.pem
+	# TODO: adapt to debian default config:
 	tmpl /etc/nginx/conf.d/site.conf
 
 	tmplexec <<-EOF
