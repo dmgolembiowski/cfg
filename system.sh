@@ -164,6 +164,8 @@ if role desktop; then
 		xterm
 		maim
 		sxiv
+		redshift
+		geoclue-2.0
 		fonts-noto-core
 		fonts-noto-mono
 		fonts-noto-color-emoji

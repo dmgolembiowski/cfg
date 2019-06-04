@@ -1,0 +1,11 @@
+[Unit]
+Description=Redshift
+Documentation=man:redshift(1)
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/redshift
+Restart=always
+
+[Install]
+WantedBy=wm-session.target
