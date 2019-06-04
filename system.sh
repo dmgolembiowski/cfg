@@ -151,6 +151,8 @@ if role desktop; then
 		if ! [ -e /opt/firefox/firefox ]; then
 			curl -L $u | tar -C /opt -xj
 		fi
+
+		file /usr/share/applications/firefox-stable.desktop
 	)
 fi
 
