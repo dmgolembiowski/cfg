@@ -130,6 +130,7 @@ if role desktop; then
 		brightness-udev
 		xterm
 		maim
+		sxiv
 		fonts-noto-core
 		fonts-noto-mono
 		fonts-noto-color-emoji
