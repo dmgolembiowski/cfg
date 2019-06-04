@@ -169,11 +169,10 @@ if role desktop; then
 	file /etc/X11/xorg.conf.d/00-keyboard.conf
 	file /etc/X11/xorg.conf.d/00-touchpad.conf
 
-	# TODO: adapt to i3:
-	# file /etc/udev/rules.d/99-sway-monitor-hotplug.rules
-	# file /usr/local/bin/sway-monitor-hotplug.sh
-	# chmod +x /usr/local/bin/sway-monitor-hotplug.sh
-	# udevadm control --reload
+	file /usr/local/bin/x-monitor-hotplug
+	chmod +x /usr/local/bin/x-monitor-hotplug
+	tmpl /etc/udev/rules.d/99-x-monitor-hotplug.rules
+	udevadm control --reload
 
 	pkg curl bzip2 libgtk-3-0 libdbus-glib-1-2
 
