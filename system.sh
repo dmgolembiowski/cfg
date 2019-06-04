@@ -20,7 +20,7 @@ if role server; then
 	pkg ssh
 fi
 
-role vm || pkg fwupd
+role vm || pkg fwupd intel-microcode
 
 if role desktop; then
 	# Periodic TRIM:
