@@ -51,6 +51,9 @@ done
 # Persistend systemd yournal:
 mkdir -p /var/log/journal
 
+svc systemd-resolved
+ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
 role vm || pkg fwupd intel-microcode
 
 if role desktop; then
