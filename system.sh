@@ -187,6 +187,7 @@ if role desktop; then
 		i965-va-driver
 		flatpak
 		policykit-1
+		xdg-desktop-portal-gtk
 	'
 fi
 
