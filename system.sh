@@ -20,6 +20,11 @@ if role server; then
 	pkg ssh
 fi
 
+for f in norecommends autoremove periodicclean; do
+	file /etc/apt/apt.conf.d/$f
+done
+unset f
+
 role vm || pkg fwupd intel-microcode
 
 if role desktop; then
@@ -163,6 +168,12 @@ if role desktop; then
 			ln -s /opt/firefox/firefox /usr/local/bin/firefox
 		fi
 	)
+
+	pkg '
+		flatpak
+		policykit-1
+		xdg-desktop-portal-gtk
+	'
 fi
 
 ##
@@ -196,9 +207,7 @@ if role desktop; then
 		pulsemixer
 		mpv
 		i965-va-driver
-		flatpak
-		policykit-1
-		xdg-desktop-portal-gtk
+		youtube-dl
 	'
 fi
 
