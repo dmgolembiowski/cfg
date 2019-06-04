@@ -22,7 +22,7 @@ if role server; then
 	pkg ssh
 fi
 
-for f in norecommends autoremove periodicclean; do
+for f in norecommends autoremove periodicclean showversions; do
 	file /etc/apt/apt.conf.d/$f
 done
 unset f
