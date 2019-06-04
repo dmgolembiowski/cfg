@@ -60,7 +60,6 @@ fi
 
 if role desktop; then
 	# Autologin to TTY 1:
-	# TODO: not working in debian:
 	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf
 fi
 
