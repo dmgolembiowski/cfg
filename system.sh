@@ -186,6 +186,7 @@ if role desktop; then
 		mpv
 		i965-va-driver
 		flatpak
+		policykit-1
 	'
 fi
 
