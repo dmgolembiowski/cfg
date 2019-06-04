@@ -18,13 +18,13 @@ Setup and config
     APT::AutoRemove::SuggestsImportant "false";
     EOF
     apt autoremove
-    apt purge --autoremove pciutils eject laptop-detect discover
+    apt purge --autoremove pciutils laptop-detect discover
     apt purge --autoremove installation-report popularity-contest
     apt purge --autoremove lsof telnet hdparm debian-faq
     apt purge --autoremove apt-listchanges doc-debian traceroute
     apt purge --autoremove netcat-traditional krb5-locales
     apt purge --autoremove iotop mtr-tiny nano sysstat whois
-    apt purge --autoremove debconf-i18n iptables keyboard-configuration
+    apt purge --autoremove debconf-i18n keyboard-configuration
     apt purge --autoremove python3-reportbug
     apt purge --autoremove python python-minimal python2.7-minimal
     apt purge $(dpkg -l | grep '^rc' | awk '{print $2}')

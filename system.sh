@@ -26,6 +26,9 @@ done
 unset f
 
 _UNNEEDED_PKGS='
+debconf-i18n
+eject
+iptables
 nano
 tasksel
 '
