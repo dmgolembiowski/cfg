@@ -14,22 +14,15 @@ find $DOTFILES -type f | while read -r f; do
 	src="$DOTFILES/$rel"
 	dst="$HOME/$rel"
 
-	# TODO: port to xterm/i3:
-	case "$f" in
-		*/alacritty*|/systemd*|/sway*)
-			continue
-			;;
-	esac
-
 	if role server; then
 		case "$f" in
-			*/systemd*|*/sway*|*/alacritty*|*/gtk*|*/i3*|*/imv/*)
+			*/systemd*|*/xterm*|*/gtk*|*/i3*)
 				continue
 				;;
-			*/mpv/*|*firefox*|*pacsize|*spotify*|*pam_env*)
+			*/mpv/*|*firefox*|*spotify*|*pam_env*)
 				continue
 				;;
-			*/mako/*|*/slack|*/plex*|*/spotify)
+			*/slack|*/plex*|*/spotify)
 				continue
 				;;
 		esac
@@ -57,17 +50,6 @@ if role desktop; then
 		/home/user/.config/systemd/user/ssh-tunnel.service
 	svc ssh-tunnel --user
 fi
-
-##
-## Desktop
-##
-
-# TODO: fix for i3
-# if role desktop; then
-# 	systemctl --user enable swayidle systemctl --user start swayidle
-# 	systemctl --user enable mako
-# 	systemctl --user start mako
-# fi
 
 ##
 ## Firefox
