@@ -30,7 +30,9 @@ unset f
 _UNNEEDED_PKGS='
 debconf-i18n
 eject
+ifupdown
 iptables
+isc-dhcp-client
 nano
 rsyslog
 tasksel
