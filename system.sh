@@ -155,6 +155,7 @@ if role desktop; then
 		xserver-xorg-input-libinput
 		x11-xserver-utils
 		xinit
+		xdg-utils
 		i3-wm
 		i3lock
 		i3status
