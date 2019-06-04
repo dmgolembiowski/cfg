@@ -14,7 +14,7 @@ find $DOTFILES -type f | while read -r f; do
 	src="$DOTFILES/$rel"
 	dst="$HOME/$rel"
 
-	# TODO: port to kitty/i3:
+	# TODO: port to xterm/i3:
 	case "$f" in
 		*/alacritty*|/systemd*|/sway*)
 			continue

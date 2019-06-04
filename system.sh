@@ -121,13 +121,14 @@ if role desktop; then
 	pkg '
 		xserver-xorg-core
 		xserver-xorg-input-libinput
+		x11-xserver-utils
 		xinit
 		i3-wm
 		i3lock
 		i3status
 		brightnessctl
 		brightness-udev
-		kitty
+		xterm
 		fonts-noto-core
 		fonts-noto-mono
 		fonts-noto-color-emoji

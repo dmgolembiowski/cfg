@@ -1,3 +1,5 @@
 setxkbmap -option "caps:swapescape"
 
+xrdb -merge ~/.Xresources
+
 exec i3
