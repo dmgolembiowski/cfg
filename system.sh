@@ -32,6 +32,7 @@ debconf-i18n
 eject
 iptables
 nano
+rsyslog
 tasksel
 '
 for p in $_UNNEEDED_PKGS; do
@@ -40,6 +41,10 @@ for p in $_UNNEEDED_PKGS; do
 	fi
 done
 unset p
+
+for f in auth daemon kern lpr mail user syslog debug messages; do
+	rm -f /var/log/$f*
+done
 
 role vm || pkg fwupd intel-microcode
 
