@@ -125,6 +125,8 @@ if role desktop; then
 		i3-wm
 		i3lock
 		i3status
+		brightnessctl
+		brightness-udev
 		kitty
 		fonts-noto-core
 		fonts-noto-mono
