@@ -72,16 +72,19 @@ alias gl='git pull'
 GOPATH=$HOME/src/go
 export GOPATH
 
-if [ -d $GOPATH/bin ]; then
-	case $PATH in
-	*$GOPATH/bin*)
-		:
-		;;
-	*)
-		PATH=$PATH:$GOPATH/bin
-		;;
-	esac
-fi
+for _f in $GOPATH /opt/go; do
+	if [ -d $_f/bin ]; then
+		case $PATH in
+		*$_f/bin*)
+			:
+			;;
+		*)
+			PATH=$PATH:$_f/bin
+			;;
+		esac
+	fi
+done
+unset _f
 
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
 	exec startx

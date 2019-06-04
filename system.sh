@@ -117,7 +117,6 @@ pkg htop
 
 if role work; then
 	(
-		# TODO: add /opt/go/bin/to $PATH
 		v=1.12.5
 		u=https://dl.google.com/go/go$v.linux-amd64.tar.gz
 
