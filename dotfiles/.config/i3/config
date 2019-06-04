@@ -32,7 +32,7 @@ bindsym $mod+Shift+r reload
 bindsym $mod+Shift+e exit
 
 # lock screen
-bindsym Mod4+l exec i3lock
+bindsym Mod4+l exec i3lock -c 4d4d4c
 
 #
 # Moving around:
