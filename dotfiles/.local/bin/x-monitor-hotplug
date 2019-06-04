@@ -1,0 +1,10 @@
+#!/bin/sh
+
+INT=eDP-1
+EXT=DP-1
+
+if [ "$(cat /sys/class/drm/card0/card0-$EXT/status)" = connected ]; then
+	xrandr --output $INT --off --output $EXT --auto
+else
+	xrandr --output $INT --auto --output $EXT --off
+fi
