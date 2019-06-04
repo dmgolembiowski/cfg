@@ -119,7 +119,6 @@ svc() {
 	shift
 
 	local a
-	for a in enable start; do
-		systemctl "$@" $a $s
-	done
+	systemctl is-enabled "$@" $s >/dev/null || systemctl enable "$@" $s
+	systemctl start "$@" $s
 }
