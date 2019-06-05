@@ -381,36 +381,6 @@ if role tls; then
 fi
 
 ##
-## Mailserver
-##
-
-if role mailsrv; then
-	pkg '
-		postfix
-		dovecot
-		dovecot-lmtpd
-		dovecot-pigeonhole-plugin
-	'
-
-	tmpl /etc/postfix/main.cf
-	tmpl /etc/postfix/aliases
-
-	a=/etc/postfix/aliases
-	if [ ! -e $a.db -o $a -nt $a.db ]; then
-		echo Generating new $a.db
-		newaliases
-	fi
-	unset a
-
-	svc postfix
-
-	file /etc/dovecot/conf.d/00-local.conf
-	file /etc/dovecot/conf.d/99-local.conf
-
-	svc dovecot
-fi
-
-##
 ## WWW
 ##
 

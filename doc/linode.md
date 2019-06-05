@@ -84,7 +84,6 @@ with the following environment variables:
       - build
       - irc
       - tls
-      - mailsrv
       - www
     nftables:
       tcp_accept:
