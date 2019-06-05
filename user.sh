@@ -25,6 +25,9 @@ find $DOTFILES -type f | while read -r f; do
 			*/slack|*/plex*|*/spotify)
 				continue
 				;;
+			*.Xresources|*.xinitrc)
+				continue
+				;;
 		esac
 	fi
 
