@@ -19,7 +19,7 @@ find $DOTFILES -type f | while read -r f; do
 			*/systemd*|*/xterm*|*/gtk*|*/i3*)
 				continue
 				;;
-			*/mpv/*|*firefox*|*spotify*|*pam_env*)
+			*/mpv/*|*firefox*|*spotify*|*ssh/config*)
 				continue
 				;;
 			*/slack|*/plex*|*/spotify)
