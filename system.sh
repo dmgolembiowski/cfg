@@ -30,9 +30,6 @@ unset f
 # Persistend systemd yournal:
 mkdir -p /var/log/journal
 
-svc systemd-resolved
-ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-
 role vm || pkg fwupd intel-microcode
 
 if role desktop; then
@@ -57,6 +54,14 @@ svc systemd-timesyncd
 if role desktop; then
 	file /etc/systemd/resolved.conf.d/static.conf
 fi
+
+if role server; then
+	file /etc/systemd/network/wired.network
+	svc systemd-networkd
+fi
+
+svc systemd-resolved
+ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
 ##
 ## CLI
