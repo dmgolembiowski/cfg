@@ -27,27 +27,6 @@ for f in norecommends autoremove periodicclean showversions; do
 done
 unset f
 
-_UNNEEDED_PKGS='
-debconf-i18n
-eject
-ifupdown
-iptables
-isc-dhcp-client
-nano
-rsyslog
-tasksel
-'
-for p in $_UNNEEDED_PKGS; do
-	if _pkg_installed; then
-		apt purge $p
-	fi
-done
-unset p
-
-for f in auth daemon kern lpr mail user syslog debug messages; do
-	rm -f /var/log/$f*
-done
-
 # Persistend systemd yournal:
 mkdir -p /var/log/journal
 
@@ -442,3 +421,28 @@ if role www; then
 
 	pkg rsync cmark
 fi
+
+##
+## Cleanup
+##
+
+_UNNEEDED_PKGS='
+debconf-i18n
+eject
+ifupdown
+iptables
+isc-dhcp-client
+nano
+rsyslog
+tasksel
+'
+for p in $_UNNEEDED_PKGS; do
+	if _pkg_installed; then
+		apt purge $p
+	fi
+done
+unset p
+
+for f in auth daemon kern lpr mail user syslog debug messages; do
+	rm -f /var/log/$f*
+done
