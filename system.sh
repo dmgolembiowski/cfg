@@ -89,7 +89,7 @@ fi
 	u=https://raw.githubusercontent.com/pixelb/ps_mem/v$v/ps_mem.py
 	b=/usr/local/bin/ps_mem
 	if ! grep -q "^# V$v" $b 2>/dev/null; then
-		curl -L  > $b
+		curl -L $u > $b
 			sed -i 's/env python/env python3/' $b
 			chmod +x $b
 	fi
