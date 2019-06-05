@@ -111,7 +111,7 @@ if role work; then
 			curl -L $u | tar -C /opt -xz
 		fi
 	)
-	pkg make go-bindata
+	pkg make go-bindata gcc
 fi
 
 ##
