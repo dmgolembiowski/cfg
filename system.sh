@@ -236,11 +236,16 @@ if role mail; then
 fi
 
 ##
-## Bouncer
+## IRC
 ##
 
 _w_run() {
 	local f=/var/lib/weechat/weechat_fifo
+
+	if ! [ -e $f ]; then
+		echo Missing weechat fifo file
+		exit 1
+	fi
 
 	echo "$1" | sed 's/^/*/' > $f
 }
@@ -278,17 +283,17 @@ _w_set() {
 }
 
 if role irc; then
-	pkg weechat
+	pkg weechat weechat-plugins
 	grep -q ^weechat: /etc/group ||
-		addgroup -S weechat
+		groupadd -r weechat
 	grep -q ^weechat: /etc/passwd ||
-		adduser -S -D -H -h /var/lib/weechat -s /bin/sh \
-			-G weechat -g weechat weechat
+		useradd -r -d /var/lib/weechat -s /bin/sh \
+			-g weechat weechat
 
 	mkdir -p /var/lib/weechat
 	chown weechat: /var/lib/weechat
 	chmod 750 /var/lib/weechat
-	file /etc/init.d/weechat
+	file /etc/systemd/system/weechat.service
 	file /var/lib/weechat/.tmux.conf
 
 	svc weechat

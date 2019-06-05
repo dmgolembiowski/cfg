@@ -31,6 +31,14 @@ find $DOTFILES -type f | while read -r f; do
 		esac
 	fi
 
+	if ! role irc; then
+		case "$f" in
+			*bin/irc)
+				continue
+				;;
+		esac
+	fi
+
 	mkdir -p "$(dirname "$dst")"
 
 	if [ ! -L "$dst" -o "$(readlink $dst)" != "$src" ]; then
