@@ -185,13 +185,13 @@ if role desktop; then
 
 	pkg curl bzip2 libgtk-3-0 libdbus-glib-1-2
 
-	# TODO: enable auto updates (change ownership to autologin user)
 	(
 		u='https://download.mozilla.org/'
 		u="$u?product=firefox-latest&os=linux64&lang=en-US"
 		if ! [ -e /opt/firefox/firefox ]; then
 			curl -L $u | tar -C /opt -xj
 		fi
+		chown -R $AUTOLOGIN_USER: /opt/firefox
 
 		file /usr/share/applications/firefox-stable.desktop
 
