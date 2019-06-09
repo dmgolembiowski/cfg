@@ -14,6 +14,8 @@ pkg python3-jinja2 python3-yaml
 
 pkg sudo
 
+pkg unattended-upgrades python3-gi
+
 pkg needrestart
 
 pkg openssh-client
