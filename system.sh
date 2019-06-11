@@ -212,6 +212,20 @@ if role desktop; then
 		youtube-dl
 		lftp
 	'
+
+	# PMP:
+	pkg '
+		fuse
+		libnss3
+	'
+
+	_pmpu=https://knapsu.eu/data/plex/latest
+	_pmpf=$(curl -sI $_pmpu | awk '/^location: / { print $2 }')
+	if ! [ -e /opt/$_pmpf ]; then
+		curl -L $_pmpu > /opt/$_pmpf
+		chmod +x /opt/$_pmpf
+		ln -s /opt/$_pmpf /usr/local/bin/plex-media-player
+	fi
 fi
 
 ##
