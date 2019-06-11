@@ -1,9 +1,9 @@
 #!/bin/sh
 
-id=spotify
+id=firefox
 
 if ! snap list 2>/dev/null | grep -q "^$id "; then
 	sudo snap install $id
 fi
 
-exec /snap/bin/$id
+exec /snap/bin/$id "$@"

@@ -1,9 +1,9 @@
 #!/bin/sh
 
-id=com.slack.Slack
+id=slack
 
-if ! flatpak info $id >/dev/null 2>&1; then
-	flatpak install flathub $id
+if ! snap list 2>/dev/null | grep -q "^$id "; then
+	sudo snap install $id --classic
 fi
 
-flatpak run $id
+exec /snap/bin/$id
