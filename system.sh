@@ -116,6 +116,10 @@ if role work; then
 	pkg make go-bindata gcc
 fi
 
+if role dev; then
+	pkg virtualenv
+fi
+
 ##
 ## Sec
 ##
