@@ -113,7 +113,7 @@ if role work; then
 			curl -L $u | tar -C /opt -xz
 		fi
 	)
-	pkg make go-bindata gcc
+	pkg make go-bindata gcc libc6-dev
 fi
 
 if role dev; then
