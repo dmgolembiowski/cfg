@@ -86,6 +86,6 @@ for _f in $GOPATH /opt/go; do
 done
 unset _f
 
-if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+if [ "$(tty)" = "/dev/tty1" ]; then
 	exec startx
 fi
