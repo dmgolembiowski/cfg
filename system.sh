@@ -179,6 +179,7 @@ if role desktop; then
 		xterm
 		maim
 		sxiv
+		mupdf
 		redshift
 		geoclue-2.0
 		fonts-noto-core
