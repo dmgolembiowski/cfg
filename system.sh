@@ -113,7 +113,7 @@ if role work; then
 			curl -L $u | tar -C /opt -xz
 		fi
 	)
-	pkg make go-bindata gcc libc6-dev
+	pkg make go-bindata gcc libc6-dev libxml2-utils
 
 	if ! apt-key list 2>/dev/null | grep -q docker@docker.com; then
 		curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
