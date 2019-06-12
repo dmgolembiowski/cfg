@@ -121,10 +121,20 @@ if role work; then
 
 	file /etc/apt/sources.list.d/docker.list
 	pkg docker-ce
-fi
 
-if role dev; then
-	pkg virtualenv
+	pkg virtualenv python3-dev libssl-dev libffi-dev
+
+	if ! [ -e /opt/az/bin/python3 ]; then
+		virtualenv -p python3 /opt/az
+	fi
+
+	if ! /opt/az/bin/pip show azure-cli >/dev/null; then
+		_aztmp=$(mktemp -d)
+		/opt/az/bin/pip install --cache-dir=$_aztmp azure-cli
+	fi
+	file /usr/local/bin/az
+	chmod +x /usr/local/bin/az
+	file /usr/share/bash-completion/completions/az
 fi
 
 ##

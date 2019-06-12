@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/opt/az/bin/python -m azure.cli "$@"
