@@ -114,6 +114,13 @@ if role work; then
 		fi
 	)
 	pkg make go-bindata gcc libc6-dev
+
+	if ! apt-key list 2>/dev/null | grep -q docker@docker.com; then
+		curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+	fi
+
+	file /etc/apt/sources.list.d/docker.list
+	pkg docker-ce
 fi
 
 if role dev; then
