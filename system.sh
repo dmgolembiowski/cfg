@@ -122,6 +122,10 @@ if role work; then
 	file /etc/apt/sources.list.d/docker.list
 	pkg docker-ce
 
+	if [ "$(readlink /etc/alternatives/iptables)" != /usr/sbin/iptables-legacy ]; then
+		update-alternatives --set iptables /usr/sbin/iptables-legacy
+	fi
+
 	pkg virtualenv python3-dev libssl-dev libffi-dev
 
 	if ! [ -e /opt/az/bin/python3 ]; then
@@ -141,12 +145,16 @@ fi
 ## Sec
 ##
 
-pkg nftables
+# TODO: switch to nftables when docker supports iptables-nft:
+#       https://github.com/moby/moby/issues/38099
+if ! role work; then
+	pkg nftables
 
-tmpl /etc/nftables.conf
-chmod 700 /etc/nftables.conf
+	tmpl /etc/nftables.conf
+	chmod 700 /etc/nftables.conf
 
-svc nftables
+	svc nftables
+fi
 
 chmod 700 /boot
 
