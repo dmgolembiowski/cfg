@@ -52,6 +52,10 @@ case $PATH in
 	;;
 esac
 
+if [ "$TERM" = xterm ]; then
+	TERM=xterm-256color
+fi
+
 if [ -f /usr/share/bash-completion/bash_completion ]; then
 	. /usr/share/bash-completion/bash_completion
 fi
