@@ -26,7 +26,7 @@ bindsym $mod+Shift+c kill
 bindsym $mod+p exec --no-startup-id xterm_menu
 
 # reload the configuration file
-bindsym $mod+Shift+r reload
+bindsym $mod+Shift+r restart
 
 # exit i3
 bindsym $mod+Shift+e exit
@@ -175,7 +175,7 @@ bar {
     position top
     separator_symbol " | "
 
-    status_command i3status
+    status_command py3status
 
     colors {
         statusline $fg_st

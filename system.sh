@@ -173,7 +173,7 @@ if role desktop; then
 		xdg-utils
 		i3-wm
 		i3lock
-		i3status
+		py3status
 		brightnessctl
 		brightness-udev
 		xterm
