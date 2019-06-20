@@ -75,6 +75,10 @@ file() {
 	_f $1 $FILES$1
 }
 
+envfile() {
+	_f $1 $ROOT/env/files/$1
+}
+
 tmpl() {
 	local dst=$1
 
