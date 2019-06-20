@@ -1,5 +1,1 @@
 /env/
-/chroot/
-/aur/*/*.log
-/aur/*/*.tar.gz
-/aur/*/*.tar.xz
