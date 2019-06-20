@@ -72,7 +72,7 @@ Setup and config
     cd cfg
     ```
 
-5. Fill a `env` file in the root of the chekcout of this repo
+5. Fill a `hostname.yml` file under `env/`
 with the following environment variables:
 
     ```sh

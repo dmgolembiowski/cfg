@@ -23,7 +23,7 @@ def p(n, d):
     if len(n):
         n.pop()
 
-p([], yaml.safe_load(open('$ROOT/env.yml', 'r')))
+p([], yaml.safe_load(open('$ROOT/env/$(hostname).yml', 'r')))
 
 ")
 
@@ -103,7 +103,7 @@ tmpl = jinja2.Template(
     lstrip_blocks=True,
     keep_trailing_newline=True
 )
-data = yaml.safe_load(open('$ROOT/env.yml', 'r'))
+data = yaml.safe_load(open('$ROOT/env/$(hostname).yml', 'r'))
 
 sys.stdout.write(tmpl.render(data))
 "

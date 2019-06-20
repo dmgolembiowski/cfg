@@ -1,4 +1,4 @@
-/env.yml
+/env/
 /chroot/
 /aur/*/*.log
 /aur/*/*.tar.gz
