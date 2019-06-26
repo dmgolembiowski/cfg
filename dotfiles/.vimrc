@@ -229,6 +229,10 @@ let g:vimwiki_list = [wiki_1, wiki_2]
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:vimwiki_markdown_link_ext = 1
 
+" nerdtree
+
+let NERDTreeMinimalUI = 1
+
 " git commit
 function GitCi(n)
 	!git ci -am sync && git push
