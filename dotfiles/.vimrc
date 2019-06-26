@@ -232,6 +232,8 @@ let g:vimwiki_markdown_link_ext = 1
 " nerdtree
 
 let NERDTreeMinimalUI = 1
+let NERDTreeShowHidden = 1
+let NERDTreeIgnore = ['\.git$[[dir]]']
 
 function NERDTreeSync()
 	if exists("g:NERDTree") && g:NERDTree.IsOpen()
