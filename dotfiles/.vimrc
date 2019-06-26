@@ -232,7 +232,13 @@ let g:vimwiki_markdown_link_ext = 1
 " nerdtree
 
 let NERDTreeMinimalUI = 1
-autocmd BufWinEnter * NERDTreeFind
+
+function NERDTreeSync()
+	if exists("g:NERDTree") && g:NERDTree.IsOpen()
+		NERDTreeFind
+	endif
+endfunction
+autocmd BufWinEnter * :call NERDTreeSync()
 
 " git commit
 function GitCi(n)
