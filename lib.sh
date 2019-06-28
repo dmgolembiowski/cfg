@@ -100,7 +100,6 @@ tmpl() {
 _tmpl() {
 	cat | python3 -c "
 import sys
-import types
 import yaml
 import jinja2
 
@@ -115,8 +114,8 @@ tmpl = jinja2.Template(
 data = yaml.safe_load(open('$ROOT/env/$(hostname).yml', 'r'))
 
 if len(k):
-	lookup = types.SimpleNamespace(**data)
-	data = vars(eval('lookup.' + k))
+	lookup = ''.join(['[\"' + i + '\"]' for i in k.split('.')])
+	data = eval('data' + lookup)
 	data['_key'] = k.split('.')[-1]
 
 sys.stdout.write(tmpl.render(data))
