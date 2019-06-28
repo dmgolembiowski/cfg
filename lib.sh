@@ -115,7 +115,7 @@ tmpl = jinja2.Template(
 data = yaml.safe_load(open('$ROOT/env/$(hostname).yml', 'r'))
 
 if len(k):
-	lookup = types.SimpleNamespace(data)
+	lookup = types.SimpleNamespace(**data)
 	data = vars(eval('lookup.' + k))
 	data['_key'] = k.split('.')[-1]
 
