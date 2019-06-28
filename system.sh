@@ -203,7 +203,10 @@ if role desktop; then
 	systemctl enable i3lock
 
 	pkg curl bzip2 libgtk-3-0 libdbus-glib-1-2
+fi
 
+
+if role dekstop || role media; then
 	pkg snapd
 fi
 
