@@ -61,7 +61,7 @@ if role desktop; then
 fi
 
 if role server; then
-	file /etc/systemd/network/wired.network
+	tmpl /etc/systemd/network/wired.network
 	svc systemd-networkd
 fi
 

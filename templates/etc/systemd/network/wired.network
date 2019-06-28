@@ -1,5 +1,5 @@
 [Match]
-Name=eth0
+Name={{ wired_if }}
 
 [Network]
 DHCP=ipv4
