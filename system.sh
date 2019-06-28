@@ -439,6 +439,8 @@ fi
 _hostsh=$ROOT/env/$(hostname).sh
 
 if [ -e $_hostsh ]; then
+	TEMPLATES=$ROOT/env/templates
+	FILES=$ROOT/env/files
 	. $_hostsh
 fi
 
