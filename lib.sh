@@ -81,16 +81,18 @@ envfile() {
 
 tmpl() {
 	local dst=$1
+	local src=$2
+	local k=$3
 
 	if [ -e $TEMPLATES$dst ]; then
 		local src=$TEMPLATES$dst
 	else
-		local src=$TEMPLATES$2
+		local src=$TEMPLATES$src
 	fi
 
 	local tmp=/tmp/$(echo $dst | sed 's#/#_#g')
 
-	cat $src | _tmpl > $tmp
+	cat $src | _tmpl $k > $tmp
 	_f $dst $tmp
 	rm $tmp
 }
@@ -98,8 +100,11 @@ tmpl() {
 _tmpl() {
 	cat | python3 -c "
 import sys
+import types
 import yaml
 import jinja2
+
+k = '$1'
 
 tmpl = jinja2.Template(
     sys.stdin.read(),
@@ -108,6 +113,11 @@ tmpl = jinja2.Template(
     keep_trailing_newline=True
 )
 data = yaml.safe_load(open('$ROOT/env/$(hostname).yml', 'r'))
+
+if len(k):
+	lookup = types.SimpleNamespace(data)
+	data = vars(eval('lookup.' + k))
+	data['_key'] = k.split('.')[-1]
 
 sys.stdout.write(tmpl.render(data))
 "
