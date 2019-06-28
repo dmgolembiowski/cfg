@@ -68,7 +68,7 @@ Setup and config
     ```sh
     mkdir ~/src
     cd ~/src
-    git clone git@git.sr.ht:~eju/cfg
+    git clone git@github.com:uggedal/cfg
     cd cfg
     ```
 
