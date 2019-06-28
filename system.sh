@@ -433,6 +433,16 @@ if role www; then
 fi
 
 ##
+## Host specific system setup
+##
+
+_hostsh=$ROOT/env/$(hostname).sh
+
+if [ -e $_hostsh ]; then
+	. $_hostsh
+fi
+
+##
 ## Cleanup
 ##
 
