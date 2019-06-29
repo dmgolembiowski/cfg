@@ -150,7 +150,8 @@ fi
 
 # TODO: switch to nftables when docker supports iptables-nft:
 #       https://github.com/moby/moby/issues/38099
-if ! role work; then
+# TODO: nftables seems to be masked on media instance?
+if ! role work && ! role media; then
 	pkg nftables
 
 	tmpl /etc/nftables.conf
