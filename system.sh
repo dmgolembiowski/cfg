@@ -400,7 +400,7 @@ fi
 ##
 
 if role tls; then
-	pkg dehydrated jq bsdmainutils
+	pkg dehydrated jq moreutils
 
 	tmpl /etc/dehydrated/config
 	tmpl /etc/dehydrated/domains.txt
