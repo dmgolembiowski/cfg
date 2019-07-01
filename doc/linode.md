@@ -130,11 +130,11 @@ Manual steps
 1. Create a letsencrypt account:
 
     ```sh
-    uacme -y new your@email.tld
+    TODO
     ```
 
 2. Issue all confugured certs:
 
     ```sh
-    /etc/periodic/daily/uacme
+    TODO
     ```

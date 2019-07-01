@@ -400,18 +400,7 @@ fi
 ##
 
 if role tls; then
-	pkg uacme jq drill moreutils
-
-	tmpl /usr/local/bin/lindns
-	chmod 700 /usr/local/bin/lindns
-
-	file /usr/share/uacme/lindns-hook
-	chmod 755 /usr/share/uacme/lindns-hook
-
-	svc crond
-
-	tmpl /etc/periodic/daily/uacme
-	chmod 755 /etc/periodic/daily/uacme
+	pkg dehydrated
 fi
 
 ##
@@ -419,7 +408,7 @@ fi
 ##
 
 if role www; then
-	pkg nginx
+	pkg nginx dehydrated
 
 	file /etc/nginx/ffdhe4096.pem
 	# TODO: adapt to debian default config:
@@ -432,8 +421,6 @@ if role www; then
 	EOF
 
 	svc nginx
-
-	pkg rsync cmark
 fi
 
 ##
