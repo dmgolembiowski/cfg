@@ -400,12 +400,14 @@ fi
 ##
 
 if role tls; then
-	pkg dehydrated jq
+	pkg dehydrated jq bsdmainutils
 
 	tmpl /etc/dehydrated/config
 	tmpl /etc/dehydrated/domains.txt
 	tmpl /etc/dehydrated/hooks/cf.sh
 	chmod 700 /etc/dehydrated/hooks/cf.sh
+	file /etc/cron.daily/dehydrated
+	chmod 750 /etc/cron.daily/dehydrated
 fi
 
 ##
