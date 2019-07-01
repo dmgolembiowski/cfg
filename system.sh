@@ -419,12 +419,13 @@ if role www; then
 	'
 
 	file /etc/nginx/ffdhe4096.pem
-	tmpl /etc/nginx/conf.d/site.conf
 	rm -f  /etc/nginx/sites-enabled/default
 
 	tmplexec <<-EOF
-	{% for w in www %}
-	mkdir -p /var/www/{{ w.fqdn }}
+	{% for w in www.keys()|sort %}
+	mkdir -p /var/www/{{ w }}
+
+	tmpl /etc/nginx/conf.d/{{ w }}.conf {{ w }}
 	{% endfor %}
 	EOF
 
