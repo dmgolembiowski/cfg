@@ -428,7 +428,7 @@ if role www; then
 	tmpl /etc/nginx/conf.d/{{ w }}.conf \
 		/etc/nginx/conf.d/site.conf www.{{ w }}
 
-	{% if 'auto_basic' in www[w] %}
+	{% if 'auth_basic' in www[w] %}
 	tmpl /etc/nginx/conf.d/{{ w }}.passwd \
 		/etc/nginx/conf.d/site.passwd www.{{ w }}
 	{% endif %}
