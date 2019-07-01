@@ -413,7 +413,10 @@ fi
 ##
 
 if role www; then
-	pkg nginx
+	pkg '
+		nginx-light
+		libnginx-mod-http-fancyindex
+	'
 
 	file /etc/nginx/ffdhe4096.pem
 	# TODO: adapt to debian default config:
