@@ -12,11 +12,11 @@ def p(n, d):
     for k, v in d.items():
         if isinstance(v, str):
             s = '_'.join(n + [k]).upper()
-            print('{}=\"{}\"'.format(s, v))
+            if re.match(r'^\w+\$', s):
+                print('{}=\"{}\"'.format(s, v))
         elif isinstance(v, dict):
             n.append(k)
-            if re.match(r'^\w+\$', v):
-                p(n, v)
+            p(n, v)
         elif isinstance(v, list):
             for i in v:
                 if isinstance(i, str) and re.match(r'^\w+\$', i):
