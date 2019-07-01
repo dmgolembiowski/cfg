@@ -419,9 +419,8 @@ if role www; then
 	'
 
 	file /etc/nginx/ffdhe4096.pem
-	# TODO: adapt to debian default config:
-	# TODO: adapt to dehydrated cert locations
 	tmpl /etc/nginx/conf.d/site.conf
+	rm -f  /etc/nginx/sites-enabled/default
 
 	tmplexec <<-EOF
 	{% for w in www %}
