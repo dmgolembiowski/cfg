@@ -5,6 +5,7 @@ DISTRO=$(awk -F= '/^ID=/ { print $2 }' /etc/os-release)
 
 # Read YAML file into shell vars
 eval $(python3 -c "
+import re
 import yaml
 
 def p(n, d):
@@ -17,7 +18,7 @@ def p(n, d):
             p(n, v)
         elif isinstance(v, list):
             for i in v:
-                if isinstance(i, str):
+                if isinstance(i, str) and re.match(r'^\w+\$', i):
                     s = '_'.join(n + [k, i]).upper()
                     print('{}=\"{}\"'.format(s, 'yes'))
     if len(n):
