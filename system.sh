@@ -425,10 +425,12 @@ if role www; then
 	{% for w in www.keys()|sort %}
 	mkdir -p /var/www/{{ w }}
 
-	tmpl /etc/nginx/conf.d/{{ w }}.conf {{ w }}
+	tmpl /etc/nginx/conf.d/{{ w }}.conf \
+		/etc/nginx/conf.d/site.conf {{ w }}
 
 	{% if 'auto_basic' in www[w] %}
-	tmpl /etc/nginx/conf.d/{{ w }}.passwd {{ w }}
+	tmpl /etc/nginx/conf.d/{{ w }}.passwd \
+		/etc/nginx/conf.d/site.passwd {{ w }}
 	{% endif %}
 	{% endfor %}
 	EOF
