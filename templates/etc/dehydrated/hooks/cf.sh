@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
-EMAIL={{ tls.cf.EMAIL }}
+EMAIL={{ tls.cf.email }}
 API_KEY={{ tls.cf.api_key }}
 
 zone() {
@@ -46,8 +46,8 @@ clean_challenge() {
 	local id=$(jq -r '.result.id' $ROOT/$DOMAIN.json)
 	curl -X DELETE \
 		https://api.cloudflare.com/client/v4/zones/$(zone $DOMAIN)/dns_records/$id \
-	 -H "X-Auth-Email: ${EMAIL}"\
-	 -H "X-Auth-Key: ${API_KEY}"\
+	 -H "X-Auth-Email: $EMAIL"\
+	 -H "X-Auth-Key: $API_KEY"\
 	 -H "Content-Type: application/json"
 
 	rm -f "${ROOT}/${1}.json"
