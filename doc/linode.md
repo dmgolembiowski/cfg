@@ -130,11 +130,11 @@ Manual steps
 1. Create a letsencrypt account:
 
     ```sh
-    TODO
+    dehydrated --register --accept-terms
     ```
 
 2. Issue all confugured certs:
 
     ```sh
-    TODO
+    dehydrated -c
     ```
