@@ -400,8 +400,12 @@ fi
 ##
 
 if role tls; then
-	pkg dehydrated
-	# TODO: add cloudflare hook
+	pkg dehydrated jq
+
+	tmpl /etc/dehydrated/config
+	tmpl /etc/dehydrated/domains.txt
+	tmpl /etc/dehydrated/hooks/cf.sh
+	chmod 700 /etc/dehydrated/hooks/cf.sh
 fi
 
 ##
