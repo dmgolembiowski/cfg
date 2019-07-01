@@ -401,6 +401,7 @@ fi
 
 if role tls; then
 	pkg dehydrated
+	# TODO: add cloudflare hook
 fi
 
 ##
@@ -408,10 +409,11 @@ fi
 ##
 
 if role www; then
-	pkg nginx dehydrated
+	pkg nginx
 
 	file /etc/nginx/ffdhe4096.pem
 	# TODO: adapt to debian default config:
+	# TODO: adapt to dehydrated cert locations
 	tmpl /etc/nginx/conf.d/site.conf
 
 	tmplexec <<-EOF
