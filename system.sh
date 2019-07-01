@@ -426,6 +426,10 @@ if role www; then
 	mkdir -p /var/www/{{ w }}
 
 	tmpl /etc/nginx/conf.d/{{ w }}.conf {{ w }}
+
+	{% if 'auto_basic' in www[w] %}
+	tmpl /etc/nginx/conf.d/{{ w }}.passwd {{ w }}
+	{% endif %}
 	{% endfor %}
 	EOF
 
