@@ -15,7 +15,7 @@ def p(n, d):
             print('{}=\"{}\"'.format(s, v))
         elif isinstance(v, dict):
             n.append(k)
-            if re.match(r'^\w+\$', i):
+            if re.match(r'^\w+\$', v):
                 p(n, v)
         elif isinstance(v, list):
             for i in v:
