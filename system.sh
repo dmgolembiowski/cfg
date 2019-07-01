@@ -426,11 +426,11 @@ if role www; then
 	mkdir -p /var/www/{{ w }}
 
 	tmpl /etc/nginx/conf.d/{{ w }}.conf \
-		/etc/nginx/conf.d/site.conf {{ w }}
+		/etc/nginx/conf.d/site.conf www.{{ w }}
 
 	{% if 'auto_basic' in www[w] %}
 	tmpl /etc/nginx/conf.d/{{ w }}.passwd \
-		/etc/nginx/conf.d/site.passwd {{ w }}
+		/etc/nginx/conf.d/site.passwd www.{{ w }}
 	{% endif %}
 	{% endfor %}
 	EOF
