@@ -56,7 +56,7 @@ svc systemd-timesyncd
 if role desktop; then
 	file /etc/systemd/resolved.conf.d/static.conf
 
-	_wlif=$(awk -F: '/^wl/ { print $1 }' /proc/net/wireless)
+	_wlif=$(ip a | awk '/^[0-9]: wl/ { print $2 }' | tr -d :)
 	envfile /etc/wpa_supplicant/wpa_supplicant-${_wlif}.conf
 fi
 
