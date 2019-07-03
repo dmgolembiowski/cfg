@@ -440,6 +440,19 @@ if role www; then
 fi
 
 ##
+## Mail
+##
+
+if role server; then
+	pkg nullmailer bsd-mailx
+
+	tmpl /etc/nullmailer/remotes
+	tmpl /etc/nullmailer/adminaddr
+
+	svc nullmailer
+fi
+
+##
 ## Host specific system setup
 ##
 

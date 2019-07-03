@@ -1,0 +1,1 @@
+{{ mail.smtp.host }} mail.smtp --port={{ mail.smtp.port }} --starttls --user={{ mail.smtp.user }} --pass={{ mail.smtp.password }}
