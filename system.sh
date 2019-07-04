@@ -79,6 +79,7 @@ if role dev; then
 		bash-completion
 		tmux
 		vim-nox
+                ncurses-term
 		fzy
 		ncdu
 		silversearcher-ag
