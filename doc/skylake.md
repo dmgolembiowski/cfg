@@ -46,7 +46,7 @@ Setup and config
 
     ```sh
 
-    apt install --no-install-recommends git
+    apt install --no-install-recommends git openssh-server sudo
     ```
 
 2. Setup unprivileged user:
