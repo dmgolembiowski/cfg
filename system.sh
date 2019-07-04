@@ -261,6 +261,10 @@ if role desktop; then
 	fi
 fi
 
+if role media; then
+	pkg lftp
+fi
+
 ##
 ## Mail
 ##
