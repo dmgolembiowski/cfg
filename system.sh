@@ -12,7 +12,7 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 
 pkg python3-jinja2 python3-yaml
 
-pkg sudo
+pkg sudo curl
 
 pkg unattended-upgrades python3-gi
 
