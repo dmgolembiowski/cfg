@@ -261,7 +261,7 @@ if role desktop; then
 	fi
 fi
 
-if role media; then
+if role desktop || role media; then
 	pkg lftp
 fi
 
