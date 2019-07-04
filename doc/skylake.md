@@ -49,8 +49,50 @@ Setup and config
 
     apt install --no-install-recommends git openssh-server sudo cryptsetup-run
     ```
+2. Setup disks:
 
-2. Setup unprivileged user:
+    ```sh
+    for disk in sdc sdd sde sdf; do
+        sgdisk -Z /dev/$disk
+    done
+
+    gdisk /dev/sdc <<EOF
+    o
+    Y
+    n
+
+
+    fd00
+    w
+    Y
+    EOF
+
+    sgdisk --backup=table /dev/sdc
+    for disk in sdd sde sdf; do
+        sgdisk --load-backup=table /dev/$disk
+    done
+
+    mdadm --create --verbose /dev/md2 --level=5 --raid-devices=4 /dev/sdc1 /dev/sdd1 /dev/sde1 /dev/sdf1
+
+    cryptsetup luksFormat /dev/md2
+    dd bs=512 count=4 if=/dev/urandom of=/etc/cryptkey_md2 iflag=fullblock
+    cryptsetup luksAddKey /dev/md2 /etc/cryptkey_md2
+    cryptsetup luksOpen --key-file /etc/cryptkey_md2 /dev/md2 md2_crypt
+
+    mkfs.ext4 -m1 -E lazy_itable_init=0 -L data /dev/mapper/md2_crypt
+
+    cat <<EOF >>/etc/crypttab
+    md2_crypt /dev/md2 /etc/cryptkey_md2 luks
+    EOF
+
+    mkdir /data
+    cat <<EOF >>/etc/fstab
+    md2_crypt /dev/md2 /etc/cryptkey_md2 luks
+    EOF
+    ```
+
+
+3. Setup unprivileged user:
 
     ```sh
     mkdir /home/$u/.ssh
@@ -59,7 +101,7 @@ Setup and config
     usermod -aG sudo $u
     ```
 
-3. Clone this repo:
+4. Clone this repo:
 
     ```sh
     cd ~/src
@@ -67,7 +109,7 @@ Setup and config
     cd cfg
     ```
 
-4. Fill a `hostname.yml` file under `env/`
+5. Fill a `hostname.yml` file under `env/`
 with the following environment variables:
 
     ```sh
@@ -76,13 +118,13 @@ with the following environment variables:
       - media
     ```
 
-5. Run system setup and configuration:
+6. Run system setup and configuration:
 
     ```sh
     ./system.sh
     ```
 
-6. Run user setup and config:
+7. Run user setup and config:
 
     ```sh
     ./user.sh
