@@ -47,7 +47,7 @@ Setup and config
 
     ```sh
 
-    apt install --no-install-recommends git openssh-server sudo cryptsetup
+    apt install --no-install-recommends git openssh-server sudo cryptsetup-run
     ```
 
 2. Setup unprivileged user:
