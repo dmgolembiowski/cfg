@@ -39,6 +39,7 @@ Install
         - Disable all tasks
 
 4. Reboot into the newly created system.
+
 Setup and config
 ----------------
 
@@ -46,7 +47,7 @@ Setup and config
 
     ```sh
 
-    apt install --no-install-recommends git openssh-server sudo
+    apt install --no-install-recommends git openssh-server sudo cryptsetup
     ```
 
 2. Setup unprivileged user:
