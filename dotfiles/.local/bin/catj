@@ -1,0 +1,21 @@
+#!/usr/bin/jq -jf
+#
+# https://news.ycombinator.com/item?id=20246727
+
+[
+	[
+		paths(scalars)
+		| map(
+			if type == "number"
+			then "[" + tostring + "]"
+			else "." + .
+			end
+		) | join("")
+	],
+	[
+		.. | select(scalars) | @json
+	]
+]
+| transpose
+| map(join(" = ") + "\n")
+| join("")

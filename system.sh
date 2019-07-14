@@ -83,6 +83,7 @@ if role dev; then
 		fzy
 		ncdu
 		silversearcher-ag
+		jq
 	'
 fi
 
