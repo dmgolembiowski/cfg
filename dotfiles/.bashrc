@@ -73,6 +73,9 @@ alias gb='git branch'
 alias gp='git push'
 alias gl='git pull'
 
+alias df='df -x squashfs -x tmpfs -x devtmpfs -x fuse.rar2fs'
+
+
 GOPATH=$HOME/src/go
 export GOPATH
 
