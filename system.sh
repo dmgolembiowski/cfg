@@ -441,6 +441,28 @@ if role db; then
 fi
 
 ##
+## Feed
+##
+
+if role feed; then
+	if ! apt-key list 2>/dev/null | grep -q fred@miniflux.net; then
+		curl -fsSL https://apt.miniflux.app/KEY.gpg | apt-key add -
+	fi
+
+	file /etc/apt/sources.list.d/miniflux.list
+
+	pkg miniflux
+
+	tmpl /etc/miniflux.conf
+	chown miniflux: /etc/miniflux.conf
+	chmod 640 /etc/miniflux.conf
+
+	file /etc/tmpfiles.d/miniflux.conf
+
+	svc miniflux
+fi
+
+##
 ## Mail
 ##
 
