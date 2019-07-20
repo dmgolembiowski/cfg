@@ -138,3 +138,26 @@ Manual steps
     ```sh
     dehydrated -c
     ```
+
+### Miniflux
+
+1. Create `miniflux` user, db and `HSTORE` extension:
+
+    ```sh
+    su - postgres
+    createuser -P miniflux
+    createdb -O miniflux miniflux
+    psql miniflux -c 'create extension hstore'
+    ```
+
+2. Run migrations:
+
+    ```sh
+    DATABASE_URL='...' miniflux --migrate
+    ```
+
+3. Crete admin user:
+
+    ```sh
+    DATABASE_URL='...' miniflux --create-admin
+    ```
