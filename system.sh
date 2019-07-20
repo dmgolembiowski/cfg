@@ -432,6 +432,15 @@ if role www; then
 fi
 
 ##
+## DB
+##
+
+if role db; then
+	pkg postgresql
+	svc postgresql
+fi
+
+##
 ## Mail
 ##
 
