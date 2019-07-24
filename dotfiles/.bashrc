@@ -96,3 +96,8 @@ unset _f
 if [ "$(tty)" = "/dev/tty1" ]; then
 	exec startx
 fi
+
+# Check for restarts:
+if [ -e /var/run/reboot-required ]; then
+	printf '##\n## Reboot required\n##\n'
+fi
