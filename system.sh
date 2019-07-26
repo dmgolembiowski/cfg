@@ -476,6 +476,15 @@ if role server; then
 fi
 
 ##
+## Storage
+##
+
+if role storage; then
+	pkg smartmontools
+	svc smartd
+fi
+
+##
 ## Host specific system setup
 ##
 
