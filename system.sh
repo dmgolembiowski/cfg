@@ -485,6 +485,21 @@ if role storage; then
 fi
 
 ##
+## Dyndns
+##
+
+if role dyndns; then
+	pkg ddupdate python3-requests
+
+	file /usr/share/ddupdate/plugins/cloudflare.py
+	tmpl /etc/systemd/system/ddupdate.service.d/serviceopt.conf
+	tmpl /etc/ddupdate.conf
+	tmpl /root/.netrc
+
+	svc ddupdate.timer
+fi
+
+##
 ## Host specific system setup
 ##
 
