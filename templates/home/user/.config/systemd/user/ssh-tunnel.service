@@ -5,7 +5,7 @@ Description=SSH tunnel
 Type=simple
 Restart=always
 RestartSec=10
-ExecStart=/usr/bin/ssh -N -o ServerAliveInterval=3 -D 1337 {{ ssh_tunnel.host }}
+ExecStart=/usr/bin/ssh -N -o ServerAliveInterval=2 -o ServerAliveCountMax=2 -D 1337 {{ ssh_tunnel.host }}
 
 [Install]
 WantedBy=default.target
