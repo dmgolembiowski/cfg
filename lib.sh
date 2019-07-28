@@ -42,7 +42,7 @@ diff() {
 	if command -v git >/dev/null; then
 		git --no-pager diff --no-index "$@"
 	else
-		comamnd diff -u "$@"
+		command diff -u "$@"
 	fi
 }
 
