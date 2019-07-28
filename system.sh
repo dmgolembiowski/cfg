@@ -10,19 +10,19 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 ## Base
 ##
 
-pkg python3-jinja2 python3-yaml
+pkg '
+	python3-jinja2
+	python3-yaml
+	sudo
+	curl
+	ca-certificates
+	unattended-upgrades
+	python3-gi
+	needrestart
+'
 
-pkg sudo curl ca-certificates
-
-pkg unattended-upgrades python3-gi
-
-pkg needrestart
-
-pkg openssh-client
-
-if role server; then
-	pkg ssh
-fi
+# Passwordless sudo:
+echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 
 for f in norecommends autoremove periodicclean showversions; do
 	file /etc/apt/apt.conf.d/$f
@@ -32,20 +32,14 @@ unset f
 # Persistend systemd yournal:
 mkdir -p /var/log/journal
 
-role vm || pkg fwupd intel-microcode
-
-if role desktop; then
-	# Periodic TRIM:
-	svc fstrim.timer
+pkg openssh-client
+if role server; then
+	pkg ssh
 fi
 
-if role desktop; then
-	# Autologin to TTY 1:
-	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf
+if ! role vm; then
+	pkg fwupd intel-microcode
 fi
-
-# Passwordless sudo:
-echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 
 svc systemd-timesyncd
 
@@ -69,23 +63,23 @@ svc systemd-resolved
 ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
 ##
-## CLI
+## Sec
 ##
 
-if role dev; then
-	pkg '
-		man-db
-		git
-		bash-completion
-		tmux
-		vim-nox
-                ncurses-term
-		fzy
-		ncdu
-		silversearcher-ag
-		jq
-	'
+# TODO: switch to nftables when docker supports iptables-nft:
+#       https://github.com/moby/moby/issues/38099
+if ! role work; then
+	pkg nftables
+
+	tmpl /etc/nftables.conf
+	chmod 700 /etc/nftables.conf
+
+	svc nftables
 fi
+
+chmod 700 /boot
+
+file /etc/sysctl.d/50-dmesg-restrict.conf
 
 ##
 ## Debug
@@ -108,6 +102,21 @@ pkg htop
 ##
 ## Dev
 ##
+
+if role dev; then
+	pkg '
+		man-db
+		git
+		bash-completion
+		tmux
+		vim-nox
+                ncurses-term
+		fzy
+		ncdu
+		silversearcher-ag
+		jq
+	'
+fi
 
 if role work; then
 	(
@@ -147,25 +156,6 @@ if role work; then
 fi
 
 ##
-## Sec
-##
-
-# TODO: switch to nftables when docker supports iptables-nft:
-#       https://github.com/moby/moby/issues/38099
-if ! role work; then
-	pkg nftables
-
-	tmpl /etc/nftables.conf
-	chmod 700 /etc/nftables.conf
-
-	svc nftables
-fi
-
-chmod 700 /boot
-
-file /etc/sysctl.d/50-dmesg-restrict.conf
-
-##
 ## Desktop
 ##
 
@@ -191,7 +181,19 @@ if role desktop; then
 		fonts-noto-mono
 		fonts-noto-color-emoji
 		fonts-ibm-plex
+		bzip2
+		libgtk-3-0
+		libdbus-glib-1-2
 	'
+
+	# Periodic TRIM:
+	svc fstrim.timer
+
+	# Autologin to TTY 1:
+	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf
+
+	file /etc/sysctl.d/disable_watchdog.conf
+	file /etc/modprobe.d/audio_powersave.conf
 
 	file /etc/X11/xorg.conf.d/00-keyboard.conf
 	file /etc/X11/xorg.conf.d/00-touchpad.conf
@@ -203,22 +205,10 @@ if role desktop; then
 
 	tmpl /etc/systemd/system/i3lock.service
 	systemctl enable i3lock
-
-	pkg curl bzip2 libgtk-3-0 libdbus-glib-1-2
 fi
-
 
 if role dekstop || role media; then
 	pkg snapd
-fi
-
-##
-## Laptop
-##
-
-if role desktop; then
-	file /etc/sysctl.d/disable_watchdog.conf
-	file /etc/modprobe.d/audio_powersave.conf
 fi
 
 ##
@@ -244,7 +234,6 @@ if role desktop; then
 		mpv
 		i965-va-driver
 		youtube-dl
-		lftp
 	'
 
 	# PMP:
@@ -264,6 +253,119 @@ fi
 
 if role desktop || role media; then
 	pkg lftp
+fi
+
+##
+## Mail
+##
+
+if role server; then
+	pkg nullmailer bsd-mailx
+
+	tmpl /etc/nullmailer/remotes
+	tmpl /etc/nullmailer/adminaddr
+
+	svc nullmailer
+fi
+
+##
+## TLS
+##
+
+if role tls; then
+	pkg dehydrated jq moreutils
+
+	tmpl /etc/dehydrated/config
+	tmpl /etc/dehydrated/domains.txt
+	tmpl /etc/dehydrated/hooks/cf.sh
+	chmod 700 /etc/dehydrated/hooks/cf.sh
+	file /etc/cron.daily/dehydrated
+	chmod 750 /etc/cron.daily/dehydrated
+fi
+
+##
+## WWW
+##
+
+if role www; then
+	pkg '
+		nginx-light
+		libnginx-mod-http-fancyindex
+	'
+
+	file /etc/nginx/ffdhe4096.pem
+	rm -f  /etc/nginx/sites-enabled/default
+
+	tmplexec <<-EOF
+	{% for w in www.keys()|sort %}
+	mkdir -p /var/www/{{ w }}
+
+	tmpl /etc/nginx/conf.d/{{ w }}.conf \
+		/etc/nginx/conf.d/site.conf www.{{ w }}
+
+	{% if 'auth_basic' in www[w] %}
+	tmpl /etc/nginx/conf.d/{{ w }}.passwd \
+		/etc/nginx/conf.d/site.passwd www.{{ w }}
+	{% endif %}
+	{% endfor %}
+	EOF
+
+	svc nginx
+fi
+
+##
+## DB
+##
+
+if role db; then
+	pkg postgresql
+	svc postgresql
+fi
+
+##
+## Feed
+##
+
+if role feed; then
+	if ! apt-key list 2>/dev/null | grep -q fred@miniflux.net; then
+		curl -fsSL https://apt.miniflux.app/KEY.gpg | apt-key add -
+	fi
+
+	file /etc/apt/sources.list.d/miniflux.list
+
+	pkg miniflux
+
+	tmpl /etc/miniflux.conf
+	chown miniflux: /etc/miniflux.conf
+	chmod 640 /etc/miniflux.conf
+
+	file /etc/tmpfiles.d/miniflux.conf
+
+	svc miniflux
+fi
+
+##
+## Storage
+##
+
+if role storage; then
+	pkg smartmontools
+	svc smartd
+fi
+
+##
+## Dyndns
+##
+
+if role dyndns; then
+	pkg ddupdate python3-requests
+
+	file /usr/share/ddupdate/plugins/cloudflare.py
+	tmpl /etc/systemd/system/ddupdate.service.d/serviceopt.conf
+	tmpl /etc/ddupdate.conf
+	tmpl /root/.netrc
+
+	svc ddupdate.timer
 fi
 
 ##
@@ -376,119 +478,6 @@ if role irc; then
 	_w_set logger.file.mask '$plugin.$name.log'
 	_w_set logger.mask.irc '$server-$channel-%Y-%m.log'
 	_w_set logger.level.irc 1
-fi
-
-##
-## TLS
-##
-
-if role tls; then
-	pkg dehydrated jq moreutils
-
-	tmpl /etc/dehydrated/config
-	tmpl /etc/dehydrated/domains.txt
-	tmpl /etc/dehydrated/hooks/cf.sh
-	chmod 700 /etc/dehydrated/hooks/cf.sh
-	file /etc/cron.daily/dehydrated
-	chmod 750 /etc/cron.daily/dehydrated
-fi
-
-##
-## WWW
-##
-
-if role www; then
-	pkg '
-		nginx-light
-		libnginx-mod-http-fancyindex
-	'
-
-	file /etc/nginx/ffdhe4096.pem
-	rm -f  /etc/nginx/sites-enabled/default
-
-	tmplexec <<-EOF
-	{% for w in www.keys()|sort %}
-	mkdir -p /var/www/{{ w }}
-
-	tmpl /etc/nginx/conf.d/{{ w }}.conf \
-		/etc/nginx/conf.d/site.conf www.{{ w }}
-
-	{% if 'auth_basic' in www[w] %}
-	tmpl /etc/nginx/conf.d/{{ w }}.passwd \
-		/etc/nginx/conf.d/site.passwd www.{{ w }}
-	{% endif %}
-	{% endfor %}
-	EOF
-
-	svc nginx
-fi
-
-##
-## DB
-##
-
-if role db; then
-	pkg postgresql
-	svc postgresql
-fi
-
-##
-## Feed
-##
-
-if role feed; then
-	if ! apt-key list 2>/dev/null | grep -q fred@miniflux.net; then
-		curl -fsSL https://apt.miniflux.app/KEY.gpg | apt-key add -
-	fi
-
-	file /etc/apt/sources.list.d/miniflux.list
-
-	pkg miniflux
-
-	tmpl /etc/miniflux.conf
-	chown miniflux: /etc/miniflux.conf
-	chmod 640 /etc/miniflux.conf
-
-	file /etc/tmpfiles.d/miniflux.conf
-
-	svc miniflux
-fi
-
-##
-## Mail
-##
-
-if role server; then
-	pkg nullmailer bsd-mailx
-
-	tmpl /etc/nullmailer/remotes
-	tmpl /etc/nullmailer/adminaddr
-
-	svc nullmailer
-fi
-
-##
-## Storage
-##
-
-if role storage; then
-	pkg smartmontools
-	svc smartd
-fi
-
-##
-## Dyndns
-##
-
-if role dyndns; then
-	pkg ddupdate python3-requests
-
-	file /usr/share/ddupdate/plugins/cloudflare.py
-	tmpl /etc/systemd/system/ddupdate.service.d/serviceopt.conf
-	tmpl /etc/ddupdate.conf
-	tmpl /root/.netrc
-
-	svc ddupdate.timer
 fi
 
 ##
