@@ -267,14 +267,6 @@ if role desktop || role media; then
 fi
 
 ##
-## Mail
-##
-
-if role mail; then
-	pkg mutt
-fi
-
-##
 ## IRC
 ##
 
