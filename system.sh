@@ -354,6 +354,26 @@ if role storage; then
 fi
 
 ##
+## Storage
+##
+
+if role backup; then
+	pkg restic moreutils
+
+	mkdir -p /var/log/backup /var/backups/cache
+
+	file /etc/logrotate.d/backup
+
+	tmplexec <<-EOF
+	{% for b in backup.keys()|sort %}
+	tmpl /usr/local/sbin/restic-backup-{{ b }} \
+		/usr/local/sbin/restic-backup backup.{{ b }}
+	chmod 700 /usr/local/sbin/restic-backup-{{ b }}
+	{% endfor %}
+	EOF
+fi
+
+##
 ## Dyndns
 ##
 
