@@ -294,6 +294,7 @@ if role www; then
 	'
 
 	file /etc/nginx/ffdhe4096.pem
+	file /etc/logrotate.d/nginx
 	rm -f  /etc/nginx/sites-enabled/default
 
 	tmplexec <<-EOF
