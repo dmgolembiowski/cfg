@@ -366,9 +366,19 @@ if role backup; then
 
 	tmplexec <<-EOF
 	{% for b in backup.keys()|sort %}
-	tmpl /usr/local/sbin/restic-backup-{{ b }} \
-		/usr/local/sbin/restic-backup backup.{{ b }}
-	chmod 700 /usr/local/sbin/restic-backup-{{ b }}
+	b={{ b }}
+	f=/usr/local/sbin/restic-backup-\$b
+	tmpl \$f /usr/local/sbin/restic-backup backup.\$b
+	chmod 700 \$f
+
+	{% if 'cron' in backup[b] %}
+	if ! crontab -l | grep -q \$f; then
+		(
+			crontab -l 2>/dev/null
+			echo "{{ backup[b].cron }} \$f"
+		) | crontab -
+	fi
+	{% endif %}
 	{% endfor %}
 	EOF
 fi
