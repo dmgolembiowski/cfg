@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import apt
+
+def getbpv(p):
+    if p.versions is None:
+        return None
+    for version in p.versions:
+        for origin in version.origins:
+            if origin.archive.endswith("backports"):
+                return version.version
+            return None
+
+s = set()
+
+with apt.Cache() as cache:
+    for p in cache:
+        bpv = getbpv(p)
+        if bpv is not None and  p.is_installed:
+            s.add('{:20} {:10} -> {:10}'.format(
+                p.versions[0].source_name,
+                p.installed.version,
+                bpv
+            ))
+
+for l in sorted(s):
+	print(l)

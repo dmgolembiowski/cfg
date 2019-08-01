@@ -31,6 +31,9 @@ for f in norecommends autoremove periodicclean showversions; do
 done
 unset f
 
+file /usr/local/bin/apt-backports
+chmod +x /usr/local/bin/apt-backports
+
 # Persistend systemd yournal:
 mkdir -p /var/log/journal
 
