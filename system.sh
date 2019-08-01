@@ -24,6 +24,8 @@ pkg '
 # Passwordless sudo:
 echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 
+tmpl /etc/apt/sources.list
+
 for f in norecommends autoremove periodicclean showversions; do
 	file /etc/apt/apt.conf.d/$f
 done
