@@ -4,7 +4,7 @@ import re
 import miniflux
 
 SITES = {
-        'https://thepointsguy.com/': [
+        'https://thepointsguy.com': [
             r'cards?',
             r'deal alert',
         ],
@@ -21,7 +21,7 @@ ids = []
 
 for e in res['entries']:
     for site, rules in SITES.items():
-        if e['url'].startswith(site):
+        if e['feed']['site_url'] == site:
             for rule in rules:
                 if re.search(r'\b' + rule + r'\b', e['title'], re.IGNORECASE):
                     ids.append(e['id'])
