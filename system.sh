@@ -345,6 +345,24 @@ if role feed; then
 	file /etc/tmpfiles.d/miniflux.conf
 
 	svc miniflux
+
+
+	pkg virtualenv
+
+	if ! [ -e /opt/fluxfilter/bin/python3 ]; then
+		virtualenv -p python3 /opt/fluxfilter
+	fi
+
+	pip /opt/fluxfilter 'miniflux==0.0.10'
+	tmpl /opt/fluxfilter/bin/fluxfilter
+	chmod +x /opt/fluxfilter/bin/fluxfilter
+
+	if ! crontab -l -u miniflux | grep -q fluxfilter; then
+		(
+			crontab -l -u miniflux 2>/dev/null
+			echo "* * * * * /opt/fluxfilter/bin/fluxfilter"
+		) | crontab -u miniflux -
+	fi
 fi
 
 ##
