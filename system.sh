@@ -151,10 +151,7 @@ if role work; then
 		virtualenv -p python3 /opt/az
 	fi
 
-	if ! /opt/az/bin/pip show azure-cli >/dev/null; then
-		_aztmp=$(mktemp -d)
-		/opt/az/bin/pip install --cache-dir=$_aztmp azure-cli
-	fi
+	pip /opt/az 'azure-cli==2.0.70'
 	file /usr/local/bin/az
 	chmod +x /usr/local/bin/az
 	file /usr/share/bash-completion/completions/az

@@ -139,3 +139,14 @@ svc() {
 	systemctl is-enabled "$@" $s >/dev/null || systemctl enable "$@" $s
 	systemctl start "$@" $s
 }
+
+pip() {
+	local tmpcache
+	local venv=$1
+	local namever=$2
+
+	if ! $venv/bin/pip freeze | grep -q "^$namever"; then
+		tmpcache=$(mktemp -d)
+		$venv/bin/pip --cache-dir=$tmpcache install $namever
+	fi
+}
