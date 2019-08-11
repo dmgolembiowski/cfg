@@ -8,6 +8,9 @@ SITES = {
             r'cards?',
             r'deal alert',
         ],
+        'http://daringfireball.net/': [
+            r'\[sponsor\]',
+        ],
 }
 
 SITE = '{{ miniflux.api.url }}'
