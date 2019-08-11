@@ -363,7 +363,7 @@ if role feed; then
 	if ! crontab -l -u miniflux | grep -q fluxfilter; then
 		(
 			crontab -l -u miniflux 2>/dev/null
-			echo "* * * * * /opt/fluxfilter/bin/fluxfilter  | ts %FT%T%z >> /var/log/fluxfilter/fluxfilter.log"
+			echo "* * * * * /opt/fluxfilter/bin/fluxfilter  | ts \%FT\%T\%z >> /var/log/fluxfilter/fluxfilter.log"
 		) | crontab -u miniflux -
 	fi
 fi
