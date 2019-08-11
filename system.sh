@@ -42,7 +42,9 @@ if role server; then
 	pkg ssh
 fi
 
-if ! role vm; then
+if role vm; then
+	pkg linux-image-cloud-amd64
+else
 	pkg fwupd intel-microcode
 fi
 
@@ -559,6 +561,11 @@ nano
 rsyslog
 tasksel
 '
+
+if role vm; then
+	_UNNEEDED_PKGS="$_UNNEEDED_PKGS linux-image-amd64"
+fi
+
 for p in $_UNNEEDED_PKGS; do
 	if _pkg_installed; then
 		apt purge $p
