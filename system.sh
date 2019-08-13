@@ -270,13 +270,15 @@ _ifx() {
 		-execute "$1"
 }
 
-if role monitoringserver; then
+if role monitoring; then
 	if ! apt-key list 2>/dev/null | grep -q support@influxdb.com; then
 		curl -fsSL https://repos.influxdata.com/influxdb.key | apt-key add -
 	fi
 
 	file /etc/apt/sources.list.d/influxdb.list
+fi
 
+if role monitoringserver; then
 	pkg influxdb
 	tmpl /etc/influxdb/influxdb.conf
 	svc influxdb
