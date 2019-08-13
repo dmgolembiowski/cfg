@@ -297,15 +297,15 @@ if role monitoringserver; then
 	if ! _ifx 'SHOW RETENTION POLICIES ON telegraf' | grep -q ^thirty_days; then
 		_ifx 'CREATE RETENTION POLICY thirty_days ON telegraf DURATION 30d REPLICATION 1 DEFAULT'
 	fi
+
+	pkg chronograf
+	svc chronograf
 fi
 
 if role monitoring; then
 	pkg telegraf
 	tmpl /etc/telegraf/telegraf.conf
 	svc telegraf
-
-	pkg chronograf
-	svc chronograf
 fi
 
 ##
