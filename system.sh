@@ -263,6 +263,13 @@ fi
 ## Monitoring
 ##
 
+_ifx() {
+	influx \
+		-username $MONITORING_INFLUXDB_ADMIN_USER \
+		-password $MONITORING_INFLUXDB_ADMIN_PASSWORD \
+		-execute "$1"
+}
+
 if role monitoringserver; then
 	if ! apt-key list 2>/dev/null | grep -q support@influxdb.com; then
 		curl -fsSL https://repos.influxdata.com/influxdb.key | apt-key add -
@@ -271,20 +278,24 @@ if role monitoringserver; then
 	file /etc/apt/sources.list.d/influxdb.list
 
 	pkg influxdb
-
+	tmpl /etc/influxdb/influxdb.conf
 	svc influxdb
 
-	if ! influx -execute 'SHOW DATABASES' | grep -q ^telegraf; then
-		influx -execute 'CREATE DATABASE telegraf'
+	if ! _ifx 'SHOW USERS' | grep -q ^$MONITORING_INFLUXDB_ADMIN_USER; then
+		influx -execute "CREATE USER $MONITORING_INFLUXDB_ADMIN_USER WITH PASSWORD '$MONITORING_INFLUXDB_ADMIN_PASSWORD' WITH ALL PRIVILEGES"
 	fi
 
-	if ! influx -execute 'SHOW USERS' | grep -q ^telegraf; then
-		influx -execute "CREATE USER telegraf WITH PASSWORD '$MONITORING_TELEGRAF_PASSWORD'"
-		influx -execute 'GRANT ALL ON telegraf TO telegraf'
+	if ! _ifx 'SHOW DATABASES' | grep -q ^telegraf; then
+		_ifx 'CREATE DATABASE telegraf'
 	fi
 
-	if ! influx -execute 'SHOW RETENTION POLICIES ON telegraf' | grep -q ^thirty_days; then
-		influx -execute 'CREATE RETENTION POLICY thirty_days ON telegraf DURATION 30d REPLICATION 1 DEFAULT'
+	if ! _ifx 'SHOW USERS' | grep -q ^telegraf; then
+		_ifx "CREATE USER telegraf WITH PASSWORD '$MONITORING_TELEGRAF_PASSWORD'"
+		_ifx 'GRANT ALL ON telegraf TO telegraf'
+	fi
+
+	if ! _ifx 'SHOW RETENTION POLICIES ON telegraf' | grep -q ^thirty_days; then
+		_ifx 'CREATE RETENTION POLICY thirty_days ON telegraf DURATION 30d REPLICATION 1 DEFAULT'
 	fi
 fi
 
