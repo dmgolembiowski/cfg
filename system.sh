@@ -260,6 +260,44 @@ if role desktop || role media; then
 fi
 
 ##
+## Monitoring
+##
+
+if role monitoringserver; then
+	if ! apt-key list 2>/dev/null | grep -q support@influxdb.com; then
+		curl -fsSL https://repos.influxdata.com/influxdb.key | apt-key add -
+	fi
+
+	file /etc/apt/sources.list.d/influxdb.list
+
+	pkg influxdb
+
+	svc influxdb
+
+	if ! influx -execute 'SHOW DATABASES' | grep -q ^telegraf; then
+		influx -execute 'CREATE DATABASE telegraf'
+	fi
+
+	if ! influx -execute 'SHOW USERS' | grep -q ^telegraf; then
+		influx -execute "CREATE USER telegraf WITH PASSWORD '$MONITORING_TELEGRAF_PASSWORD'"
+		influx -execute 'GRANT ALL ON telegraf TO telegraf'
+	fi
+
+	if ! influx -execute 'SHOW RETENTION POLICIES ON telegraf' | grep -q ^thirty_days; then
+		influx -execute 'CREATE RETENTION POLICY thirty_days ON telegraf DURATION 30d REPLICATION 1 DEFAULT'
+	fi
+fi
+
+if role monitoring; then
+	pkg telegraf
+	tmpl /etc/telegraf/telegraf.conf
+	svc telegraf
+
+	pkg chronograf
+	svc chronograf
+fi
+
+##
 ## Mail
 ##
 
