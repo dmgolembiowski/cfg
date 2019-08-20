@@ -27,7 +27,6 @@ ids = []
 for e in res['entries']:
     for site, rules in SITES.items():
         if e['feed']['site_url'] == site:
-            print(e['title'])
             for rule in rules:
                 if re.search(rule, e['title'], re.IGNORECASE):
                     ids.append(e['id'])
