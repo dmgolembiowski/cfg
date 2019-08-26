@@ -377,6 +377,40 @@ if role www; then
 fi
 
 ##
+## WSGI
+##
+
+if role wsgi; then
+	pkg '
+		gunicorn3
+		python3-setproctitle
+	'
+
+	grep -q ^gunicorn: /etc/group ||
+		groupadd -r gunicorn
+	grep -q ^gunicorn: /etc/passwd ||
+		useradd -r -d /run/gunicorn -s /usr/sbin/nologin \
+			-g gunicorn gunicorn
+
+	file /etc/tmpfiles.d/gunicorn.conf
+
+	mkdir -p /var/db/gunicorn
+	chown gunicorn: /var/db/gunicorn
+
+	tmplexec <<-EOF
+	{% for w in wsgi.keys()|sort %}
+	tmpl /etc/systemd/system/gunicorn-{{ w }}.service \
+		/etc/systemd/system/gunicorn.service wsgi.{{ w }}
+	tmpl /etc/systemd/system/gunicorn-{{ w }}.socket \
+		/etc/systemd/system/gunicorn.socket wsgi.{{ w }}
+
+	svc gunicorn-{{ w }}.socket
+	svc gunicorn-{{ w }}.service
+	{% endfor %}
+	EOF
+fi
+
+##
 ## DB
 ##
 
