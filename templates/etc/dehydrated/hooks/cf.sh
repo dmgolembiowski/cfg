@@ -7,9 +7,11 @@ API_KEY={{ tls.cf.api_key }}
 zone() {
 	case "$1" in
 		{% for c in tls.certs %}
-		{{ c.domains[0] }})
+		{% for d in c.domains %}
+		{{ d }})
 			printf '{{ c.cf.zone }}'
 			;;
+		{% endfor %}
 		{% endfor %}
 	esac
 }
