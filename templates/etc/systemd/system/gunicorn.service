@@ -1,0 +1,23 @@
+[Unit]
+Description=Gunicorn {{ _key }}
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+User=gunicorn
+Group=gunicorn
+Restart=always
+
+ExecStart={% if venv is defined %}{{ venv }}{% else %}/usr{% endif %}/bin/gunicorn3 \
+	--workers={{ processes }} \
+	--bind unix:/run/gunicorn/{{ _key }}.sock \
+	--error-logfile - \
+	{{ module }}
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+WorkingDirectory={{ src }}
+
+PrivateTmp=true
