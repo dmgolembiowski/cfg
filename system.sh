@@ -1,6 +1,9 @@
 #!/bin/sh -e
 
-[ "$(id -u)" = 0 ] || exec sudo $0
+[ "$(id -u)" = 0 ] || exec sudo $0 $(id -un )
+
+UNPRIVUSR="$1"
+shift
 
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
 
