@@ -137,7 +137,14 @@ svc() {
 
 	local a
 	systemctl is-enabled "$@" $s >/dev/null || systemctl enable "$@" $s
-	systemctl start "$@" $s
+	case "$s" in
+		*.socket)
+			:
+			;;
+		*)
+			systemctl start "$@" $s
+			;;
+	esac
 }
 
 pip() {
