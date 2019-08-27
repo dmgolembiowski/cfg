@@ -399,6 +399,14 @@ if role wsgi; then
 
 	tmplexec <<-EOF
 	{% for w in wsgi.keys()|sort %}
+	{% if 'venv' in wsgi[w] %}
+	if ! [ -d {{ wsgi[w].venv }}/bin ]; then
+		mkdir -p {{ wsgi[w].venv }}
+		virtualenv -p /usr/bin/python3.7 {{ wsgi[w].venv }}
+		chown -R gunicorn: {{ wsgi[w].venv }}
+	fi
+	{% endif %}
+
 	tmpl /etc/systemd/system/gunicorn-{{ w }}.service \
 		/etc/systemd/system/gunicorn.service wsgi.{{ w }}
 	tmpl /etc/systemd/system/gunicorn-{{ w }}.socket \

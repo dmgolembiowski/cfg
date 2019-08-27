@@ -10,7 +10,7 @@ User=gunicorn
 Group=gunicorn
 Restart=always
 
-ExecStart={% if venv is defined %}{{ venv }}{% else %}/usr{% endif %}/bin/gunicorn3 \
+ExecStart={% if venv is defined %}{{ venv }}/bin/gunicorn{% else %}/usr/bin/gunicorn3{% endif %} \
 	--workers={{ processes }} \
 	--bind unix:/run/gunicorn/{{ _key }}.sock \
 	--error-logfile - \
