@@ -428,6 +428,16 @@ if role db; then
 fi
 
 ##
+## Redis
+##
+
+if role redis; then
+	pkg redis
+	tmpl /etc/redis/redis.conf
+	svc redis
+fi
+
+##
 ## Feed
 ##
 
