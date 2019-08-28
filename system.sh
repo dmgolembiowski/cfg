@@ -265,57 +265,6 @@ if role desktop || role media; then
 fi
 
 ##
-## Monitoring
-##
-
-_ifx() {
-	influx \
-		-username $MONITORING_INFLUXDB_ADMIN_USER \
-		-password $MONITORING_INFLUXDB_ADMIN_PASSWORD \
-		-execute "$1"
-}
-
-if role monitoring; then
-	if ! apt-key list 2>/dev/null | grep -q support@influxdb.com; then
-		curl -fsSL https://repos.influxdata.com/influxdb.key | apt-key add -
-	fi
-
-	file /etc/apt/sources.list.d/influxdb.list
-fi
-
-if role monitoringserver; then
-	pkg influxdb
-	tmpl /etc/influxdb/influxdb.conf
-	svc influxdb
-
-	if ! _ifx 'SHOW USERS' | grep -q ^$MONITORING_INFLUXDB_ADMIN_USER; then
-		influx -execute "CREATE USER $MONITORING_INFLUXDB_ADMIN_USER WITH PASSWORD '$MONITORING_INFLUXDB_ADMIN_PASSWORD' WITH ALL PRIVILEGES"
-	fi
-
-	if ! _ifx 'SHOW DATABASES' | grep -q ^telegraf; then
-		_ifx 'CREATE DATABASE telegraf'
-	fi
-
-	if ! _ifx 'SHOW USERS' | grep -q ^telegraf; then
-		_ifx "CREATE USER telegraf WITH PASSWORD '$MONITORING_TELEGRAF_PASSWORD'"
-		_ifx 'GRANT ALL ON telegraf TO telegraf'
-	fi
-
-	if ! _ifx 'SHOW RETENTION POLICIES ON telegraf' | grep -q ^thirty_days; then
-		_ifx 'CREATE RETENTION POLICY thirty_days ON telegraf DURATION 30d REPLICATION 1 DEFAULT'
-	fi
-
-	pkg chronograf
-	svc chronograf
-fi
-
-if role monitoring; then
-	pkg telegraf
-	tmpl /etc/telegraf/telegraf.conf
-	svc telegraf
-fi
-
-##
 ## Mail
 ##
 
