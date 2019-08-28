@@ -439,7 +439,7 @@ if role storage; then
 fi
 
 ##
-## Storage
+## Backup
 ##
 
 if role backup; then
