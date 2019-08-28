@@ -1,0 +1,26 @@
+[Unit]
+Description=Prometheus exporter for machine metrics
+Documentation=https://github.com/prometheus/node_exporter
+
+[Service]
+Restart=always
+User=prometheus
+ExecStart=/usr/local/bin/node_exporter \
+	--collector.filesystem.ignored-fs-types='^tmpfs$' \
+	--collector.logind \
+	--collector.process \
+	--collector.systemd \
+	--no-collector.bcache \
+	--no-collector.bonding \
+	--no-collector.infiniband \
+	--no-collector.ipvs \
+	--no-collector.nfs \
+	--no-collector.nfsd \
+	--no-collector.xfs \
+	--no-collector.zfs
+ExecReload=/bin/kill -HUP $MAINPID
+TimeoutStopSec=20s
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target

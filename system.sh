@@ -472,39 +472,64 @@ fi
 ## Monitoring
 ##
 
-if role monitoring; then
-	_promv=$(curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest | jq .tag_name -j  | sed 's/^v//')
-	_promd=prometheus-$_promv.linux-amd64
-	_promu=https://github.com/prometheus/prometheus/releases/download/v$_promv/$_promd.tar.gz
+_prominst() {
+	local name=$1
+	local ver=$(
+		curl -s https://api.github.com/repos/prometheus/$name/releases/latest |
+			jq .tag_name -j |
+			sed 's/^v//'
+	)
+	local fname=$name-$ver.linux-amd64
+	local url=https://github.com/prometheus/$name/releases/download/v$ver/$fname.tar.gz
 
-	grep -q ^prometheus: /etc/group ||
-		groupadd -r prometheus
-	grep -q ^prometheus: /etc/passwd ||
-		useradd -r -d /var/lib/prometheus -s /usr/sbin/nologin \
-			-g prometheus prometheus
+	grep -q ^$name: /etc/group ||
+		groupadd -r $name
+	grep -q ^$name: /etc/passwd ||
+		useradd -r -d /var/lib/$name -s /usr/sbin/nologin \
+			-g $name $name
+	mkdir -p /var/lib/$name
+	chown $name: /var/lib/$name
+	chmod 750 /var/lib/$name
 
-	mkdir -p /var/lib/prometheus /etc/prometheus
-	chown prometheus: /var/lib/prometheus /etc/prometheus
-	chmod 750 /var/lib/prometheus /etc/prometheus
+	if ! $name --version 2>&1 | grep -q "version $ver"; then
+		curl -L $url | tar -C /tmp/ -xz
 
-	if ! prometheus --version 2>&1 | grep -q "version $_promv"; then
-		curl -L $_promu | tar -C /tmp/ -xz
-
-		cp \
-			/tmp/$_promd/prometheus \
-			/tmp/$_promd/promtool \
-			/usr/local/bin/
-		mkdir -p /etc/prometheus
-		cp -r \
-			/tmp/$_promd/console_libraries \
-			/tmp/$_promd/consoles \
-			/etc/prometheus
+		case "$name" in
+			prometheus)
+				cp \
+					/tmp/$fname/prometheus \
+					/tmp/$fname/promtool \
+					/usr/local/bin/
+				mkdir -p /etc/$name
+				chown $name: /etc/$name
+				chmod 750 /etc/$name
+				cp -r \
+					/tmp/$fname/console_libraries \
+					/tmp/$fname/consoles \
+					/etc/$name/
+				;;
+			*)
+				cp /tmp/$fname/$name /usr/local/bin/
+				;;
+		esac
 	fi
+
+}
+
+if role monitoring; then
+	_prominst prometheus
 
 	tmpl /etc/prometheus/prometheus.yml
 
 	tmpl /etc/systemd/system/prometheus.service
 	svc prometheus
+
+fi
+
+if role monitored; then
+	_prominst node_exporter
+	tmpl /etc/systemd/system/node_exporter.service
+	svc node_exporter
 fi
 
 ##
