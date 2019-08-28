@@ -469,6 +469,45 @@ if role backup; then
 fi
 
 ##
+## Monitoring
+##
+
+if role monitoring; then
+	_promv=$(curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest | jq .tag_name -j  | sed 's/^v//')
+	_promd=prometheus-$_promv.linux-amd64
+	_promu=https://github.com/prometheus/prometheus/releases/download/v$_promv/$_promd.tar.gz
+
+	grep -q ^prometheus: /etc/group ||
+		groupadd -r prometheus
+	grep -q ^prometheus: /etc/passwd ||
+		useradd -r -d /var/lib/prometheus -s /usr/sbin/nologin \
+			-g prometheus prometheus
+
+	mkdir -p /var/lib/prometheus /etc/prometheus
+	chown prometheus: /var/lib/prometheus /etc/prometheus
+	chmod 750 /var/lib/prometheus /etc/prometheus
+
+	if ! prometheus --version 2>&1 | grep -q "version $_promv"; then
+		curl -L $_promu | tar -C /tmp/ -xz
+
+		cp \
+			/tmp/$_promd/prometheus \
+			/tmp/$_promd/promtool \
+			/usr/local/bin/
+		mkdir -p /etc/prometheus
+		cp -r \
+			/tmp/$_promd/console_libraries \
+			/tmp/$_promd/consoles \
+			/etc/prometheus
+	fi
+
+	tmpl /etc/prometheus/prometheus.yml
+
+	tmpl /etc/systemd/system/prometheus.service
+	svc prometheus
+fi
+
+##
 ## Dyndns
 ##
 
