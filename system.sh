@@ -524,6 +524,16 @@ if role monitoring; then
 	tmpl /etc/systemd/system/prometheus.service
 	svc prometheus
 
+	file /etc/apt/sources.list.d/grafana.list
+
+	if ! apt-key list 2>/dev/null | grep -q info@grafana.com; then
+		curl -fsSL https://packages.grafana.com/gpg.key | apt-key add -
+	fi
+
+	pkg grafana
+	tmpl /etc/grafana/grafana.ini
+	file /etc/grafana/provisioning/datasources/prometheus.yml
+	svc grafana-server
 fi
 
 if role monitored; then
