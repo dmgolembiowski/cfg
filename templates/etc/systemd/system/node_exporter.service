@@ -4,7 +4,7 @@ Documentation=https://github.com/prometheus/node_exporter
 
 [Service]
 Restart=always
-User=prometheus
+User=node_exporter
 ExecStart=/usr/local/bin/node_exporter \
 	--collector.filesystem.ignored-fs-types='^tmpfs$' \
 	--collector.logind \
