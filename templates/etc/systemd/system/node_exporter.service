@@ -6,7 +6,7 @@ Documentation=https://github.com/prometheus/node_exporter
 Restart=always
 User=node_exporter
 ExecStart=/usr/local/bin/node_exporter \
-	--collector.filesystem.ignored-fs-types='^tmpfs$' \
+	--collector.filesystem.ignored-fs-types='^(tmpfs|nsfs|fuse.rar2fs|squashfs)$' \
 	--collector.logind \
 	--collector.systemd \
 	--no-collector.arp \
