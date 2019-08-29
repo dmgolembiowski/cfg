@@ -25,7 +25,8 @@ ExecStart=/usr/local/bin/node_exporter \
 	--no-collector.timex \
 	--no-collector.vmstat \
 	--no-collector.xfs \
-	--no-collector.zfs
+	--no-collector.zfs \
+	--web.telemetry-path=/node_exporter/metrics
 ExecReload=/bin/kill -HUP $MAINPID
 TimeoutStopSec=20s
 SendSIGKILL=no
