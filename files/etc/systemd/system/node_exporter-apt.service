@@ -1,0 +1,8 @@
+[Unit]
+Description=Collect apt update metrics for node_exporter
+
+[Service]
+Type=oneshot
+User=node_exporter
+Environment=TMPDIR=/var/lib/node_exporter
+ExecStart=/bin/sh -c "/usr/share/node_exporter/apt | sponge /var/lib/node_exporter/apt.prom"

@@ -9,6 +9,7 @@ ExecStart=/usr/local/bin/node_exporter \
 	--collector.filesystem.ignored-fs-types='^(tmpfs|nsfs|fuse.rar2fs|squashfs)$' \
 	--collector.logind \
 	--collector.systemd \
+	--collector.textfile.directory=/var/lib/node_exporter \
 	--no-collector.arp \
 	--no-collector.bcache \
 	--no-collector.bonding \

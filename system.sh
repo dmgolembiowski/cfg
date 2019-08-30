@@ -543,6 +543,14 @@ fi
 if role monitored; then
 	_prominst node_exporter
 	tmpl /etc/systemd/system/node_exporter.service
+
+	mkdir -p /usr/lib/node_exporter
+	chown node_exporter: /usr/lib/node_exporter
+	file /usr/share/node_exporter/apt
+	file /etc/systemd/system/node_exporter-apt.service
+	file /etc/systemd/system/node_exporter-apt.timer
+
+	svc node_exporter-apt.timer
 	svc node_exporter
 fi
 

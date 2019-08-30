@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+
+import apt
+import sys
+
+def kv(k, v, sep=True):
+    return '%s="%s"%s' % (k, v, ',' if sep else '')
+
+with apt.Cache() as cache:
+    for p in cache:
+        if p.is_installed and p.is_upgradable:
+            cand = p.candidate
+            if len(cand.origins) == 1:
+                orig = cand.origins[0]
+                sys.stdout.write('apt_upgradable{')
+                sys.stdout.write(kv('name', p))
+                sys.stdout.write(kv('version_installed', p.installed.version))
+                sys.stdout.write(kv('version_upgradable', cand.version))
+                sys.stdout.write(kv('origin', orig.origin))
+                sys.stdout.write(kv('origin_site', orig.site))
+                sys.stdout.write(kv('origin_archive', orig.archive))
+                sys.stdout.write(kv('origin_component', orig.component, sep=False))
+                sys.stdout.write('} 1\n')
