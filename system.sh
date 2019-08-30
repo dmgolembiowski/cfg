@@ -541,6 +541,8 @@ if role monitoring; then
 fi
 
 if role monitored; then
+	pkg moreutils
+
 	_prominst node_exporter
 	tmpl /etc/systemd/system/node_exporter.service
 
