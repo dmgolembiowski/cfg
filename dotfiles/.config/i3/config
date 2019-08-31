@@ -173,6 +173,7 @@ font pango:IBM Plex Mono 10
 
 bar {
     position top
+    font pango:IBM Plex Mono, forkawesome 10
     separator_symbol " | "
 
     status_command py3status

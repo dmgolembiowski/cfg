@@ -190,6 +190,7 @@ if role desktop; then
 		fonts-noto-mono
 		fonts-noto-color-emoji
 		fonts-ibm-plex
+		fonts-fork-awesome
 		bzip2
 		libgtk-3-0
 		libdbus-glib-1-2

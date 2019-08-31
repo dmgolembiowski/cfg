@@ -42,15 +42,15 @@ disk "/home" {
 }
 
 wireless _first_ {
-        format_up = "W:%quality %essid"
-        format_down = "W: down"
+        format_up = "\uf1eb\u034f %quality %essid"
+        format_down = "\uf1eb\u034f down"
 }
 
 battery all {
-        format = "%status %percentage %remaining"
-        status_chr = "C:"
-        status_bat = "B:"
-        status_full = "F:"
+        format = "%status\u034f  %percentage %remaining"
+        status_chr = "\uf1e6"
+        status_bat = "\uf242"
+        status_full = "\uf240"
         integer_battery_capacity = true
         hide_seconds = true
         threshold_type = percentage
@@ -58,19 +58,19 @@ battery all {
 }
 
 load {
-        format = "L: %1min"
+        format = "\uf085\u034f  %1min"
 }
 
 volume master {
         device = pulseaudio
-	format = "V: %volume"
-	format_muted = "V: %%0"
+	format = "\uf028\u034f %volume"
+	format_muted = "\uf026\u034f %%0"
 }
 
 apt_updates {
-	format = "U: {apt}"
+	format = "\uf06b\u034f  {apt}"
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M "
+        format = "\uf017\u034f  %Y-%m-%d %H:%M "
 }
