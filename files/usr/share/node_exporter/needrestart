@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+
+import re
+import subprocess
+
+out = subprocess.check_output(['/usr/sbin/needrestart', '-b'])
+
+p = 'needrestart'
+svcs = []
+ksta = "0"
+kcur = None
+kexp = None
+ucsta = "0"
+uccur = None
+ucexp = None
+
+for l in out.splitlines():
+    m = re.match(r'^NEEDRESTART-([A-Z]+): (.+)$', l.decode())
+    if m:
+        k = m.group(1)
+        v = m.group(2)
+        if k == 'SVC':
+            svcs.append(v)
+        elif k == 'KSTA':
+            ksta = v
+        elif k == 'KCUR':
+            kcur = v
+        elif k == 'KEXP':
+            kexp = v
+        elif k == 'UCSTA':
+            ucsta = v
+        elif k == 'UCCUR':
+            uccur = v
+        elif k == 'UCEXP':
+            ucexp = v
+
+print('%s_kernel{current="%s",expected="%s"} %s' % (p, kcur, kexp, ksta))
+
+print('%s_ucode{current="%s",expected="%s"} %s' % (p, uccur, ucexp, ucsta))
+
+for s in svcs:
+    print('%s_service{name="%s"} 1' % (p, s))

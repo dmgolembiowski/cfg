@@ -1,0 +1,8 @@
+[Unit]
+Description=Collect needrestart update metrics for node_exporter
+
+[Service]
+Type=oneshot
+User=root
+Environment=TMPDIR=/var/lib/node_exporter
+ExecStart=/bin/sh -c "/usr/share/node_exporter/needrestart | sponge /var/lib/node_exporter/needrestart.prom"

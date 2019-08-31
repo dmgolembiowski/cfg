@@ -548,11 +548,14 @@ if role monitored; then
 
 	mkdir -p /usr/lib/node_exporter
 	chown node_exporter: /usr/lib/node_exporter
-	file /usr/share/node_exporter/apt
-	file /etc/systemd/system/node_exporter-apt.service
-	file /etc/systemd/system/node_exporter-apt.timer
 
-	svc node_exporter-apt.timer
+	for f in apt needrestart; do
+		file /usr/share/node_exporter/$f
+		chmod +x /usr/share/node_exporter/$f
+		file /etc/systemd/system/node_exporter-$f.service
+		file /etc/systemd/system/node_exporter-$f.timer
+		svc node_exporter-$f.timer
+	done
 	svc node_exporter
 fi
 
