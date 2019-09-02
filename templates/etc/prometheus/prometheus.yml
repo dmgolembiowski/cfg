@@ -12,6 +12,9 @@ scrape_configs:
     basic_auth:
       username: prometheus
       password: "{{ monitoring.prom.basic_auth }}"
+    {% if 'scrape_interval' in j %}
+    scrape_interval: {{ j.scrape_interval }}
+    {% endif %}
     static_configs:
       - targets:
         {% for t in j.targets %}
