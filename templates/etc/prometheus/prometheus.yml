@@ -5,7 +5,7 @@ global:
     monitor: '{{ monitoring.prom.external_label }}-monitor'
 
 scrape_configs:
-{% for j in monitor.prom.jobs %}
+{% for j in monitoring.prom.jobs %}
   - job_name: '{{ j.name }}'
     scheme: https
     metrics_path: /{{ j.path }}/metrics
