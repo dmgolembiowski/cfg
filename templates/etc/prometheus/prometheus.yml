@@ -5,14 +5,16 @@ global:
     monitor: '{{ monitoring.prom.external_label }}-monitor'
 
 scrape_configs:
-  - job_name: 'node'
+{% for j in monitor.prom.jobs %}
+  - job_name: '{{ j.name }}'
     scheme: https
-    metrics_path: /node_exporter/metrics
+    metrics_path: /{{ j.path }}/metrics
     basic_auth:
       username: prometheus
       password: "{{ monitoring.prom.basic_auth }}"
     static_configs:
       - targets:
-        {% for t in monitoring.prom.targets.node_exporter %}
+        {% for t in j.targets %}
         - {{ t }}
         {% endfor %}
+{% endfor %}
