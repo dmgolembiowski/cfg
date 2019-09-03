@@ -48,7 +48,7 @@ fi
 if role vm; then
 	pkg linux-image-cloud-amd64
 else
-	pkg fwupd intel-microcode
+	pkg fwupd policykit-1 intel-microcode
 fi
 
 svc systemd-timesyncd
