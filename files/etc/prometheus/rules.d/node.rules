@@ -1,0 +1,29 @@
+# vim: set ft=yaml:
+
+groups:
+  - name: node
+    rules:
+      - alert: OutOfDiskSpace
+        expr: node_filesystem_free_bytes / node_filesystem_size_bytes * 100 < 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Out of disk space (instance {{ $labels.instance }})"
+          description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      - alert: OutOfInodes
+        expr: node_filesystem_files_free / node_filesystem_files * 100 < 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Out of inodes (instance {{ $labels.instance }})"
+          description: "Disk is almost running out of available inodes (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      - alert: SystemdServiceFailed
+        expr: node_systemd_unit_state{state="failed"} == 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "SystemD service failed (instance {{ $labels.instance }})"
+          description: "Service {{ $labels.name }} failed\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"

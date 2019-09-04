@@ -5,6 +5,5 @@ route:
 receivers:
   - name: pushover
     pushover_configs:
-      - send_resolved: false
-        user_key: {{ monitoring.alertmanager.pushover.user_key }}
+      - user_key: {{ monitoring.alertmanager.pushover.user_key }}
         token: {{ monitoring.alertmanager.pushover.token }}

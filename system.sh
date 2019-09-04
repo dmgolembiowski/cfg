@@ -530,6 +530,7 @@ _prominst() {
 if role monitoring; then
 	_prominst prometheus
 	tmpl /etc/prometheus/prometheus.yml
+	file /etc/prometheus/rules.d/node.rules
 	tmpl /etc/systemd/system/prometheus.service
 	svc prometheus
 
