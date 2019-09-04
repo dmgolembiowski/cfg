@@ -513,6 +513,12 @@ _prominst() {
 					/tmp/$fname/consoles \
 					/etc/$name/
 				;;
+			alertmanager)
+				cp \
+					/tmp/$fname/alertmanager \
+					/tmp/$fname/amtool \
+					/usr/local/bin/
+				;;
 			*)
 				cp /tmp/$fname/$name /usr/local/bin/
 				;;
@@ -523,11 +529,14 @@ _prominst() {
 
 if role monitoring; then
 	_prominst prometheus
-
 	tmpl /etc/prometheus/prometheus.yml
-
 	tmpl /etc/systemd/system/prometheus.service
 	svc prometheus
+
+	_prominst alertmanager
+	tmpl /etc/alertmanager/alertmanager.yml
+	tmpl /etc/systemd/system/alertmanager.service
+	svc alertmanager
 
 	file /etc/apt/sources.list.d/grafana.list
 

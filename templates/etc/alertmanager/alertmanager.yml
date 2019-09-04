@@ -1,0 +1,10 @@
+route:
+  group_by:
+    - alertname
+  receiver: pushover
+receivers:
+  - name: pushover
+    pushover_configs:
+      - send_resolved: false
+        user_key: {{ monitoring.alertmanager.pushover.user_key }}
+        token: {{ monitoring.alertmanager.pushover.token }}

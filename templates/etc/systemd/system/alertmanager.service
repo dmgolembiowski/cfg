@@ -1,0 +1,18 @@
+[Unit]
+Description=Alert management for Prometheus
+
+[Service]
+Restart=always
+User=alertmanager
+ExecStart=/usr/local/bin/alertmanager \
+	--config.file=/etc/alertmanager/alertmanager.yml \
+	--cluster.listen-address='' \
+	--storage.path=/var/lib/alertmanager \
+	--web.listen-address=127.0.0.1:9093 \
+	--web.external-url={{ monitoring.alertmanager.external_url }}
+ExecReload=/bin/kill -HUP $MAINPID
+TimeoutStopSec=20s
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target
