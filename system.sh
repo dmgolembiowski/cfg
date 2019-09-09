@@ -162,6 +162,12 @@ if role work; then
 	file /usr/share/bash-completion/completions/az
 
 	pkg dnsutils
+
+	_kubev=1.15.0
+	if ! kubectl version 2>/dev/null | grep -q $_kubev; then
+		curl -L https://storage.googleapis.com/kubernetes-release/release/v$_kubev/bin/linux/amd64/kubectl > /usr/local/bin/kubectl
+		chmod +x /usr/local/bin/kubectl
+	fi
 fi
 
 ##
