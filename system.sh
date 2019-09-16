@@ -8,6 +8,7 @@ shift
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
 
 . $ROOT/lib.sh
+. $ROOT/ver.sh
 
 ##
 ## Base
@@ -485,11 +486,7 @@ fi
 
 _prominst() {
 	local name=$1
-	local ver=$(
-		curl -s https://api.github.com/repos/prometheus/$name/releases/latest |
-			jq .tag_name -j |
-			sed 's/^v//'
-	)
+	local ver=$2
 	local fname=$name-$ver.linux-amd64
 	local url=https://github.com/prometheus/$name/releases/download/v$ver/$fname.tar.gz
 
@@ -534,13 +531,13 @@ _prominst() {
 }
 
 if role monitoring; then
-	_prominst prometheus
+	_prominst prometheus $PROMETHEUS_V
 	tmpl /etc/prometheus/prometheus.yml
 	file /etc/prometheus/rules.d/node.rules
 	tmpl /etc/systemd/system/prometheus.service
 	svc prometheus
 
-	_prominst alertmanager
+	_prominst alertmanager $ALERTMANAGER_V
 	tmpl /etc/alertmanager/alertmanager.yml
 	tmpl /etc/systemd/system/alertmanager.service
 	svc alertmanager
@@ -560,7 +557,7 @@ fi
 if role monitored; then
 	pkg moreutils
 
-	_prominst node_exporter
+	_prominst node_exporter $NODE_EXPORTER_V
 	tmpl /etc/systemd/system/node_exporter.service
 
 	mkdir -p /usr/lib/node_exporter
