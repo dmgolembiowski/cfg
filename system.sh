@@ -164,9 +164,8 @@ if role work; then
 
 	pkg dnsutils
 
-	_kubev=1.15.0
-	if ! kubectl version 2>/dev/null | grep -q $_kubev; then
-		curl -L https://storage.googleapis.com/kubernetes-release/release/v$_kubev/bin/linux/amd64/kubectl > /usr/local/bin/kubectl
+	if ! kubectl version 2>/dev/null | grep -q $KUBECTL_V; then
+		curl -L https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_V/bin/linux/amd64/kubectl > /usr/local/bin/kubectl
 		chmod +x /usr/local/bin/kubectl
 	fi
 fi
