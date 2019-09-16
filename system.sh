@@ -58,6 +58,8 @@ svc systemd-timesyncd
 ## Net
 ##
 
+file /etc/systemd/resolved.conf.d/dns_servers.conf
+
 if role desktop; then
 	file /etc/systemd/resolved.conf.d/static.conf
 
