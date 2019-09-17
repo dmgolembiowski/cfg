@@ -56,7 +56,6 @@ fi
 ##
 
 if role desktop; then
-	svc ssh-agent --user
 	tmpl ~/.config/systemd/user/ssh-tunnel.service \
 		/home/user/.config/systemd/user/ssh-tunnel.service
 	svc ssh-tunnel --user
