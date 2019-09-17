@@ -57,12 +57,12 @@ elif distro arch; then
 		file /etc/pacman.d/hooks/needrestart.hook
 	fi
 
+	pkg pacman-contrib lostfiles openssh fwupd
+
 	# Keep no pacman cache for uninstalled packages and 2 versions of
 	# installed packages:
 	file /etc/systemd/system/paccache.service.d/override.conf
 	svc paccache.timer
-
-	pkg openssh fwupd
 fi
 
 pkg '
