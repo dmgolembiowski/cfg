@@ -21,7 +21,7 @@ order += "battery all"
 order += "load"
 order += "volume master"
 order += "backlight"
-order += "apt_updates"
+order += "arch_updates"
 order += "tztime local"
 
 disk "/" {
@@ -55,8 +55,8 @@ volume master {
 	format_muted = "\uf026\u034f %%0"
 }
 
-apt_updates {
-	format = "\uf06b\u034f  {apt}"
+arch_updates {
+	format = "\uf06b\u034f  {pacman}"
 }
 
 tztime local {
