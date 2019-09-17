@@ -213,6 +213,7 @@ if role desktop; then
 		noto-fonts-emoji
 		ttf-ibm-plex
 		ttf-font-awesome
+		firefox
 	'
 
 	# Periodic TRIM:
