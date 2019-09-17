@@ -212,7 +212,7 @@ if role desktop; then
 		noto-fonts
 		noto-fonts-emoji
 		ttf-ibm-plex
-		ttf-fork-awesome
+		ttf-font-awesome
 	'
 
 	# Periodic TRIM:
