@@ -47,11 +47,30 @@ diff() {
 }
 
 _pkg_installed() {
-	dpkg-query -Wf '${Package}\n' | grep -q "^$p\$"
+	case $DISTRO in
+		debian)
+			dpkg-query -Wf '${Package}\n' | grep -q "^$1\$"
+			;;
+		arch)
+			pacman -Q $1 >/dev/null 2>&1
+			;;
+	esac
 }
+
 pkg() {
 	for p in $*; do
-		_pkg_installed || apt install $p
+		if _pkg_installed $p; then
+			continue
+		fi
+
+		case $DISTRO in
+			debian)
+				apt install $p
+				;;
+			arch)
+				pacman -S $p
+				;;
+		esac
 	done
 }
 

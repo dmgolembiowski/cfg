@@ -1,9 +1,0 @@
-#!/bin/sh
-
-id=slack
-
-if ! snap list 2>/dev/null | grep -q "^$id "; then
-	sudo snap install $id --classic
-fi
-
-exec /snap/bin/$id

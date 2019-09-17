@@ -14,43 +14,65 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 ## Base
 ##
 
+if distro debian; then
+	pkg '
+		python3-jinja2
+		python3-yaml
+		unattended-upgrades
+		python3-gi
+		needrestart
+	'
+	echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
+
+	tmpl /etc/apt/sources.list
+
+	for f in norecommends autoremove periodicclean showversions; do
+		file /etc/apt/apt.conf.d/$f
+	done
+	unset f
+
+	file /usr/local/bin/apt-backports
+	chmod +x /usr/local/bin/apt-backports
+
+	pkg openssh-client
+	if role server; then
+		pkg ssh
+	fi
+
+	if role vm; then
+		pkg linux-image-cloud-amd64
+	else
+		pkg fwupd policykit-1 tpm2-tools intel-microcode
+	fi
+elif distro arch; then
+	pkg '
+		python-jinja
+		python-yaml
+	'
+	echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
+
+	file /etc/pacman.conf
+	file /etc/pacman.d/mirrorlist
+	if _pkg_installed needrestart; then
+		file /etc/pacman.d/hooks/needrestart.hook
+	fi
+
+	# Keep no pacman cache for uninstalled packages and 2 versions of
+	# installed packages:
+	file /etc/systemd/system/paccache.service.d/override.conf
+	svc paccache.timer
+
+	pkg openssh fwupd
+fi
+
 pkg '
-	python3-jinja2
-	python3-yaml
 	sudo
 	curl
 	ca-certificates
-	unattended-upgrades
-	python3-gi
-	needrestart
 '
-
-# Passwordless sudo:
-echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
-
-tmpl /etc/apt/sources.list
-
-for f in norecommends autoremove periodicclean showversions; do
-	file /etc/apt/apt.conf.d/$f
-done
-unset f
-
-file /usr/local/bin/apt-backports
-chmod +x /usr/local/bin/apt-backports
 
 # Persistend systemd yournal:
 mkdir -p /var/log/journal
-
-pkg openssh-client
-if role server; then
-	pkg ssh
-fi
-
-if role vm; then
-	pkg linux-image-cloud-amd64
-else
-	pkg fwupd policykit-1 tpm2-tools intel-microcode
-fi
 
 svc systemd-timesyncd
 
@@ -73,42 +95,47 @@ if role server; then
 fi
 
 svc systemd-resolved
-ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+if distro debian; then
+	ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+elif distro arch; then
+	ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+fi
 
 ##
 ## Sec
 ##
 
-# TODO: switch to nftables when docker supports iptables-nft:
-#       https://github.com/moby/moby/issues/38099
-if ! role work; then
-	pkg nftables
+pkg nftables
 
-	tmpl /etc/nftables.conf
-	chmod 700 /etc/nftables.conf
+tmpl /etc/nftables.conf
+chmod 700 /etc/nftables.conf
 
-	svc nftables
-fi
+svc nftables
 
 chmod 700 /boot
 
 file /etc/sysctl.d/50-dmesg-restrict.conf
 
+if distro arch; then
+	pkg arch-audit
+fi
+
 ##
 ## Debug
 ##
 
-(
-	v=3.12
-	u=https://raw.githubusercontent.com/pixelb/ps_mem/v$v/ps_mem.py
+if distro debian; then
+	_psv=3.12
+	u=https://raw.githubusercontent.com/pixelb/ps_mem/v$_psv/ps_mem.py
 	b=/usr/local/bin/ps_mem
-	if ! grep -q "^# V$v" $b 2>/dev/null; then
+	if ! grep -q "^# V$_psv" $b 2>/dev/null; then
 		curl -L $u > $b
 			sed -i 's/env python/env python3/' $b
 			chmod +x $b
 	fi
-	unset psv
-)
+elif distro arch; then
+	pkg ps_mem
+fi
 
 pkg htop
 
@@ -117,59 +144,47 @@ pkg htop
 ##
 
 if role dev; then
+	if distro debian; then
+		pkg '
+			man-db
+			vim-nox
+			ncurses-term
+			silversearcher-ag
+		'
+	elif distro arch; then
+		pkg '
+			vim
+			the_silver_searcher
+		'
+	fi
+
 	pkg '
-		man-db
 		git
 		bash-completion
 		tmux
-		vim-nox
-                ncurses-term
 		fzy
 		ncdu
-		silversearcher-ag
 		jq
 	'
 fi
 
 if role work; then
-	(
-		v=1.12.5
-		u=https://dl.google.com/go/go$v.linux-amd64.tar.gz
+	pkg go go-bindata gcc libxml2 docker
 
-		if ! /opt/go/bin/go version | grep -q go$v 2>/dev/null; then
-			curl -L $u | tar -C /opt -xz
-		fi
-	)
-	pkg make go-bindata gcc libc6-dev libxml2-utils
-
-	if ! apt-key list 2>/dev/null | grep -q docker@docker.com; then
-		curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-	fi
-
-	file /etc/apt/sources.list.d/docker.list
-	pkg docker-ce
-
-	if [ "$(readlink /etc/alternatives/iptables)" != /usr/sbin/iptables-legacy ]; then
-		update-alternatives --set iptables /usr/sbin/iptables-legacy
-	fi
-
-	pkg virtualenv python3-dev libssl-dev libffi-dev
+	pkg python-virtualenv
 
 	if ! [ -e /opt/az/bin/python3 ]; then
 		virtualenv -p python3 /opt/az
 	fi
 
-	pip /opt/az 'azure-cli==2.0.70'
+	pip /opt/az 'azure-cli==2.0.73'
 	file /usr/local/bin/az
 	chmod +x /usr/local/bin/az
 	file /usr/share/bash-completion/completions/az
 
-	pkg dnsutils
+	pkg bind-tools
 
-	if ! kubectl version 2>/dev/null | grep -q $KUBECTL_V; then
-		curl -L https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_V/bin/linux/amd64/kubectl > /usr/local/bin/kubectl
-		chmod +x /usr/local/bin/kubectl
-	fi
+	pkg kubectl
 fi
 
 ##
@@ -178,31 +193,24 @@ fi
 
 if role desktop; then
 	pkg '
-		xserver-xorg-core
-		xserver-xorg-input-libinput
-		x11-xserver-utils
-		xinit
+		xorg-server
+		xorg-xinit
+		xorg-xrdb
 		xdg-utils
 		i3-wm
 		i3lock
 		py3status
 		brightnessctl
-		brightness-udev
 		xterm
 		maim
 		sxiv
 		mupdf
 		redshift
-		geoclue-2.0
-		fonts-noto-core
-		fonts-noto-mono
-		fonts-noto-color-emoji
-		fonts-ibm-plex
-		fonts-fork-awesome
-		bzip2
 		unzip
-		libgtk-3-0
-		libdbus-glib-1-2
+		noto-fonts
+		noto-fonts-emoji
+		ttf-ibm-plex
+		ttf-fork-awesome
 	'
 
 	# Periodic TRIM:
@@ -226,22 +234,6 @@ if role desktop; then
 	systemctl enable i3lock
 fi
 
-if role dekstop || role media; then
-	pkg snapd
-fi
-
-##
-## Bluetooth
-##
-
-if role desktop; then
-	pkg bluez
-
-	file /etc/bluetooth/main.conf
-
-	svc bluetooth
-fi
-
 ##
 ## Media
 ##
@@ -251,15 +243,12 @@ if role desktop; then
 		pulseaudio
 		pulsemixer
 		mpv
-		i965-va-driver
+		libva-intel-driver
 		youtube-dl
 	'
 
 	# PMP:
-	pkg '
-		fuse
-		libnss3
-	'
+	pkg fuse
 
 	_pmpu=https://knapsu.eu/data/plex/latest
 	_pmpf=$(curl -sI $_pmpu | awk '/^location: / { print $2 }' | tr -cd '[:alnum:]._-')
@@ -718,23 +707,51 @@ fi
 ## Cleanup
 ##
 
-_UNNEEDED_PKGS='
-debconf-i18n
-eject
-ifupdown
-isc-dhcp-client
-nano
-rsyslog
-tasksel
-'
+if distro debian; then
+	_UNNEEDED_PKGS='
+		debconf-i18n
+		eject
+		ifupdown
+		isc-dhcp-client
+		nano
+		rsyslog
+		tasksel
+	'
+elif distro arch; then
+	UNNEEDED_PKGS='
+		dhcpcd
+		haveged
+		iotop
+		jfsutils
+		linux
+		lsof
+		lvm2
+		mdadm
+		mtr
+		nano
+		net-tools
+		netctl
+		psmisc
+		reiserfsprogs
+		s-nail
+		sysstat
+		systemd-sysvcompat
+		whois
+		xfsprogs
+	'
+fi
 
 if role vm; then
 	_UNNEEDED_PKGS="$_UNNEEDED_PKGS linux-image-amd64"
 fi
 
 for p in $_UNNEEDED_PKGS; do
-	if _pkg_installed; then
-		apt purge $p
+	if _pkg_installed $p; then
+		if distro debian; then
+			apt purge $p
+		elif distro arch; then
+			pacman -Rs $p
+		fi
 	fi
 done
 unset p
