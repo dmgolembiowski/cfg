@@ -200,6 +200,7 @@ if role desktop; then
 		fonts-ibm-plex
 		fonts-fork-awesome
 		bzip2
+		unzip
 		libgtk-3-0
 		libdbus-glib-1-2
 	'
