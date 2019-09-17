@@ -16,8 +16,6 @@ general {
 }
 
 order += "disk /"
-order += "disk /var"
-order += "disk /home"
 order += "wireless _first_"
 order += "battery all"
 order += "load"
@@ -28,16 +26,6 @@ order += "tztime local"
 
 disk "/" {
         format = "/ %percentage_used"
-        low_threshold = 20
-}
-
-disk "/var" {
-        format = "/var %percentage_used"
-        low_threshold = 20
-}
-
-disk "/home" {
-        format = "/home %percentage_used"
         low_threshold = 20
 }
 
