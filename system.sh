@@ -214,6 +214,7 @@ if role desktop; then
 		ttf-ibm-plex
 		ttf-font-awesome
 		firefox
+		firefox-tridactyl
 	'
 
 	# Periodic TRIM:
