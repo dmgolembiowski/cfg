@@ -196,6 +196,7 @@ if role desktop; then
 		xorg-server
 		xorg-xinit
 		xorg-xrdb
+		xorg-xsetroot
 		xorg-xrandr
 		xdg-utils
 		i3-wm
