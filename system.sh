@@ -238,6 +238,8 @@ if role desktop; then
 
 	tmpl /etc/systemd/system/i3lock.service
 	systemctl enable i3lock
+
+	pkg flatpak
 fi
 
 ##
