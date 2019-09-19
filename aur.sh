@@ -10,6 +10,7 @@ AUR_URL='https://aur.archlinux.org'
 
 AUR_PACKAGES='
 	needrestart
+	vapoursynth-editor
 '
 
 UPDATE=$([ "$1" != -u ] || echo yes)
