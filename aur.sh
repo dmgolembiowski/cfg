@@ -1,7 +1,10 @@
 #!/bin/sh -e
 
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
+
 CHROOT=$ROOT/chroot/root
+REPO=/var/local/repo
+REPODB=/var/local/repo/custom.db.tar.gz
 
 AUR_URL='https://aur.archlinux.org'
 
@@ -14,6 +17,10 @@ UPDATE=$([ "$1" != -u ] || echo yes)
 mkdir -p $CHROOT
 
 [ -d $CHROOT/root ] || mkarchroot $CHROOT/root base-devel
+if ! [ -e $REPODB ]; then
+	sudo mkdir -p $REPO
+	sudo repo-add $REPODB
+fi
 
 mkdir -p ~/.gnupg
 echo 'keyserver-options auto-key-retrieve' > ~/.gnupg/gpg.conf
@@ -28,7 +35,7 @@ pkgf() {
 		e=$e:
 	fi
 
-	echo $d/$(basename $d)-${e}${v}-${r}-*.pkg.tar.xz
+	echo $(basename $d)-${e}${v}-${r}-*.pkg.tar.xz
 }
 
 if [ "$UPDATE" ]; then
@@ -46,7 +53,7 @@ else
 		d=$ROOT/aur/$n
 		p=$(pkgf $d)
 
-		if [ -e $p ]; then
+		if [ -e $REPO/$p ]; then
 			continue
 		fi
 
@@ -59,6 +66,7 @@ else
 			esac
 		)
 
-		sudo pacman -U $p
+		sudo cp $d/$p $REPO/
+		sudo repo-add $REPODB $REPO/$p
 	done
 fi
