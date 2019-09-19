@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+h() {
+	printf '\e[1;34m%s\e[m\n' "$1"
+}
+
+h pacman
+sudo pacman -Syu --ignore linux-lts
+
+h flatpak
+d=/var/lib/flatpak/exports/share
+d=$d:$HOME/.local/share/flatpak/exports/share
+XDG_DATA_DIRS=$d flatpak update
+
+h fwup
+sudo fwupdmgr refresh
+sudo fwupdmgr get-updates
