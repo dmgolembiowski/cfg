@@ -28,6 +28,9 @@ find $DOTFILES -type f | while read -r f; do
 			*.Xresources|*.xinitrc)
 				continue
 				;;
+			*bin/pac*)
+				continue
+				;;
 		esac
 	fi
 
