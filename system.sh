@@ -53,11 +53,17 @@ elif distro arch; then
 
 	file /etc/pacman.conf
 	file /etc/pacman.d/mirrorlist
-	if _pkg_installed needrestart; then
-		file /etc/pacman.d/hooks/needrestart.hook
-	fi
+	pkg '
+		pacman-contrib
+		lostfiles
+		devtools
+		openssh
+		needrestart
+		iucode-tool
+		fwupd
+	'
 
-	pkg pacman-contrib lostfiles openssh fwupd
+	file /etc/pacman.d/hooks/needrestart.hook
 
 	# Keep no pacman cache for uninstalled packages and 2 versions of
 	# installed packages:
