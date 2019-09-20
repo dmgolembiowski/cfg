@@ -731,6 +731,10 @@ if distro debian; then
 		rsyslog
 		tasksel
 	'
+
+	if role vm; then
+		_UNNEEDED_PKGS="$_UNNEEDED_PKGS linux-image-amd64"
+	fi
 elif distro arch; then
 	UNNEEDED_PKGS='
 		dhcpcd
@@ -753,10 +757,6 @@ elif distro arch; then
 		whois
 		xfsprogs
 	'
-fi
-
-if role vm; then
-	_UNNEEDED_PKGS="$_UNNEEDED_PKGS linux-image-amd64"
 fi
 
 for p in $_UNNEEDED_PKGS; do
