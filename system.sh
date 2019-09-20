@@ -736,7 +736,7 @@ if distro debian; then
 		_UNNEEDED_PKGS="$_UNNEEDED_PKGS linux-image-amd64"
 	fi
 elif distro arch; then
-	UNNEEDED_PKGS='
+	_UNNEEDED_PKGS='
 		dhcpcd
 		haveged
 		iotop
