@@ -205,6 +205,7 @@ if role desktop; then
 		xorg-xsetroot
 		xorg-xrandr
 		xdg-utils
+		xclip
 		unclutter
 		i3-wm
 		i3lock
