@@ -224,6 +224,7 @@ if role desktop; then
 		ttf-font-awesome
 		firefox
 		firefox-tridactyl
+		moreutils
 	'
 
 	# Periodic TRIM:
