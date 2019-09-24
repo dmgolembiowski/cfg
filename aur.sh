@@ -11,6 +11,7 @@ AUR_URL='https://aur.archlinux.org'
 AUR_PACKAGES='
 	needrestart
 	slack-desktop
+	spotify
 	vapoursynth-editor
 '
 
