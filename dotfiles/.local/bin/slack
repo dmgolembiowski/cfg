@@ -1,9 +1,0 @@
-#!/bin/sh
-
-id=com.slack.Slack
-
-if ! flatpak info $id 1>/dev/null 2>&1; then
-	flatpak install flathub $id
-fi
-
-exec flatpak run $id
