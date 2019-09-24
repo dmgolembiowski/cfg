@@ -631,8 +631,8 @@ _w_set() {
 		val="\"$val\""
 	fi
 
-	case  "$val" in
-		$IRC_NICK|buflist)
+	case  "$set_key" in
+		*nicks|*realname|*sasl_username|weechat.bar.buflist.items)
 			val="\"$val\""
 			;;
 	esac
