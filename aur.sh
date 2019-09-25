@@ -13,6 +13,7 @@ AUR_PACKAGES='
 	slack-desktop
 	spotify
 	vapoursynth-editor
+	vapoursynth-plugin-f3kdb-git
 '
 
 UPDATE=$([ "$1" != -u ] || echo yes)
