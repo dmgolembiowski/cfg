@@ -69,8 +69,6 @@ elif distro arch; then
 	# installed packages:
 	file /etc/systemd/system/paccache.service.d/override.conf
 	svc paccache.timer
-
-	file /etc/pacman.d/hooks/fwupd.hook
 fi
 
 pkg '
