@@ -55,6 +55,7 @@ elif distro arch; then
 	file /etc/pacman.d/mirrorlist
 	pkg '
 		pacman-contrib
+		pacolog
 		lostfiles
 		devtools
 		openssh
