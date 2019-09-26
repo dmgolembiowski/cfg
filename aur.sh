@@ -51,7 +51,7 @@ if [ "$UPDATE" ]; then
 		)
 	done
 else
-	arch-nspawn $CHROOT/root pacman -Syu
+	arch-nspawn $CHROOT/root pacman -Syu --noconfirm
 
 	for n in $AUR_PACKAGES; do
 		d=$ROOT/aur/$n
