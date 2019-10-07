@@ -54,6 +54,7 @@ elif distro arch; then
 	file /etc/pacman.conf
 	file /etc/pacman.d/mirrorlist
 	pkg '
+		base
 		pacman-contrib
 		pacolog
 		lostfiles
@@ -752,11 +753,9 @@ elif distro arch; then
 		nano
 		net-tools
 		netctl
-		psmisc
 		reiserfsprogs
 		s-nail
 		sysstat
-		systemd-sysvcompat
 		whois
 		xfsprogs
 	'
