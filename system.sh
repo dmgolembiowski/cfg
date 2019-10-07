@@ -97,10 +97,8 @@ if role desktop; then
 	envfile /etc/wpa_supplicant/wpa_supplicant-${_wlif}.conf
 fi
 
-if role server; then
-	tmpl /etc/systemd/network/wired.network
-	svc systemd-networkd
-fi
+tmpl /etc/systemd/network/wired.network
+svc systemd-networkd
 
 svc systemd-resolved
 if distro debian; then
