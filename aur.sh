@@ -40,7 +40,7 @@ pkgf() {
 		e=$e:
 	fi
 
-	echo $(basename $d)-${e}${v}-${r}-*.pkg.tar.xz
+	echo $(basename $d)-${e}${v}-${r}-*.pkg.tar.*
 }
 
 if [ "$UPDATE" ]; then
