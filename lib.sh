@@ -1,7 +1,10 @@
 TEMPLATES=$ROOT/templates
 FILES=$ROOT/files
 
-DISTRO=$(awk -F= '/^ID=/ { print $2 }' /etc/os-release)
+if [ -e /etc/os-release ]; then
+	DISTRO=$(awk -F= '/^ID=/ { print $2 }' /etc/os-release)
+fi
+UNAME=$(uname)
 
 # Read YAML file into shell vars
 eval $(python3 -c "
@@ -25,7 +28,7 @@ def p(n, d):
     if len(n):
         n.pop()
 
-p([], yaml.safe_load(open('$ROOT/env/$(hostname).yml', 'r')))
+p([], yaml.safe_load(open('$ROOT/env/$(hostname -s).yml', 'r')))
 
 ")
 
@@ -36,6 +39,10 @@ role() {
 
 distro() {
 	[ "$DISTRO" = "$1" ]
+}
+
+mac() {
+	[ "$UNAME" = "$Darwin" ]
 }
 
 diff() {
@@ -132,7 +139,7 @@ tmpl = jinja2.Template(
     lstrip_blocks=True,
     keep_trailing_newline=True
 )
-data = yaml.safe_load(open('$ROOT/env/$(hostname).yml', 'r'))
+data = yaml.safe_load(open('$ROOT/env/$(hostname -s).yml', 'r'))
 
 if len(k):
 	lookup = ''.join(['[\"' + i + '\"]' for i in k.split('.')])
