@@ -11,6 +11,15 @@ done
 
 . $ROOT/lib.sh
 
+if ! [ -x /Library/Developer/CommandLineTools/usr/bin/cc ]; then
+	xcode-select --install
+fi
+
+if ! [ -x /usr/local/bin/brew ]; then
+	hburl=https://raw.githubusercontent.com/Homebrew/install/master/install
+	ruby -e "$(curl -fsSL $hburl)"
+fi
+
 brew bundle
 
 _s=/usr/local/bin/bash
