@@ -109,6 +109,8 @@ Manual configuration
 - Date and Time
   - Clock
     - Show the day of week: disable
+- Sharing
+  - Computer's Name: hostname
 
 ### Mission Control
 
