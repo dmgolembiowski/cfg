@@ -14,7 +14,7 @@ find $DOTFILES -type f | while read -r f; do
 	src="$DOTFILES/$rel"
 	dst="$HOME/$rel"
 
-	if role server; then
+	if role server || ! mac; then
 		case "$f" in
 			*/systemd*|*/xterm*|*/gtk*|*/i3*)
 				continue
