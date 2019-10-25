@@ -7,6 +7,12 @@
 
 [[ $WAYLAND_DISPLAY ]] && shopt -s checkwinsize
 
+# Completions on MacOS:
+if [ -r /usr/local/etc/profile.d/bash_completion.sh ]; then
+	export BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
+	. /usr/local/etc//profile.d/bash_completion.sh
+fi
+
 shopt -s histappend
 shopt -s extglob
 shopt -s globstar

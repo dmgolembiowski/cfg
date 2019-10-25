@@ -15,6 +15,10 @@ mas 'Todoist', id: 585829637
 ## Dev
 ##
 
+brew 'git'
+brew 'fzy'
+brew 'bash-completion@2'
+
 ##
 ## Work
 ##
