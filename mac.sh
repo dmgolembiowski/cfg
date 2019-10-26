@@ -29,3 +29,9 @@ fi
 if [ "$SHELL" != "$_s" ]; then
 	chsh -s $_s
 fi
+
+# SF Mono font:
+if ! [ -e ~/Library/Fonts/SFMono-Regular.otf ]; then
+	cp /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/*.otf \
+		~/Library/Fonts
+fi
