@@ -2,6 +2,7 @@
 
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
 
+# Python dependencies:
 for _p in PyYAML==5.1.2 ; do
 	if ! pip3 freeze | grep -q "^$_p"; then
 		tmpcache=$(mktemp -d)
@@ -11,10 +12,12 @@ done
 
 . $ROOT/lib.sh
 
+# xcode development tools:
 if ! [ -x /Library/Developer/CommandLineTools/usr/bin/cc ]; then
 	xcode-select --install
 fi
 
+# homebrew:
 if ! [ -x /usr/local/bin/brew ]; then
 	hburl=https://raw.githubusercontent.com/Homebrew/install/master/install
 	ruby -e "$(curl -fsSL $hburl)"
@@ -22,6 +25,7 @@ fi
 
 brew bundle
 
+# Modern bash as default shell:
 _s=/usr/local/bin/bash
 if ! grep -q $_s /etc/shells; then
 	sudo sh -c "echo $_s >> /etc/shells"
