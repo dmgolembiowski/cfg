@@ -58,7 +58,7 @@ fi
 ## SSH
 ##
 
-if role desktop; then
+if role desktop && !mac; then
 	tmpl ~/.config/systemd/user/ssh-tunnel.service \
 		/home/user/.config/systemd/user/ssh-tunnel.service
 	svc ssh-tunnel --user
@@ -160,7 +160,7 @@ fi
 ## Dirs
 ##
 
-if role desktop; then
+if role desktop && !mac; then
 	mkdir -p ~/pic
 fi
 
