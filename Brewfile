@@ -19,6 +19,7 @@ brew 'git'
 brew 'fzy'
 brew 'tmux'
 brew 'bash-completion@2'
+brew 'the_silver_searcher'
 cask 'alacritty'
 
 ##
