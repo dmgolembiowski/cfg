@@ -150,6 +150,7 @@ if role dev; then
 	fi
 
 	vimpurge nofrils
+	vimpurge papercolor-theme
 
 	mkdir -p ~/.vim/tmp/undo
 	mkdir -p ~/.vim/tmp/swap
