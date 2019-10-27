@@ -144,13 +144,13 @@ if role dev; then
 	vimpack tpope vim-eunuch tag
 	vimpack duggiefresh vim-easydir tag
 	vimpack farmergreg vim-lastplace tag
-	vimpack vimwiki vimwiki tag
 	if role work; then
 		vimpack fatih vim-go tag
 	fi
 
 	vimpurge nofrils
 	vimpurge papercolor-theme
+	vimpurge vimwiki
 
 	mkdir -p ~/.vim/tmp/undo
 	mkdir -p ~/.vim/tmp/swap
