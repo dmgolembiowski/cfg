@@ -1,5 +1,12 @@
 #!/bin/sh
 
-ip addr |
-	grep -oP 'inet \K[\d.]+' |
+{
+	if command -v ip >/dev/null; then
+		ip addr
+	else
+		ifconfig
+	fi
+} |
+	awk '/inet / { print $2 }' |
+	cut -d/ -f1 |
 	egrep -v '^(127|169\.254)'
