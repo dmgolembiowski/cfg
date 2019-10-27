@@ -14,7 +14,7 @@ find $DOTFILES -type f | while read -r f; do
 	src="$DOTFILES/$rel"
 	dst="$HOME/$rel"
 
-	if role server || ! mac; then
+	if role server || mac; then
 		case "$f" in
 			*/systemd*|*/xterm*|*/gtk*|*/i3*)
 				continue
@@ -58,7 +58,7 @@ fi
 ## SSH
 ##
 
-if role desktop && !mac; then
+if role desktop && ! mac; then
 	tmpl ~/.config/systemd/user/ssh-tunnel.service \
 		/home/user/.config/systemd/user/ssh-tunnel.service
 	svc ssh-tunnel --user
@@ -74,6 +74,11 @@ if role desktop; then
 	ff_profile_dir=~/.mozilla/firefox
 
 	for d in $ff_profile_dir/*.default-release $ff_profile_dir/*.priv; do
+		case "$d" in
+			*\**)
+				continue
+				;;
+		esac
 		[ -d "$d" ] || continue
 
 		tmpl "$d"/chrome/userChrome.css \
@@ -160,7 +165,7 @@ fi
 ## Dirs
 ##
 
-if role desktop && !mac; then
+if role desktop && ! mac; then
 	mkdir -p ~/pic
 fi
 

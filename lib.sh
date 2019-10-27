@@ -42,7 +42,7 @@ distro() {
 }
 
 mac() {
-	[ "$UNAME" = "$Darwin" ]
+	[ "$UNAME" = "Darwin" ]
 }
 
 diff() {
