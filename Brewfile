@@ -8,6 +8,7 @@ cask 'amethyst'
 cask 'latest'
 mas 'Bitwarden', id: 1352778147
 mas 'Todoist', id: 585829637
+mas 'Amphetamine', id: 937984704
 
 ##
 ## Dev
