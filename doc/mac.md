@@ -143,6 +143,7 @@ Manual configuration
   - Username and passwords: disable
 - Extensions
   - Bitwarden
+  - Todoist
   - Vimari
 - Advanced
   - Smart search field: show full website address
