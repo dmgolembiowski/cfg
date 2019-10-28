@@ -145,9 +145,15 @@ Manual configuration
   - Bitwarden
   - Todoist
   - Vimari
+  - Wipr (part 1, 2 and 3)
 - Advanced
   - Smart search field: show full website address
   - Show develop menu in menu bar
+
+### Wipr
+
+- Download lists
+- Enable automatic refresh
 
 ### Menubar
 
