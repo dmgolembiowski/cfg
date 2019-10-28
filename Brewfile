@@ -15,6 +15,7 @@ mas 'Amphetamine', id: 937984704
 ##
 
 brew 'git'
+brew 'vim'
 brew 'fzy'
 brew 'tmux'
 brew 'bash'
