@@ -78,6 +78,9 @@ Manual configuration
       - Conversion
       - Definition
       - System preferences
+- Internet Accounts
+  - Exchange
+    - Use with: mail, calendars, contacts
 - Security and privacy
   - Firewall
     - Turn on firewall
@@ -168,8 +171,9 @@ Manual configuration
 ### Mail
 
 - Exchange
-  - Name, email, password
-  - Use with: mail, calendars (contacts makes account dissapear)
+  - Use with: mail, calendar, contacts
+- Google
+  - Use with: mail, calendar, contacts
 
 ### Calendar
 
