@@ -11,6 +11,12 @@ mas 'Todoist', id: 585829637
 mas 'Amphetamine', id: 937984704
 
 ##
+## Desktop
+##
+
+mas 'Vimari', id: 1480933944
+
+##
 ## Dev
 ##
 
