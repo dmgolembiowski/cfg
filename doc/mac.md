@@ -191,3 +191,9 @@ Manual configuration
 - View
   - Show installed updates
   - Show version description
+
+### Amphetamine
+
+- Preferences
+  - Launch Amphetamine at login
+  - Hide Amphetamine in Dock
