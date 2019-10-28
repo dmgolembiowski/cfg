@@ -21,6 +21,7 @@ brew 'tmux'
 brew 'bash'
 brew 'bash-completion@2'
 brew 'the_silver_searcher'
+brew 'ncdu'
 cask 'alacritty'
 
 ##
