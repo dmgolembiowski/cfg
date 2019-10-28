@@ -29,7 +29,6 @@ cask 'alacritty'
 ##
 
 mas 'Slack', id: 803453959
-mas 'Microsoft Outlook', id: 985367838
 mas 'Microsoft PowerPoint', id: 462062816
 mas 'Microsoft Excel', id: 462058435
 cask 'webex-teams'
