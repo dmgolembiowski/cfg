@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>ssh-tunnel</string>
+  <key>OnDemand</key>
+  <false/>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/ssh</string>
+    <string>-N</string>
+    <string>-o</string>
+    <string>ServerAliveInterval=2</string>
+    <string>-o</string>
+    <string>ServerAliveCountMax=2</string>
+    <string>-D</string>
+    <string>1337</string>
+    <string>{{ ssh_tunnel.host }}</string>
+  </array>
+</dict>
+</plist>
