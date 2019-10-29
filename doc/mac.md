@@ -222,3 +222,10 @@ Manual configuration
     - Outline icon
     - Show calendar weeks
     - Use larger text
+
+### Qutebrowser
+
+- Launch qutebrowser (will fail)
+- System Preferences -> Security & Privacy:
+  - General:
+    - Open qutebrowser anayway
