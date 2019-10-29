@@ -229,3 +229,13 @@ Manual configuration
 - System Preferences -> Security & Privacy:
   - General:
     - Open qutebrowser anayway
+
+### Contents
+
+- Preferences
+  - Apperance
+    - Theme: Vibrant Dark
+  - Sidebar:
+    - Show sidebar on: No display
+  - Command-Tab
+    - Show windows from: Visible spaces
