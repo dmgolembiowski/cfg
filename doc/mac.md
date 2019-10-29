@@ -209,3 +209,16 @@ Manual configuration
 - Preferences
   - Launch Amphetamine at login
   - Hide Amphetamine in Dock
+
+### Itsycal
+
+- Preferences
+  - General
+    - Launch at login
+    - First day of week: Monday
+    - Add relevant calendars
+    - Event list shows: 2 days
+  - Apperance
+    - Outline icon
+    - Show calendar weeks
+    - Use larger text
