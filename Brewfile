@@ -16,6 +16,7 @@ mas 'Amphetamine', id: 937984704
 
 mas 'Vimari', id: 1480933944
 mas 'Wipr', id: 1320666476
+cask 'contexts'
 cask 'itsycal'
 
 ##
