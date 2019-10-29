@@ -239,3 +239,11 @@ Manual configuration
     - Show sidebar on: No display
   - Command-Tab
     - Show windows from: Visible spaces
+
+### Hammerspoon
+
+- Preferences
+  - Launch at login
+  - SHow dock icon: disable
+- Privacy -> Accessibility:
+  - Add and whitelist Hammerspoon

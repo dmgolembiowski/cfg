@@ -42,6 +42,14 @@ find $DOTFILES -type f | while read -r f; do
 		esac
 	fi
 
+	if ! mac; then
+		case "$f" in
+			*hammerspoon*)
+				continue
+				;;
+		esac
+	fi
+
 	mkdir -p "$(dirname "$dst")"
 
 	if [ ! -L "$dst" -o "$(readlink $dst)" != "$src" ]; then
