@@ -96,8 +96,11 @@ Manual configuration
 - Sound
   - Disable interface sound effects
 - Keyboard
-   - Modifier keys (for every keyboard)
-     - Caps lock -> Escape
+  - Keyboard
+     - Modifier keys (for every keyboard)
+       - Caps lock -> Escape
+  - Shortcuts:
+    - Launchpad & Dock: disable all
 - Trackpad
   - Lookup & data detectors: disable
 - Displays
