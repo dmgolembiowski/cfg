@@ -4,7 +4,6 @@ brew 'mas'
 ## Base
 ##
 
-cask 'amethyst'
 cask 'latest'
 mas 'Bitwarden', id: 1352778147
 mas 'Todoist', id: 585829637
