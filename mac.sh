@@ -41,7 +41,6 @@ if ! [ -e ~/Library/Fonts/SFMono-Regular.otf ]; then
 fi
 
 # SSH tunnel:
-
 tmpl ~/Library/LaunchAgents/ssh-tunnel.plist \
 	/home/user/Library/LaunchAgents/ssh-tunnel.plist
 
