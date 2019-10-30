@@ -151,6 +151,14 @@ Manual configuration
 
 - Battery: Show percentage
 
+### Todoist
+
+- Preferences:
+    - General:
+        - Group to-dos in the Today list by project or area: enable
+    - Things Cloud:
+        - Login
+
 ### Spotify
 
 - Settings

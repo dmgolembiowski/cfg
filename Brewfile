@@ -6,7 +6,7 @@ brew 'mas'
 
 cask 'latest'
 mas 'Bitwarden', id: 1352778147
-mas 'Todoist', id: 585829637
+mas 'Things 3', id: 904280696
 mas 'Amphetamine', id: 937984704
 
 ##
