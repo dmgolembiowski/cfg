@@ -122,17 +122,6 @@ Manual configuration
 
 - Add 4 spaces
 
-### Amethyst
-
-- Launch Amethyst (will fail)
-- System Preferences -> Security & Privacy:
-  - General:
-    - Open Amethyst anayway
-  - Privacy -> Accessibility:
-    - Add and whitelist Amethyst
-- Amethyst menubar:
-  - Start Amethyst at startup
-
 ### Safari
 
 - General
