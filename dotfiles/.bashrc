@@ -44,6 +44,10 @@ esac
 MANWIDTH=80
 export MANWIDTH
 
+LANG=en_US.UTF-8
+LC_ALL=$LANG
+export LC_ALL LANG
+
 PAGER=less
 LESS=-iFXR
 EDITOR=vi
