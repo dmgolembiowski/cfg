@@ -17,6 +17,7 @@ mas 'Vimari', id: 1480933944
 mas 'Wipr', id: 1320666476
 cask 'hammerspoon'
 cask 'contexts'
+cask 'cursorcerer'
 cask 'itsycal'
 cask 'qutebrowser'
 

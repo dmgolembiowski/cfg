@@ -239,3 +239,12 @@ Manual configuration
     - SHow dock icon: disable
 - Privacy -> Accessibility:
     - Add and whitelist Hammerspoon
+
+### Cursorer
+
+- Launch Cursorer (will fail)
+- System Preferences -> Security & Privacy:
+    - General:
+        - Open Cursorer anayway
+- Preferences:
+        - Hide idle cursor after 5 seconds
