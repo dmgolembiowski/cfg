@@ -59,64 +59,64 @@ Manual configuration
 ### System Preferences
 
 - Desktop and screen saver
-  - Screen saver
-    - Start after: Never
+    - Screen saver
+        - Start after: Never
 - Dock
-  - Decrease size slightly
-  - Position left
-  - Automatically hide
+    - Decrease size slightly
+    - Position left
+    - Automatically hide
 - Mission Control
-  - Disable automatic rearranging of spaces based on usage
+    - Disable automatic rearranging of spaces based on usage
 - Siri
-  - Listen for "Yey Siri": disable
-  - Show Siri in menu bar: disable
+    - Listen for "Yey Siri": disable
+    - Show Siri in menu bar: disable
 - Spotlight
-  - Search results
-    - Disable all except:
-      - Applications
-      - Calculator
-      - Conversion
-      - Definition
-      - System preferences
+    - Search results
+        - Disable all except:
+            - Applications
+            - Calculator
+            - Conversion
+            - Definition
+            - System preferences
 - Internet Accounts
-  - Exchange
-    - Use with: mail, calendars, contacts
+    - Exchange
+        - Use with: mail, calendars, contacts
 - Security and privacy
-  - Firewall
-    - Turn on firewall
-    - Firewall options
-      - Turn on stealth mode
+    - Firewall
+        - Turn on firewall
+        - Firewall options
+            - Turn on stealth mode
 - Network
-  - Advanced
-    - DNS
-      - 1.1.1.1
-      - 1.0.0.1
-      - 2606:4700:4700::1111
-      - 2606:4700:4700::1001
+    - Advanced
+        - DNS
+            - 1.1.1.1
+            - 1.0.0.1
+            - 2606:4700:4700::1111
+            - 2606:4700:4700::1001
 - Sound
-  - Disable interface sound effects
+    - Disable interface sound effects
 - Keyboard
-  - Keyboard
-     - Modifier keys (for every keyboard)
-       - Caps lock -> Escape
-  - Shortcuts:
-    - Launchpad & Dock: disable all
+    - Keyboard
+        - Modifier keys (for every keyboard)
+        - Caps lock -> Escape
+    - Shortcuts:
+        - Launchpad & Dock: disable all
 - Trackpad
-  - Lookup & data detectors: disable
+    - Lookup & data detectors: disable
 - Displays
-  - For internal and external displays
-    - Scaled: More Space
-    - Night Shift
-      - Subset to Sunrise
-  - Show mirroring options in the menu bar when available: disable
+    - For internal and external displays
+        - Scaled: More Space
+        - Night Shift
+            - Subset to Sunrise
+    - Show mirroring options in the menu bar when available: disable
 - Energy saver
-  - Power adapter
-    - Turn display off after: 30min
+    - Power adapter
+        - Turn display off after: 30min
 - Date and Time
-  - Clock
-    - Show the day of week: disable
+    - Clock
+        - Show the day of week: disable
 - Sharing
-  - Computer's Name: hostname
+    - Computer's Name: hostname
 
 ### Mission Control
 
@@ -125,22 +125,22 @@ Manual configuration
 ### Safari
 
 - General
-  - Safari opens with: all windows from last session
-  - New window opens with: empty page
-  - New tabs opens with: empty page
-  - Remove history items: manually
+    - Safari opens with: all windows from last session
+    - New window opens with: empty page
+    - New tabs opens with: empty page
+    - Remove history items: manually
 - Tabs
-  - Show website icons in tabs
+    - Show website icons in tabs
 - Autofill
-  - Username and passwords: disable
+    - Username and passwords: disable
 - Extensions
-  - Bitwarden
-  - Todoist
-  - Vimari
-  - Wipr (part 1, 2 and 3)
+    - Bitwarden
+    - Todoist
+    - Vimari
+    - Wipr (part 1, 2 and 3)
 - Advanced
-  - Smart search field: show full website address
-  - Show develop menu in menu bar
+    - Smart search field: show full website address
+    - Show develop menu in menu bar
 
 ### Wipr
 
@@ -154,88 +154,88 @@ Manual configuration
 ### Spotify
 
 - Settings
-  - Music Quality
-    - High quality streaming: enable
-  - Display Options
-    - Show unavailable songs in playlists: enable
-    - Show friend activity: disable
-  - Social
-    - Disable all options
-  - Local files
-    - Disable all options
-  - Atoplay
-    - Autoplay similar songs when your music ends: disable
-  - Startup and Window Behavior
-    - Open Spotify automatically after you log into the computer: No
+    - Music Quality
+        - High quality streaming: enable
+    - Display Options
+        - Show unavailable songs in playlists: enable
+        - Show friend activity: disable
+    - Social
+        - Disable all options
+    - Local files
+        - Disable all options
+    - Atoplay
+        - Autoplay similar songs when your music ends: disable
+    - Startup and Window Behavior
+        - Open Spotify automatically after you log into the computer: No
 
 ### Mail
 
 - Exchange
-  - Use with: mail, calendar, contacts
+    - Use with: mail, calendar, contacts
 - Google
-  - Use with: mail, calendar, contacts
+    - Use with: mail, calendar, contacts
 
 ### Calendar
 
 - Preferences
-  - General
-    - Show Birthdays calendar: disable
-    - Show Holidays calendar: disable
-  - Advanced
-    - Show events in year view
-    - Show week numbers
+    - General
+        - Show Birthdays calendar: disable
+        - Show Holidays calendar: disable
+    - Advanced
+        - Show events in year view
+        - Show week numbers
 
 ### Webex Teams
 
 - Preferences
-  - Start Webex Teams when my computer starts: disable
+    - Start Webex Teams when my computer starts: disable
 
 ### Latest
 
 - View
-  - Show installed updates
-  - Show version description
+    - Show installed updates
+    - Show version description
 
 ### Amphetamine
 
 - Preferences
-  - Launch Amphetamine at login
-  - Hide Amphetamine in Dock
+    - Launch Amphetamine at login
+    - Hide Amphetamine in Dock
 
 ### Itsycal
 
 - Preferences
-  - General
-    - Launch at login
-    - First day of week: Monday
-    - Add relevant calendars
-    - Event list shows: 2 days
-  - Apperance
-    - Outline icon
-    - Show calendar weeks
-    - Use larger text
+    - General
+        - Launch at login
+        - First day of week: Monday
+        - Add relevant calendars
+        - Event list shows: 2 days
+    - Apperance
+        - Outline icon
+        - Show calendar weeks
+        - Use larger text
 
 ### Qutebrowser
 
 - Launch qutebrowser (will fail)
 - System Preferences -> Security & Privacy:
-  - General:
-    - Open qutebrowser anayway
+    - General:
+        - Open qutebrowser anayway
 
 ### Contents
 
 - Preferences
-  - Apperance
-    - Theme: Vibrant Dark
-  - Sidebar:
-    - Show sidebar on: No display
-  - Command-Tab
-    - Show windows from: Visible spaces
+    - Apperance
+        - Theme: Vibrant Dark
+    - Sidebar:
+        - Show sidebar on: No display
+    - Command-Tab
+        - Show windows from: Visible spaces
 
 ### Hammerspoon
 
 - Preferences
-  - Launch at login
-  - SHow dock icon: disable
+    - Launch at login
+    - SHow dock icon: disable
 - Privacy -> Accessibility:
-  - Add and whitelist Hammerspoon
+    - Add and whitelist Hammerspoon
