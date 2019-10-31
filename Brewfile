@@ -39,7 +39,7 @@ brew 'htop'
 brew 'ncdu'
 brew 'jq'
 cask 'alacritty'
-cask 'ssh-tunnel-manager'
+cask 'secure-pipes'
 
 ##
 ## Work

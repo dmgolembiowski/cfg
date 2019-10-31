@@ -266,18 +266,20 @@ Manual configuration
 - Preferences:
         - Hide idle cursor after 5 seconds
 
-### SSH Tunnel Mangaer
+### Secure Pipes
 
 - Preferences
-    - Show in menu bar
-    - Hide from Dock
-    - Add tunnel:
-        - Name
-        - Login
-        - Host
-        - Advanced options:
-            - Enable SOCKS4 proxy
-            - Port 1337
+    - General
+        - Launch application at login
+        - Disconnect/reconnect active connections on sleep/wake
+    - Connections
+        - New SOCKS Proxy:
+            - Name
+            - Address
+            - User
+            - Bind: localhost:1337
+            - Options:
+                - Use ssh identity file
 
 ### Firefox
 
