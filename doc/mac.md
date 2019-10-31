@@ -263,3 +263,16 @@ Manual configuration
         - Open Cursorer anayway
 - Preferences:
         - Hide idle cursor after 5 seconds
+
+### SSH Tunnel Mangaer
+
+- Preferences
+    - Show in menu bar
+    - Hide from Dock
+    - Add tunnel:
+        - Name
+        - Login
+        - Host
+        - Advanced options:
+            - Enable SOCKS4 proxy
+            - Port 1337
