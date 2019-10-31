@@ -135,7 +135,6 @@ Manual configuration
     - Username and passwords: disable
 - Extensions
     - Bitwarden
-    - Todoist
     - Vimari
     - Wipr (part 1, 2 and 3)
 - Advanced
