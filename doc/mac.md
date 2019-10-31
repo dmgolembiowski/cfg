@@ -276,3 +276,41 @@ Manual configuration
         - Advanced options:
             - Enable SOCKS4 proxy
             - Port 1337
+
+### Firefox
+
+First login to Firefox Sync so that the last part of this
+section is handled automatically. Then configure the following:
+
+- Customize
+    - Remove flexible spaces
+    - Density: compact
+    - Remove: home and refresh buttons
+    - Move the following to overflow: library, sidebars, all extensions
+      except Bitwarden, uBlock and TreeStyleTabs
+- Preferences
+    - Connection settings:
+        - Manual proxy configureation
+        - SOCKS Host: 127.0.0.1:1337
+        - Proxy DNS when using SOCKS v5
+
+Without Firefox Sync the following tasks needs to be completed:
+
+- Install and configure extensions:
+  - uBlock Origin
+  - Tridactyl
+  - Vimium-FF
+  - Bitwarden
+- Preferences:
+    - General
+        - Startup
+            - Select: Restore previous session
+        - Tabs
+            - Deselect: Ctrl+Tab cycles through tabs in recently used order
+        - Fonts & Colors
+    - Privacy & Security
+        - Disable: Ask to save logins and passwords
+    - Firefox Account
+        - Only sync:
+            - Add-ons
+            - Preferences
