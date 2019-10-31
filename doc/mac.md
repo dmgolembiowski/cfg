@@ -230,12 +230,14 @@ Manual configuration
     - General:
         - Open Apple Juice anayway
 
-### Qutebrowser
+### Cpuinfo
 
-- Launch qutebrowser (will fail)
+- Launch Cpuinfo (will fail)
 - System Preferences -> Security & Privacy:
     - General:
-        - Open qutebrowser anayway
+        - Open Cpuinfo anayway
+- Menubar:
+    - Start at login
 
 ### Contents
 
