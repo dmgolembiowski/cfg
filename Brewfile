@@ -20,6 +20,7 @@ cask 'hammerspoon'
 cask 'contexts'
 cask 'cursorcerer'
 cask 'itsycal'
+cask 'apple-juice'
 cask 'qutebrowser'
 
 ##

@@ -112,6 +112,7 @@ Manual configuration
 - Energy saver
     - Power adapter
         - Turn display off after: 30min
+        - Show battery status in menu bar: disable
 - Date and Time
     - Clock
         - Show the day of week: disable
@@ -221,6 +222,13 @@ Manual configuration
         - Outline icon
         - Show calendar weeks
         - Use larger text
+
+### Apple Juice
+
+- Launch Apple Juice (will fail)
+- System Preferences -> Security & Privacy:
+    - General:
+        - Open Apple Juice anayway
 
 ### Qutebrowser
 
