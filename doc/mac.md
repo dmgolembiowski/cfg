@@ -150,7 +150,7 @@ Manual configuration
 
 - Battery: Show percentage
 
-### Todoist
+### Things 3
 
 - Preferences:
     - General:
