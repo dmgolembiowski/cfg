@@ -39,11 +39,3 @@ if ! [ -e ~/Library/Fonts/SFMono-Regular.otf ]; then
 	cp /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/*.otf \
 		~/Library/Fonts
 fi
-
-# SSH tunnel:
-tmpl ~/Library/LaunchAgents/ssh-tunnel.plist \
-	/home/user/Library/LaunchAgents/ssh-tunnel.plist
-
-if ! launchctl list | grep -q 'ssh-tunnel$'; then
-	launchctl load ~/Library/LaunchAgents/ssh-tunnel.plist
-fi
