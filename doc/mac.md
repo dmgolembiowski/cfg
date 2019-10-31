@@ -223,13 +223,6 @@ Manual configuration
         - Show calendar weeks
         - Use larger text
 
-### Apple Juice
-
-- Launch Apple Juice (will fail)
-- System Preferences -> Security & Privacy:
-    - General:
-        - Open Apple Juice anayway
-
 ### Cpuinfo
 
 - Launch Cpuinfo (will fail)
