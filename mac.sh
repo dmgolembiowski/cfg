@@ -39,3 +39,12 @@ if ! [ -e ~/Library/Fonts/SFMono-Regular.otf ]; then
 	cp /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/*.otf \
 		~/Library/Fonts
 fi
+
+# Host specific setup:
+_hostsh=$ROOT/env/$(hostname -s).sh
+
+if [ -e $_hostsh ]; then
+	TEMPLATES=$ROOT/env/templates
+	FILES=$ROOT/env/files
+	. $_hostsh
+fi

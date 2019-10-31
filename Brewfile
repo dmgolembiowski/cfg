@@ -53,5 +53,4 @@ cask 'webex-teams'
 ## Media
 ##
 
-cask 'plex'
 cask 'spotify'
