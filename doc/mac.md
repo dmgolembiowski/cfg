@@ -274,6 +274,15 @@ Manual configuration
             - Options:
                 - Use ssh identity file
 
+### Bear
+
+- Preferences
+    - General:
+        - Notes List Sorting: Title
+    - Editor:
+        - Increase font size
+
+
 ### Firefox
 
 First login to Firefox Sync so that the last part of this
