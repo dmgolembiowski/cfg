@@ -58,6 +58,12 @@ mas 'Microsoft Excel', id: 462058435
 cask 'webex-teams'
 
 ##
+## Work dev
+##
+
+brew 'azure-cli'
+
+##
 ## Media
 ##
 
