@@ -42,6 +42,12 @@ cask 'alacritty'
 cask 'secure-pipes'
 
 ##
+## Debuig
+##
+
+brew 'mtr'
+
+##
 ## Work
 ##
 
