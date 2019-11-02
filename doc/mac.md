@@ -78,6 +78,8 @@ Manual configuration
             - Conversion
             - Definition
             - System preferences
+    - Privacy
+        - Ignore ~/<yourname>
 - Internet Accounts
     - Exchange
         - Use with: mail, calendars, contacts
