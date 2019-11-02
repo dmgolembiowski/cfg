@@ -37,6 +37,7 @@ brew 'the_silver_searcher'
 brew 'htop'
 brew 'ncdu'
 brew 'jq'
+brew 'watch'
 cask 'alacritty'
 cask 'secure-pipes'
 
