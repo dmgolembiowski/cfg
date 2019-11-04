@@ -53,6 +53,58 @@ if ! [ -e ~/Library/Fonts/SFMono-Regular.otf ]; then
 fi
 
 ##
+## Settings:
+##
+
+# Disable resume of windows after reboot:
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+
+# Disable automatic termination of inactive apps:
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+# Allow quitting Finder (will also hide desktop icons):
+defaults write com.apple.finder QuitMenuItem -bool true
+
+# Disable the warning before emptying the Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+
+# Allow all elements to be focusable with Tab key:
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+ac() {
+	pmset -g custom | sed -n '/^AC/,$p' | awk "/ $1 / { print \$2 }"
+}
+
+bat() {
+	pmset -g custom | sed '/^AC/q' | awk "/ $1 / { print \$2 }"
+}
+
+# Disable machine sleep while charging
+if [ "$(ac sleep)" -ne 0 ]; then
+	sudo pmset -c sleep 0
+fi
+
+# Set machine sleep to 5 minutes on battery
+if [ "$(bat sleep)" -ne 5 ]; then
+	sudo pmset -b sleep 5
+fi
+
+# MAS: automatic update check:
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+# MAS: check for udates daily:
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# MAS: download updates automatically:
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+# MAS: install system/sec updates automatically:
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+# MAS: install udpates automatically:
+defaults write com.apple.commerce AutoUpdate -bool true
+
+##
 ## Host specific setup
 ##
 
