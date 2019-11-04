@@ -84,6 +84,8 @@ Manual configuration
     - Exchange
         - Use with: mail, calendars, contacts
 - Security and privacy
+    - General
+        - Require password immediately after sleep or screen saver begins
     - Firewall
         - Turn on firewall
         - Firewall options
