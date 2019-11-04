@@ -271,6 +271,15 @@ Manual configuration
     - Launch at login
     - Hide Dock icon
 
+### Reeder
+
+- Setup
+    - Self hosted Fever API
+        - Host: <hostname>/fever/
+        - Username
+        - Password
+
+
 ### Secure Pipes
 
 - Preferences

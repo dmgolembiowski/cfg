@@ -41,6 +41,7 @@ brew 'watch'
 cask 'alacritty'
 cask 'secure-pipes'
 mas 'ToothFairy', id: 1191449274
+mas 'Reeder', id: 1449412482
 
 ##
 ## Debuig
