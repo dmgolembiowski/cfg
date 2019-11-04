@@ -40,6 +40,7 @@ brew 'jq'
 brew 'watch'
 cask 'alacritty'
 cask 'secure-pipes'
+mas 'ToothFairy', id: 1191449274
 
 ##
 ## Debuig

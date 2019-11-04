@@ -263,6 +263,14 @@ Manual configuration
 - Preferences:
         - Hide idle cursor after 5 seconds
 
+### ToothFairy
+
+- Preferences:
+    - Add AirPods Pro:
+        - Change icon
+    - Launch at login
+    - Hide Dock icon
+
 ### Secure Pipes
 
 - Preferences
