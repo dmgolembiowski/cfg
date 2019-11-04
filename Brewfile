@@ -68,3 +68,4 @@ brew 'azure-cli'
 ##
 
 cask 'spotify'
+cask 'mpv'

@@ -19,7 +19,7 @@ find $DOTFILES -type f | while read -r f; do
 			*/systemd*|*/xterm*|*/gtk*|*/i3*)
 				continue
 				;;
-			*/mpv/*|*firefox*|*spotify*|*pam_env*)
+			*firefox*|*spotify*|*pam_env*)
 				continue
 				;;
 			*/slack|*/plex*|*/spotify)
@@ -29,6 +29,14 @@ find $DOTFILES -type f | while read -r f; do
 				continue
 				;;
 			*bin/pac*)
+				continue
+				;;
+		esac
+	fi
+
+	if role server; then
+		case "$f" in
+			*/mpv/*)
 				continue
 				;;
 		esac
