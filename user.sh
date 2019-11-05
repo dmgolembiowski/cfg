@@ -52,7 +52,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	if ! mac; then
 		case "$f" in
-			*hammerspoon*)
+			*hammerspoon*|*alacritty*)
 				continue
 				;;
 		esac
