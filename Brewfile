@@ -5,7 +5,6 @@ brew 'mas'
 ##
 
 cask 'latest'
-mas 'Bitwarden', id: 1352778147
 mas 'Things 3', id: 904280696
 cask 'thingsmacsandboxhelper'
 mas 'Amphetamine', id: 937984704
