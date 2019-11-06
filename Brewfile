@@ -22,6 +22,7 @@ cask 'cursorcerer'
 cask 'itsycal'
 cask 'cpuinfo'
 cask 'firefox'
+cask 'monitorcontrol'
 cask 'dozer'
 
 ##

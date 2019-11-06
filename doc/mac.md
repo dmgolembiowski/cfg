@@ -254,6 +254,13 @@ Manual configuration
 - Privacy -> Accessibility:
     - Add and whitelist Hammerspoon
 
+### Monitor Contorl
+
+- Preferences
+    - Start MonitorControl at login
+- Privacy -> Accessibility:
+    - Add and whitelist MonitorControl
+
 ### Cursorer
 
 - Launch Cursorer (will fail)
