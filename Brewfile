@@ -1,28 +1,52 @@
-brew 'mas'
-
 ##
 ## Base
 ##
 
+brew 'mas'
 cask 'latest'
-mas 'Things 3', id: 904280696
-cask 'thingsmacsandboxhelper'
-mas 'Amphetamine', id: 937984704
 
 ##
 ## Desktop
 ##
 
-mas 'Vimari', id: 1480933944
-mas 'Wipr', id: 1320666476
 cask 'hammerspoon'
 cask 'contexts'
 cask 'cursorcerer'
+
+##
+## Menubar
+##
+
+cask 'dozer'
 cask 'itsycal'
 cask 'cpuinfo'
-cask 'firefox'
 cask 'monitorcontrol'
-cask 'dozer'
+mas 'Amphetamine', id: 937984704
+mas 'ToothFairy', id: 1191449274
+
+##
+## Productivity
+##
+
+mas 'Things 3', id: 904280696
+cask 'thingsmacsandboxhelper'
+
+##
+## Web
+##
+
+mas 'Vimari', id: 1480933944
+mas 'Wipr', id: 1320666476
+cask 'firefox'
+cask 'secure-pipes'
+mas 'Reeder', id: 1449412482
+
+##
+## Media
+##
+
+cask 'spotify'
+cask 'mpv'
 
 ##
 ## Dev
@@ -40,12 +64,9 @@ brew 'ncdu'
 brew 'jq'
 brew 'watch'
 cask 'alacritty'
-cask 'secure-pipes'
-mas 'ToothFairy', id: 1191449274
-mas 'Reeder', id: 1449412482
 
 ##
-## Debuig
+## Debug
 ##
 
 brew 'mtr'
@@ -65,10 +86,3 @@ cask 'webex-teams'
 ##
 
 brew 'azure-cli'
-
-##
-## Media
-##
-
-cask 'spotify'
-cask 'mpv'

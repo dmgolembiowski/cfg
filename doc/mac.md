@@ -127,80 +127,9 @@ Manual configuration
 
 - Add 4 spaces
 
-### Safari
-
-- General
-    - Safari opens with: all windows from last session
-    - New window opens with: empty page
-    - New tabs opens with: empty page
-    - Remove history items: manually
-- Tabs
-    - Show website icons in tabs
-- Autofill
-    - Username and passwords: disable
-- Extensions
-    - Bitwarden
-    - Vimari
-    - Wipr (part 1, 2 and 3)
-- Advanced
-    - Smart search field: show full website address
-    - Show develop menu in menu bar
-
-### Wipr
-
-- Download lists
-- Enable automatic refresh
-
 ### Menubar
 
 - Battery: Show percentage
-
-### Things 3
-
-- Preferences:
-    - General:
-        - Group to-dos in the Today list by project or area: enable
-    - Things Cloud:
-        - Login
-
-### Spotify
-
-- Settings
-    - Music Quality
-        - High quality streaming: enable
-    - Display Options
-        - Show unavailable songs in playlists: enable
-        - Show friend activity: disable
-    - Social
-        - Disable all options
-    - Local files
-        - Disable all options
-    - Atoplay
-        - Autoplay similar songs when your music ends: disable
-    - Startup and Window Behavior
-        - Open Spotify automatically after you log into the computer: No
-
-### Mail
-
-- Exchange
-    - Use with: mail, calendar, contacts
-- Google
-    - Use with: mail, calendar, contacts
-
-### Calendar
-
-- Preferences
-    - General
-        - Show Birthdays calendar: disable
-        - Show Holidays calendar: disable
-    - Advanced
-        - Show events in year view
-        - Show week numbers
-
-### Webex Teams
-
-- Preferences
-    - Start Webex Teams when my computer starts: disable
 
 ### Latest
 
@@ -208,11 +137,32 @@ Manual configuration
     - Show installed updates
     - Show version description
 
-### Amphetamine
+### Hammerspoon
 
 - Preferences
-    - Launch Amphetamine at login
-    - Hide Amphetamine in Dock
+    - Launch at login
+    - SHow dock icon: disable
+- Privacy -> Accessibility:
+    - Add and whitelist Hammerspoon
+
+### Contexts
+
+- Preferences
+    - Apperance
+        - Theme: Vibrant Dark
+    - Sidebar:
+        - Show sidebar on: No display
+    - Command-Tab
+        - Show windows from: Visible spaces
+
+### Cursorer
+
+- Launch Cursorer (will fail)
+- System Preferences -> Security & Privacy:
+    - General:
+        - Open Cursorer anayway
+- Preferences:
+        - Hide idle cursor after 5 seconds
 
 ### Itsycal
 
@@ -236,24 +186,6 @@ Manual configuration
 - Menubar:
     - Start at login
 
-### Contents
-
-- Preferences
-    - Apperance
-        - Theme: Vibrant Dark
-    - Sidebar:
-        - Show sidebar on: No display
-    - Command-Tab
-        - Show windows from: Visible spaces
-
-### Hammerspoon
-
-- Preferences
-    - Launch at login
-    - SHow dock icon: disable
-- Privacy -> Accessibility:
-    - Add and whitelist Hammerspoon
-
 ### Monitor Contorl
 
 - Preferences
@@ -261,14 +193,11 @@ Manual configuration
 - Privacy -> Accessibility:
     - Add and whitelist MonitorControl
 
-### Cursorer
+### Amphetamine
 
-- Launch Cursorer (will fail)
-- System Preferences -> Security & Privacy:
-    - General:
-        - Open Cursorer anayway
-- Preferences:
-        - Hide idle cursor after 5 seconds
+- Preferences
+    - Launch Amphetamine at login
+    - Hide Amphetamine in Dock
 
 ### ToothFairy
 
@@ -278,38 +207,37 @@ Manual configuration
     - Launch at login
     - Hide Dock icon
 
-### Reeder
+### Things 3
 
-- Setup
-    - Self hosted Fever API
-        - Host: <hostname>/fever/
-        - Username
-        - Password
-
-
-### Secure Pipes
-
-- Preferences
-    - General
-        - Launch application at login
-        - Disconnect/reconnect active connections on sleep/wake
-    - Connections
-        - New SOCKS Proxy:
-            - Name
-            - Address
-            - User
-            - Bind: localhost:1337
-            - Options:
-                - Use ssh identity file
-
-### Bear
-
-- Preferences
+- Preferences:
     - General:
-        - Notes List Sorting: Title
-    - Editor:
-        - Increase font size
+        - Group to-dos in the Today list by project or area: enable
+    - Things Cloud:
+        - Login
 
+### Safari
+
+- General
+    - Safari opens with: all windows from last session
+    - New window opens with: empty page
+    - New tabs opens with: empty page
+    - Remove history items: manually
+- Tabs
+    - Show website icons in tabs
+- Autofill
+    - Username and passwords: disable
+- Extensions
+    - Bitwarden
+    - Vimari
+    - Wipr (part 1, 2 and 3)
+- Advanced
+    - Smart search field: show full website address
+    - Show develop menu in menu bar
+
+### Wipr
+
+- Download lists
+- Enable automatic refresh
 
 ### Firefox
 
@@ -349,3 +277,72 @@ Without Firefox Sync the following tasks needs to be completed:
         - Only sync:
             - Add-ons
             - Preferences
+
+### Secure Pipes
+
+- Preferences
+    - General
+        - Launch application at login
+        - Disconnect/reconnect active connections on sleep/wake
+    - Connections
+        - New SOCKS Proxy:
+            - Name
+            - Address
+            - User
+            - Bind: localhost:1337
+            - Options:
+                - Use ssh identity file
+
+### Reeder
+
+- Setup
+    - Self hosted Fever API
+        - Host: <hostname>/fever/
+        - Username
+        - Password
+
+### Spotify
+
+- Settings
+    - Music Quality
+        - High quality streaming: enable
+    - Display Options
+        - Show unavailable songs in playlists: enable
+        - Show friend activity: disable
+    - Social
+        - Disable all options
+    - Local files
+        - Disable all options
+    - Atoplay
+        - Autoplay similar songs when your music ends: disable
+    - Startup and Window Behavior
+        - Open Spotify automatically after you log into the computer: No
+
+### Mail
+
+- Exchange
+    - Use with: mail, calendar, contacts
+- Google
+    - Use with: mail, calendar, contacts
+
+### Calendar
+
+- Preferences
+    - General
+        - Show Birthdays calendar: disable
+        - Show Holidays calendar: disable
+    - Advanced
+        - Show events in year view
+        - Show week numbers
+
+### Mail
+
+- Exchange
+    - Use with: mail, calendar, contacts
+- Google
+    - Use with: mail, calendar, contacts
+
+### Webex Teams
+
+- Preferences
+    - Start Webex Teams when my computer starts: disable
