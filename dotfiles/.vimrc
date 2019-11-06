@@ -197,23 +197,6 @@ let g:buftabline_indicators=1
 " vim-picker
 nmap <c-p> <Plug>PickerEdit
 
-" vimwiki
-let g:vimwiki_global_ext = 0
-let wiki_1 = {}
-let wiki_1.path = '~/src/wiki/'
-let wiki_1.syntax = 'markdown'
-let wiki_1.ext = '.md'
-let wiki_1.index = 'README'
-let wiki_2 = {}
-let wiki_2.path = '~/src/mgmt/'
-let wiki_2.syntax = 'markdown'
-let wiki_2.ext = '.md'
-let wiki_2.index = 'README'
-
-let g:vimwiki_list = [wiki_1, wiki_2]
-let g:vimwiki_ext2syntax = {'.md': 'markdown'}
-let g:vimwiki_markdown_link_ext = 1
-
 " nerdtree
 
 let NERDTreeMinimalUI = 1
