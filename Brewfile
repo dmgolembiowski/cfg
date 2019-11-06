@@ -37,6 +37,7 @@ cask 'thingsmacsandboxhelper'
 
 mas 'Vimari', id: 1480933944
 mas 'Wipr', id: 1320666476
+mas 'Bitwarden', id: 1352778147
 cask 'firefox'
 cask 'secure-pipes'
 mas 'Reeder', id: 1449412482
