@@ -105,6 +105,22 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 defaults write com.apple.commerce AutoUpdate -bool true
 
 ##
+## Atom
+##
+
+ATOM_PACKGES='
+vim-mode-plus
+'
+
+for p in $ATOM_PACKGES; do
+	if apm ls --installed --bare | grep -q ^$p; then
+		continue
+	fi
+
+	apm install $p
+done
+
+##
 ## Host specific setup
 ##
 
