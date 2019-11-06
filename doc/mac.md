@@ -269,7 +269,6 @@ Without Firefox Sync the following tasks needs to be completed:
   - Tridactyl
   - Vimium-FF
   - Bitwarden
-  - Bear
 - Preferences:
     - General
         - Startup
