@@ -79,6 +79,7 @@ brew 'mtr'
 mas 'Slack', id: 803453959
 mas 'Microsoft PowerPoint', id: 462062816
 mas 'Microsoft Excel', id: 462058435
+mas 'OneDrive', id: 823766827
 cask 'webex-teams'
 
 ##
