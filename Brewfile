@@ -86,3 +86,4 @@ cask 'webex-teams'
 ##
 
 brew 'azure-cli'
+cask 'atom'
