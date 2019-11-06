@@ -83,6 +83,12 @@ Manual configuration
 - Internet Accounts
     - Exchange
         - Use with: mail, calendars, contacts
+- Extensions
+    - Today
+        - Disable Stocks
+        - Enable Things
+    - Share Menu
+        - Add to Things
 - Security and privacy
     - General
         - Require password immediately after sleep or screen saver begins
