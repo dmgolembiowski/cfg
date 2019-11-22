@@ -80,6 +80,9 @@ Manual configuration
             - System preferences
     - Privacy
         - Ignore ~/<yourname>
+- Notifications
+    - Do Not Disturb
+        - Turn on Do Not Disturb: When the screen is locked
 - Internet Accounts
     - Exchange
         - Use with: mail, calendars, contacts
