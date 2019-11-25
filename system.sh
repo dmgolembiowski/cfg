@@ -661,11 +661,6 @@ if role irc; then
 	_w_set weechat.plugin.autoload \
 		'*,!script,!trigger,!xfer,!exec,!fset'
 
-	_w_set weechat.color.chat_highlight white
-	_w_set weechat.color.chat_highlight_bg red
-	_w_set weechat.color.chat_nick_self 102
-
-	_w_set weechat.look.buffer_time_format '${color:102}%H:%M'
 	_w_set weechat.look.prefix_suffix ''
 	_w_set weechat.look.prefix_align none
 	_w_set weechat.look.align_end_of_lines prefix
@@ -681,10 +676,6 @@ if role irc; then
 
 	_w_set weechat.bar.buflist.items buflist
 	_w_set weechat.bar.buflist.separator off
-	_w_set weechat.bar.buflist.color_bg 254
-	_w_set buflist.format.buffer ' ${if:${current_buffer}?${color:255}:${color:default}}${format_number}${indent}${format_nick_prefix}${if:${current_buffer}?${color:255}:${color_hotlist}}${format_name} '
-	_w_set buflist.format.buffer_current '${color:255,24}${format_buffer}'
-	_w_set buflist.format.hotlist_low '${color:102}'
 	_w_set buflist.format.number '${number}${if:${number_displayed}? :}'
 
 	_w_set irc.server_default.msg_part ''
@@ -692,9 +683,6 @@ if role irc; then
 	_w_set irc.server_default.sasl_mechanism plain
 	_w_set irc.server_default.sasl_username $IRC_NICK
 	_w_set irc.server_default.nicks $IRC_NICK
-
-	_w_set irc.color.topic_new default
-	_w_set irc.color.topic_old 102
 
 	if ! _w_has 'irc_smart = on;*;irc_smart_filter;*' weechat; then
 		_w_run '/filter add irc_smart * irc_smart_filter *'
