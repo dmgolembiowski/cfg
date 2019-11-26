@@ -88,3 +88,4 @@ mas 'Finances', id: 1218241304
 
 brew 'azure-cli'
 cask 'atom'
+brew 'go'
