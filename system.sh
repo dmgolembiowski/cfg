@@ -661,6 +661,7 @@ if role irc; then
 	_w_set weechat.plugin.autoload \
 		'*,!script,!trigger,!xfer,!exec,!fset'
 
+	_w_set weechat.look.buffer_time_format '%H:%M'
 	_w_set weechat.look.prefix_suffix ''
 	_w_set weechat.look.prefix_align none
 	_w_set weechat.look.align_end_of_lines prefix
