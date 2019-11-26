@@ -1,4 +1,7 @@
 "*":
+  "atom-ide-ui":
+    "atom-ide-code-format":
+      formatOnSave: true
   core:
     audioBeep: false
     disabledPackages: [
@@ -33,6 +36,12 @@
     scrollPastEnd: true
   "exception-reporting":
     userId: "2f97ab46-5dd8-4bf4-8211-69c33499b549"
+  "go-plus":
+    disabledBundledPackages: [
+      "go-debug"
+      "go-signature-statusbar"
+      "atom-ide-ui"
+    ]
   "spell-check":
     locales: [
       "en-US"
