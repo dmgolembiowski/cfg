@@ -81,6 +81,8 @@ mas 'Microsoft Excel', id: 462058435
 mas 'OneDrive', id: 823766827
 cask 'webex-teams'
 mas 'Finances', id: 1218241304
+tap 'homebrew/cask-drivers'
+cask 'xerox-print-driver'
 
 ##
 ## Work dev
