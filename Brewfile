@@ -83,6 +83,7 @@ cask 'webex-teams'
 mas 'Finances', id: 1218241304
 tap 'homebrew/cask-drivers'
 cask 'xerox-print-driver'
+brew 'p7zip'
 
 ##
 ## Work dev
