@@ -28,7 +28,6 @@ mas 'ToothFairy', id: 1191449274
 ##
 
 mas 'Things 3', id: 904280696
-cask 'thingsmacsandboxhelper'
 
 ##
 ## Web
