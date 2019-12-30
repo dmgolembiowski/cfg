@@ -4,7 +4,7 @@ groups:
   - name: node
     rules:
       - alert: OutOfDiskSpace
-        expr: node_filesystem_free_bytes / node_filesystem_size_bytes * 100 < 10
+        expr: node_filesystem_free_bytes / node_filesystem_size_bytes * 100 < 5
         for: 5m
         labels:
           severity: warning
