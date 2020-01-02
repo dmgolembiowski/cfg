@@ -6,6 +6,14 @@ if [ -e /etc/os-release ]; then
 fi
 UNAME=$(uname)
 
+_hostname() {
+	if mac; then
+		hostname -s
+	else
+		hostname
+	fi
+}
+
 # Read YAML file into shell vars
 eval $(python3 -c "
 import re
@@ -28,7 +36,7 @@ def p(n, d):
     if len(n):
         n.pop()
 
-p([], yaml.safe_load(open('$ROOT/env/$(hostname -s).yml', 'r')))
+p([], yaml.safe_load(open('$ROOT/env/$(_hostname).yml', 'r')))
 
 ")
 
@@ -139,7 +147,7 @@ tmpl = jinja2.Template(
     lstrip_blocks=True,
     keep_trailing_newline=True
 )
-data = yaml.safe_load(open('$ROOT/env/$(hostname -s).yml', 'r'))
+data = yaml.safe_load(open('$ROOT/env/$(_hostname).yml', 'r'))
 
 if len(k):
 	lookup = ''.join(['[\"' + i + '\"]' for i in k.split('.')])
