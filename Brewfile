@@ -61,6 +61,7 @@ brew 'the_silver_searcher'
 brew 'htop'
 brew 'ncdu'
 brew 'jq'
+brew 'moreutils'
 brew 'watch'
 cask 'alacritty'
 
