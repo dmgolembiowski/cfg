@@ -83,26 +83,6 @@ if role desktop && ! mac; then
 fi
 
 ##
-## Firefox
-##
-
-if role desktop; then
-	ff_profile_dir=~/.mozilla/firefox
-
-	for d in $ff_profile_dir/*.default-release $ff_profile_dir/*.priv; do
-		case "$d" in
-			*\**)
-				continue
-				;;
-		esac
-		[ -d "$d" ] || continue
-
-		tmpl "$d"/chrome/userChrome.css \
-			/home/user/.mozilla/firefox/profile/chrome/userChrome.css
-	done
-fi
-
-##
 ## Vim
 ##
 
