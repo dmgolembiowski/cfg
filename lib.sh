@@ -6,6 +6,10 @@ if [ -e /etc/os-release ]; then
 fi
 UNAME=$(uname)
 
+mac() {
+	[ "$UNAME" = "Darwin" ]
+}
+
 _hostname() {
 	if mac; then
 		hostname -s
@@ -47,10 +51,6 @@ role() {
 
 distro() {
 	[ "$DISTRO" = "$1" ]
-}
-
-mac() {
-	[ "$UNAME" = "Darwin" ]
 }
 
 diff() {
