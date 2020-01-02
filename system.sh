@@ -280,7 +280,10 @@ if role desktop || role media; then
 fi
 
 if role media; then
-	pkg mediainfo
+	pkg '
+		mediainfo
+		mkvtoolnix
+	'
 fi
 
 ##
