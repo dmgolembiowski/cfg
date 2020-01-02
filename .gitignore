@@ -1,3 +1,5 @@
 /env/
 /chroot/
 /aur/
+
+/Brewfile.lock.json
