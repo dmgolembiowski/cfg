@@ -17,6 +17,7 @@ cask 'cursorcerer'
 ## Menubar
 ##
 
+cask 'hiddenbar'
 cask 'itsycal'
 cask 'cpuinfo'
 cask 'monitorcontrol'

@@ -173,6 +173,17 @@ Manual configuration
 - Preferences:
         - Hide idle cursor after 5 seconds
 
+### Hidden Bar
+
+- Launch Hidden Bar (will fail)
+- System Preferences -> Security & Privacy:
+    - General:
+        - Open Hidden Bar anayway
+- Preferences:
+    - Start at login
+    - Keep icon in dock: disable
+    - Show preferences on launch: disable
+
 ### Itsycal
 
 - Preferences
@@ -195,7 +206,7 @@ Manual configuration
 - Menubar:
     - Start at login
 
-### Monitor Contorl
+### Monitor Control
 
 - Preferences
     - Start MonitorControl at login
