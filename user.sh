@@ -116,12 +116,12 @@ vimpack() {
 		echo '  cur:' $h
 		echo '  upd:' $th
 
-		git -C $r/$n checkout $th
+		git -C $r/$n checkout -q $th
 		vim +'helptags ALL' +q
 
 		# Skip logging if this is a fresh checkout and we're rewinding:
 		if [ "$fresh" != yes ]; then
-			git log --pretty=oneline $h..$th | sed 's/^/  /'
+			git -C $r/$n log --pretty=oneline $h..$th | sed 's/^/  /'
 		fi
 	fi
 }
