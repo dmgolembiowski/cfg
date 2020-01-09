@@ -206,13 +206,6 @@ Manual configuration
 - Menubar:
     - Start at login
 
-### Monitor Control
-
-- Preferences
-    - Start MonitorControl at login
-- Privacy -> Accessibility:
-    - Add and whitelist MonitorControl
-
 ### Amphetamine
 
 - Preferences
