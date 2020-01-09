@@ -92,5 +92,4 @@ brew 'p7zip'
 ##
 
 brew 'azure-cli'
-cask 'atom'
 brew 'go'
