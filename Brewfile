@@ -4,6 +4,7 @@
 
 brew 'mas'
 cask 'latest'
+cask 'app-cleaner'
 
 ##
 ## Desktop
