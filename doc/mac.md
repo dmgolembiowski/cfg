@@ -205,6 +205,16 @@ Manual configuration
         - Open Cpuinfo anayway
 - Menubar:
     - Start at login
+    - Disable TB at Launch
+
+### Turbo Boost Switcher
+
+- Turn on/off
+- System Preferences -> Security & Privacy:
+    - General:
+        - Allow kernel extension
+- Menubar:
+    - Start at login
 
 ### Amphetamine
 
