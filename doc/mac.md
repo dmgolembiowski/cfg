@@ -207,14 +207,16 @@ Manual configuration
     - Start at login
     - Disable TB at Launch
 
-### Turbo Boost Switcher
+### Turbo Boost Switcher Pro
 
+- Download and install.
 - Turn on/off
 - System Preferences -> Security & Privacy:
     - General:
         - Allow kernel extension
 - Menubar:
     - Start at login
+    - Enable "Disable TB at launch"
 
 ### Amphetamine
 
