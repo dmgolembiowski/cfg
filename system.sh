@@ -65,9 +65,9 @@ elif distro arch; then
 		man-db
 		man-pages
 		pacman-contrib
+		devtools
 		pacolog
 		lostfiles
-		devtools
 		openssh
 		needrestart
 	'
