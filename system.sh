@@ -82,7 +82,7 @@ elif distro arch; then
 
 	if role vm; then
 		pkg open-vm-tools
-	fi
+	else
 		pkg '
 			iucode-tool
 			fwupd
