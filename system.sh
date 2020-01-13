@@ -748,7 +748,6 @@ elif distro arch; then
 		haveged
 		iotop
 		jfsutils
-		linux
 		lsof
 		lvm2
 		mdadm
@@ -762,6 +761,9 @@ elif distro arch; then
 		whois
 		xfsprogs
 	'
+	if ! role vm; then
+		_UNNEEDED_PKGS="$_UNNEEDED_PKGS linux"
+	fi
 fi
 
 for p in $_UNNEEDED_PKGS; do
