@@ -140,6 +140,7 @@ Setup and config
     git clone git@github.com:uggedal/cfg
     cd cfg
     git clone git@github.com:uggedal/env
+    git clone git@github.com:uggedal/aur
     ```
 
 5. Fill a `hostname.yml` file under `env/`
