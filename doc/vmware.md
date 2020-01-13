@@ -71,6 +71,7 @@ Boot VM into installer and complete the following steps.
     sed -i 's/^#\(en_US.UTF\)/\1/' /etc/locale.gen
     locale-gen
     echo LANG=en_US.UTF-8 > /etc/locale.conf
+    touch /etc/vconsole.conf
     echo $HOSTNAME > /etc/hostname
     echo 127.0.0.1 $FQDN $HOSTNAME >> /etc/hosts
 
