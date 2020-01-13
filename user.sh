@@ -14,15 +14,21 @@ find $DOTFILES -type f | while read -r f; do
 	src="$DOTFILES/$rel"
 	dst="$HOME/$rel"
 
+
+	if role server || role vm || mac; then
+		case "$f" in
+			*spotify*|*/slack|*/plex*)
+				continue
+				;;
+		esac
+	fi
+
 	if role server || mac; then
 		case "$f" in
 			*/systemd*|*/xterm*|*/gtk*|*/i3*)
 				continue
 				;;
-			*firefox*|*spotify*|*pam_env*)
-				continue
-				;;
-			*/slack|*/plex*|*/spotify)
+			*pam_env*)
 				continue
 				;;
 			*.Xresources|*.xinitrc)
