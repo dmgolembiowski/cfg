@@ -66,6 +66,7 @@ elif distro arch; then
 		man-pages
 		pacman-contrib
 		devtools
+		binutils
 		pacolog
 		lostfiles
 		openssh
