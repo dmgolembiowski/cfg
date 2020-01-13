@@ -14,6 +14,12 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 ## Base
 ##
 
+pkg '
+	sudo
+	curl
+	ca-certificates
+'
+
 if distro debian; then
 	pkg '
 		python3-jinja2
@@ -82,12 +88,6 @@ elif distro arch; then
 		'
 	fi
 fi
-
-pkg '
-	sudo
-	curl
-	ca-certificates
-'
 
 # Persistend systemd yournal:
 mkdir -p /var/log/journal
