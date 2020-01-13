@@ -11,8 +11,6 @@ AUR_URL='https://aur.archlinux.org'
 AUR_PACKAGES='
 	needrestart
 	pacolog
-	slack-desktop
-	spotify
 	vapoursynth-editor
 	vapoursynth-plugin-f3kdb-git
 '
