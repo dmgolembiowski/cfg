@@ -5,7 +5,7 @@ h() {
 }
 
 h pacman
-sudo pacman -Syu --ignore linux-lts
+sudo pacman -Syu
 
 if command -v fwupdmgr >/dev/null; then
 	h fwup
