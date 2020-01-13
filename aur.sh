@@ -19,7 +19,7 @@ UPDATE=$([ "$1" != -u ] || echo yes)
 
 mkdir -p $CHROOT
 
-[ -d $CHROOT/root ] || mkarchroot $CHROOT/root base-devel
+[ -d $CHROOT/root ] || mkarchroot $CHROOT/root base-devel git
 if ! [ -e $REPODB ]; then
 	sudo mkdir -p $REPO
 	sudo repo-add $REPODB
