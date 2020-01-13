@@ -55,14 +55,15 @@ elif distro arch; then
 	file /etc/pacman.d/mirrorlist
 	pkg '
 		base
+		e2fsprogs
+		man-db
+		man-pages
 		pacman-contrib
 		pacolog
 		lostfiles
 		devtools
 		openssh
 		needrestart
-		iucode-tool
-		fwupd
 	'
 
 	file /etc/pacman.d/hooks/needrestart.hook
@@ -71,6 +72,15 @@ elif distro arch; then
 	# installed packages:
 	file /etc/systemd/system/paccache.service.d/override.conf
 	svc paccache.timer
+
+	if role vm; then
+		pkg open-vm-tools
+	fi
+		pkg '
+			iucode-tool
+			fwupd
+		'
+	fi
 fi
 
 pkg '
@@ -93,8 +103,10 @@ file /etc/systemd/resolved.conf.d/dns_servers.conf
 if role desktop; then
 	file /etc/systemd/resolved.conf.d/static.conf
 
-	_wlif=$(ip a | awk '/^[0-9]: wl/ { print $2 }' | tr -d :)
-	envfile /etc/wpa_supplicant/wpa_supplicant-${_wlif}.conf
+	if ! role vm; then
+		_wlif=$(ip a | awk '/^[0-9]: wl/ { print $2 }' | tr -d :)
+		envfile /etc/wpa_supplicant/wpa_supplicant-${_wlif}.conf
+	fi
 fi
 
 tmpl /etc/systemd/network/wired.network
@@ -208,29 +220,47 @@ if role desktop; then
 		xclip
 		unclutter
 		i3-wm
-		i3lock
 		i3status
 		py3status
-		brightnessctl
 		xterm
 		maim
 		sxiv
 		mupdf
-		redshift
 		unzip
 		noto-fonts
 		noto-fonts-emoji
 		ttf-ibm-plex
 		ttf-font-awesome
 		firefox
-		firefox-tridactyl
-		slack-desktop
-		spotify
 		moreutils
 	'
 
-	# Periodic TRIM:
-	svc fstrim.timer
+	if role vm; then
+		pkg '
+			xf86-input-vmmouse
+			xf86-video-vmware
+			mesa
+		'
+	else
+		pkg '
+			brightnessctl
+			i3lock
+			redshift
+			spotify
+			slack-desktop
+		'
+
+		# Periodic TRIM:
+		svc fstrim.timer
+
+		file /usr/local/bin/x-monitor-hotplug
+		chmod +x /usr/local/bin/x-monitor-hotplug
+		tmpl /etc/udev/rules.d/99-x-monitor-hotplug.rules
+		udevadm control --reload
+
+		tmpl /etc/systemd/system/i3lock.service
+		systemctl enable i3lock
+	fi
 
 	# Autologin to TTY 1:
 	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf
@@ -241,13 +271,6 @@ if role desktop; then
 	file /etc/X11/xorg.conf.d/00-keyboard.conf
 	file /etc/X11/xorg.conf.d/00-touchpad.conf
 
-	file /usr/local/bin/x-monitor-hotplug
-	chmod +x /usr/local/bin/x-monitor-hotplug
-	tmpl /etc/udev/rules.d/99-x-monitor-hotplug.rules
-	udevadm control --reload
-
-	tmpl /etc/systemd/system/i3lock.service
-	systemctl enable i3lock
 fi
 
 ##
@@ -259,19 +282,11 @@ if role desktop; then
 		pulseaudio
 		pulsemixer
 		mpv
-		libva-intel-driver
 		youtube-dl
 	'
 
-	# PMP:
-	pkg fuse
-
-	_pmpu=https://knapsu.eu/data/plex/latest
-	_pmpf=$(curl -sI $_pmpu | awk '/^location: / { print $2 }' | tr -cd '[:alnum:]._-')
-	if ! [ -e /opt/$_pmpf ]; then
-		curl -L $_pmpu > /opt/$_pmpf
-		chmod +x /opt/$_pmpf
-		ln -sf /opt/$_pmpf /usr/local/bin/plex-media-player
+	if ! role vm; then
+		pkg libva-intel-driver
 	fi
 fi
 
@@ -280,10 +295,7 @@ if role desktop || role media; then
 fi
 
 if role media; then
-	pkg '
-		mediainfo
-		mkvtoolnix
-	'
+	pkg mediainfo
 fi
 
 ##
