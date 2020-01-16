@@ -65,6 +65,7 @@ brew 'ncdu'
 brew 'jq'
 brew 'moreutils'
 brew 'watch'
+brew 'grip'
 cask 'alacritty'
 
 ##
