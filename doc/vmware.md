@@ -170,3 +170,13 @@ with the following environment variables:
     ```sh
     ./user.sh
     ```
+
+Manual configuration
+--------------------
+
+### Firefox
+
+- Login to Firefox Sync.
+- Preferences
+    - Manual proxy configureation
+    - SOCKS Host: 127.0.0.1:1337
