@@ -15,6 +15,8 @@ Pre-install
     * Display: TODO
     * Hard disk:
         * 200GB size
+    * Sound:
+        * Disable sound
     * Shared folder:
         * Share MacOS home dir
 
