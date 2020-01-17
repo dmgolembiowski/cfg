@@ -82,6 +82,8 @@ elif distro arch; then
 
 	if role vm; then
 		pkg open-vm-tools
+		svc vmtoolsd
+		file /etc/X11/Xwrapper.config
 	else
 		pkg '
 			iucode-tool
