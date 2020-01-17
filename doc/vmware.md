@@ -180,3 +180,4 @@ Manual configuration
 - Preferences
     - Manual proxy configureation
     - SOCKS Host: 127.0.0.1:1337
+    - Proxy DNS
