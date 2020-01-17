@@ -38,8 +38,6 @@ mas 'Things 3', id: 904280696
 mas 'Vimari', id: 1480933944
 mas 'Wipr', id: 1320666476
 mas 'Bitwarden', id: 1352778147
-cask 'firefox'
-cask 'secure-pipes'
 mas 'Reeder', id: 1449412482
 
 ##
@@ -47,7 +45,6 @@ mas 'Reeder', id: 1449412482
 ##
 
 cask 'spotify'
-cask 'mpv'
 
 ##
 ## Dev
