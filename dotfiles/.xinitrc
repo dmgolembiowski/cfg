@@ -1,6 +1,8 @@
 xsetroot -solid '#4d4d4c'
 
-setxkbmap -option "caps:swapescape"
+if [ "$(hostname)" != echo ]; then
+	setxkbmap -option "caps:swapescape"
+fi
 
 xrdb -merge ~/.Xresources
 
