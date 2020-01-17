@@ -25,7 +25,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	if role server || mac; then
 		case "$f" in
-			*/systemd*|*/xterm*|*/gtk*|*/i3*)
+			*/systemd*|*/xterm*|*/gtk*|*/i3*|*/mpv/*)
 				continue
 				;;
 			*pam_env*)
@@ -35,14 +35,6 @@ find $DOTFILES -type f | while read -r f; do
 				continue
 				;;
 			*bin/pac*)
-				continue
-				;;
-		esac
-	fi
-
-	if role server; then
-		case "$f" in
-			*/mpv/*)
 				continue
 				;;
 		esac
