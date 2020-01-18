@@ -63,6 +63,7 @@ brew 'jq'
 brew 'moreutils'
 brew 'watch'
 brew 'grip'
+brew 'pre-commit'
 cask 'alacritty'
 
 ##
