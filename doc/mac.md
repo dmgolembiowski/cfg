@@ -8,7 +8,7 @@ Install
 - Norwegian location
 - US English keyboard
 - Disable iCloud Documents folders
-- Dark Mode
+- Light Mode
 
 Setup and config
 ----------------
