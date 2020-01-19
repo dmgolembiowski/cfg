@@ -142,6 +142,8 @@ endfunction
 command! Spaces :call Spaces(4)
 
 au FileType python call Spaces(4)
+au FileType html call Spaces(4)
+au FileType jinja.html call Spaces(4)
 au FileType yaml call Spaces(2)
 au FileType markdown call Spaces(4)
 au FileType vimwiki call Spaces(4)
