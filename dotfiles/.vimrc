@@ -185,8 +185,9 @@ nnoremap <leader>c :noh<CR>
 " colorscheme
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set background=dark
-colorscheme gruvbox8_hard
+set background=light
+set termguicolors
+colorscheme github
 
 " netrw
 let g:netrw_liststyle=3

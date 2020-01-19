@@ -135,7 +135,7 @@ vimpurge() {
 }
 
 if role dev; then
-	vimpack lifepillar vim-gruvbox8
+	vimpack cormacrelf vim-colors-github
 	vimpack ap vim-buftabline
 	vimpack tpope vim-commentary
 	vimpack srstevenson vim-picker
@@ -150,6 +150,7 @@ if role dev; then
 		vimpack fatih vim-go tag
 	fi
 
+	vimpurge vim-gruvbox8
 	vimpurge nofrils
 	vimpurge papercolor-theme
 	vimpurge vimwiki
