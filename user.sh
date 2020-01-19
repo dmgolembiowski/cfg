@@ -145,6 +145,7 @@ if role dev; then
 	vimpack farmergreg vim-lastplace tag
 	vimpack godlygeek tabular
 	vimpack plasticboy vim-markdown
+	vimpack lepture vim-jinja
 	if role work; then
 		vimpack fatih vim-go tag
 	fi
