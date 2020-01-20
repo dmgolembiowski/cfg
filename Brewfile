@@ -65,6 +65,7 @@ brew 'watch'
 brew 'grip'
 brew 'pre-commit'
 cask 'alacritty'
+cask 'docker'
 
 ##
 ## Debug
