@@ -215,6 +215,9 @@ function NERDTreeSync()
 endfunction
 autocmd BufWinEnter * :call NERDTreeSync()
 
+" black
+autocmd BufWritePre *.py execute ':Black'
+
 " git commit
 function GitCi(n)
 	!git ci -am sync && git push

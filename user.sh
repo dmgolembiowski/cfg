@@ -146,6 +146,8 @@ if role dev; then
 	vimpack godlygeek tabular
 	vimpack plasticboy vim-markdown
 	vimpack lepture vim-jinja
+	vimpack psf black tag
+
 	if role work; then
 		vimpack fatih vim-go tag
 	fi
