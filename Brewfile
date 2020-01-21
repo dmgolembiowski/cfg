@@ -64,6 +64,7 @@ brew 'moreutils'
 brew 'watch'
 brew 'grip'
 brew 'pre-commit'
+brew 'yarn'
 cask 'alacritty'
 cask 'docker'
 
