@@ -171,6 +171,7 @@ if role dev; then
 			vim-nox
 			ncurses-term
 			silversearcher-ag
+			python3-venv
 		'
 	elif distro arch; then
 		pkg '
