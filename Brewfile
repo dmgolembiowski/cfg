@@ -68,6 +68,7 @@ brew 'pre-commit'
 brew 'node'
 cask 'alacritty'
 cask 'docker'
+mas 'Trello', id: 1278508951
 
 ##
 ## Debug
