@@ -66,6 +66,7 @@ brew 'entr'
 brew 'grip'
 brew 'pre-commit'
 brew 'node'
+brew 'pgcli'
 cask 'alacritty'
 cask 'docker'
 mas 'Trello', id: 1278508951
