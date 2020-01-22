@@ -217,6 +217,7 @@ endfunction
 autocmd BufWinEnter * :call NERDTreeSync()
 
 " black
+let g:black_linelength = 79
 autocmd BufWritePre *.py execute ':Black'
 
 " git commit
