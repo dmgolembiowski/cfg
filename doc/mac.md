@@ -173,6 +173,16 @@ Manual configuration
 - Preferences:
         - Hide idle cursor after 5 seconds
 
+### BetterTouchTool
+
+- Launch BetterTouchTool:
+- System Preferences -> Accessibility:
+    - Whitelist BetterTouchTool
+- Keyboard Shortcuts:
+    - ^⇧→: Move window one space/desktop right
+    - ^⇧←: Move window one space/desktop left
+    - ^⇧m: Move window to next monitor
+
 ### Hidden Bar
 
 - Launch Hidden Bar (will fail)
