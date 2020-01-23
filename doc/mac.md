@@ -370,3 +370,11 @@ Without Firefox Sync the following tasks needs to be completed:
 
 - Preferences
     - Start Webex Teams when my computer starts: disable
+
+### Photos
+
+To stop `photoanalysisd` from consuming high CPU turn off Memories:
+
+- Preferences
+    - Memories
+        - Disable both checkboxes
