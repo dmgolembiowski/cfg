@@ -13,6 +13,7 @@ cask 'app-cleaner'
 cask 'hammerspoon'
 cask 'contexts'
 cask 'cursorcerer'
+cask 'bettertouchtool'
 
 ##
 ## Menubar
