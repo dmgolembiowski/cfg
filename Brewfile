@@ -72,7 +72,7 @@ brew 'pgcli'
 brew 'wrk'
 cask 'alacritty'
 cask 'docker'
-mas 'Trello', id: 1278508951
+cask 'notion'
 
 ##
 ## Debug
