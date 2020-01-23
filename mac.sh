@@ -104,6 +104,13 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 # MAS: install udpates automatically:
 defaults write com.apple.commerce AutoUpdate -bool true
 
+# Disalbe default and signed downloaded apps from opening up the firewall:
+_sf=/usr/libexec/ApplicationFirewall/socketfilterfw
+if $_sf --getallowsigned | grep -q ENABLED; then
+	$_sf --setallowsigned off
+	$_sf --setallowsignedapp off
+fi
+
 ##
 ## Host specific setup
 ##
