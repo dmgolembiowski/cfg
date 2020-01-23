@@ -552,6 +552,27 @@
             }
           }
         }
+      },
+      "pnpm": {
+        "version": "4.7.1",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/pnpm-4.7.1.catalina.bottle.tar.gz",
+              "sha256": "443c20c378d924da19765f3cc780e99e463f004364675db8257779f5880ed0b5"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/pnpm-4.7.1.mojave.bottle.tar.gz",
+              "sha256": "74e864c4f16e4bab9efcdd7545bea790b90f19e998815789aa404ae7cb5af566"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/pnpm-4.7.1.high_sierra.bottle.tar.gz",
+              "sha256": "4512b756e24d008a252abd0b68bbdffc3b3818e224a905c2b0912f144008c0f3"
+            }
+          }
+        }
       }
     },
     "cask": {
@@ -675,7 +696,7 @@
     },
     "tap": {
       "homebrew/cask-drivers": {
-        "revision": "fd0f82728a4b45126a1f1a60b61a273f607a052b"
+        "revision": "a0ca07380f0af81cef465d8ab929097c270090e0"
       }
     }
   },
@@ -684,7 +705,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.2.3",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "1b4b445cc7815f89b30e997422d5fd8b26573d9e",
+        "Homebrew/homebrew-core": "1ff573fe3ffa9db3d7884cb53369201d44fbf8a2",
         "CLT": "11.0.33.8",
         "Xcode": "11.3",
         "macOS": "10.15.2"
