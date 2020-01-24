@@ -93,7 +93,6 @@ mas 'Finances', id: 1218241304
 tap 'homebrew/cask-drivers'
 cask 'xerox-print-driver'
 brew 'p7zip'
-cask 'vmware-fusion'
 
 ##
 ## Work dev
