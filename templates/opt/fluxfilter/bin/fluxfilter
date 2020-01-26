@@ -6,6 +6,7 @@ import miniflux
 SITES = {
     "http://daringfireball.net/": [r"^\[sponsor\]",],
     "https://www.macstories.net": [r"\[sponsor\]",r"\bepisode \d+\b"],
+    "http://512pixels.net": [r"^sponsor: ", r" #\d+: ",],
 }
 
 SITE = "{{ miniflux.api.url }}"
@@ -23,7 +24,7 @@ for e in res["entries"]:
             for rule in rules:
                 if re.search(rule, e["title"], re.IGNORECASE):
                     ids.append(e["id"])
-                    print("%s:" % rule, e["title"])
+                    print(f"{site} /{rule}/:", e["title"])
 
 if len(ids):
     client.update_entries(ids, "read")
