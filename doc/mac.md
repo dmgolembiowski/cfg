@@ -140,6 +140,55 @@ Manual configuration
 
 - Battery: Show percentage
 
+### Safari
+
+- General
+    - Safari opens with: all windows from last session
+    - New window opens with: empty page
+    - New tabs opens with: empty page
+    - Remove history items: manually
+- Tabs
+    - Show website icons in tabs
+- Autofill
+    - Username and passwords: disable
+- Extensions
+    - Bitwarden
+    - Vimari
+    - Wipr (part 1, 2 and 3)
+- Advanced
+    - Smart search field: show full website address
+    - Show develop menu in menu bar
+
+### Wipr
+
+- Download lists
+- Enable automatic refresh
+
+### Mail
+
+- Exchange
+    - Use with: mail, calendar, contacts
+- Google
+    - Use with: mail, calendar, contacts
+
+### Calendar
+
+- Preferences
+    - General
+        - Show Birthdays calendar: disable
+        - Show Holidays calendar: disable
+    - Advanced
+        - Show events in year view
+        - Show week numbers
+
+### Photos
+
+To stop `photoanalysisd` from consuming high CPU turn off Memories:
+
+- Preferences
+    - Memories
+        - Disable both checkboxes
+
 ### Latest
 
 - View
@@ -207,16 +256,6 @@ Manual configuration
         - Show calendar weeks
         - Use larger text
 
-### Cpuinfo
-
-- Launch Cpuinfo (will fail)
-- System Preferences -> Security & Privacy:
-    - General:
-        - Open Cpuinfo anayway
-- Menubar:
-    - Start at login
-    - Disable TB at Launch
-
 ### Turbo Boost Switcher Pro
 
 - Download and install.
@@ -250,83 +289,6 @@ Manual configuration
     - Things Cloud:
         - Login
 
-### Safari
-
-- General
-    - Safari opens with: all windows from last session
-    - New window opens with: empty page
-    - New tabs opens with: empty page
-    - Remove history items: manually
-- Tabs
-    - Show website icons in tabs
-- Autofill
-    - Username and passwords: disable
-- Extensions
-    - Bitwarden
-    - Vimari
-    - Wipr (part 1, 2 and 3)
-- Advanced
-    - Smart search field: show full website address
-    - Show develop menu in menu bar
-
-### Wipr
-
-- Download lists
-- Enable automatic refresh
-
-### Firefox
-
-First login to Firefox Sync so that the last part of this
-section is handled automatically. Then configure the following:
-
-- Customize
-    - Remove flexible spaces
-    - Density: compact
-    - Remove: home and refresh buttons
-    - Move the following to overflow: library, sidebars, all extensions
-      except Bitwarden, uBlock and TreeStyleTabs
-- Preferences
-    - Connection settings:
-        - Manual proxy configureation
-        - SOCKS Host: 127.0.0.1:1337
-        - Proxy DNS when using SOCKS v5
-
-Without Firefox Sync the following tasks needs to be completed:
-
-- Install and configure extensions:
-  - uBlock Origin
-  - Tridactyl
-  - Vimium-FF
-  - Bitwarden
-- Preferences:
-    - General
-        - Startup
-            - Select: Restore previous session
-        - Tabs
-            - Deselect: Ctrl+Tab cycles through tabs in recently used order
-        - Fonts & Colors
-    - Privacy & Security
-        - Disable: Ask to save logins and passwords
-    - Firefox Account
-        - Only sync:
-            - Add-ons
-            - Preferences
-
-### Secure Pipes
-
-- Preferences
-    - General
-        - Launch application at login
-        - Disconnect/reconnect active connections on sleep/wake
-    - Connections
-        - New SOCKS Proxy:
-            - Name
-            - Address
-            - User
-            - Bind: localhost:1337
-            - Options:
-                - Use ssh identity file
-
 ### Reeder
 
 - Setup
@@ -352,39 +314,7 @@ Without Firefox Sync the following tasks needs to be completed:
     - Startup and Window Behavior
         - Open Spotify automatically after you log into the computer: No
 
-### Mail
-
-- Exchange
-    - Use with: mail, calendar, contacts
-- Google
-    - Use with: mail, calendar, contacts
-
-### Calendar
-
-- Preferences
-    - General
-        - Show Birthdays calendar: disable
-        - Show Holidays calendar: disable
-    - Advanced
-        - Show events in year view
-        - Show week numbers
-
-### Mail
-
-- Exchange
-    - Use with: mail, calendar, contacts
-- Google
-    - Use with: mail, calendar, contacts
-
 ### Webex Teams
 
 - Preferences
     - Start Webex Teams when my computer starts: disable
-
-### Photos
-
-To stop `photoanalysisd` from consuming high CPU turn off Memories:
-
-- Preferences
-    - Memories
-        - Disable both checkboxes
