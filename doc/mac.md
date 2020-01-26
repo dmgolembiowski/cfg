@@ -314,6 +314,12 @@ To stop `photoanalysisd` from consuming high CPU turn off Memories:
     - Startup and Window Behavior
         - Open Spotify automatically after you log into the computer: No
 
+### Agenda
+
+- Preferences:
+    - Mark new notes as On the Agenda: disable
+    - Play user interface sounds: disable
+
 ### Webex Teams
 
 - Preferences
