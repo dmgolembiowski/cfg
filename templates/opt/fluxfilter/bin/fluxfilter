@@ -5,7 +5,7 @@ import miniflux
 
 SITES = {
     "http://daringfireball.net/": [r"^\[sponsor\]",],
-    "https://www.macstories.net": [r"\[sponsor\]",],
+    "https://www.macstories.net": [r"\[sponsor\]",r"\bepisode \d+\b"],
 }
 
 SITE = "{{ miniflux.api.url }}"
@@ -13,7 +13,7 @@ USER = "{{ miniflux.api.user }}"
 PASSWORD = "{{ miniflux.api.password }}"
 
 client = miniflux.Client(SITE, USER, PASSWORD)
-res = client.get_entries(status="unread", direction="desc", limit=100)
+res = client.get_entries(status="unread", direction="desc", limit=1000)
 
 ids = []
 
