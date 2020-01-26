@@ -22,7 +22,6 @@ cask 'bettertouchtool'
 cask 'hiddenbar'
 cask 'itsycal'
 cask 'cpuinfo'
-cask 'shifty'
 mas 'Amphetamine', id: 937984704
 mas 'ToothFairy', id: 1191449274
 
