@@ -71,7 +71,6 @@ brew 'pgcli'
 brew 'wrk'
 cask 'alacritty'
 cask 'docker'
-cask 'notion'
 
 ##
 ## Debug
