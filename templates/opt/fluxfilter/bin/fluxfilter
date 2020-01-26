@@ -4,33 +4,26 @@ import re
 import miniflux
 
 SITES = {
-        'https://thepointsguy.com': [
-            r'\bcards?\b',
-            r'\bdeal alert\b',
-            r'\bearn up to\b',
-            r'^icymi:',
-        ],
-        'http://daringfireball.net/': [
-            r'^\[sponsor\]',
-        ],
+    "http://daringfireball.net/": [r"^\[sponsor\]",],
+    "https://www.macstories.net": [r"\[sponsor\]",],
 }
 
-SITE = '{{ miniflux.api.url }}'
-USER = '{{ miniflux.api.user }}'
-PASSWORD = '{{ miniflux.api.password }}'
+SITE = "{{ miniflux.api.url }}"
+USER = "{{ miniflux.api.user }}"
+PASSWORD = "{{ miniflux.api.password }}"
 
 client = miniflux.Client(SITE, USER, PASSWORD)
-res = client.get_entries(status='unread', direction='desc')
+res = client.get_entries(status="unread", direction="desc", limit=100)
 
 ids = []
 
-for e in res['entries']:
+for e in res["entries"]:
     for site, rules in SITES.items():
-        if e['feed']['site_url'] == site:
+        if e["feed"]["site_url"] == site:
             for rule in rules:
-                if re.search(rule, e['title'], re.IGNORECASE):
-                    ids.append(e['id'])
-                    print('%s:' % rule, e['title'])
+                if re.search(rule, e["title"], re.IGNORECASE):
+                    ids.append(e["id"])
+                    print("%s:" % rule, e["title"])
 
 if len(ids):
-    client.update_entries(ids, 'read')
+    client.update_entries(ids, "read")
