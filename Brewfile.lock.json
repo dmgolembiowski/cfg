@@ -423,27 +423,6 @@
           }
         }
       },
-      "poetry": {
-        "version": "1.0.2",
-        "bottle": {
-          "cellar": ":any_skip_relocation",
-          "prefix": "/usr/local",
-          "files": {
-            "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/poetry-1.0.2.catalina.bottle.tar.gz",
-              "sha256": "10df063f03a450392883f562621a240ba062de70f9db917c383c87bf9d901c18"
-            },
-            "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/poetry-1.0.2.mojave.bottle.tar.gz",
-              "sha256": "7bc40a1e86946cf60a046a869129c9772cbc46030bfdf3f46ad37601ea0e8816"
-            },
-            "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/poetry-1.0.2.high_sierra.bottle.tar.gz",
-              "sha256": "8881f7d7a38addfaf0abd337f8b958ac3018dbae1cb01af0b91c30c0b4cd3a82"
-            }
-          }
-        }
-      },
       "pre-commit": {
         "version": "1.21.0_1",
         "bottle": {
@@ -464,10 +443,6 @@
             }
           }
         }
-      },
-      "yarn": {
-        "version": "1.21.1",
-        "bottle": false
       },
       "entr": {
         "version": "4.4",

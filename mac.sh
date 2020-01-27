@@ -27,6 +27,16 @@ if ! [ -x /usr/local/bin/brew ]; then
 	ruby -e "$(curl -fsSL $hburl)"
 fi
 
+# Emacs:
+
+_ed=/Applications/Emacs.app/Contents/MacOS
+if command file $_ed/Emacs | grep -q Ruby; then
+	mv $_ed/Emacs{,-launcher}
+	mv $_ed/Emacs{-x86_64-10_14,}
+fi
+
+exit 0
+
 ##
 ## Apps (see Brewfile):
 ##

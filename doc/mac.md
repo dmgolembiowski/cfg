@@ -314,6 +314,13 @@ To stop `photoanalysisd` from consuming high CPU turn off Memories:
     - Startup and Window Behavior
         - Open Spotify automatically after you log into the computer: No
 
+### Emacs
+
+- Preferences
+    - Security & Privacy
+        - Full Disk Access
+            - Allow Emacs
+
 ### Agenda
 
 - Preferences:
