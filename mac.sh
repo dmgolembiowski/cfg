@@ -52,14 +52,6 @@ if ! [ -e ~/Library/Fonts/SFMono-Regular.otf ]; then
 		~/Library/Fonts
 fi
 
-# Emacs:
-
-_ed=/Applications/Emacs.app/Contents/MacOS
-if command file $_ed/Emacs | grep -q Ruby; then
-	mv $_ed/Emacs{,-launcher}
-	mv $_ed/Emacs{-x86_64-10_14,}
-fi
-
 ##
 ## Settings:
 ##
