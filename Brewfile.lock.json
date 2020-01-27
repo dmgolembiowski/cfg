@@ -626,6 +626,9 @@
       },
       "bettertouchtool": {
         "version": "3.225"
+      },
+      "emacs": {
+        "version": "26.3"
       }
     },
     "mas": {

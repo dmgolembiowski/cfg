@@ -52,6 +52,7 @@ cask 'spotify'
 
 brew 'git'
 brew 'vim'
+cask 'emacs'
 brew 'fzy'
 brew 'tmux'
 brew 'bash'
