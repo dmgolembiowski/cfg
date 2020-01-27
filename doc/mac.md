@@ -210,6 +210,8 @@ To stop `photoanalysisd` from consuming high CPU turn off Memories:
         - Theme: Vibrant Dark
     - Sidebar:
         - Show sidebar on: No display
+    - Search
+    -   - Disable Control-Space shortcut
     - Command-Tab
         - Show windows from: Visible spaces
 
@@ -313,13 +315,6 @@ To stop `photoanalysisd` from consuming high CPU turn off Memories:
         - Autoplay similar songs when your music ends: disable
     - Startup and Window Behavior
         - Open Spotify automatically after you log into the computer: No
-
-### Emacs
-
-- Preferences
-    - Security & Privacy
-        - Full Disk Access
-            - Allow Emacs
 
 ### Agenda
 
