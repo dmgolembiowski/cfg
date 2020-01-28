@@ -15,3 +15,4 @@
 (setq org-todo-keywords
       '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
 (setq org-agenda-files '("~/src/org/"))
+(global-set-key (kbd "C-c a") 'org-agenda)
