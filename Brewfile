@@ -26,12 +26,6 @@ mas 'Amphetamine', id: 937984704
 mas 'ToothFairy', id: 1191449274
 
 ##
-## Productivity
-##
-
-mas 'Things 3', id: 904280696
-
-##
 ## Web
 ##
 
