@@ -15,4 +15,11 @@
 (setq org-todo-keywords
       '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
 (setq org-agenda-files '("~/src/org/"))
+(setq org-tag-alist '((:startgroup)
+                      ("@home" . ?h)
+		      ("@office" . ?o)
+		      (:endgroup)
+                      ("errand" . ?e)
+                      ("computer" . ?c)
+                      ("phone" . ?p)))
 (global-set-key (kbd "C-c a") 'org-agenda)
