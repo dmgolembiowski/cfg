@@ -66,7 +66,6 @@ brew 'pgcli'
 brew 'wrk'
 cask 'alacritty'
 cask 'docker'
-mas 'Agenda', id: 1287445660
 
 ##
 ## Debug
