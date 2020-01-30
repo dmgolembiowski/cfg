@@ -39,6 +39,7 @@ mas 'Reeder', id: 1449412482
 ##
 
 cask 'spotify'
+brew 'ffmpeg'
 
 ##
 ## Dev
