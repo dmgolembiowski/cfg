@@ -646,6 +646,9 @@
       },
       "emacs": {
         "version": "26.3"
+      },
+      "dropbox": {
+        "version": "latest"
       }
     },
     "mas": {
