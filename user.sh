@@ -15,14 +15,6 @@ find $DOTFILES -type f | while read -r f; do
 	dst="$HOME/$rel"
 
 
-	if role server || role vm || mac; then
-		case "$f" in
-			*/plex*)
-				continue
-				;;
-		esac
-	fi
-
 	if role server || mac; then
 		case "$f" in
 			*/systemd*|*/xterm*|*/gtk*|*/i3*|*/mpv/*)
