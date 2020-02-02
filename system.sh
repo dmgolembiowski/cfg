@@ -250,7 +250,6 @@ if role desktop; then
 			brightnessctl
 			i3lock
 			redshift
-			spotify
 			slack-desktop
 		'
 
