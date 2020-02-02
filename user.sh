@@ -17,7 +17,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	if role server || role vm || mac; then
 		case "$f" in
-			*/slack|*/plex*)
+			*/plex*)
 				continue
 				;;
 		esac
