@@ -191,8 +191,6 @@ if role dev; then
 fi
 
 if role work; then
-	pkg go go-bindata gcc libxml2 docker
-
 	pkg python-virtualenv
 
 	if ! [ -e /opt/az/bin/python3 ]; then
@@ -205,8 +203,6 @@ if role work; then
 	file /usr/share/bash-completion/completions/az
 
 	pkg bind-tools
-
-	pkg kubectl
 fi
 
 ##
