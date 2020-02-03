@@ -65,10 +65,6 @@ fi
 ##
 
 if role desktop && ! mac; then
-	tmpl ~/.config/systemd/user/ssh-tunnel.service \
-		/home/user/.config/systemd/user/ssh-tunnel.service
-	svc ssh-tunnel --user
-
 	systemctl --user enable redshift
 fi
 
