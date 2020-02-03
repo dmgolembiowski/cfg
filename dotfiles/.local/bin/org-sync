@@ -3,4 +3,13 @@
 SRC=dropbox:org
 DST=~/src/org
 
-rclone copy --include '*.org' "$SRC" "$DST"
+rclone="rclone copy --include '*.org'"
+
+case "$1" in
+    pull)
+	$rclone "$SRC" "$DST"
+	;;
+    push)
+	$rclone "$DST" "$SRC"
+	;;
+esac
