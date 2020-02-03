@@ -20,7 +20,7 @@ find $DOTFILES -type f | while read -r f; do
 			*/systemd*|*/xterm*|*/gtk*|*/i3*|*/mpv/*)
 				continue
 				;;
-			*pam_env*)
+			*pam_env*|*org-sync*)
 				continue
 				;;
 			*.Xresources|*.xinitrc)

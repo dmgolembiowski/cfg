@@ -1,0 +1,6 @@
+#!/bin/sh
+
+SRC=dropbox:org
+DST=~/src/org
+
+rclone copy --include '*.org' "$SRC" "$DST"

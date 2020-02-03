@@ -177,6 +177,7 @@ if role dev; then
 		pkg '
 			vim
 			the_silver_searcher
+			rclone
 		'
 	fi
 
