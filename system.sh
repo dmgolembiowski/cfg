@@ -175,6 +175,7 @@ if role dev; then
 		'
 	elif distro arch; then
 		pkg '
+			emacs
 			vim
 			the_silver_searcher
 			rclone

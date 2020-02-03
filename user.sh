@@ -20,7 +20,7 @@ find $DOTFILES -type f | while read -r f; do
 			*/systemd*|*/xterm*|*/gtk*|*/i3*|*/mpv/*)
 				continue
 				;;
-			*pam_env*|*org-sync*)
+			*pam_env*|*.emacs.d*|*org-sync*)
 				continue
 				;;
 			*.Xresources|*.xinitrc)
@@ -42,7 +42,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	if ! mac; then
 		case "$f" in
-			*hammerspoon*|*alacritty*|*.emacs*)
+			*hammerspoon*|*alacritty*)
 				continue
 				;;
 		esac
