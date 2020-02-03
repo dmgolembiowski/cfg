@@ -23,8 +23,6 @@ HISTCONTROL=ignoreboth
 
 unset MAILCHECK
 
-set -o vi
-
 if [[ ${EUID} == 0 ]]; then
 	PS1='\[\033[00;31m\]\w\[\033[0m\] '
 else
@@ -69,8 +67,6 @@ fi
 if [ -f /usr/share/bash-completion/bash_completion ]; then
 	. /usr/share/bash-completion/bash_completion
 fi
-
-command -v vim >/dev/null && EDITOR=vim
 
 alias ls='ls -1F'
 

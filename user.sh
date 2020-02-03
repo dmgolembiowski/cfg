@@ -61,88 +61,11 @@ if ! [ -L $HOME/.bash_profile ]; then
 fi
 
 ##
-## SSH
+## Systemd user units
 ##
 
 if role desktop && ! mac; then
 	systemctl --user enable redshift
-fi
-
-##
-## Vim
-##
-
-vimpack() {
-	local u=$1
-	local n=$2
-	local v=$3
-	local r=$HOME/.vim/pack/dist/start
-	local fresh
-
-	mkdir -p $r
-
-	if [ -d $r/$n/.git ]; then
-		git -C $r/$n fetch -q
-	else
-		fresh=yes
-		echo $n: clone
-		git clone -q https://github.com/$u/$n $r/$n
-	fi
-
-	local h=$(git -C $r/$n rev-parse HEAD)
-
-	if [ "$v" ]; then
-		local th=$(git -C $r/$n rev-list --tags --max-count=1)
-	else
-		local th=$(git -C $r/$n rev-parse origin/HEAD)
-	fi
-
-	if [ "$h" != "$th" ]; then
-		echo $n
-		echo '  cur:' $h
-		echo '  upd:' $th
-
-		git -C $r/$n checkout -q $th
-		vim +'helptags ALL' +q
-
-		# Skip logging if this is a fresh checkout and we're rewinding:
-		if [ "$fresh" != yes ]; then
-			git -C $r/$n log --pretty=oneline $h..$th | sed 's/^/  /'
-		fi
-	fi
-}
-
-vimpurge() {
-	local n=$1
-	local r=$HOME/.vim/pack/dist/start
-
-	if [ -d $r/$n ]; then
-		echo $n rm
-		rm -rf $r/$n
-	fi
-}
-
-if role dev; then
-	vimpack cormacrelf vim-colors-github
-	vimpack ap vim-buftabline
-	vimpack tpope vim-commentary
-	vimpack srstevenson vim-picker
-	vimpack scrooloose nerdtree
-	vimpack tpope vim-eunuch tag
-	vimpack duggiefresh vim-easydir tag
-	vimpack farmergreg vim-lastplace tag
-	vimpack godlygeek tabular
-	vimpack plasticboy vim-markdown
-	vimpack lepture vim-jinja
-	vimpack psf black tag
-
-	vimpurge vim-gruvbox8
-	vimpurge nofrils
-	vimpurge papercolor-theme
-	vimpurge vimwiki
-
-	mkdir -p ~/.vim/tmp/undo
-	mkdir -p ~/.vim/tmp/swap
 fi
 
 ##

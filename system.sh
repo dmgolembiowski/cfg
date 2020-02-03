@@ -168,7 +168,6 @@ if role dev; then
 	if distro debian; then
 		pkg '
 			man-db
-			vim-nox
 			ncurses-term
 			silversearcher-ag
 			python3-venv
@@ -176,7 +175,6 @@ if role dev; then
 	elif distro arch; then
 		pkg '
 			emacs
-			vim
 			the_silver_searcher
 			rclone
 		'
