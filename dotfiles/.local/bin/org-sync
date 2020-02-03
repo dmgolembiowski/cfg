@@ -1,17 +1,16 @@
-#!/bin/sh
+#!/bin/sh -ex
 
-SRC=dropbox:org
-DST=~/src/org
+REMOTE=dropbox:/org/
+LOCAL=~/src/org/
 
-rclone="rclone copy --include '*.org'"
 direction="$1"
 shift
 
 case "$direction" in
     pull)
-	$rclone "$SRC" "$DST" "$@"
+	rclone copy --include '/*.org' "$REMOTE" "$LOCAL" "$@"
 	;;
     push)
-	$rclone "$DST" "$SRC" "$@"
+	rclone copy --include '/*.org' "$LOCAL" "$REMOTE" "$@"
 	;;
 esac
