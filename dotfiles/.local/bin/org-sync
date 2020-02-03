@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 REMOTE=dropbox:/org/
 LOCAL=~/src/org/
