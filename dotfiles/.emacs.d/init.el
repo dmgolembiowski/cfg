@@ -36,4 +36,10 @@
                       ("errand" . ?e)
                       ("computer" . ?c)
                       ("phone" . ?p)))
+
+;; Unfold all headlines, but keep content folded
+(setq org-startup-folded 'content)
+;; Indent text visually according to outline structure
+(setq org-startup-indented t)
+
 (global-set-key (kbd "C-c a") 'org-agenda)
