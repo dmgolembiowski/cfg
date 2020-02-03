@@ -136,10 +136,6 @@ if role dev; then
 	vimpack lepture vim-jinja
 	vimpack psf black tag
 
-	if role work; then
-		vimpack fatih vim-go tag
-	fi
-
 	vimpurge vim-gruvbox8
 	vimpurge nofrils
 	vimpurge papercolor-theme
