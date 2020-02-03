@@ -2,8 +2,8 @@
 #
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
-set $mod Mod1
+# Logo key. Use Mod4 for Alt.
+set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -32,7 +32,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exit
 
 # lock screen
-bindsym Mod4+l exec i3lock -c 4d4d4c
+# bindsym Mod4+l exec i3lock -c 4d4d4c
 
 #
 # Moving around:
@@ -79,15 +79,15 @@ bindsym $mod+Shift+0 move container to workspace 10
 # Outputs:
 #
 
-bindsym Mod4+Left focus output left
-bindsym Mod4+Down focus output down
-bindsym Mod4+Up focus output up
-bindsym Mod4+Right focus output right
+# bindsym Mod4+Left focus output left
+# bindsym Mod4+Down focus output down
+# bindsym Mod4+Up focus output up
+# bindsym Mod4+Right focus output right
 
-bindsym Mod4+Shift+Left move worskpace to output left
-bindsym Mod4+Shift+Down move worskpace to output down
-bindsym Mod4+Shift+Up move worskpace to output up
-bindsym Mod4+Shift+Right move worskpace to output right
+# bindsym Mod4+Shift+Left move worskpace to output left
+# bindsym Mod4+Shift+Down move worskpace to output down
+# bindsym Mod4+Shift+Up move worskpace to output up
+# bindsym Mod4+Shift+Right move worskpace to output right
 
 #
 # Layout stuff:
