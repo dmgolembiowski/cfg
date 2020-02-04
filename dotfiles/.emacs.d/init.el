@@ -15,31 +15,42 @@
 
 
 ;;
+;; Packages
+;;
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+
+;;
 ;; Org Mode
 ;;
 
-(require 'org)
-
-(setq org-agenda-files '("~/src/org/"))
-
-(setq org-todo-keywords '((sequence
-			   "TODO"
-			   "IN-PROGRESS"
-			   "WAITING"
-			   "|"
-			   "DONE"
-			   "CANCELED")))
-(setq org-tag-alist '((:startgroup)
-                      ("@home" . ?h)
-		      ("@office" . ?o)
-		      (:endgroup)
-                      ("errand" . ?e)
-                      ("computer" . ?c)
-                      ("phone" . ?p)))
-
-;; Unfold all headlines, but keep content folded
-(setq org-startup-folded 'content)
-;; Indent text visually according to outline structure
-(setq org-startup-indented t)
-
-(global-set-key (kbd "C-c a") 'org-agenda)
+(use-package org
+	     :bind (("C-C a" . org-agenda))
+	     :init (setq
+		    org-agenda-files '("~/src/org/")
+		    org-todo-keywords '((sequence
+					 "TODO"
+					 "IN-PROGRESS"
+					 "WAITING"
+					 "|"
+					 "DONE"
+					 "CANCELED"))
+		    org-tag-alist '((:startgroup)
+				    ("@home" . ?h)
+				    ("@office" . ?o)
+				    (:endgroup)
+				    ("errand" . ?e)
+				    ("computer" . ?c)
+				    ("phone" . ?p))
+		    org-startup-folded 'content
+		    org-startup-indented t))
