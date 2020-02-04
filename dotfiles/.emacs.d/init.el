@@ -28,9 +28,6 @@
 
 (require 'use-package)
 
-;;
-;; Org Mode
-;;
 
 (use-package org
 	     :bind (("C-C a" . org-agenda))
