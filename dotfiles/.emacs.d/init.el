@@ -20,6 +20,7 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -49,3 +50,8 @@
 				    ("phone" . ?p))
 		    org-startup-folded 'content
 		    org-startup-indented t))
+
+(use-package magit
+  :ensure t
+  :pin melpa-stable
+  :bind (("C-x g" . magit-status)))
