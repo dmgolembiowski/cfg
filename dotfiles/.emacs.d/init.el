@@ -59,6 +59,12 @@
   :pin melpa-stable
   :bind (("C-x g" . magit-status)))
 
+(use-package exwm
+  :ensure t
+  :config
+  (require 'exwm-config)
+  (exwm-config-default))
+
 ;; store custom UI and package-selected-packages in an untracked file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 

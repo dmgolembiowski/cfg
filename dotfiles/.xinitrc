@@ -8,4 +8,4 @@ xrdb -merge ~/.Xresources
 
 unclutter&
 
-exec i3
+exec emacs
