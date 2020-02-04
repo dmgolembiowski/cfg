@@ -13,6 +13,13 @@
 (setq initial-scratch-message "")
 (setq inhibit-startup-message t)
 
+;;
+;; Modeline
+;;
+
+(setq display-time-default-load-average nil
+      display-time-format "%Y-%m-%d %H:o%M")
+(display-time-mode t)
 
 ;;
 ;; Packages
