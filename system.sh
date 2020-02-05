@@ -219,9 +219,6 @@ if role desktop; then
 		xdg-utils
 		xclip
 		unclutter
-		i3-wm
-		i3status
-		py3status
 		xterm
 		maim
 		sxiv
@@ -244,7 +241,6 @@ if role desktop; then
 	else
 		pkg '
 			brightnessctl
-			i3lock
 			redshift
 		'
 
