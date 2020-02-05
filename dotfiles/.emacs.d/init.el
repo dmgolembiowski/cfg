@@ -59,11 +59,35 @@
   :pin melpa-stable
   :bind (("C-x g" . magit-status)))
 
+(defun exwm-change-screen-hook ()
+  (with-temp-buffer
+    (insert-file-contents "/sys/class/drm/card0/card0-DP-1/status")
+    (point-min)
+    (let ((secondary-connection-status
+	   (buffer-substring-no-properties (line-beginning-position)
+					   (line-end-position))))
+    (if (string= secondary-connection-status "connected")
+	(progn
+	  (message "DEBUG %s" "DP-1 on")
+	  (call-process "xrandr" nil nil nil
+			"--output DP-1 --auto --output eDP-1 --off")
+	  (setq exwm-randr-workspace-output-plist (list 0 "DP-1")))
+      (progn
+	(message "DEBUG %s" "eDP-1 on")
+	(call-process "xrandr" nil nil nil
+		      "--output eDP-1 --auto --output DP-1 --off")
+	(setq exwm-randr-workspace-output-plist (list 0 "eDP-1")))))))
+
 (use-package exwm
   :ensure t
   :config
+  (require 'exwm-randr)
+  (add-hook 'exwm-randr-screen-change-hook 'exwm-change-screen-hook)
+  (exwm-randr-enable)
+
   (require 'exwm-config)
   (exwm-config-default)
+
   (display-battery-mode 1)
   (setq display-time-default-load-average nil
 	display-time-format "%Y-%m-%d %H:%M")
