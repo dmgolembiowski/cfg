@@ -73,7 +73,8 @@
   :ensure t
   :pin melpa-stable
   :config
-  (setq x-underline-at-descent-line t)
+  (setq x-underline-at-descent-line t
+	moody-mode-line-height 20)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode)
   (set-face-attribute 'mode-line nil :box nil)
