@@ -17,7 +17,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	if role server || mac; then
 		case "$f" in
-			*/systemd*|*/xterm*|*/gtk*|*/i3*|*/mpv/*)
+			*/systemd*|*/xterm*|*/gtk*|*/mpv/*)
 				continue
 				;;
 			*pam_env*|*.emacs.d*|*org-sync*)

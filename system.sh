@@ -241,6 +241,7 @@ if role desktop; then
 	else
 		pkg '
 			brightnessctl
+			slock
 			redshift
 		'
 
@@ -252,8 +253,8 @@ if role desktop; then
 		tmpl /etc/udev/rules.d/99-x-monitor-hotplug.rules
 		udevadm control --reload
 
-		tmpl /etc/systemd/system/i3lock.service
-		systemctl enable i3lock
+		tmpl /etc/systemd/system/slock.service
+		systemctl enable slock
 	fi
 
 	# Autologin to TTY 1:
