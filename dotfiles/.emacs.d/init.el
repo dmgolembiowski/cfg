@@ -70,7 +70,8 @@
   :ensure t
   :config
   (require 'exwm-config)
-  (exwm-config-default))
+  (exwm-config-default)
+  (display-battery-mode 1))
 
 ;; store custom UI and package-selected-packages in an untracked file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
