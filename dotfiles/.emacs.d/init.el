@@ -18,7 +18,7 @@
 ;;
 
 (setq display-time-default-load-average nil
-      display-time-format "%Y-%m-%d %H:o%M")
+      display-time-format "%Y-%m-%d %H:%M")
 (display-time-mode t)
 
 ;;
