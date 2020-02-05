@@ -69,6 +69,16 @@
 	display-time-format "%Y-%m-%d %H:%M")
   (display-time-mode t))
 
+(use-package moody
+  :ensure t
+  :pin melpa-stable
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode)
+  (set-face-attribute 'mode-line nil :box nil)
+  (set-face-attribute 'mode-line-inactive nil :box nil))
+
 ;; store custom UI and package-selected-packages in an untracked file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
