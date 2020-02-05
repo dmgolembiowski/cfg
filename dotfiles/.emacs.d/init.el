@@ -13,13 +13,6 @@
 (setq initial-scratch-message "")
 (setq inhibit-startup-message t)
 
-;;
-;; Modeline
-;;
-
-(setq display-time-default-load-average nil
-      display-time-format "%Y-%m-%d %H:%M")
-(display-time-mode t)
 
 ;;
 ;; Packages
@@ -71,7 +64,10 @@
   :config
   (require 'exwm-config)
   (exwm-config-default)
-  (display-battery-mode 1))
+  (display-battery-mode 1)
+  (setq display-time-default-load-average nil
+	display-time-format "%Y-%m-%d %H:%M")
+  (display-time-mode t))
 
 ;; store custom UI and package-selected-packages in an untracked file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
