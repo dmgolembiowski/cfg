@@ -61,14 +61,6 @@ if ! [ -L $HOME/.bash_profile ]; then
 fi
 
 ##
-## Systemd user units
-##
-
-if role desktop && ! mac; then
-	systemctl --user enable redshift
-fi
-
-##
 ## Dirs
 ##
 
