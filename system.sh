@@ -219,6 +219,7 @@ if role desktop; then
 		xdg-utils
 		xclip
 		unclutter
+		polybar
 		xterm
 		maim
 		sxiv

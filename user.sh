@@ -23,7 +23,7 @@ find $DOTFILES -type f | while read -r f; do
 			*pam_env*|*.emacs.d*|*org-sync*)
 				continue
 				;;
-			*.Xresources|*.xinitrc)
+			*.Xresources|*.xinitrc|*polybar*)
 				continue
 				;;
 			*bin/pac*)
