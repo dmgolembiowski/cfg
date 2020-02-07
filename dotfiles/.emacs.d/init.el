@@ -59,29 +59,28 @@
   :pin melpa-stable
   :bind (("C-x g" . magit-status)))
 
-(defun exwm-change-screen-hook ()
-  (with-temp-buffer
-    (insert-file-contents "/sys/class/drm/card0/card0-DP-1/status")
-    (point-min)
-    (let ((secondary-connection-status
-	   (buffer-substring-no-properties (line-beginning-position)
-					   (line-end-position))))
-    (if (string= secondary-connection-status "connected")
-	(progn
-	  (message "DEBUG %s" "DP-1 on")
-	  (call-process "xrandr" nil nil nil
-			"--output DP-1 --auto --output eDP-1 --off")
-	  (setq exwm-randr-workspace-output-plist (list 0 "DP-1")))
-      (progn
-	(message "DEBUG %s" "eDP-1 on")
-	(call-process "xrandr" nil nil nil
-		      "--output eDP-1 --auto --output DP-1 --off")
-	(setq exwm-randr-workspace-output-plist (list 0 "eDP-1")))))))
-
 (use-package exwm
   :ensure t
   :config
   (require 'exwm-randr)
+
+  (defun exwm-change-screen-hook ()
+    (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
+	  default-output)
+      (with-temp-buffer
+	(call-process "xrandr" nil t nil)
+	(goto-char (point-min))
+	(re-search-forward xrandr-output-regexp nil 'noerror)
+	(setq default-output (match-string 1))
+	(forward-line)
+	(if (not (re-search-forward xrandr-output-regexp nil 'noerror))
+	    (call-process "xrandr" nil nil nil "--output" default-output "--auto")
+	  (call-process
+	   "xrandr" nil nil nil
+	   "--output" (match-string 1) "--primary" "--auto"
+	   "--output" default-output "--off")
+	  (setq exwm-randr-workspace-output-plist (list 0 (match-string 1)))))))
+
   (add-hook 'exwm-randr-screen-change-hook 'exwm-change-screen-hook)
   (exwm-randr-enable)
 
