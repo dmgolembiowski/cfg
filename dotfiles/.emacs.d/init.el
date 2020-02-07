@@ -85,7 +85,11 @@
   (exwm-randr-enable)
 
   (require 'exwm-config)
-  (exwm-config-default))
+  (exwm-config-default)
+
+  (setq window-divider-default-bottom-width 2
+	window-divider-default-right-width 2)
+  (window-divider-mode))
 
 (use-package desktop-environment
   :ensure t
