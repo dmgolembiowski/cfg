@@ -85,12 +85,7 @@
   (exwm-randr-enable)
 
   (require 'exwm-config)
-  (exwm-config-default)
-
-  (display-battery-mode 1)
-  (setq display-time-default-load-average nil
-	display-time-format "%Y-%m-%d %H:%M")
-  (display-time-mode t))
+  (exwm-config-default))
 
 (use-package desktop-environment
   :ensure t

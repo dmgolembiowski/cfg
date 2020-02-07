@@ -10,4 +10,6 @@ unclutter&
 
 redshift -l 59.91:10.74&
 
+polybar main&
+
 exec emacs
