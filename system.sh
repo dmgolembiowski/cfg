@@ -247,14 +247,6 @@ if role desktop; then
 
 		# Periodic TRIM:
 		svc fstrim.timer
-
-		file /usr/local/bin/x-monitor-hotplug
-		chmod +x /usr/local/bin/x-monitor-hotplug
-		tmpl /etc/udev/rules.d/99-x-monitor-hotplug.rules
-		udevadm control --reload
-
-		tmpl /etc/systemd/system/slock.service
-		systemctl enable slock
 	fi
 
 	# Autologin to TTY 1:
