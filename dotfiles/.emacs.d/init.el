@@ -87,6 +87,22 @@
   (require 'exwm-config)
   (exwm-config-default)
 
+  (setq exwm-input-global-keys
+	`(
+	  ;; 's-r': Reset (to line-mode).
+	  ([?\s-r] . exwm-reset)
+	  ;; 's-p': Launch application.
+	  ([?\s-p] . (lambda (command)
+		       (interactive (list (read-shell-command "$ ")))
+		       (start-process-shell-command command nil command)))
+	  ;; 's-N': Switch to certain workspace.
+	  ,@(mapcar (lambda (i)
+		      `(,(kbd (format "s-%d" i)) .
+			(lambda ()
+			  (interactive)
+			  (exwm-workspace-switch-create ,i))))
+		    (number-sequence 0 9))))
+
   (setq window-divider-default-bottom-width 2
 	window-divider-default-right-width 2)
   (window-divider-mode))
