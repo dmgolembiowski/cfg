@@ -89,13 +89,13 @@
 
   (setq exwm-input-global-keys
 	`(
-	  ;; 's-r': Reset (to line-mode).
-	  ([?\s-r] . exwm-reset)
-	  ;; 's-p': Launch application.
+	  ;; Toggle between char and line mode:
+	  ([?\s-i] . exwm-input-toggle-keyboard)
+	  ;; Launch appliction:
 	  ([?\s-p] . (lambda (command)
 		       (interactive (list (read-shell-command "$ ")))
 		       (start-process-shell-command command nil command)))
-	  ;; 's-N': Switch to certain workspace.
+	  ;; Switch to certain workspace N:
 	  ,@(mapcar (lambda (i)
 		      `(,(kbd (format "s-%d" i)) .
 			(lambda ()
