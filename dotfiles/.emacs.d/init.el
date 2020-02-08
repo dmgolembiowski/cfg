@@ -60,6 +60,16 @@
          org-startup-folded 'content
          org-startup-indented t))
 
+(defun eu/enable-whitespace ()
+  (add-hook 'before-save-hook 'whitespace-cleanup nil t)
+  (whitespace-mode +1))
+
+(use-package whitespace
+  :hook ((text-mode prog-mode) . eu/enable-whitespace)
+  :custom
+  (whitespace-line-column 80)
+  (whitespace-style '(face tabs tab-mark empty trailing lines-tail)))
+
 
 ;;
 ;; Third-party packages
