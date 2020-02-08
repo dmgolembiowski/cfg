@@ -13,6 +13,14 @@
 (setq initial-scratch-message "")
 (setq inhibit-startup-message t)
 
+;;
+;; Editor
+;;
+
+;; Indent with spaces as default
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 8)
+
 
 ;;
 ;; Packages
