@@ -32,7 +32,7 @@ font-1 = NotoColorEmoji:size=10:scale=10;2
 
 modules-left = xworkspaces
 modules-center = xwindow
-modules-right = filesystem cpu memory temperature wlan eth pulseaudio backlight-acpi battery date
+modules-right = pacupdates filesystem cpu memory temperature wlan eth pulseaudio backlight-acpi battery date
 
 tray-position = right
 tray-padding = 2
@@ -58,6 +58,13 @@ type = internal/xwindow
 
 label = %title:0:60:...%
 label-empty = Emacs
+
+[module/pacupdates]
+type = custom/script
+interval = 6000
+
+exec = checkupdates 2> /dev/null | wc -l
+label = 📦 %output%
 
 [module/filesystem]
 type = internal/fs
