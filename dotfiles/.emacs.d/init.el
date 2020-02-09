@@ -58,6 +58,14 @@
   :custom
   (blink-cursor-mode nil "Disable cursor blinking"))
 
+(use-package uniquify
+  :custom
+  (uniquify-buffer-name-style 'forward "Results in foo/Makefile bar/Makefile")
+  (uniquify-ignore-buffers-re "^\\*" "Ignore special buffers")
+  (uniquify-after-kill-buffer-p
+   t
+   "Rename buffer back after killing matching buffers"))
+
 
 ;;
 ;; History
