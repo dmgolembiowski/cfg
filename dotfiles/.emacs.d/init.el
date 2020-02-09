@@ -42,6 +42,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 8)
 
+(use-package files
+  :custom
+  (require-final-newline t "Add newline at end of file if there isn't one")
+
 
 ;;
 ;; Mode line
