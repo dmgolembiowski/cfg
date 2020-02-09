@@ -23,9 +23,3 @@ gh() {
 for n in prometheus alertmanager node_exporter; do
     gh prometheus $n
 done
-
-_kubectl_latest=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-
-if [ "$_kubectl_latest" != "$KUBECTL_V" ]; then
-    echo kubectl $KUBECTL_V '->' $_kubectl_latest
-fi
