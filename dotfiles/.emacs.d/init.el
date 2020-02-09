@@ -25,7 +25,9 @@
 
 (use-package emacs
   :custom
-  (setq load-prefer-newer t "Prevent loading stale byte code"))
+  (setq load-prefer-newer t "Prevent loading stale byte code")
+  :config
+  (fset 'yes-or-no-p 'y-or-n-p))  ;; y/n in stead of yes/no
 
 (use-package simple
   :custom
