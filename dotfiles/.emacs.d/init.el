@@ -42,7 +42,9 @@
 (use-package emacs
   :custom
   (menu-bar-mode nil)
-  (tool-bar-mode nil))
+  (tool-bar-mode nil)
+  (scroll-conservatively 100000)
+  (scroll-preserve-screen-position 1 "Move point when srolling"))
 
 (use-package scroll-bar
   :custom
