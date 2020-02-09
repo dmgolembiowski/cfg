@@ -1,0 +1,12 @@
+#!/bin/bash
+
+UP=/tmp/checkupdates
+UP_CACHE=$((3*3600))
+
+[ -f $UP ] || touch $UP
+fts=$(stat -c %Y $UP)
+
+if [ $((now - fdate)) -le $UP_CACHE ]; then
+       checkupdates | wc -l > $UP
+fi
+cat $UP
