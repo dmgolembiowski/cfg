@@ -98,24 +98,24 @@
 
 (use-package org
   :bind (("C-C a" . org-agenda))
-  :init (setq
-         org-agenda-files '("~/src/org/")
-         org-todo-keywords '((sequence
-                              "TODO"
-                              "IN-PROGRESS"
-                              "WAITING"
-                              "|"
-                              "DONE"
-                              "CANCELED"))
-         org-tag-alist '((:startgroup)
-                         ("@home" . ?h)
-                         ("@office" . ?o)
-                         (:endgroup)
-                         ("errand" . ?e)
-                         ("computer" . ?c)
-                         ("phone" . ?p))
-         org-startup-folded 'content
-         org-startup-indented t))
+  :custom
+  (org-agenda-files '("~/src/org/"))
+  (org-todo-keywords '((sequence
+                        "TODO"
+                        "IN-PROGRESS"
+                        "WAITING"
+                        "|"
+                        "DONE"
+                        "CANCELED")))
+  (org-tag-alist '((:startgroup)
+                   ("@home" . ?h)
+                   ("@office" . ?o)
+                   (:endgroup)
+                   ("errand" . ?e)
+                   ("computer" . ?c)
+                   ("phone" . ?p)))
+  (org-startup-folded 'content)
+  (org-startup-indented t))
 
 (defun eu/enable-whitespace ()
   (add-hook 'before-save-hook 'whitespace-cleanup nil t)
