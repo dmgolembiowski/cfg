@@ -86,6 +86,11 @@
   (kept-new-versions 6)
   (kept-old-versions 2))
 
+(use-package saveplace
+  :custom
+  (save-place-file "~/.emacs.d/saveplace")
+  (save-place-mode 1))
+
 
 ;;
 ;; Editor
