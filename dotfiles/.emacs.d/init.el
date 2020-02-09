@@ -89,7 +89,10 @@
 (use-package emacs
   :custom
   (indent-tabs-mode nil "Indent with spaces as detault")
-  (tab-width 8))
+  (tab-width 8)
+  (tab-always-indent
+   'complete
+   "TAB indents if unindented or completes if already indented"))
 
 (use-package files
   :custom
