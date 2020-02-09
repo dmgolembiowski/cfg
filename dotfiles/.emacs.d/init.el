@@ -192,18 +192,20 @@
   :pin melpa-stable
   :init
   (desktop-environment-mode)
-  :config
-  (setq desktop-environment-volume-get-command "pulsemixer --get-volume"
-        desktop-environment-volume-get-regexp "\\([0-9]+\\)"
-        desktop-environment-volume-set-command "pulsemixer --change-colume %s"
-        desktop-environment-volume-toggle-command "pulsemixer --toggle-mute"
-        desktop-environment-volume-normal-increment "+5"
-        desktop-environment-volume-normal-decrement "-5"
-        desktop-environment-volume-small-increment "+1"
-        desktop-environment-volume-small-decrement "-1"
-        desktop-environment-screenshot-directory "~/pic"
-        desktop-environment-screenshot-command "maim ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')"
-        desktop-environment-screenshot-partial-command "maim -s  ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')"))
+  :custom
+  (desktop-environment-volume-get-command "pulsemixer --get-volume")
+  (desktop-environment-volume-get-regexp "\\([0-9]+\\)")
+  (desktop-environment-volume-set-command "pulsemixer --change-colume %s")
+  (desktop-environment-volume-toggle-command "pulsemixer --toggle-mute")
+  (desktop-environment-volume-normal-increment "+5")
+  (desktop-environment-volume-normal-decrement "-5")
+  (desktop-environment-volume-small-increment "+1")
+  (desktop-environment-volume-small-decrement "-1")
+  (desktop-environment-screenshot-directory "~/pic")
+  (desktop-environment-screenshot-command
+   "maim ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')")
+  (desktop-environment-screenshot-partial-command
+   "maim -s  ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')"))
 
 
 ;; store custom UI and package-selected-packages in an untracked file
