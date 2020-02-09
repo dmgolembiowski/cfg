@@ -20,6 +20,15 @@
 
 
 ;;
+;; Core
+;;
+
+(use-package emacs
+  :custom
+  (setq load-prefer-newer t "Prevent loading stale byte code"))
+
+
+;;
 ;; GUI
 ;;
 
