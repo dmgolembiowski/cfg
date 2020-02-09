@@ -14,6 +14,11 @@ find $DOTFILES -type f | while read -r f; do
     src="$DOTFILES/$rel"
     dst="$HOME/$rel"
 
+    case "$f" in
+        '.#'*)
+            continue
+            ;;
+    esac
 
     if role server || mac; then
         case "$f" in
