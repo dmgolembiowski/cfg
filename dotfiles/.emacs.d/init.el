@@ -13,6 +13,27 @@
 (setq initial-scratch-message "")
 (setq inhibit-startup-message t)
 
+
+;;
+;; History
+;;
+
+(use-package saveplace
+  :custom
+  (save-place-file (concat user-emacs-directory "saveplace")
+                   "Keep saved places out of working directories"))
+
+(use-package files
+  :custom
+  (backup-directory-alist `(("." . "~/.emacs.d/backups"))
+                          "Keep backups out of working directories")
+  (backup-by-copying t "Use cp and overwrite of original when making backup")
+  (version-control t "Make numberic backup versions of edited files")
+  (delete-old-versions t)
+  (kept-new-versions 6)
+  (kept-old-versions 2))
+
+
 ;;
 ;; Editor
 ;;
