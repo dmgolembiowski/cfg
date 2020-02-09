@@ -39,16 +39,23 @@
 ;; GUI
 ;;
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode 0):
+(use-package emacs
+  :custom
+  (menu-bar-mode nil)
+  (tool-bar-mode nil))
 
-;; Disable cursor blinking
-(blink-cursor-mode 0)
+(use-package scroll-bar
+  :custom
+  (scroll-bar-mode nil))
 
-;; Disable startup messages
-(setq initial-scratch-message "")
-(setq inhibit-startup-message t)
+(use-package frame
+  :custom
+  (blink-cursor-mode nil "Disable cursor blinking"))
+
+(use-package emacs
+  :custom
+  (initial-scratch-message nil)
+  (inhibit-startup-screen t))
 
 
 ;;
@@ -75,13 +82,14 @@
 ;; Editor
 ;;
 
-;; Indent with spaces as default
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 8)
+(use-package emacs
+  :custom
+  (indent-tabs-mode nil "Indent with spaces as detault")
+  (tab-width 8))
 
 (use-package files
   :custom
-  (require-final-newline t "Add newline at end of file if there isn't one")
+  (require-final-newline t "Add newline at end of file if there isn't one"))
 
 
 ;;
@@ -197,8 +205,11 @@
         desktop-environment-screenshot-command "maim ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')"
         desktop-environment-screenshot-partial-command "maim -s  ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')"))
 
-;; store custom UI and package-selected-packages in an untracked file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(when (file-exists-p custom-file)
-  (load custom-file))
+;; store custom UI and package-selected-packages in an untracked file
+(use-package cus-edit
+  :custom
+  (custom-file (expand-file-name "custom.el" user-emacs-directory))
+  :init
+  (when (file-exists-p custom-file)
+    (load custom-file)))
