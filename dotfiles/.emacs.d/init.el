@@ -197,17 +197,6 @@
         desktop-environment-screenshot-command "maim ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')"
         desktop-environment-screenshot-partial-command "maim -s  ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')"))
 
-(use-package moody
-  :ensure t
-  :pin melpa-stable
-  :config
-  (setq x-underline-at-descent-line t
-        moody-mode-line-height 20)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode)
-  (set-face-attribute 'mode-line nil :box nil)
-  (set-face-attribute 'mode-line-inactive nil :box nil))
-
 ;; store custom UI and package-selected-packages in an untracked file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
