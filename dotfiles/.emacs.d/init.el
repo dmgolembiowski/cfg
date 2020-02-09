@@ -99,6 +99,10 @@
   :custom
   (global-auto-revert-mode t "Auto revert buffers when file change on disk"))
 
+(use-package hippie-expand
+  :bind
+  ("M-/" . hippie-expand))
+
 ;;
 ;; Built-in packages
 ;;
