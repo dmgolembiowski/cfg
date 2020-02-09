@@ -42,8 +42,14 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 8)
 
-;; Display column number in modeline
-(setq column-number-mode t)
+
+;;
+;; Mode line
+;;
+
+(use-package simple
+  :custom
+  (column-number-mode t "Display column number in mode line))
 
 
 ;;
