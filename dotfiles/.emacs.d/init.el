@@ -95,6 +95,9 @@
   :custom
   (require-final-newline t "Add newline at end of file if there isn't one"))
 
+(use-package autorevert
+  :custom
+  (global-auto-revert-mode t "Auto revert buffers when file change on disk"))
 
 ;;
 ;; Built-in packages
