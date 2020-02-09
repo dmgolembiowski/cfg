@@ -136,6 +136,12 @@
 ;; Third-party packages
 ;;
 
+(use-package which-key
+  :ensure t
+  :pin melpa-stable
+  :custom
+  (which-key-mode t))
+
 (use-package magit
   :ensure t
   :pin melpa-stable
