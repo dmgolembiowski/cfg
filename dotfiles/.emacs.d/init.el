@@ -27,6 +27,13 @@
   :custom
   (setq load-prefer-newer t "Prevent loading stale byte code"))
 
+(use-package simple
+  :custom
+  (save-interprogram-paste-before-kill
+   t
+   "Store clipboard text into kill ring before replacement")
+  (column-number-mode t "Display column number in mode line"))
+
 
 ;;
 ;; GUI
@@ -75,15 +82,6 @@
 (use-package files
   :custom
   (require-final-newline t "Add newline at end of file if there isn't one")
-
-
-;;
-;; Mode line
-;;
-
-(use-package simple
-  :custom
-  (column-number-mode t "Display column number in mode line))
 
 
 ;;
