@@ -45,6 +45,8 @@
   :custom
   (menu-bar-mode nil)
   (tool-bar-mode nil)
+  (initial-scratch-message nil)
+  (inhibit-startup-screen t)
   (scroll-conservatively 100000)
   (scroll-preserve-screen-position 1 "Move point when srolling"))
 
@@ -55,11 +57,6 @@
 (use-package frame
   :custom
   (blink-cursor-mode nil "Disable cursor blinking"))
-
-(use-package emacs
-  :custom
-  (initial-scratch-message nil)
-  (inhibit-startup-screen t))
 
 
 ;;
