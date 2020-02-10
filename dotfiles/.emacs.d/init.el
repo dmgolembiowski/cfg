@@ -161,12 +161,14 @@
 
 (defun eu/enable-whitespace ()
   (add-hook 'before-save-hook 'whitespace-cleanup nil t)
+  (if (derived-mode-p 'org-mode)
+      (setq-local whitespace-line-column 200)
+    (setq-local whitespace-line-column 80))
   (whitespace-mode +1))
 
 (use-package whitespace
   :hook ((text-mode prog-mode) . eu/enable-whitespace)
   :custom
-  (whitespace-line-column 80)
   (whitespace-style '(face tabs tab-mark empty trailing lines-tail)))
 
 
