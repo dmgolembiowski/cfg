@@ -339,19 +339,19 @@ if role www; then
     file /etc/logrotate.d/nginx
     rm -f  /etc/nginx/sites-enabled/default
 
-    tmplexec <<-EOF
-        {% for w in www.keys()|sort %}
-        mkdir -p /var/www/{{ w }}
+    tmplexec <<EOF
+{% for w in www.keys()|sort %}
+mkdir -p /var/www/{{ w }}
 
-        tmpl /etc/nginx/conf.d/{{ w }}.conf \
-                /etc/nginx/conf.d/site.conf www.{{ w }}
+tmpl /etc/nginx/conf.d/{{ w }}.conf \
+        /etc/nginx/conf.d/site.conf www.{{ w }}
 
-        {% if 'auth_basic' in www[w] %}
-        tmpl /etc/nginx/conf.d/{{ w }}.passwd \
-                /etc/nginx/conf.d/site.passwd www.{{ w }}
-        {% endif %}
-        {% endfor %}
-        EOF
+{% if 'auth_basic' in www[w] %}
+tmpl /etc/nginx/conf.d/{{ w }}.passwd \
+        /etc/nginx/conf.d/site.passwd www.{{ w }}
+{% endif %}
+{% endfor %}
+EOF
 
     svc nginx
 fi
@@ -377,25 +377,25 @@ if role wsgi; then
     mkdir -p /var/db/gunicorn
     chown gunicorn: /var/db/gunicorn
 
-    tmplexec <<-EOF
-        {% for w in wsgi.keys()|sort %}
-        {% if 'venv' in wsgi[w] %}
-        if ! [ -d {{ wsgi[w].venv }}/bin ]; then
-                mkdir -p {{ wsgi[w].venv }}
-                virtualenv -p /usr/bin/python3.7 {{ wsgi[w].venv }}
-                chown -R gunicorn: {{ wsgi[w].venv }}
-        fi
-        {% endif %}
+    tmplexec <<EOF
+{% for w in wsgi.keys()|sort %}
+{% if 'venv' in wsgi[w] %}
+if ! [ -d {{ wsgi[w].venv }}/bin ]; then
+        mkdir -p {{ wsgi[w].venv }}
+        virtualenv -p /usr/bin/python3.7 {{ wsgi[w].venv }}
+        chown -R gunicorn: {{ wsgi[w].venv }}
+fi
+{% endif %}
 
-        tmpl /etc/systemd/system/gunicorn-{{ w }}.service \
-                /etc/systemd/system/gunicorn.service wsgi.{{ w }}
-        tmpl /etc/systemd/system/gunicorn-{{ w }}.socket \
-                /etc/systemd/system/gunicorn.socket wsgi.{{ w }}
+tmpl /etc/systemd/system/gunicorn-{{ w }}.service \
+        /etc/systemd/system/gunicorn.service wsgi.{{ w }}
+tmpl /etc/systemd/system/gunicorn-{{ w }}.socket \
+        /etc/systemd/system/gunicorn.socket wsgi.{{ w }}
 
-        svc gunicorn-{{ w }}.socket
-        svc gunicorn-{{ w }}.service
-        {% endfor %}
-        EOF
+svc gunicorn-{{ w }}.socket
+svc gunicorn-{{ w }}.service
+{% endfor %}
+EOF
 fi
 
 ##
@@ -483,23 +483,23 @@ if role backup; then
 
     file /etc/logrotate.d/backup
 
-    tmplexec <<-EOF
-        {% for b in backup.keys()|sort %}
-        b={{ b }}
-        f=/usr/local/sbin/restic-backup-\$b
-        tmpl \$f /usr/local/sbin/restic-backup backup.\$b
-        chmod 700 \$f
+    tmplexec <<EOF
+{% for b in backup.keys()|sort %}
+b={{ b }}
+f=/usr/local/sbin/restic-backup-\$b
+tmpl \$f /usr/local/sbin/restic-backup backup.\$b
+chmod 700 \$f
 
-        {% if 'cron' in backup[b] %}
-        if ! crontab -l | grep -q \$f; then
-                (
-                        crontab -l 2>/dev/null
-                        echo "{{ backup[b].cron }} \$f"
-                ) | crontab -
-        fi
-        {% endif %}
-        {% endfor %}
-        EOF
+{% if 'cron' in backup[b] %}
+if ! crontab -l | grep -q \$f; then
+        (
+                crontab -l 2>/dev/null
+                echo "{{ backup[b].cron }} \$f"
+        ) | crontab -
+fi
+{% endif %}
+{% endfor %}
+EOF
 fi
 
 ##
