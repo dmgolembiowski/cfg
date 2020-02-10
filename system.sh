@@ -15,18 +15,18 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 ##
 
 pkg '
-        sudo
-        curl
-        ca-certificates
-'
+    sudo
+    curl
+    ca-certificates
+    '
 
 if distro debian; then
     pkg '
-                python3-jinja2
-                python3-yaml
-                unattended-upgrades
-                python3-gi
-                needrestart
+        python3-jinja2
+        python3-yaml
+        unattended-upgrades
+        python3-gi
+        needrestart
         '
     echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 
@@ -52,25 +52,25 @@ if distro debian; then
     fi
 elif distro arch; then
     pkg '
-                python-jinja
-                python-yaml
+        python-jinja
+        python-yaml
         '
     echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 
     file /etc/pacman.conf
     file /etc/pacman.d/mirrorlist
     pkg '
-                base
-                e2fsprogs
-                man-db
-                man-pages
-                pacman-contrib
-                devtools
-                binutils
-                pacolog
-                lostfiles
-                openssh
-                needrestart
+        base
+        e2fsprogs
+        man-db
+        man-pages
+        pacman-contrib
+        devtools
+        binutils
+        pacolog
+        lostfiles
+        openssh
+        needrestart
         '
 
     file /etc/pacman.d/hooks/needrestart.hook
@@ -87,9 +87,9 @@ elif distro arch; then
         file /etc/X11/Xwrapper.config
     else
         pkg '
-                        iucode-tool
-                        fwupd
-                '
+            iucode-tool
+            fwupd
+            '
     fi
 fi
 
@@ -170,26 +170,26 @@ pkg htop
 if role dev; then
     if distro debian; then
         pkg '
-                        man-db
-                        ncurses-term
-                        silversearcher-ag
-                        python3-venv
-                '
+            man-db
+            ncurses-term
+            silversearcher-ag
+            python3-venv
+            '
     elif distro arch; then
         pkg '
-                        emacs
-                        the_silver_searcher
-                        rclone
-                '
+            emacs
+            the_silver_searcher
+            rclone
+            '
     fi
 
     pkg '
-                git
-                bash-completion
-                tmux
-                fzy
-                ncdu
-                jq
+        git
+        bash-completion
+        tmux
+        fzy
+        ncdu
+        jq
         '
 fi
 
@@ -214,39 +214,39 @@ fi
 
 if role desktop; then
     pkg '
-                xorg-server
-                xorg-xinit
-                xorg-xrdb
-                xorg-xsetroot
-                xorg-xrandr
-                xdg-utils
-                xclip
-                unclutter
-                polybar
-                xterm
-                maim
-                sxiv
-                mupdf
-                unzip
-                noto-fonts
-                noto-fonts-emoji
-                ttf-ibm-plex
-                firefox
-                moreutils
+        xorg-server
+        xorg-xinit
+        xorg-xrdb
+        xorg-xsetroot
+        xorg-xrandr
+        xdg-utils
+        xclip
+        unclutter
+        polybar
+        xterm
+        maim
+        sxiv
+        mupdf
+        unzip
+        noto-fonts
+        noto-fonts-emoji
+        ttf-ibm-plex
+        firefox
+        moreutils
         '
 
     if role vm; then
         pkg '
-                        xf86-input-vmmouse
-                        xf86-video-vmware
-                        mesa
-                '
+            xf86-input-vmmouse
+            xf86-video-vmware
+            mesa
+            '
     else
         pkg '
-                        brightnessctl
-                        slock
-                        redshift
-                '
+            brightnessctl
+            slock
+            redshift
+            '
 
         # Periodic TRIM:
         svc fstrim.timer
@@ -269,10 +269,10 @@ fi
 
 if role desktop; then
     pkg '
-                pulseaudio
-                pulsemixer
-                mpv
-                youtube-dl
+        pulseaudio
+        pulsemixer
+        mpv
+        youtube-dl
         '
 
     if ! role vm; then
@@ -293,7 +293,10 @@ fi
 ##
 
 if role server; then
-    pkg nullmailer bsd-mailx
+    pkg '
+        nullmailer
+        bsd-mailx
+        '
 
     tmpl /etc/nullmailer/remotes
     tmpl /etc/nullmailer/adminaddr
@@ -306,7 +309,11 @@ fi
 ##
 
 if role tls; then
-    pkg dehydrated jq moreutils
+    pkg '
+        dehydrated
+        jq
+        moreutils
+        '
 
     tmpl /etc/dehydrated/config
     tmpl /etc/dehydrated/domains.txt
@@ -322,8 +329,8 @@ fi
 
 if role www; then
     pkg '
-                nginx-light
-                libnginx-mod-http-fancyindex
+        nginx-light
+        libnginx-mod-http-fancyindex
         '
 
     file /etc/nginx/ffdhe4096.pem
@@ -355,8 +362,8 @@ fi
 
 if role wsgi; then
     pkg '
-                gunicorn3
-                python3-setproctitle
+        gunicorn3
+        python3-setproctitle
         '
 
     grep -q ^gunicorn: /etc/group ||
@@ -467,7 +474,10 @@ fi
 ##
 
 if role backup; then
-    pkg restic moreutils
+    pkg '
+        restic
+        moreutils
+        '
 
     mkdir -p /var/log/backup /var/backups/cache
 
@@ -590,7 +600,10 @@ fi
 ##
 
 if role dyndns; then
-    pkg ddupdate python3-requests
+    pkg '
+        ddupdate
+        python3-requests
+        '
 
     file /usr/share/ddupdate/plugins/cloudflare.py
     tmpl /etc/systemd/system/ddupdate.service.d/serviceopt.conf
@@ -648,7 +661,10 @@ _w_set() {
 }
 
 if role irc; then
-    pkg weechat weechat-plugins
+    pkg '
+        weechat
+        weechat-plugins
+        '
     grep -q ^weechat: /etc/group ||
         groupadd -r weechat
     grep -q ^weechat: /etc/passwd ||
@@ -719,13 +735,13 @@ fi
 
 if distro debian; then
     _UNNEEDED_PKGS='
-                debconf-i18n
-                eject
-                ifupdown
-                isc-dhcp-client
-                nano
-                rsyslog
-                tasksel
+        debconf-i18n
+        eject
+        ifupdown
+        isc-dhcp-client
+        nano
+        rsyslog
+        tasksel
         '
 
     if role vm; then
@@ -733,22 +749,22 @@ if distro debian; then
     fi
 elif distro arch; then
     _UNNEEDED_PKGS='
-                dhcpcd
-                haveged
-                iotop
-                jfsutils
-                lsof
-                lvm2
-                mdadm
-                mtr
-                nano
-                net-tools
-                netctl
-                reiserfsprogs
-                s-nail
-                sysstat
-                whois
-                xfsprogs
+        dhcpcd
+        haveged
+        iotop
+        jfsutils
+        lsof
+        lvm2
+        mdadm
+        mtr
+        nano
+        net-tools
+        netctl
+        reiserfsprogs
+        s-nail
+        sysstat
+        whois
+        xfsprogs
         '
     if ! role vm; then
         _UNNEEDED_PKGS="$_UNNEEDED_PKGS linux"
