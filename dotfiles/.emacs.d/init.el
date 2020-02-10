@@ -201,7 +201,7 @@
         (forward-line)
         (if (not (re-search-forward xrandr-output-regexp nil 'noerror))
             (call-process "xrandr" nil nil nil
-                          "--output" default-output "--auto")
+                          "--output" default-output "--primary" "--auto")
           (call-process "xrandr" nil nil nil
                         "--output" (match-string 1) "--primary" "--auto"
                         "--output" default-output "--off")
