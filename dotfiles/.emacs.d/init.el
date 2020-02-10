@@ -173,6 +173,9 @@
   :custom
   (whitespace-style '(face tabs tab-mark empty trailing lines-tail)))
 
+(use-package executable
+  :hook (after-save . executable-make-buffer-file-executable-if-script-p))
+
 
 ;;
 ;; Third-party packages
