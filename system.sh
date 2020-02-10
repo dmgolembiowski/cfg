@@ -229,7 +229,6 @@ if role desktop; then
                 noto-fonts
                 noto-fonts-emoji
                 ttf-ibm-plex
-                ttf-font-awesome
                 firefox
                 moreutils
         '
