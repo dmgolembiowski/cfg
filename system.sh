@@ -260,6 +260,8 @@ if role desktop; then
     file /etc/sysctl.d/disable_watchdog.conf
     file /etc/modprobe.d/audio_powersave.conf
 
+    file /etc/modprobe.d/hid_apple.conf
+
     file /etc/X11/xorg.conf.d/00-keyboard.conf
     file /etc/X11/xorg.conf.d/00-touchpad.conf
     file /etc/X11/xorg.conf.d/00-pointer.conf
