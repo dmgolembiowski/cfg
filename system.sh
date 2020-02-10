@@ -110,6 +110,8 @@ if role desktop; then
     if ! role vm; then
         _wlif=$(ip a | awk '/^[0-9]: wl/ { print $2 }' | tr -d :)
         envfile /etc/wpa_supplicant/wpa_supplicant-${_wlif}.conf
+
+        pkg iw
     fi
 fi
 
