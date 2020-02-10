@@ -246,6 +246,8 @@ if role desktop; then
             brightnessctl
             slock
             redshift
+            bluez
+            bluez-utils
             '
 
         # Periodic TRIM:
@@ -262,6 +264,8 @@ if role desktop; then
     file /etc/X11/xorg.conf.d/00-touchpad.conf
     file /etc/X11/xorg.conf.d/00-pointer.conf
 
+    file /etc/bluetooth/main.conf
+    svc bluetooth
 fi
 
 ##
