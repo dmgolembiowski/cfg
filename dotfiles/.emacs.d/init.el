@@ -163,7 +163,9 @@
   (add-hook 'before-save-hook 'whitespace-cleanup nil t)
   (if (derived-mode-p 'org-mode)
       (setq-local whitespace-line-column 200)
-    (setq-local whitespace-line-column 80))
+    (progn
+      (setq-local whitespace-line-column 80)
+      (setq-local display-line-numbers t)))
   (whitespace-mode +1))
 
 (use-package whitespace
