@@ -1,11 +1,9 @@
 [colors]
 ; gruvbox colors
-bg = #282828
-bg2 = #504945
-fg = #d5c4a1
-fg4 = #a89984
-green = #b8bb26
-red = #fb4934
+bg = #e5e5e5
+fg = #333
+medium = #bfbfbf
+red = #f00
 
 [bar/main]
 width = 100%
@@ -18,8 +16,8 @@ foreground = ${colors.fg}
 line-size = 3
 line-color = #f00
 
-border-size = 4
-border-color = #00000000
+border-size = 1
+border-color = ${colors.medium}
 
 padding-left = 2
 padding-right = 2
@@ -50,7 +48,8 @@ label-occupied = " %name% "
 label-urgent = " %name% "
 label-empty = " %name% "
 
-label-active-background = ${colors.bg2}
+label-active-foreground = #000
+label-active-background = ${colors.medium}
 label-urgent-foreground = ${colors.red}
 
 [module/xwindow]
