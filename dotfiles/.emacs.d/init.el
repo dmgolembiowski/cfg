@@ -86,6 +86,15 @@
   (kept-new-versions 6)
   (kept-old-versions 2))
 
+(use-package savehist
+  :custom
+  (savehist-file "~/.emacs.d/savehist")
+  (savehist-additional-variables
+   '(search-ring regexp-search-ring)
+   "Save search entries in addition to minibuffer entries")
+  (savehist-autosave-interval 60 "Decrease autosave interval")
+  (savehist-mode 1))
+
 (use-package saveplace
   :custom
   (save-place-file "~/.emacs.d/saveplace")
