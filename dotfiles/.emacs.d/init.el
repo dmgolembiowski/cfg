@@ -262,6 +262,17 @@
   (desktop-environment-screenshot-partial-command
    "maim -s  ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')"))
 
+(use-package diff-hl
+  :ensure t
+  :pin melpa-stable
+  :hook
+  (dired-mode . diff-hl-dired-mode)
+  (magit-post-refresh . diff-hl-magit-post-refresh)
+  :config
+  (fringe-mode 8) ;; reset fringe mode to default
+  (global-diff-hl-mode 1)
+  (diff-hl-flydiff-mode 1))
+
 
 ;; store custom UI and package-selected-packages in an untracked file
 (use-package cus-edit
