@@ -95,6 +95,15 @@
   (savehist-autosave-interval 60 "Decrease autosave interval")
   (savehist-mode 1))
 
+(use-package recentf
+  :custom
+  (recentf-save-file "~/.emacs.d/recentf")
+  (recentf-max-saved-items 500)
+  (recentf-max-menu-items 15)
+  (recentf-auto-cleanup
+   'never "Disable auto cleanup since it can cause problems with remote files")
+  (recentf-mode 1))
+
 (use-package saveplace
   :custom
   (save-place-file "~/.emacs.d/saveplace")
