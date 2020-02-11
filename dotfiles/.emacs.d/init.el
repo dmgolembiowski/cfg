@@ -187,6 +187,9 @@
   (ediff-window-setup-function 'ediff-setup-windows-plain
                                "Default multiframe breaks EXWM"))
 
+(use-package vc-hooks
+  :custom (vc-follow-symlinks t "Follow symlink to vc file without asking"))
+
 
 ;;
 ;; Third-party packages
