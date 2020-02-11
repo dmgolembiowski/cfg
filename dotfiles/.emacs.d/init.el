@@ -281,6 +281,11 @@
   (global-diff-hl-mode 1)
   (diff-hl-flydiff-mode 1))
 
+(use-package hl-todo
+  :ensure t
+  :pin melpa-stable
+  :config
+  (global-hl-todo-mode 1))
 
 ;; store custom UI and package-selected-packages in an untracked file
 (use-package cus-edit
