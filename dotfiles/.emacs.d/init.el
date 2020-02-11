@@ -312,6 +312,10 @@
   :ensure nil
   :hook (python-mode . subword-mode))
 
+(use-package gitignore-mode
+  :ensure t
+  :pin melpa-stable))
+
 
 ;;
 ;; Customization
