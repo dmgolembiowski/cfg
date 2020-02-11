@@ -269,6 +269,9 @@ if role desktop; then
     file /etc/X11/xorg.conf.d/00-touchpad.conf
     file /etc/X11/xorg.conf.d/00-pointer.conf
 
+    file /usr/local/bin/x-monitor-hotplug
+    chmod + /usr/local/bin/x-monitor-hotplug
+
     file /etc/bluetooth/main.conf
     svc bluetooth
 fi
