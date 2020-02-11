@@ -315,7 +315,7 @@
 
 (use-package gitignore-mode
   :ensure t
-  :pin melpa-stable))
+  :pin melpa-stable)
 
 
 ;;
