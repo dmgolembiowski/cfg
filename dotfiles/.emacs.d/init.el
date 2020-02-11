@@ -292,7 +292,11 @@
   :config
   (guru-global-mode 1))
 
-;; store custom UI and package-selected-packages in an untracked file
+
+;;
+;; Customization
+;;
+
 (use-package cus-edit
   :custom
   (custom-file (expand-file-name "custom.el" user-emacs-directory))
