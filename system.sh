@@ -283,6 +283,7 @@ if role desktop; then
         pulsemixer
         mpv
         youtube-dl
+        ncspot
         '
 
     if ! role vm; then
