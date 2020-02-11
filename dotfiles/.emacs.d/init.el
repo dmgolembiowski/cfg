@@ -312,7 +312,7 @@
   :ensure t
   :pin melpa-stable
   :mode ("\\.yml$" . yaml-mode)
-  :hook (yaml-mode . subword-mode))
+  :hook (yaml-mode . subword-mode)) ;; yaml-mode derives from text-mode
 
 (use-package python
   :ensure nil
