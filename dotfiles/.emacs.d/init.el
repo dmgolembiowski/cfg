@@ -308,6 +308,10 @@
   :mode ("\\.yml$" . yaml-mode)
   :hook (yaml-mode . subword-mode))
 
+(use-package python
+  :ensure nil
+  :hook (python-mode . subword-mode))
+
 
 ;;
 ;; Customization
