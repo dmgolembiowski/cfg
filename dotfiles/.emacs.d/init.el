@@ -314,9 +314,9 @@
   :mode ("\\.yml$" . yaml-mode)
   :hook (yaml-mode . subword-mode)) ;; yaml-mode derives from text-mode
 
-(use-package python
+(use-package prog-mode
   :ensure nil
-  :hook (python-mode . subword-mode))
+  :hook (prog-mode . subword-mode))
 
 (use-package gitignore-mode
   :ensure t
