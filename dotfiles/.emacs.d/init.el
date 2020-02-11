@@ -26,6 +26,7 @@
 (use-package emacs
   :custom
   (load-prefer-newer t "Prevent loading stale byte code")
+  (visible-bell t "Flash frame to represent bell")
   :config
   (fset 'yes-or-no-p 'y-or-n-p))  ;; y/n in stead of yes/no
 
