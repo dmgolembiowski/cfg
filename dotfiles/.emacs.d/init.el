@@ -197,30 +197,14 @@
   :config
   (require 'exwm-randr)
 
-  (defun exwm-change-screen-hook ()
-    (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
-          default-output)
-      (with-temp-buffer
-        (call-process "xrandr" nil t nil)
-        (goto-char (point-min))
-        (re-search-forward xrandr-output-regexp nil 'noerror)
-        (setq default-output (match-string 1))
-        (forward-line)
-        (if (not (re-search-forward xrandr-output-regexp nil 'noerror))
-            (call-process "xrandr" nil nil nil
-                          "--output" default-output "--primary" "--auto")
-          (call-process "xrandr" nil nil nil
-                        "--output" (match-string 1) "--primary" "--auto"
-                        "--output" default-output "--off")
-          (setq exwm-randr-workspace-output-plist (list 0 (match-string 1)))))))
-
-  (add-hook 'exwm-randr-screen-change-hook 'exwm-change-screen-hook)
+  (setq exwm-randr-workspace-monitor-plist
+        '(0 "DP-1" 2 "DP-1" 3 "DP-1" 4 "DP-1" 5 "DP-1"))
   (exwm-randr-enable)
 
   (require 'exwm-config)
   (exwm-config-default)
 
-  (setq exwm-input-global-keys
+   (setq exwm-input-global-keys
         `(
           ;; Toggle between char and line mode:
           ([?\s-i] . exwm-input-toggle-keyboard)
@@ -228,8 +212,35 @@
           ([?\s-p] . (lambda (command)
                        (interactive (list (read-shell-command "$ ")))
                        (start-process-shell-command command nil command)))
-          ;; Launch appliction:
-          ;; FIMXE: ([?\s-s-return] . (start-process-shell-command "xterm" nil "xterm"))
+          ;; Launch xterm:
+          ,`(,(kbd "<S-s-return>") . (lambda ()
+                              (interactive)
+                              (start-process-shell-command "xterm" nil
+                                                           "xterm")))
+          ;; Switch to external display:
+          ,`(,(kbd "<XF86Display>") . (lambda ()
+                                        (interactive)
+                                        (call-process "xrandr" nil nil nil
+                                                      "--output" "eDP-1" "--off"
+                                                      "--output" "DP-1"
+                                                      "--auto")))
+          ;; Switch to internal display:
+          ,`(,(kbd "M-<XF86Display>") . (lambda ()
+                                          (interactive)
+                                          (call-process "xrandr" nil nil nil
+                                                        "--output" "DP-1"
+                                                        "--off"
+                                                        "--output" "eDP-1"
+                                                        "--auto")))
+          ;; Switch to internal and external display:
+          ,`(,(kbd "C-<XF86Display>") . (lambda ()
+                                          (interactive)
+                                          (call-process "xrandr" nil nil nil
+                                                        "--output" "eDP-1"
+                                                        "--auto"
+                                                        "--output" "DP-1"
+                                                        "--right-of" "eDP-1"
+                                                        "--auto")))
           ;; Switch to certain workspace N:
           ,@(mapcar (lambda (i)
                       `(,(kbd (format "s-%d" i)) .
