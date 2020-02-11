@@ -121,7 +121,8 @@
   (tab-width 8)
   (tab-always-indent
    'complete
-   "TAB indents if unindented or completes if already indented"))
+   "TAB indents if unindented or completes if already indented")
+  (sentence-end-double-space nil))
 
 (use-package files
   :custom
@@ -137,6 +138,7 @@
 
 (use-package paren
   :custom (show-paren-mode 1))
+
 
 ;;
 ;; Built-in packages
