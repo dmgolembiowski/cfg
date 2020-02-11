@@ -302,6 +302,11 @@
   :ensure nil
   :hook (makefile-mode . (lambda () (setq indent-tabs-mode t))))
 
+(use-package yaml-mode
+  :ensure t
+  :pin melpa-stable
+  :mode ("\\.yml$" . yaml-mode))
+
 
 ;;
 ;; Customization
