@@ -134,6 +134,9 @@
   :bind
   ("M-/" . hippie-expand))
 
+(use-package paren
+  :custom (show-paren-mode 1))
+
 ;;
 ;; Built-in packages
 ;;
