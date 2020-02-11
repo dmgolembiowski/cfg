@@ -305,7 +305,8 @@
 (use-package yaml-mode
   :ensure t
   :pin melpa-stable
-  :mode ("\\.yml$" . yaml-mode))
+  :mode ("\\.yml$" . yaml-mode)
+  :hook (yaml-mode . subword-mode))
 
 
 ;;
