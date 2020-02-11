@@ -169,7 +169,9 @@
     (progn
       (setq-local whitespace-line-column 80)
       (setq-local display-line-numbers t)))
-  (whitespace-mode +1))
+  (whitespace-mode +1)
+  (when (derived-mode-p 'makefile-mode)
+    (whitespace-toggle-options '(tabs tab-mark))))
 
 (use-package whitespace
   :hook ((text-mode prog-mode) . eu/enable-whitespace)
