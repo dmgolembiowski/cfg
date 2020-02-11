@@ -1,0 +1,30 @@
+#!/bin/sh
+
+INT=eDP-1
+EXT=DP-1
+
+ext_connected() {
+    xrandr 2>/dev/null | grep -q "^$EXT connected"
+}
+
+case "$1" in
+    internal)
+        xrandr --output $INT --auto --output $EXT --off
+        ;;
+    external)
+        if ext_connected; then
+            xrandr --output $EXT --auto --output $INT --off
+        else
+            exit 0
+        fi
+        ;;
+    both)
+        if ext_connected; then
+            xrandr --output $INT --auto --output $EXT --right-of $INT --auto
+        else
+            exit 0
+        fi
+        ;;
+esac
+
+polybar-msg cmd restart

@@ -204,7 +204,11 @@
   (require 'exwm-config)
   (exwm-config-default)
 
-   (setq exwm-input-global-keys
+  (defun eu/xrandr-toggle (arg)
+    (call-process (expand-file-name "~/.local/bin/xrandr-toggle")
+                  nil nil nil arg))
+
+  (setq exwm-input-global-keys
         `(
           ;; Toggle between char and line mode:
           ([?\s-i] . exwm-input-toggle-keyboard)
@@ -220,27 +224,15 @@
           ;; Switch to external display:
           ,`(,(kbd "<XF86Display>") . (lambda ()
                                         (interactive)
-                                        (call-process "xrandr" nil nil nil
-                                                      "--output" "eDP-1" "--off"
-                                                      "--output" "DP-1"
-                                                      "--auto")))
+                                        (eu/xrandr-toggle "external")))
           ;; Switch to internal display:
           ,`(,(kbd "M-<XF86Display>") . (lambda ()
                                           (interactive)
-                                          (call-process "xrandr" nil nil nil
-                                                        "--output" "DP-1"
-                                                        "--off"
-                                                        "--output" "eDP-1"
-                                                        "--auto")))
+                                          (eu/xrandr-toggle "internal")))
           ;; Switch to internal and external display:
           ,`(,(kbd "C-<XF86Display>") . (lambda ()
                                           (interactive)
-                                          (call-process "xrandr" nil nil nil
-                                                        "--output" "eDP-1"
-                                                        "--auto"
-                                                        "--output" "DP-1"
-                                                        "--right-of" "eDP-1"
-                                                        "--auto")))
+                                          (eu/xrandr-toggle "both")))
           ;; Switch to certain workspace N:
           ,@(mapcar (lambda (i)
                       `(,(kbd (format "s-%d" i)) .
@@ -248,6 +240,8 @@
                           (interactive)
                           (exwm-workspace-switch-create ,i))))
                     (number-sequence 0 9))))
+
+  (eu/xrandr-toggle "internal")
 
   (setq window-divider-default-bottom-width 2
         window-divider-default-right-width 2)
