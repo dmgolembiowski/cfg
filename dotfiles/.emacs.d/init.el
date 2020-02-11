@@ -171,9 +171,7 @@
       (setq-local display-line-numbers t)))
   (whitespace-mode +1)
   (when (derived-mode-p 'makefile-mode)
-    (progn
-      (whitespace-toggle-options '(tabs tab-mark))
-      (setq indent-tabs-mode t))))
+      (whitespace-toggle-options '(tabs tab-mark))))
 
 (use-package whitespace
   :hook ((text-mode prog-mode) . eu/enable-whitespace)
@@ -295,6 +293,14 @@
   :ensure t
   :config
   (guru-global-mode 1))
+
+;;
+;; Languages
+;;
+
+(use-package make-mode
+  :ensure nil
+  :hook (makefile-mode . (lambda () (setq indent-tabs-mode t))))
 
 
 ;;
