@@ -287,6 +287,11 @@
   :config
   (global-hl-todo-mode 1))
 
+(use-package guru-mode
+  :ensure t
+  :config
+  (guru-global-mode 1))
+
 ;; store custom UI and package-selected-packages in an untracked file
 (use-package cus-edit
   :custom
