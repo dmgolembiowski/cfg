@@ -223,6 +223,10 @@
   :custom
   (dired-listing-switches "-alh"))
 
+(use-package dired-x
+  :after dired
+  :bind (("C-x C-j" . dired-jump)
+          ("C-x 4 C-j" . dired-jump-other-window)))
 
 ;;
 ;; Third-party packages
