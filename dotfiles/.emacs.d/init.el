@@ -192,6 +192,9 @@
 (use-package vc-hooks
   :custom (vc-follow-symlinks t "Follow symlink to vc file without asking"))
 
+(use-package dired
+  :custom (dired-listing-switches "-alh"))
+
 
 ;;
 ;; Third-party packages
