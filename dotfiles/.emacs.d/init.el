@@ -338,6 +338,7 @@
 
 (use-package make-mode
   :ensure nil
+  :defer t
   :hook (makefile-mode . (lambda () (setq indent-tabs-mode t))))
 
 (use-package yaml-mode
@@ -352,6 +353,7 @@
 
 (use-package gitignore-mode
   :ensure t
+  :defer t
   :pin melpa-stable)
 
 
