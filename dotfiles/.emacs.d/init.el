@@ -49,7 +49,8 @@
   (initial-scratch-message nil)
   (inhibit-startup-screen t)
   (scroll-conservatively 100000)
-  (scroll-preserve-screen-position 1 "Move point when srolling"))
+  (scroll-preserve-screen-position 1 "Move point when srolling")
+  (default-frame-alist '((font . "IBM Plex Mono-10"))))
 
 (use-package scroll-bar
   :custom
