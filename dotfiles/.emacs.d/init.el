@@ -218,7 +218,10 @@
   :custom (vc-follow-symlinks t "Follow symlink to vc file without asking"))
 
 (use-package dired
-  :custom (dired-listing-switches "-alh"))
+  :hook
+  (dired-mode . hl-line-mode)
+  :custom
+  (dired-listing-switches "-alh"))
 
 
 ;;
