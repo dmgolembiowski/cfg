@@ -209,6 +209,7 @@
   :hook (after-save . executable-make-buffer-file-executable-if-script-p))
 
 (use-package ediff-wind
+  :defer t
   :custom
   (ediff-window-setup-function 'ediff-setup-windows-plain
                                "Default multiframe breaks EXWM"))
