@@ -79,6 +79,15 @@
                    "Keep saved places out of working directories"))
 
 (use-package files
+  :config
+  (let ((autosave-dir (concat user-emacs-directory
+                              "auto-save/")))
+    (if (not (file-exists-p autosave-dir))
+        (make-directory autosave-dir t))
+
+    (setq auto-save-file-name-transforms
+          (append auto-save-file-name-transforms
+                  (list (list ".*" autosave-dir t)))))
   :custom
   (backup-directory-alist `(("." . "~/.emacs.d/backups"))
                           "Keep backups out of working directories")
