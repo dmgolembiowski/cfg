@@ -273,6 +273,10 @@
 ;; Languages
 ;;
 
+(use-package flycheck
+  :ensure t
+  :hook (prog-mode . flycheck-mode))
+
 (use-package make-mode
   :ensure nil
   :defer t
