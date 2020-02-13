@@ -217,6 +217,29 @@
 
 
 ;;
+;; Buffer
+;;
+
+(use-package ibuffer
+  :hook
+  (ibuffer-mode . hl-line-mode)
+  :custom
+  (ibuffer-expert t)
+  (ibuffer-display-summary nil)
+  :bind ("C-x C-b" . ibuffer))
+
+(use-package ibuffer-vc
+  :after ibuffer
+  :ensure t
+  :init
+  (defun ibuffer-set-up-preferred-filters ()
+    (ibuffer-vc-set-filter-groups-by-vc-root)
+    (unless (eq ibuffer-sorting-mode 'filename/process)
+      (ibuffer-do-sort-by-filename/process)))
+  (add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)
+  :commands ibuffer-vc-set-filter-groups-by-vc-root)
+
+;;
 ;; Extensions
 ;;
 
