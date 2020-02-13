@@ -275,6 +275,9 @@
 
 (use-package flycheck
   :ensure t
+  :custom
+  (flycheck-check-syntax-automatically
+   '(save mode-enabled) "Check only when opening buffer and saving buffer")
   :hook (prog-mode . flycheck-mode))
 
 (use-package make-mode
