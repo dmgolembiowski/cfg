@@ -239,6 +239,7 @@
   (add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)
   :commands ibuffer-vc-set-filter-groups-by-vc-root)
 
+
 ;;
 ;; Extensions
 ;;
