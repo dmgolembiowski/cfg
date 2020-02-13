@@ -163,10 +163,112 @@
 (use-package paren
   :custom (show-paren-mode 1))
 
+(use-package whitespace
+  :hook ((text-mode prog-mode) . eu/enable-whitespace)
+  :custom
+  (defun eu/enable-whitespace ()
+    (add-hook 'before-save-hook 'whitespace-cleanup nil t)
+    (if (derived-mode-p 'org-mode)
+        (setq-local whitespace-line-column 200)
+      (progn
+        (setq-local whitespace-line-column 80)
+        (setq-local display-line-numbers t)))
+    (whitespace-mode +1)
+    (when (derived-mode-p 'makefile-mode)
+      (whitespace-toggle-options '(tabs tab-mark))))
+
+  (whitespace-style '(face tabs tab-mark empty trailing lines-tail)))
+
+(use-package executable
+  :hook (after-save . executable-make-buffer-file-executable-if-script-p))
+
+(use-package diff-hl
+  :ensure t
+  :pin melpa-stable
+  :hook
+  (dired-mode . diff-hl-dired-mode)
+  (magit-post-refresh . diff-hl-magit-post-refresh)
+  :config
+  (fringe-mode 8) ;; reset fringe mode to default
+  (global-diff-hl-mode 1)
+  (diff-hl-flydiff-mode 1))
+
+(use-package hl-todo
+  :ensure t
+  :pin melpa-stable
+  :config
+  (global-hl-todo-mode 1))
+
 
 ;;
-;; Built-in packages
+;; Key bindings
 ;;
+
+(use-package which-key
+  :ensure t
+  :pin melpa-stabel
+  :custom
+  (which-key-mode t))
+
+(use-package guru-mode
+  :ensure t
+  :config
+  (guru-global-mode 1))
+
+
+;;
+;; Extensions
+;;
+
+(use-package ediff-wind
+  :defer t
+  :custom
+  (ediff-window-setup-function 'ediff-setup-windows-plain
+                               "Default multiframe breaks EXWM"))
+
+(use-package vc-hooks
+  :custom (vc-follow-symlinks t "Follow symlink to vc file without asking"))
+
+(use-package dired
+  :hook
+  (dired-mode . hl-line-mode)
+  :custom
+  (dired-listing-switches "-alh"))
+
+(use-package dired-x
+  :after dired
+  :bind (("C-x C-j" . dired-jump)
+          ("C-x 4 C-j" . dired-jump-other-window)))
+
+(use-package magit
+  :ensure t
+  :pin melpa-stable
+  :bind (("C-x g" . magit-status)))
+
+
+;;
+;; Languages
+;;
+
+(use-package make-mode
+  :ensure nil
+  :defer t
+  :hook (makefile-mode . (lambda () (setq indent-tabs-mode t))))
+
+(use-package yaml-mode
+  :ensure t
+  :pin melpa-stable
+  :mode ("\\.yml$" . yaml-mode)
+  :hook (yaml-mode . subword-mode)) ;; yaml-mode derives from text-mode
+
+(use-package prog-mode
+  :ensure nil
+  :hook (prog-mode . subword-mode))
+
+(use-package gitignore-mode
+  :ensure t
+  :defer t
+  :pin melpa-stable)
 
 (use-package org
   :bind (("C-C a" . org-agenda))
@@ -189,59 +291,10 @@
   (org-startup-folded 'content)
   (org-startup-indented t))
 
-(defun eu/enable-whitespace ()
-  (add-hook 'before-save-hook 'whitespace-cleanup nil t)
-  (if (derived-mode-p 'org-mode)
-      (setq-local whitespace-line-column 200)
-    (progn
-      (setq-local whitespace-line-column 80)
-      (setq-local display-line-numbers t)))
-  (whitespace-mode +1)
-  (when (derived-mode-p 'makefile-mode)
-      (whitespace-toggle-options '(tabs tab-mark))))
-
-(use-package whitespace
-  :hook ((text-mode prog-mode) . eu/enable-whitespace)
-  :custom
-  (whitespace-style '(face tabs tab-mark empty trailing lines-tail)))
-
-(use-package executable
-  :hook (after-save . executable-make-buffer-file-executable-if-script-p))
-
-(use-package ediff-wind
-  :defer t
-  :custom
-  (ediff-window-setup-function 'ediff-setup-windows-plain
-                               "Default multiframe breaks EXWM"))
-
-(use-package vc-hooks
-  :custom (vc-follow-symlinks t "Follow symlink to vc file without asking"))
-
-(use-package dired
-  :hook
-  (dired-mode . hl-line-mode)
-  :custom
-  (dired-listing-switches "-alh"))
-
-(use-package dired-x
-  :after dired
-  :bind (("C-x C-j" . dired-jump)
-          ("C-x 4 C-j" . dired-jump-other-window)))
 
 ;;
-;; Third-party packages
+;; Window manager
 ;;
-
-(use-package which-key
-  :ensure t
-  :pin melpa-stable
-  :custom
-  (which-key-mode t))
-
-(use-package magit
-  :ensure t
-  :pin melpa-stable
-  :bind (("C-x g" . magit-status)))
 
 (use-package exwm
   :ensure t
@@ -317,52 +370,6 @@
    "maim ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')")
   (desktop-environment-screenshot-partial-command
    "maim -s  ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')"))
-
-(use-package diff-hl
-  :ensure t
-  :pin melpa-stable
-  :hook
-  (dired-mode . diff-hl-dired-mode)
-  (magit-post-refresh . diff-hl-magit-post-refresh)
-  :config
-  (fringe-mode 8) ;; reset fringe mode to default
-  (global-diff-hl-mode 1)
-  (diff-hl-flydiff-mode 1))
-
-(use-package hl-todo
-  :ensure t
-  :pin melpa-stable
-  :config
-  (global-hl-todo-mode 1))
-
-(use-package guru-mode
-  :ensure t
-  :config
-  (guru-global-mode 1))
-
-;;
-;; Languages
-;;
-
-(use-package make-mode
-  :ensure nil
-  :defer t
-  :hook (makefile-mode . (lambda () (setq indent-tabs-mode t))))
-
-(use-package yaml-mode
-  :ensure t
-  :pin melpa-stable
-  :mode ("\\.yml$" . yaml-mode)
-  :hook (yaml-mode . subword-mode)) ;; yaml-mode derives from text-mode
-
-(use-package prog-mode
-  :ensure nil
-  :hook (prog-mode . subword-mode))
-
-(use-package gitignore-mode
-  :ensure t
-  :defer t
-  :pin melpa-stable)
 
 
 ;;
