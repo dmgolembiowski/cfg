@@ -164,8 +164,7 @@
   :custom (show-paren-mode 1))
 
 (use-package whitespace
-  :hook ((text-mode prog-mode) . eu/enable-whitespace)
-  :custom
+  :config
   (defun eu/enable-whitespace ()
     (add-hook 'before-save-hook 'whitespace-cleanup nil t)
     (if (derived-mode-p 'org-mode)
@@ -176,8 +175,9 @@
     (whitespace-mode +1)
     (when (derived-mode-p 'makefile-mode)
       (whitespace-toggle-options '(tabs tab-mark))))
-
-  (whitespace-style '(face tabs tab-mark empty trailing lines-tail)))
+  :custom
+  (whitespace-style '(face tabs tab-mark empty trailing lines-tail))
+  :hook ((text-mode prog-mode) . eu/enable-whitespace))
 
 (use-package executable
   :hook (after-save . executable-make-buffer-file-executable-if-script-p))
