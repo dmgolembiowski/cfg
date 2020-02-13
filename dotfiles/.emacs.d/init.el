@@ -206,7 +206,7 @@
 
 (use-package which-key
   :ensure t
-  :pin melpa-stabel
+  :pin melpa-stable
   :custom
   (which-key-mode t))
 
