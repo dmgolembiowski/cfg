@@ -259,6 +259,14 @@
   :bind
   ("M-x" . counsel-M-x)
   ("C-x C-f" . counsel-find-file))
+
+(use-package swiper
+  :ensure t
+  :bind
+  ("C-r" . swiper)
+  ("C-s" . swiper))
+
+
 ;;
 ;; Extensions
 ;;
