@@ -241,6 +241,23 @@
 
 
 ;;
+;; Completion
+;;
+
+(use-package ivy
+  :ensure t
+  :custom
+  (ivy-use-virtual-buffers t)
+  (enable-recursive-minibuffers t)
+  :hook
+  (after-init . ivy-mode))
+
+(use-package counsel
+  :ensure t
+  :bind
+  ("M-x" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file))
+;;
 ;; Extensions
 ;;
 
