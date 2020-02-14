@@ -249,6 +249,7 @@
   :custom
   (ivy-use-virtual-buffers t)
   (enable-recursive-minibuffers t)
+  (ivy-count-format "(%d/%d) ")
   :hook
   (after-init . ivy-mode))
 
