@@ -347,8 +347,7 @@
                    ("errand" . ?e)
                    ("computer" . ?c)
                    ("phone" . ?p)))
-  (org-startup-folded 'content)
-  (org-startup-indented t))
+  (org-startup-folded 'content))
 
 
 ;;
