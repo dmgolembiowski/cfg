@@ -250,7 +250,8 @@
   (ivy-use-virtual-buffers t)
   (enable-recursive-minibuffers t)
   (ivy-count-format "(%d/%d) ")
-  (ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+  (ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                           (t . ivy--regex-fuzzy)))
   :hook
   (after-init . ivy-mode))
 
