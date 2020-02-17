@@ -370,6 +370,8 @@
 ;;
 
 (defun eu/xrandr-toggle (arg)
+  "Toggle between xrandr screens.
+ARG internal, external or both"
   (call-process (expand-file-name "~/.local/bin/xrandr-toggle")
                 nil nil nil arg))
 
