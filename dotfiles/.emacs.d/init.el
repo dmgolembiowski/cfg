@@ -416,7 +416,7 @@
                         (lambda ()
                           (interactive)
                           (exwm-workspace-switch-create ,i))))
-                    (number-sequence 0 9))))
+                    (number-sequence 1 9))))
 
   (eu/xrandr-toggle "internal")
 
