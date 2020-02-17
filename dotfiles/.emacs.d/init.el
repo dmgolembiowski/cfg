@@ -364,9 +364,6 @@
   (exwm-randr-workspace-monitor-plist
    '(0 "DP-1" 2 "DP-1" 3 "DP-1" 4 "DP-1" 5 "DP-1")
    "Workspace to monitor mapping")
-  (exwm-workspace-index-map
-   (lambda (i) (number-to-string (1+ i)))
-   "Start indexing workspaces with 1")
   (exwm-workspace-number 1 "Number of initial workspaces")
   (exwm-input-simulation-keys
    '(([?\C-b] . [left])
