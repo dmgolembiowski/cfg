@@ -160,6 +160,11 @@
   :bind
   ("M-/" . hippie-expand))
 
+(use-package cua-base
+  :config
+  ;; Rectangular selection mode with C-RET:
+  (cua-selection-mode 1))
+
 (use-package paren
   :custom (show-paren-mode 1))
 
