@@ -226,7 +226,6 @@ if role desktop; then
         xclip
         unclutter
         polybar
-        xterm
         maim
         sxiv
         mupdf

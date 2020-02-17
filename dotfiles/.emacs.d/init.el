@@ -378,11 +378,6 @@
           ([?\s-p] . (lambda (command)
                        (interactive (list (read-shell-command "$ ")))
                        (start-process-shell-command command nil command)))
-          ;; Launch xterm:
-          ,`(,(kbd "<S-s-return>") . (lambda ()
-                              (interactive)
-                              (start-process-shell-command "xterm" nil
-                                                           "xterm")))
           ;; Switch to external display:
           ,`(,(kbd "<XF86Display>") . (lambda ()
                                         (interactive)
