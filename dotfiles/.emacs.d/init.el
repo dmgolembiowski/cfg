@@ -272,6 +272,10 @@
 ;; Extensions
 ;;
 
+(use-package goto-line-preview
+  :ensure t
+  :bind ([remap goto-line] . goto-line-preview))
+
 (use-package ediff-wind
   :defer t
   :custom
