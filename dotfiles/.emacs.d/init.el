@@ -354,74 +354,71 @@
 ;; Window manager
 ;;
 
+(defun eu/xrandr-toggle (arg)
+  (call-process (expand-file-name "~/.local/bin/xrandr-toggle")
+                nil nil nil arg))
+
 (use-package exwm
   :ensure t
+  :custom
+  (exwm-randr-workspace-monitor-plist
+   '(0 "DP-1" 2 "DP-1" 3 "DP-1" 4 "DP-1" 5 "DP-1")
+   "Workspace to monitor mapping")
+  (exwm-workspace-index-map
+   (lambda (i) (number-to-string (1+ i)))
+   "Start indexing workspaces with 1")
+  (exwm-workspace-number 1 "Number of initial workspaces")
+  (exwm-input-simulation-keys
+   '(([?\C-b] . [left])
+     ([?\C-f] . [right])
+     ([?\C-p] . [up])
+     ([?\C-n] . [down])
+     ([?\C-a] . [home])
+     ([?\C-e] . [end])
+     ([?\M-v] . [prior])
+     ([?\C-v] . [next])
+     ([?\C-d] . [delete])
+     ([?\C-k] . [S-end delete]))
+   "Line-editing shortcuts")
+  (exwm-input-global-keys
+   `(
+     ;; Toggle between char and line mode:
+     ([?\s-i] . exwm-input-toggle-keyboard)
+     ;; Launch appliction:
+     ([?\s-p] . (lambda (command)
+                  (interactive (list (read-shell-command "$ ")))
+                  (start-process-shell-command command nil command)))
+     ;; Launch ansi-term with bash:
+     ,`(,(kbd "<S-s-return>") . (lambda ()
+                                  (interactive)
+                                  (ansi-term "bash")))
+
+     ;; Switch to external display:
+     ,`(,(kbd "<XF86Display>") . (lambda ()
+                                   (interactive)
+                                   (eu/xrandr-toggle "external")))
+     ;; Switch to internal display:
+     ,`(,(kbd "M-<XF86Display>") . (lambda ()
+                                     (interactive)
+                                     (eu/xrandr-toggle "internal")))
+     ;; Switch to internal and external display:
+     ,`(,(kbd "C-<XF86Display>") . (lambda ()
+                                     (interactive)
+                                     (eu/xrandr-toggle "both")))
+     ;; Switch to certain workspace N:
+     ,@(mapcar (lambda (i)
+                 `(,(kbd (format "s-%d" i)) .
+                   (lambda ()
+                     (interactive)
+                     (exwm-workspace-switch-create ,i))))
+               (number-sequence 1 9))))
+  :hook
+  (exwm-update-class . (lambda ()
+                         (exwm-workspace-rename-buffer exwm-class-name)))
   :config
   (require 'exwm-randr)
-
-  (setq exwm-randr-workspace-monitor-plist
-        '(0 "DP-1" 2 "DP-1" 3 "DP-1" 4 "DP-1" 5 "DP-1"))
   (exwm-randr-enable)
-
-  ;; Initial number of workspaces:
-  (setq exwm-workspace-number 1)
-
-  ;; Make class name the buffer name:
-  (add-hook 'exwm-update-class-hook
-            (lambda ()
-              (exwm-workspace-rename-buffer exwm-class-name)))
-
-  ;; Line-editing shortcuts
-  (setq exwm-input-simulation-keys
-        '(([?\C-b] . [left])
-          ([?\C-f] . [right])
-          ([?\C-p] . [up])
-          ([?\C-n] . [down])
-          ([?\C-a] . [home])
-          ([?\C-e] . [end])
-          ([?\M-v] . [prior])
-          ([?\C-v] . [next])
-          ([?\C-d] . [delete])
-          ([?\C-k] . [S-end delete])))
-
   (exwm-enable)
-
-  (defun eu/xrandr-toggle (arg)
-    (call-process (expand-file-name "~/.local/bin/xrandr-toggle")
-                  nil nil nil arg))
-
-  (setq exwm-input-global-keys
-        `(
-          ;; Toggle between char and line mode:
-          ([?\s-i] . exwm-input-toggle-keyboard)
-          ;; Launch appliction:
-          ([?\s-p] . (lambda (command)
-                       (interactive (list (read-shell-command "$ ")))
-                       (start-process-shell-command command nil command)))
-          ;; Launch ansi-term with bash:
-          ,`(,(kbd "<S-s-return>") . (lambda ()
-                              (interactive)
-                              (ansi-term "bash")))
-
-          ;; Switch to external display:
-          ,`(,(kbd "<XF86Display>") . (lambda ()
-                                        (interactive)
-                                        (eu/xrandr-toggle "external")))
-          ;; Switch to internal display:
-          ,`(,(kbd "M-<XF86Display>") . (lambda ()
-                                          (interactive)
-                                          (eu/xrandr-toggle "internal")))
-          ;; Switch to internal and external display:
-          ,`(,(kbd "C-<XF86Display>") . (lambda ()
-                                          (interactive)
-                                          (eu/xrandr-toggle "both")))
-          ;; Switch to certain workspace N:
-          ,@(mapcar (lambda (i)
-                      `(,(kbd (format "s-%d" i)) .
-                        (lambda ()
-                          (interactive)
-                          (exwm-workspace-switch-create ,i))))
-                    (number-sequence 1 9))))
 
   (eu/xrandr-toggle "internal")
 
