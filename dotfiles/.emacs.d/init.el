@@ -187,7 +187,7 @@
       (whitespace-toggle-options '(tabs tab-mark))))
   :custom
   (whitespace-style '(face tabs tab-mark empty trailing lines-tail))
-  :hook ((text-mode prog-mode) . eu/enable-whitespace))
+  :hook ((text-mode prog-mode conf-mode) . eu/enable-whitespace))
 
 (use-package executable
   :hook (after-save . executable-make-buffer-file-executable-if-script-p))
