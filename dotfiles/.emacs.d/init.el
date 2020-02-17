@@ -398,6 +398,11 @@
           ([?\s-p] . (lambda (command)
                        (interactive (list (read-shell-command "$ ")))
                        (start-process-shell-command command nil command)))
+          ;; Launch ansi-term with bash:
+          ,`(,(kbd "<S-s-return>") . (lambda ()
+                              (interactive)
+                              (ansi-term "bash")))
+
           ;; Switch to external display:
           ,`(,(kbd "<XF86Display>") . (lambda ()
                                         (interactive)
