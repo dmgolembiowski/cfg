@@ -381,8 +381,13 @@
    `(
      ;; Toggle between char and line mode:
      ([?\s-i] . exwm-input-toggle-keyboard)
+     ;; Move point from window to window:
+     ([?\s-p] . windmove-up)
+     ([?\s-n] . windmove-down)
+     ([?\s-b] . windmove-left)
+     ([?\s-f] . windmove-right)
      ;; Launch appliction:
-     ([?\s-p] . (lambda (command)
+     ([?\s-r] . (lambda (command)
                   (interactive (list (read-shell-command "$ ")))
                   (start-process-shell-command command nil command)))
      ;; Launch ansi-term with bash:
