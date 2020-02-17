@@ -363,8 +363,28 @@
         '(0 "DP-1" 2 "DP-1" 3 "DP-1" 4 "DP-1" 5 "DP-1"))
   (exwm-randr-enable)
 
-  (require 'exwm-config)
-  (exwm-config-default)
+  ;; Initial number of workspaces:
+  (setq exwm-workspace-number 1)
+
+  ;; Make class name the buffer name:
+  (add-hook 'exwm-update-class-hook
+            (lambda ()
+              (exwm-workspace-rename-buffer exwm-class-name)))
+
+  ;; Line-editing shortcuts
+  (setq exwm-input-simulation-keys
+        '(([?\C-b] . [left])
+          ([?\C-f] . [right])
+          ([?\C-p] . [up])
+          ([?\C-n] . [down])
+          ([?\C-a] . [home])
+          ([?\C-e] . [end])
+          ([?\M-v] . [prior])
+          ([?\C-v] . [next])
+          ([?\C-d] . [delete])
+          ([?\C-k] . [S-end delete])))
+
+  (exwm-enable)
 
   (defun eu/xrandr-toggle (arg)
     (call-process (expand-file-name "~/.local/bin/xrandr-toggle")
