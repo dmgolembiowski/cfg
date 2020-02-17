@@ -223,6 +223,7 @@ if role desktop; then
         xorg-xsetroot
         xorg-xrandr
         xdg-utils
+        xterm
         xclip
         unclutter
         polybar

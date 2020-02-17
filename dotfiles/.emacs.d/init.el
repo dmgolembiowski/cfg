@@ -393,7 +393,8 @@
      ;; Launch ansi-term with bash:
      ,`(,(kbd "<S-s-return>") . (lambda ()
                                   (interactive)
-                                  (ansi-term "bash")))
+                                  (start-process-shell-command "xterm" nil
+                                                               "xterm")))
 
      ;; Switch to external display:
      ,`(,(kbd "<XF86Display>") . (lambda ()
