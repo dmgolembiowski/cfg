@@ -49,7 +49,8 @@
   (save-interprogram-paste-before-kill
    t
    "Store clipboard text into kill ring before replacement")
-  (column-number-mode t "Display column number in mode line"))
+  (column-number-mode t "Display column number in mode line")
+  :bind ([remap just-one-space] . cycle-spacing))
 
 
 ;;
