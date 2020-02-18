@@ -312,6 +312,10 @@
   :pin melpa-stable
   :bind (("C-x g" . magit-status)))
 
+(use-package tramp
+  :custom
+  (tramp-default-method "ssh"))
+
 
 ;;
 ;; Languages
