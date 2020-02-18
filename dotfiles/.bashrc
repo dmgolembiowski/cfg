@@ -29,6 +29,10 @@ else
 	PS1='\w '
 fi
 
+if [ "$TERM" = dumb ]; then
+	PS1='> '
+fi
+
 case ${TERM} in
   xterm*)
     PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s\007" "${PWD/#$HOME/\~}"'
