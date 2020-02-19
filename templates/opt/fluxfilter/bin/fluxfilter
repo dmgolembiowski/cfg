@@ -8,6 +8,7 @@ SITES = {
     "https://www.macstories.net": [r"\[sponsor\]",r"\bepisode \d+\b"],
     "http://512pixels.net": [r"^sponsor: ", r" #\d+: ",],
     "https://longform.org/": [r"^Fiction Pick",r"^Longform Podcast",],
+    "http://randsinrepose.com/": [r"^The One About ",],
 }
 
 SITE = "{{ miniflux.api.url }}"
