@@ -52,7 +52,7 @@ export LC_ALL LANG
 
 PAGER=less
 LESS=-iFXR
-EDITOR=vi
+EDITOR=mg
 export PAGER LESS EDITOR
 
 case $PATH in

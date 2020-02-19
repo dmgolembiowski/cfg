@@ -17,6 +17,7 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 pkg '
     sudo
     curl
+    mg
     ca-certificates
     '
 
@@ -753,6 +754,7 @@ if distro debian; then
         nano
         rsyslog
         tasksel
+        vim.tiny
         '
 
     if role vm; then
@@ -774,6 +776,7 @@ elif distro arch; then
         reiserfsprogs
         s-nail
         sysstat
+        vi
         whois
         xfsprogs
         '
