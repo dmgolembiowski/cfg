@@ -255,16 +255,11 @@
 ;; Completion
 ;;
 
-(use-package ivy
+(use-package swiper
   :ensure t
-  :custom
-  (ivy-use-virtual-buffers t)
-  (enable-recursive-minibuffers t)
-  (ivy-count-format "(%d/%d) ")
-  (ivy-re-builders-alist '((swiper . ivy--regex-plus)
-                           (t . ivy--regex-fuzzy)))
-  :hook
-  (after-init . ivy-mode))
+  :bind
+  ("C-r" . swiper)
+  ("C-s" . swiper))
 
 (use-package counsel
   :ensure t
@@ -272,11 +267,17 @@
   ("M-x" . counsel-M-x)
   ("C-x C-f" . counsel-find-file))
 
-(use-package swiper
+(use-package ivy
   :ensure t
-  :bind
-  ("C-r" . swiper)
-  ("C-s" . swiper))
+  :custom
+  (ivy-use-virtual-buffers t)
+  (enable-recursive-minibuffers t)
+  (ivy-count-format "(%d/%d) ")
+  (ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                           (counsel-git-grep . ivy--regex-plus)
+                           (t . ivy--regex-fuzzy)))
+  :hook
+  (after-init . ivy-mode))
 
 
 ;;
