@@ -344,6 +344,14 @@
   :ensure nil
   :hook (prog-mode . subword-mode))
 
+;; Disable saving of elisp buffer is parens are unmatched:
+(use-package elisp-mode
+  :ensure nil
+  :config
+  (add-hook 'emacs-lisp-mode-hook
+   (function (lambda ()
+               (add-hook 'local-write-file-hooks 'check-parens)))))
+
 (use-package gitignore-mode
   :ensure t
   :defer t
