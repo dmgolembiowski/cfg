@@ -157,10 +157,6 @@
   :custom
   (global-auto-revert-mode t "Auto revert buffers when file change on disk"))
 
-(use-package hippie-expand
-  :bind
-  ("M-/" . hippie-expand))
-
 (use-package cua-base
   :config
   ;; Rectangular selection mode with C-RET:
@@ -278,6 +274,17 @@
                            (t . ivy--regex-fuzzy)))
   :hook
   (after-init . ivy-mode))
+
+(use-package company
+  :ensure t
+  :pin melpa-stable
+  :custom
+  (company-idle-delay nil "Do not auto activate")
+  (company-show-numbers 1)
+  :hook (after-init . global-company-mode)
+  :bind
+  ("M-/" . company-complete-common)
+  (:map prog-mode-map ("C-i" . company-indent-or-complete-common)))
 
 
 ;;
