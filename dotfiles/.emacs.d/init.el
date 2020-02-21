@@ -302,7 +302,7 @@
   :diminish
   :custom
   (ivy-posframe-display-functions-alist
-   '((swiper . ivy-posframe-display-at-frame-bottom-left)
+   '((swiper . nil)
      (t . ivy-posframe-display-at-frame-center)))
   (ivy-posframe-parameters
    '((parent-frame nil))
