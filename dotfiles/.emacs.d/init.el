@@ -85,6 +85,14 @@
 
 
 ;;
+;; Modeline
+;;
+
+(use-package diminish
+  :ensure t)
+
+
+;;
 ;; History
 ;;
 
@@ -171,6 +179,7 @@
   :hook (emacs-list-mode . rainbow-delimiters-mode))
 
 (use-package whitespace
+  :diminish
   :config
   (defun eu/enable-whitespace ()
     (add-hook 'before-save-hook 'whitespace-cleanup nil t)
@@ -214,6 +223,7 @@
 (use-package which-key
   :ensure t
   :pin melpa-stable
+  :diminish
   :custom
   (which-key-mode t))
 
@@ -226,6 +236,7 @@
 (use-package guru-mode
   :ensure t
   :config
+  :diminish
   (guru-global-mode 1))
 
 
@@ -275,6 +286,7 @@
 
 (use-package ivy
   :ensure t
+  :diminish
   :custom
   (ivy-use-virtual-buffers t)
   (enable-recursive-minibuffers t)
@@ -287,6 +299,7 @@
 
 (use-package ivy-posframe
   :ensure t
+  :diminish
   :custom
   (ivy-posframe-display-functions-alist
    '((swiper . ivy-posframe-display-at-frame-bottom-left)
@@ -299,6 +312,7 @@
 (use-package company
   :ensure t
   :pin melpa-stable
+  :diminish
   :custom
   (company-idle-delay nil "Do not auto activate")
   (company-show-numbers 1)
@@ -494,6 +508,7 @@ ARG internal, external or both"
 (use-package desktop-environment
   :ensure t
   :pin melpa-stable
+  :diminish
   :init
   (desktop-environment-mode)
   :custom
