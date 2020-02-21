@@ -246,6 +246,10 @@
   (add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)
   :commands ibuffer-vc-set-filter-groups-by-vc-root)
 
+(use-package buffer-move
+  :ensure t
+  :pin melpa-stable
+  :commands (buf-move-up buf-move-down buf-move-left buf-move-right))
 
 ;;
 ;; Completion
@@ -434,6 +438,10 @@ ARG internal, external or both"
      ([?\s-n] . windmove-down)
      ([?\s-b] . windmove-left)
      ([?\s-f] . windmove-right)
+     ([?\s-P] . buf-move-up)
+     ([?\s-N] . buf-move-down)
+     ([?\s-B] . buf-move-left)
+     ([?\s-F] . buf-move-right)
      ;; Launch appliction:
      ([?\s-r] . (lambda (command)
                   (interactive (list (read-shell-command "$ ")))
