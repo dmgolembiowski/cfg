@@ -352,8 +352,9 @@
 
 (use-package magit
   :ensure t
-  :pin melpa-stable
-  :bind (("C-x g" . magit-status)))
+  :bind
+  ("C-x g" . magit-status)
+  ("C-c g" . magit-file-dispatch))
 
 (use-package tramp
   :custom
