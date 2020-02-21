@@ -235,8 +235,8 @@
 
 (use-package guru-mode
   :ensure t
-  :config
   :diminish
+  :custom
   (guru-global-mode 1))
 
 
