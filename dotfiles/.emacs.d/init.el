@@ -275,6 +275,17 @@
   :hook
   (after-init . ivy-mode))
 
+(use-package ivy-posframe
+  :ensure t
+  :custom
+  (ivy-posframe-display-functions-alist
+   '((swiper . ivy-posframe-display-at-frame-bottom-left)
+     (t . ivy-posframe-display-at-frame-center)))
+  (ivy-posframe-parameters
+   '((parent-frame nil))
+   "Allow posframe to float above EXWM managed X windows")
+  (ivy-posframe-mode 1))
+
 (use-package company
   :ensure t
   :pin melpa-stable
