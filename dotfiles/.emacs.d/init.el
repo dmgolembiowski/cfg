@@ -165,11 +165,6 @@
   :custom
   (global-auto-revert-mode t "Auto revert buffers when file change on disk"))
 
-(use-package cua-base
-  :config
-  ;; Rectangular selection mode with C-RET:
-  (cua-selection-mode 1))
-
 (use-package paren
   :custom (show-paren-mode 1))
 
