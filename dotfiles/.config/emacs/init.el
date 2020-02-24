@@ -159,6 +159,10 @@
   :custom
   (global-auto-revert-mode t "Auto revert buffers when file change on disk"))
 
+(use-package hippie-expand
+  :bind
+  ("M-/" . hippie-expand))
+
 (use-package paren
   :custom (show-paren-mode 1))
 
@@ -245,41 +249,6 @@
   :ensure t
   :pin melpa-stable
   :commands (buf-move-up buf-move-down buf-move-left buf-move-right))
-
-;;
-;; Completion
-;;
-
-(use-package counsel
-  :ensure t
-  :bind
-  ("M-x" . counsel-M-x)
-  ("C-x C-f" . counsel-find-file))
-
-(use-package ivy
-  :ensure t
-  :diminish
-  :custom
-  (ivy-use-virtual-buffers t)
-  (enable-recursive-minibuffers t)
-  (ivy-count-format "(%d/%d) ")
-  (ivy-re-builders-alist '((swiper . ivy--regex-plus)
-                           (counsel-git-grep . ivy--regex-plus)
-                           (t . ivy--regex-fuzzy)))
-  :hook
-  (after-init . ivy-mode))
-
-(use-package ivy-posframe
-  :ensure t
-  :diminish
-  :custom
-  (ivy-posframe-display-functions-alist
-   '((swiper . nil)
-     (t . ivy-posframe-display-at-frame-center)))
-  (ivy-posframe-parameters
-   '((parent-frame nil))
-   "Allow posframe to float above EXWM managed X windows")
-  (ivy-posframe-mode 1))
 
 
 ;;
