@@ -181,7 +181,7 @@ if role dev; then
             '
     elif distro arch; then
         pkg '
-            emacs
+            emacs27-git
             the_silver_searcher
             rclone
             '
