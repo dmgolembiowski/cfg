@@ -287,18 +287,6 @@
    "Allow posframe to float above EXWM managed X windows")
   (ivy-posframe-mode 1))
 
-(use-package company
-  :ensure t
-  :pin melpa-stable
-  :diminish
-  :custom
-  (company-idle-delay nil "Do not auto activate")
-  (company-show-numbers 1)
-  :hook (after-init . global-company-mode)
-  :bind
-  ("M-/" . company-complete-common)
-  (:map prog-mode-map ("C-i" . company-indent-or-complete-common)))
-
 
 ;;
 ;; Extensions
