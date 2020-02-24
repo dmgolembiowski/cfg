@@ -162,11 +162,6 @@
 (use-package paren
   :custom (show-paren-mode 1))
 
-(use-package rainbow-delimiters
-  :ensure t
-  :pin melpa-stable
-  :hook (emacs-list-mode . rainbow-delimiters-mode))
-
 (use-package whitespace
   :diminish
   :config
