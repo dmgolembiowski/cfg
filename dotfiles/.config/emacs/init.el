@@ -106,7 +106,7 @@
           (append auto-save-file-name-transforms
                   (list (list ".*" autosave-dir t)))))
   :custom
-  (backup-directory-alist `(("." . "~/.emacs.d/backups"))
+  (backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
                           "Keep backups out of working directories")
   (backup-by-copying t "Use cp and overwrite of original when making backup")
   (version-control t "Make numberic backup versions of edited files")
@@ -116,7 +116,7 @@
 
 (use-package savehist
   :custom
-  (savehist-file "~/.emacs.d/savehist")
+  (savehist-file (concat user-emacs-directory "savehist"))
   (savehist-additional-variables
    '(search-ring regexp-search-ring)
    "Save search entries in addition to minibuffer entries")
@@ -125,7 +125,7 @@
 
 (use-package recentf
   :custom
-  (recentf-save-file "~/.emacs.d/recentf")
+  (recentf-save-file (concat user-emacs-directory "recentf"))
   (recentf-max-saved-items 500)
   (recentf-max-menu-items 15)
   (recentf-auto-cleanup
