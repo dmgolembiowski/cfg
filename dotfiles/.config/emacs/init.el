@@ -223,6 +223,16 @@
 
 
 ;;
+;; Search
+;;
+
+(use-package isearch
+  :custom
+  (isearch-lazy-count t)
+  (isearch-yank-on-move t)
+  (isearch-allow-scroll 'unlimited))
+
+;;
 ;; Buffer
 ;;
 
