@@ -250,12 +250,6 @@
 ;; Completion
 ;;
 
-(use-package swiper
-  :ensure t
-  :bind
-  ("C-r" . swiper)
-  ("C-s" . swiper))
-
 (use-package counsel
   :ensure t
   :bind
