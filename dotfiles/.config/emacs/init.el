@@ -300,7 +300,14 @@
 (use-package dired-x
   :after dired
   :bind (("C-x C-j" . dired-jump)
-          ("C-x 4 C-j" . dired-jump-other-window)))
+         ("C-x 4 C-j" . dired-jump-other-window)))
+
+(use-package dired-aux
+  :after dired
+  :custom
+  (dired-create-destination-dirs
+   'ask "Allow creating dest dirs when copying/moving files")
+  (dired-vc-rename-file t "Register file rename with vc system"))
 
 (use-package wdired
   :after dired
