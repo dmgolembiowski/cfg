@@ -232,6 +232,19 @@
   (isearch-yank-on-move t)
   (isearch-allow-scroll 'unlimited))
 
+
+;;
+;; Completion
+;;
+
+(use-package icomplete
+  :custom
+  (icomplete-in-buffer t "Use icomplete in no-mini buffers")
+  (icomplete-separator " · ")
+  (fido-mode t)
+  (icomplete-mode t))
+
+
 ;;
 ;; Buffer
 ;;
