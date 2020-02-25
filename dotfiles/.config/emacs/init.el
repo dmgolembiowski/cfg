@@ -77,6 +77,10 @@
    t
    "Rename buffer back after killing matching buffers"))
 
+(use-package tooltip
+  :custom
+  (x-gtk-use-system-tooltips nil "Do not use GTK theme for tooltips"))
+
 
 ;;
 ;; Modeline
