@@ -209,7 +209,10 @@ if role work; then
     chmod +x /usr/local/bin/az
     file /usr/share/bash-completion/completions/az
 
-    pkg bind-tools
+    pkg '
+        kubectl
+        bind-tools
+        '
 fi
 
 ##
