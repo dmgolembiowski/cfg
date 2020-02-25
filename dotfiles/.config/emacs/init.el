@@ -468,6 +468,20 @@ ARG internal, external or both"
             (start-process-shell-command
              "pactl" nil
              "pactl set-source-mute @DEFAULT_SOURCE@ toggle")))
+     ;; Brightness up:
+     ,`(,(kbd "<XF86MonBrightnessUp>")
+        . (lambda ()
+            (interactive)
+            (start-process-shell-command
+             "brightnessctl" nil
+             "brightnessctl set +5%")))
+     ;; Brightness down:
+     ,`(,(kbd "<XF86MonBrightnessDown>")
+        . (lambda ()
+            (interactive)
+            (start-process-shell-command
+             "brightnessctl" nil
+             "brightnessctl set 5%-")))
      ;; Switch to certain workspace N:
      ,@(mapcar (lambda (i)
                  `(,(kbd (format "s-%d" i)) .
