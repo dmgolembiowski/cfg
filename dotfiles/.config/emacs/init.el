@@ -440,6 +440,27 @@ ARG internal, external or both"
         . (lambda ()
             (interactive)
             (eu/xrandr-toggle "both")))
+     ;; Audio mute:
+     ,`(,(kbd "<XF86AudioMute>")
+        . (lambda ()
+            (interactive)
+            (start-process-shell-command
+             "pactl" nil
+             "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
+     ;; Audio raise volume:
+     ,`(,(kbd "<XF86AudioRaiseVolume>")
+        . (lambda ()
+            (interactive)
+            (start-process-shell-command
+             "pactl" nil
+             "pactl set-sink-volume @DEFAULT_SINK@ +5%")))
+     ;; Audio lower volume:
+     ,`(,(kbd "<XF86AudioLowerVolume>")
+        . (lambda ()
+            (interactive)
+            (start-process-shell-command
+             "pactl" nil
+             "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
      ;; Switch to certain workspace N:
      ,@(mapcar (lambda (i)
                  `(,(kbd (format "s-%d" i)) .
