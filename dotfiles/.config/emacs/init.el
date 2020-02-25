@@ -329,6 +329,14 @@
    '(non-empty-second-line
      overlong-summary-line)))
 
+(use-package magit-repos
+  :after magit
+  :commands magit-list-repositories
+  :custom
+  (magit-repository-directories
+   '(("~/src" . 1))
+   "Directory containing directories of git checkouts"))
+
 (use-package tramp
   :custom
   (tramp-default-method "ssh"))
