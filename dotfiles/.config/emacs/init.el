@@ -302,6 +302,11 @@
   :bind (("C-x C-j" . dired-jump)
           ("C-x 4 C-j" . dired-jump-other-window)))
 
+(use-package wdired
+  :commands wdired-change-to-wdired-mode
+  :custom
+  (wdired-allow-to-change-permissions t "Change permissions with SPC"))
+
 (use-package magit
   :ensure t
   :bind
