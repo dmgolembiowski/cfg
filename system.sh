@@ -76,6 +76,7 @@ elif distro arch; then
 
     file /etc/pacman.d/hooks/needrestart.hook
     file /etc/pacman.d/hooks/checkupdates.hook
+    file /etc/pacman.d/hooks/paccache.hook
 
     # Keep no pacman cache for uninstalled packages and 2 versions of
     # installed packages:
