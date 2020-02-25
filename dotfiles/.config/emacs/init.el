@@ -383,6 +383,7 @@
                    ("errand" . ?e)
                    ("computer" . ?c)
                    ("phone" . ?p)))
+  (org-special-ctrl-a t "Toggle between beginning/end of headline text/markup")
   (org-startup-folded 'content))
 
 (use-package calendar
