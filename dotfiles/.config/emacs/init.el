@@ -461,6 +461,13 @@ ARG internal, external or both"
             (start-process-shell-command
              "pactl" nil
              "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
+     ;; Microphone mute:
+     ,`(,(kbd "<XF86AudioMicMute>")
+        . (lambda ()
+            (interactive)
+            (start-process-shell-command
+             "pactl" nil
+             "pactl set-source-mute @DEFAULT_SOURCE@ toggle")))
      ;; Switch to certain workspace N:
      ,@(mapcar (lambda (i)
                  `(,(kbd (format "s-%d" i)) .
