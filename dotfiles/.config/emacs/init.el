@@ -386,6 +386,11 @@
   (org-special-ctrl-a t "Toggle between beginning/end of headline text/markup")
   (org-startup-folded 'content))
 
+(use-package org-agenda
+  :after org
+  :custom
+  (org-agenda-window-setup 'current-window "Keep window layout"))
+
 (use-package calendar
   :custom
   (calendar-week-start-day 1 "Start week on Monday")
