@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ "$(pgrep -x redshift)" ] || exit 0
+
+temp=$(redshift -p 2>/dev/null |
+          awk -F: '/^Color temp/ { print $2 }' |
+          tr -dc '[:digit:]')
+
+if [ "$temp" -eq 4500 ]; then
+    echo "🌃"
+else
+    echo "🌅"
+fi
