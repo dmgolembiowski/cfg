@@ -385,6 +385,11 @@
                    ("phone" . ?p)))
   (org-startup-folded 'content))
 
+(use-package calendar
+  :custom
+  (calendar-week-start-day 1 "Start week on Monday")
+  (calendar-date-style 'iso "year/month/day"))
+
 
 ;;
 ;; Window manager
