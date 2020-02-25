@@ -321,6 +321,14 @@
   ("C-x g" . magit-status)
   ("C-c g" . magit-file-dispatch))
 
+(use-package git-commit
+  :after magit
+  :custom
+  (git-commit-summary-max-length 50)
+  (git-commit-style-convention-checks
+   '(non-empty-second-line
+     overlong-summary-line)))
+
 (use-package tramp
   :custom
   (tramp-default-method "ssh"))
