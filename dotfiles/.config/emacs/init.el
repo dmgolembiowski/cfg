@@ -303,6 +303,7 @@
           ("C-x 4 C-j" . dired-jump-other-window)))
 
 (use-package wdired
+  :after dired
   :commands wdired-change-to-wdired-mode
   :custom
   (wdired-allow-to-change-permissions t "Change permissions with SPC"))
