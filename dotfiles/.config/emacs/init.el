@@ -489,6 +489,13 @@ ARG internal, external or both"
             (start-process-shell-command
              "maim" nil
              "maim -s ~/pic/sc_$(date +'%Y-%m-%d-%H%M%S.png')")))
+     ;; Lock screen:
+     ([?\s-l]
+        . (lambda ()
+            (interactive)
+            (start-process-shell-command
+             "slock" nil
+             "slock")))
      ;; Switch to certain workspace N:
      ,@(mapcar (lambda (i)
                  `(,(kbd (format "s-%d" i)) .
