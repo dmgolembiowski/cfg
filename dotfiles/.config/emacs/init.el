@@ -416,27 +416,30 @@ ARG internal, external or both"
      ([?\s-B] . buf-move-left)
      ([?\s-F] . buf-move-right)
      ;; Launch appliction:
-     ([?\s-r] . (lambda (command)
-                  (interactive (list (read-shell-command "$ ")))
-                  (start-process-shell-command command nil command)))
+     ([?\s-r]
+      . (lambda (command)
+          (interactive (list (read-shell-command "$ ")))
+          (start-process-shell-command command nil command)))
      ;; Launch ansi-term with bash:
-     ,`(,(kbd "<S-s-return>") . (lambda ()
-                                  (interactive)
-                                  (start-process-shell-command "xterm" nil
-                                                               "xterm")))
-
+     ,`(,(kbd "<S-s-return>")
+        . (lambda ()
+            (interactive)
+            (start-process-shell-command "xterm" nil "xterm")))
      ;; Switch to external display:
-     ,`(,(kbd "<XF86Display>") . (lambda ()
-                                   (interactive)
-                                   (eu/xrandr-toggle "external")))
+     ,`(,(kbd "<XF86Display>")
+        . (lambda ()
+            (interactive)
+            (eu/xrandr-toggle "external")))
      ;; Switch to internal display:
-     ,`(,(kbd "M-<XF86Display>") . (lambda ()
-                                     (interactive)
-                                     (eu/xrandr-toggle "internal")))
+     ,`(,(kbd "M-<XF86Display>")
+        . (lambda ()
+            (interactive)
+            (eu/xrandr-toggle "internal")))
      ;; Switch to internal and external display:
-     ,`(,(kbd "C-<XF86Display>") . (lambda ()
-                                     (interactive)
-                                     (eu/xrandr-toggle "both")))
+     ,`(,(kbd "C-<XF86Display>")
+        . (lambda ()
+            (interactive)
+            (eu/xrandr-toggle "both")))
      ;; Switch to certain workspace N:
      ,@(mapcar (lambda (i)
                  `(,(kbd (format "s-%d" i)) .
