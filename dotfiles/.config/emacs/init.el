@@ -341,6 +341,12 @@
   :custom
   (tramp-default-method "ssh"))
 
+(use-package proced
+  :commands proced
+  :custom
+  (proced-auto-update-flag t)
+  (proced-auto-update-interval 1))
+
 
 ;;
 ;; Languages
