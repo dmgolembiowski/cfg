@@ -204,7 +204,7 @@ if role work; then
         virtualenv -p python3 /opt/az
     fi
 
-    pip /opt/az 'azure-cli==2.0.73'
+    pip /opt/az 'azure-cli==2.1.0'
     file /usr/local/bin/az
     chmod +x /usr/local/bin/az
     file /usr/share/bash-completion/completions/az
