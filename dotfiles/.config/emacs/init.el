@@ -264,7 +264,7 @@
 (use-package icomplete
   :custom
   (icomplete-in-buffer t "Use icomplete in no-mini buffers")
-  (icomplete-separator " · ")
+  (icomplete-separator "\n")
   (fido-mode t)
   (icomplete-mode t))
 
