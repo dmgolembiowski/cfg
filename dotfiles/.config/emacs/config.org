@@ -1,5 +1,10 @@
 #+TITLE: GNU Emacs configuration file
 
+Since I'm new to Emacs (started switch from Vim 2020-01-27) this config is
+intentionally simple. I'm strict when adding new packages since I want to
+learn the features provided with Emacs first. Most of the packages used
+are extending built-in Emacs features.
+
 * Core
 
 #+begin_src emacs-lisp
