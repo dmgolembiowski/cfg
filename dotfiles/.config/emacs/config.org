@@ -282,7 +282,11 @@ are extending built-in Emacs features.
                                "Default multiframe breaks EXWM"))
 
 (use-package vc-hooks
-  :custom (vc-follow-symlinks t "Follow symlink to vc file without asking"))
+  :custom
+  (vc-follow-symlinks t "Follow symlink to vc file without asking")
+  (vc-handled-backends
+  '(Git)
+  "Speed up (TRAMP especially) by only checking for git"))
 
 (use-package dired
   :hook
@@ -332,7 +336,8 @@ are extending built-in Emacs features.
 
 (use-package tramp
   :custom
-  (tramp-default-method "ssh"))
+  (tramp-default-method "ssh")
+  (tramp-auto-save-directory "/tmp/tramp"))
 
 (use-package proced
   :commands proced
