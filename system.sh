@@ -21,78 +21,34 @@ pkg '
     ca-certificates
     '
 
-if distro debian; then
-    pkg '
-        python3-jinja2
-        python3-yaml
-        unattended-upgrades
-        python3-gi
-        needrestart
-        '
-    echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
+pkg '
+    python3-jinja2
+    python3-yaml
+    unattended-upgrades
+    python3-gi
+    needrestart
+    '
+echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 
-    tmpl /etc/apt/sources.list
+tmpl /etc/apt/sources.list
 
-    for f in norecommends autoremove periodicclean showversions; do
-        file /etc/apt/apt.conf.d/$f
-    done
-    unset f
+for f in norecommends autoremove periodicclean showversions; do
+    file /etc/apt/apt.conf.d/$f
+done
+unset f
 
-    file /usr/local/bin/apt-backports
-    chmod +x /usr/local/bin/apt-backports
+file /usr/local/bin/apt-backports
+chmod +x /usr/local/bin/apt-backports
 
-    pkg openssh-client
-    if role server; then
-        pkg ssh
-    fi
+pkg openssh-client
+if role server; then
+    pkg ssh
+fi
 
-    if role vm; then
-        pkg linux-image-cloud-amd64
-    else
-        pkg fwupd policykit-1 tpm2-tools intel-microcode
-    fi
-elif distro arch; then
-    pkg '
-        python-jinja
-        python-yaml
-        '
-    echo '%wheel ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
-
-    file /etc/pacman.conf
-    file /etc/pacman.d/mirrorlist
-    pkg '
-        base
-        e2fsprogs
-        man-db
-        man-pages
-        pacman-contrib
-        devtools
-        binutils
-        pacolog
-        lostfiles
-        openssh
-        needrestart
-        '
-
-    file /etc/pacman.d/hooks/needrestart.hook
-    file /etc/pacman.d/hooks/checkupdates.hook
-    file /etc/pacman.d/hooks/paccache.hook
-
-    # Keep no pacman cache for uninstalled packages and 2 versions of
-    # installed packages:
-    file /etc/systemd/system/paccache.service.d/override.conf
-    svc paccache.timer
-
-    if role vm; then
-        pkg open-vm-tools
-        svc vmtoolsd
-        file /etc/X11/Xwrapper.config
-    else
-        pkg '
-            iucode-tool
-            fwupd
-            '
-    fi
+if role vm; then
+    pkg linux-image-cloud-amd64
+else
+    pkg fwupd policykit-1 tpm2-tools intel-microcode
 fi
 
 # Persistend systemd yournal:
