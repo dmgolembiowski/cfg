@@ -3,7 +3,7 @@ cfg
 
 Provisioning and configuration of the following systems:
 
-* An Arch Linux based development setup on a
+* A Debian based development setup on a
   [ThinkPad X1 Carbon](doc/x1.md) 6th gen Coffe Lake.
 * An MacOS based development setup on a
   [MacBook Pro](doc/mac.md) A1989.

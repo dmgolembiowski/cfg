@@ -154,7 +154,7 @@ fi
 ##
 
 if distro debian; then
-    _psv=3.12
+    _psv=3.13
     u=https://raw.githubusercontent.com/pixelb/ps_mem/v$_psv/ps_mem.py
     b=/usr/local/bin/ps_mem
     if ! grep -q "^# V$_psv" $b 2>/dev/null; then
@@ -198,7 +198,8 @@ if role dev; then
         '
 fi
 
-if role work; then
+# TODO: debian support
+if role work && distro arch; then
     pkg python-virtualenv
 
     if ! [ -e /opt/az/bin/python3 ]; then
@@ -221,46 +222,66 @@ fi
 ##
 
 if role desktop; then
+    if distro arch; then
+        pkg '
+            xorg-server
+            xorg-xinit
+            xorg-xrdb
+            xorg-xsetroot
+            xorg-xrandr
+            unclutter
+            brightnessctl
+            polybar
+            noto-fonts
+            noto-fonts-emoji
+            ttf-ibm-plex
+            '
+    fi
+
+    if distro debian; then
+        pkg '
+            xserver-xorg-core
+            xserver-xorg-input-libinput
+            x11-xserver-utils
+            xinit
+            unclutter-xfixes
+            brightness-udev
+            fonts-noto-core
+            fonts-noto-mono
+            fonts-noto-color-emoji
+            fonts-ibm-plex
+            '
+
+        _polybarv=$(echo $POLYBAR_V | cut -d- -f1)
+        _polybarurl=https://github.com/ayosec/polybar-debian/releases/download
+        _polybarf=polybar_${POLYBAR_V}_amd64_debian.buster.deb
+
+        if ! polybar -v 2>/dev/null | grep -q "^polybar $_polybarv\$"; then
+            (
+                cd /tmp
+                curl -JOL $_polybarurl/$POLYBAR_V/$_polybarf
+            )
+
+            dpkg -i /tmp/$_polybarf
+            rm /tmp/$_polybarf
+        fi
+    fi
+
     pkg '
-        xorg-server
-        xorg-xinit
-        xorg-xrdb
-        xorg-xsetroot
-        xorg-xrandr
         xdg-utils
         xterm
         physlock
+        redshift
         xclip
-        unclutter
-        polybar
         maim
         sxiv
         mupdf
         unzip
-        noto-fonts
-        noto-fonts-emoji
-        ttf-ibm-plex
         firefox
         moreutils
         '
 
-    if role vm; then
-        pkg '
-            xf86-input-vmmouse
-            xf86-video-vmware
-            mesa
-            '
-    else
-        pkg '
-            brightnessctl
-            redshift
-            bluez
-            bluez-utils
-            '
-
-        # Periodic TRIM:
-        svc fstrim.timer
-    fi
+    svc fstrim.timer
 
     # Autologin to TTY 1:
     tmpl /etc/systemd/system/getty@tty1.service.d/override.conf
@@ -291,8 +312,12 @@ if role desktop; then
         ncspot
         '
 
-    if ! role vm; then
+    if distro arch; then
         pkg libva-intel-driver
+    fi
+
+    if distro debian; then
+        pkg i965-va-driver
     fi
 fi
 
