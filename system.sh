@@ -170,7 +170,6 @@ if role dev; then
         git
         bash-completion
         tmux
-        fzy
         ncdu
         jq
         '
