@@ -124,11 +124,7 @@ tmpl /etc/systemd/network/wired.network
 svc systemd-networkd
 
 svc systemd-resolved
-if distro debian; then
-    ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-elif distro arch; then
-    ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-fi
+ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
 ##
 ## Sec
@@ -145,25 +141,17 @@ chmod 700 /boot
 
 file /etc/sysctl.d/50-dmesg-restrict.conf
 
-if distro arch; then
-    pkg arch-audit
-fi
-
 ##
 ## Debug
 ##
 
-if distro debian; then
-    _psv=3.13
-    u=https://raw.githubusercontent.com/pixelb/ps_mem/v$_psv/ps_mem.py
-    b=/usr/local/bin/ps_mem
-    if ! grep -q "^# V$_psv" $b 2>/dev/null; then
-        curl -L $u > $b
-        sed -i 's/env python/env python3/' $b
-        chmod +x $b
-    fi
-elif distro arch; then
-    pkg ps_mem
+_psv=3.13
+u=https://raw.githubusercontent.com/pixelb/ps_mem/v$_psv/ps_mem.py
+b=/usr/local/bin/ps_mem
+if ! grep -q "^# V$_psv" $b 2>/dev/null; then
+    curl -L $u > $b
+    sed -i 's/env python/env python3/' $b
+    chmod +x $b
 fi
 
 pkg htop
@@ -173,22 +161,12 @@ pkg htop
 ##
 
 if role dev; then
-    if distro debian; then
-        pkg '
-            man-db
-            ncurses-term
-            silversearcher-ag
-            python3-venv
-            '
-    elif distro arch; then
-        pkg '
-            emacs27-git
-            the_silver_searcher
-            rclone
-            '
-    fi
-
     pkg '
+        man-db
+        ncurses-term
+        emacs
+        silversearcher-ag
+        python3-venv
         git
         bash-completion
         tmux
@@ -199,7 +177,7 @@ if role dev; then
 fi
 
 # TODO: debian support
-if role work && distro arch; then
+if role work && false; then
     pkg python-virtualenv
 
     if ! [ -e /opt/az/bin/python3 ]; then
@@ -222,51 +200,19 @@ fi
 ##
 
 if role desktop; then
-    if distro arch; then
-        pkg '
-            xorg-server
-            xorg-xinit
-            xorg-xrdb
-            xorg-xsetroot
-            xorg-xrandr
-            unclutter
-            brightnessctl
-            noto-fonts
-            noto-fonts-emoji
-            ttf-ibm-plex
-            '
-    fi
-
-    if distro debian; then
-        pkg '
-            xserver-xorg-core
-            xserver-xorg-input-libinput
-            x11-xserver-utils
-            xinit
-            unclutter-xfixes
-            brightness-udev
-            fonts-noto-core
-            fonts-noto-mono
-            fonts-noto-color-emoji
-            fonts-ibm-plex
-            '
-
-        _polybarv=$(echo $POLYBAR_V | cut -d- -f1)
-        _polybarurl=https://github.com/ayosec/polybar-debian/releases/download
-        _polybarf=polybar_${POLYBAR_V}_amd64_debian.buster.deb
-
-        if ! polybar -v 2>/dev/null | grep -q "^polybar $_polybarv\$"; then
-            (
-                cd /tmp
-                curl -JOL $_polybarurl/$POLYBAR_V/$_polybarf
-            )
-
-            dpkg -i /tmp/$_polybarf
-            rm /tmp/$_polybarf
-        fi
-    fi
-
     pkg '
+        xserver-xorg-core
+        xserver-xorg-input-libinput
+        x11-xserver-utils
+        xinit
+        unclutter-xfixes
+        brightnessctl
+        brightness-udev
+        fonts-noto-core
+        fonts-noto-mono
+        fonts-noto-color-emoji
+        fonts-ibm-plex
+        firefox-esr
         xdg-utils
         xterm
         physlock
@@ -276,7 +222,6 @@ if role desktop; then
         sxiv
         mupdf
         unzip
-        firefox
         moreutils
         '
 
@@ -309,15 +254,8 @@ if role desktop; then
         mpv
         youtube-dl
         ncspot
+        i965-va-driver
         '
-
-    if distro arch; then
-        pkg libva-intel-driver
-    fi
-
-    if distro debian; then
-        pkg i965-va-driver
-    fi
 fi
 
 if role desktop || role media; then
@@ -773,53 +711,25 @@ fi
 ## Cleanup
 ##
 
-if distro debian; then
-    _UNNEEDED_PKGS='
-        debconf-i18n
-        eject
-        ifupdown
-        isc-dhcp-client
-        nano
-        rsyslog
-        tasksel
-        vim.tiny
-        '
 
-    if role vm; then
-        _UNNEEDED_PKGS="$_UNNEEDED_PKGS linux-image-amd64"
-    fi
-elif distro arch; then
-    _UNNEEDED_PKGS='
-        dhcpcd
-        haveged
-        iotop
-        jfsutils
-        lsof
-        lvm2
-        mdadm
-        mtr
-        nano
-        net-tools
-        netctl
-        reiserfsprogs
-        s-nail
-        sysstat
-        vi
-        whois
-        xfsprogs
-        '
-    if ! role vm; then
-        _UNNEEDED_PKGS="$_UNNEEDED_PKGS linux"
-    fi
+_UNNEEDED_PKGS='
+                debconf-i18n
+                eject
+                ifupdown
+                isc-dhcp-client
+                nano
+                rsyslog
+                tasksel
+                vim.tiny
+                '
+
+if role vm; then
+    _UNNEEDED_PKGS="$_UNNEEDED_PKGS linux-image-amd64"
 fi
 
 for p in $_UNNEEDED_PKGS; do
     if _pkg_installed $p; then
-        if distro debian; then
-            apt purge $p
-        elif distro arch; then
-            pacman -Rs $p
-        fi
+        apt purge $p
     fi
 done
 unset p
