@@ -15,23 +15,20 @@ find $DOTFILES -type f | while read -r f; do
     dst="$HOME/$rel"
 
     case "$f" in
-        '.#'*)
+        '.#'*|*'~')
             continue
             ;;
     esac
 
-    if role server || mac; then
+    if role server; then
         case "$f" in
-            */systemd*|*/xterm*|*/gtk*|*/mpv/*)
+            */xterm*|*/gtk*|*/mpv/*)
                 continue
                 ;;
-            *pam_env*|*.emacs.d*|*org-sync*)
+            *.emacs.d*|*org-sync*)
                 continue
                 ;;
-            *.Xresources|*.xinitrc|*polybar*)
-                continue
-                ;;
-            *bin/pac*)
+            *.Xresources|*.xinitrc|*xrandr*)
                 continue
                 ;;
         esac
@@ -40,14 +37,6 @@ find $DOTFILES -type f | while read -r f; do
     if ! role irc; then
         case "$f" in
             *bin/irc)
-                continue
-                ;;
-        esac
-    fi
-
-    if ! mac; then
-        case "$f" in
-            *hammerspoon*|*alacritty*)
                 continue
                 ;;
         esac
@@ -65,10 +54,14 @@ if ! [ -L $HOME/.bash_profile ]; then
     ln -sf $HOME/.bashrc $HOME/.bash_profile
 fi
 
+if role desktop; then
+    svc pulseaudio.socket --user
+fi
+
 ##
 ## Dirs
 ##
 
-if role desktop && ! mac; then
+if role desktop; then
     mkdir -p ~/pic
 fi

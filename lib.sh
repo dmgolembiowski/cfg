@@ -1,23 +1,6 @@
 TEMPLATES=$ROOT/templates
 FILES=$ROOT/files
 
-if [ -e /etc/os-release ]; then
-    DISTRO=$(awk -F= '/^ID=/ { print $2 }' /etc/os-release)
-fi
-UNAME=$(uname)
-
-mac() {
-    [ "$UNAME" = "Darwin" ]
-}
-
-_hostname() {
-    if mac; then
-        hostname -s
-    else
-        hostname
-    fi
-}
-
 # Read YAML file into shell vars
 eval $(python3 -c "
 import re
@@ -40,17 +23,13 @@ def p(n, d):
     if len(n):
         n.pop()
 
-p([], yaml.safe_load(open('$ROOT/env/$(_hostname).yml', 'r')))
+p([], yaml.safe_load(open('$ROOT/env/$(hostname).yml', 'r')))
 
 ")
 
 role() {
     local n=ROLES_$(echo $1 | tr '[a-z]' '[A-Z]')
     eval [ \"\$$n\" = yes ]
-}
-
-distro() {
-    [ "$DISTRO" = "$1" ]
 }
 
 diff() {
@@ -62,14 +41,7 @@ diff() {
 }
 
 _pkg_installed() {
-    case $DISTRO in
-        debian)
-            dpkg-query -Wf '${Package}\n' | grep -q "^$1\$"
-            ;;
-        arch)
-            pacman -Q $1 >/dev/null 2>&1
-            ;;
-    esac
+    dpkg-query -Wf '${Package}\n' | grep -q "^$1\$"
 }
 
 pkg() {
@@ -78,14 +50,7 @@ pkg() {
             continue
         fi
 
-        case $DISTRO in
-            debian)
-                apt install $p
-                ;;
-            arch)
-                pacman -S $p
-                ;;
-        esac
+        apt install $p
     done
 }
 
@@ -147,7 +112,7 @@ tmpl = jinja2.Template(
     lstrip_blocks=True,
     keep_trailing_newline=True
 )
-data = yaml.safe_load(open('$ROOT/env/$(_hostname).yml', 'r'))
+data = yaml.safe_load(open('$ROOT/env/$(hostname).yml', 'r'))
 
 if len(k):
         lookup = ''.join(['[\"' + i + '\"]' for i in k.split('.')])
