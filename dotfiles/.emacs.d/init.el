@@ -18,11 +18,15 @@
 ;; Packages
 ;;
 
+(if (and (version< emacs-version "26.3") (>= libgnutls-version 30600))
+    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(package-initialize)
 
 (unless (bound-and-true-p package--initialized)
   (package-refresh-contents))
