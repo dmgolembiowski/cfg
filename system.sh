@@ -229,6 +229,7 @@ if role desktop; then
         xorg-xrandr
         xdg-utils
         xterm
+        physlock
         xclip
         unclutter
         polybar
@@ -252,7 +253,6 @@ if role desktop; then
     else
         pkg '
             brightnessctl
-            slock
             redshift
             bluez
             bluez-utils

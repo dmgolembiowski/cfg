@@ -536,8 +536,8 @@ ARG internal, external or both"
         . (lambda ()
             (interactive)
             (start-process-shell-command
-             "slock" nil
-             "slock")))
+             "physlock" nil
+             "physlock")))
      ;; Switch to certain workspace N:
      ,@(mapcar (lambda (i)
                  `(,(kbd (format "s-%d" i)) .
