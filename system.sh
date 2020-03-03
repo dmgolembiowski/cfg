@@ -252,7 +252,6 @@ if role desktop; then
         pulseaudio
         pulsemixer
         mpv
-        youtube-dl
         ncspot
         i965-va-driver
         '
