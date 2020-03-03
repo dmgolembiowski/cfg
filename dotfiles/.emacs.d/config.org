@@ -223,8 +223,8 @@ are extending built-in Emacs features.
 #+begin_src emacs-lisp
 (use-package isearch
   :custom
-  (isearch-lazy-count t)
-  (isearch-yank-on-move t)
+  ;; Emacs 27.1: (isearch-lazy-count t)
+  ;; Emacs 27.1: (isearch-yank-on-move t)
   (isearch-allow-scroll 'unlimited))
 #+end_src
 
@@ -235,7 +235,7 @@ are extending built-in Emacs features.
   :custom
   (icomplete-in-buffer t "Use icomplete in no-mini buffers")
   (icomplete-separator "\n")
-  (fido-mode t)
+  ;; Emacs 27.1: (fido-mode t)
   (icomplete-mode t))
 #+end_src
 
