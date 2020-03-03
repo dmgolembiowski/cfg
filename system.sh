@@ -248,7 +248,6 @@ if role desktop; then
         pulseaudio
         pulsemixer
         mpv
-        ncspot
         i965-va-driver
         '
 fi
