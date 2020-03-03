@@ -256,10 +256,6 @@ if role desktop || role media; then
     pkg lftp
 fi
 
-if role media; then
-    pkg mediainfo
-fi
-
 ##
 ## Mail
 ##
