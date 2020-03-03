@@ -553,8 +553,6 @@ ARG internal, external or both"
   (exwm-randr-enable)
   (exwm-enable)
 
-  (eu/xrandr-toggle "internal")
-
   (setq window-divider-default-bottom-width 2
         window-divider-default-right-width 2)
   (window-divider-mode))
