@@ -26,5 +26,3 @@ case "$1" in
         fi
         ;;
 esac
-
-polybar-msg cmd restart

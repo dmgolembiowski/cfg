@@ -231,7 +231,6 @@ if role desktop; then
             xorg-xrandr
             unclutter
             brightnessctl
-            polybar
             noto-fonts
             noto-fonts-emoji
             ttf-ibm-plex

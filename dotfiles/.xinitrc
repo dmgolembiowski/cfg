@@ -10,9 +10,4 @@ unclutter&
 
 redshift -l 59.91:10.74&
 
-_plog=~/.local/share/polybar/logs
-mkdir -p $_plog
-polybar main 2> $_plog/main.log &
-unset _plog
-
 exec emacs
