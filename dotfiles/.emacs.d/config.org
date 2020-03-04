@@ -7,20 +7,25 @@ are extending built-in Emacs features.
 
 * Core
 
+- Prevent loading stale byte code.
+- Flash frame in stead of using audible bell.
+- Use /y/ and /n/ in stead of /yes/ and /no/.
+- Store cliboard text into kill ring before overwriting it.
+- Display column number in mode-line.
+- Manipulate whitespace around point with =M-SPC= in a smart way.
+
 #+begin_src emacs-lisp
   (use-package emacs
     :custom
-    (load-prefer-newer t "Prevent loading stale byte code")
-    (visible-bell t "Flash frame to represent bell")
+    (load-prefer-newer t)
+    (visible-bell t)
     :config
-    (fset 'yes-or-no-p 'y-or-n-p))  ;; y/n in stead of yes/no
+    (fset 'yes-or-no-p 'y-or-n-p))
 
   (use-package simple
     :custom
-    (save-interprogram-paste-before-kill
-     t
-     "Store clipboard text into kill ring before replacement")
-    (column-number-mode t "Display column number in mode line")
+    (save-interprogram-paste-before-kill t)
+    (column-number-mode t)
     :bind ([remap just-one-space] . cycle-spacing))
 #+end_src
 
