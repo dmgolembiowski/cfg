@@ -19,7 +19,7 @@
 ;;
 
 (if (and (version< emacs-version "26.3") (>= libgnutls-version 30600))
-    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+    (defvar gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 
 (require 'package)
 (add-to-list 'package-archives
