@@ -76,7 +76,7 @@ are extending built-in Emacs features.
     (x-gtk-use-system-tooltips nil))
 #+end_src
 
-* Modeline
+* TODO Modeline
 
 #+begin_src emacs-lisp
   (use-package emacs
@@ -103,7 +103,7 @@ are extending built-in Emacs features.
     :ensure t)
   #+end_src
 
-* History
+* TODO History
 
 #+begin_src emacs-lisp
   (use-package saveplace
@@ -154,7 +154,7 @@ are extending built-in Emacs features.
     (save-place-mode 1))
 #+end_src
 
-* Editor
+* TODO Editor
 
 #+begin_src emacs-lisp
   (use-package emacs
@@ -213,7 +213,7 @@ are extending built-in Emacs features.
     (diff-hl-flydiff-mode 1))
 #+end_src
 
-* Key bindings
+* TODO Key bindings
 
 #+begin_src emacs-lisp
   (use-package which-key
@@ -236,7 +236,7 @@ are extending built-in Emacs features.
     (guru-global-mode 1))
 #+end_src
 
-* Search
+* TODO Search
 
 #+begin_src emacs-lisp
   (use-package isearch
@@ -246,7 +246,7 @@ are extending built-in Emacs features.
     (isearch-allow-scroll 'unlimited))
 #+end_src
 
-* Completion
+* TODO Completion
 
 #+begin_src emacs-lisp
   (use-package icomplete
@@ -256,7 +256,7 @@ are extending built-in Emacs features.
     (icomplete-mode t))
 #+end_src
 
-* Buffer
+* TODO Buffer
 
 #+begin_src emacs-lisp
   (use-package ibuffer
@@ -285,7 +285,7 @@ are extending built-in Emacs features.
     :commands (buf-move-up buf-move-down buf-move-left buf-move-right))
 #+end_src
 
-* Extensions
+* TODO Extensions
 
 #+begin_src emacs-lisp
   (use-package goto-line-preview
@@ -363,7 +363,7 @@ are extending built-in Emacs features.
     (proced-auto-update-interval 1))
 #+end_src
 
-* Languages
+* TODO Languages
 
 #+begin_src emacs-lisp
   (use-package flycheck
@@ -433,7 +433,7 @@ are extending built-in Emacs features.
     (calendar-date-style 'iso "year/month/day"))
 #+end_src
 
-* Window manager
+* TODO Window manager
 
 #+begin_src emacs-lisp
   (defun eu/xrandr-toggle (arg)
@@ -575,7 +575,7 @@ are extending built-in Emacs features.
     (window-divider-mode))
 #+end_src
 
-* Customization
+* TODO Customization
 
 #+begin_src emacs-lisp
   (use-package cus-edit
@@ -586,7 +586,7 @@ are extending built-in Emacs features.
       (load custom-file)))
 #+end_src
 
-* Reset init settings
+* TODO Reset init settings
 
 #+begin_src emacs-lisp
   (run-with-idle-timer
