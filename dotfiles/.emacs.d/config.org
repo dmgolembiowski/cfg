@@ -234,7 +234,6 @@ are extending built-in Emacs features.
 (use-package icomplete
   :custom
   (icomplete-in-buffer t "Use icomplete in no-mini buffers")
-  (icomplete-separator "\n")
   ;; Emacs 27.1: (fido-mode t)
   (icomplete-mode t))
 #+end_src
