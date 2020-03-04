@@ -122,12 +122,14 @@ if role dev; then
         ncurses-term
         emacs
         silversearcher-ag
-        python3-venv
         git
         bash-completion
         tmux
         ncdu
         jq
+        python3-venv
+        python3-django
+        sqlite3
         '
 fi
 
