@@ -31,6 +31,21 @@ are extending built-in Emacs features.
 
 * GUI
 
+- Disable:
+  - Menu bar.
+  - Tool bar.
+  - Initial scratch help message.
+  - Startup screen.
+  - Scroll bar.
+  - Cursor blinking.
+  - GTK theme for tooltips.
+- Move point when scrolling.
+- Set a nice font.
+- Configure unique buffer names by:
+  - Name indentical files like =foo/Makefile= and =bar/Makefile=
+  - Ignore special buffers
+  - Remove unique prefix when matching buffer is killed
+
 #+begin_src emacs-lisp
   (use-package emacs
     :custom
@@ -39,7 +54,7 @@ are extending built-in Emacs features.
     (initial-scratch-message nil)
     (inhibit-startup-screen t)
     (scroll-conservatively 100000)
-    (scroll-preserve-screen-position 1 "Move point when srolling")
+    (scroll-preserve-screen-position 1)
     (default-frame-alist '((font . "IBM Plex Mono-10"))))
 
   (use-package scroll-bar
@@ -48,19 +63,17 @@ are extending built-in Emacs features.
 
   (use-package frame
     :custom
-    (blink-cursor-mode nil "Disable cursor blinking"))
+    (blink-cursor-mode nil))
 
   (use-package uniquify
     :custom
-    (uniquify-buffer-name-style 'forward "Results in foo/Makefile bar/Makefile")
-    (uniquify-ignore-buffers-re "^\\*" "Ignore special buffers")
-    (uniquify-after-kill-buffer-p
-     t
-     "Rename buffer back after killing matching buffers"))
+    (uniquify-buffer-name-style 'forward)
+    (uniquify-ignore-buffers-re "^\\*")
+    (uniquify-after-kill-buffer-p t))
 
   (use-package tooltip
     :custom
-    (x-gtk-use-system-tooltips nil "Do not use GTK theme for tooltips"))
+    (x-gtk-use-system-tooltips nil))
 #+end_src
 
 * Modeline
