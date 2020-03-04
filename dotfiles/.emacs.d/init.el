@@ -38,7 +38,7 @@
 (require 'use-package)
 
 (require 'org)
-(set vc-follow-symlinks t)
+(setq vc-follow-symlinks t)
 (org-babel-load-file (concat user-emacs-directory "config.org"))
 
 ;;; init.el ends here
