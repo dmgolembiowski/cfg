@@ -441,6 +441,10 @@ are extending built-in Emacs features.
                      ("errand" . ?e)
                      ("computer" . ?c)
                      ("phone" . ?p)))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (shell . nil)))
     (org-special-ctrl-a t "Toggle between beginning/end of headline text/markup")
     (org-startup-folded 'content))
 
