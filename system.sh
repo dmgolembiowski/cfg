@@ -120,7 +120,6 @@ if role dev; then
     pkg '
         man-db
         ncurses-term
-        emacs
         silversearcher-ag
         git
         bash-completion
@@ -131,6 +130,10 @@ if role dev; then
         python3-django
         sqlite3
         '
+
+    if role desktop; then
+        pkg emacs
+    fi
 fi
 
 # TODO: debian support
