@@ -285,6 +285,16 @@ are extending built-in Emacs features.
     :commands (buf-move-up buf-move-down buf-move-left buf-move-right))
 #+end_src
 
+* Help
+
+Select help window after opening it so that it can easily be closed with =q=.
+
+#+begin_src emacs-lisp
+  (use-package help
+    :custom
+    (help-window-select t))
+#+end_src
+
 * TODO Extensions
 
 #+begin_src emacs-lisp
