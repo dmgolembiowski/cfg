@@ -601,6 +601,35 @@ are extending built-in Emacs features.
     (window-divider-mode))
 #+end_src
 
+Display battery status and date/time in modeline.
+
+#+begin_src emacs-lisp
+  (use-package emacs
+    :custom
+    (display-time-default-load-average nil)
+    (display-time-format "%Y-%m-%d %H:%M ")
+    :config
+    (display-time-mode t))
+
+  (defun eu/fancy-battery-mode-line ()
+    (when fancy-battery-last-status
+      (let* ((time (cdr (assq ?t fancy-battery-last-status)))
+             (percentage (cdr (assq ?p fancy-battery-last-status)))
+             (percentagenum (string-to-number percentage))
+             (msg (concat percentage "%% " time)))
+        (if (< percentagenum 20)
+            (propertize msg 'face fancy-battery-critical)
+          msg))))
+
+  (use-package fancy-battery
+    :ensure t
+    :custom
+    (fancy-battery-mode-line '(:eval (eu/fancy-battery-mode-line)))
+    (battery-update-interval 5)
+    :config
+    (fancy-battery-mode))
+#+end_src
+
 * TODO Customization
 
 #+begin_src emacs-lisp
