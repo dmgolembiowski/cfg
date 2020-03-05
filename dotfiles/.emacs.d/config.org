@@ -79,25 +79,35 @@ are extending built-in Emacs features.
 * TODO Modeline
 
 #+begin_src emacs-lisp
+  (defun eu/left-right-modeline (left right)
+    (let*
+        ((available-width
+          (- (window-total-width)
+             (+ (length (format-mode-line left))
+                (length (format-mode-line right))))))
+      (append left (list (format (format "%%%ds" available-width) "")) right)))
+
   (use-package emacs
     :custom
     (mode-line-percent-position nil "No buffer %")
     (mode-line-format
-     '("%e"
-       mode-line-front-space
-       mode-line-mule-info
-       mode-line-client
-       mode-line-modified
-       mode-line-remote
-       mode-line-frame-identification
-       mode-line-buffer-identification
-       " "
-       mode-line-position
-       " "
-       mode-line-modes
-       mode-line-misc-info
-       mode-line-end-spaces)
-     "Remove vc info from modeline"))
+     '(:eval (eu/left-right-modeline
+       '("%e"
+         mode-line-front-space
+         mode-line-mule-info
+         mode-line-client
+         mode-line-modified
+         mode-line-remote
+         mode-line-frame-identification
+         mode-line-buffer-identification
+         " "
+         mode-line-position
+         " "
+         mode-line-modes)
+       '(" "
+         mode-line-misc-info
+         mode-line-end-spaces)))
+       "Remove vc info from modeline"))
 
   (use-package diminish
     :ensure t)
