@@ -466,7 +466,9 @@ Show key bindings for major mode with =C-h C-m= and minor modes with =C-h M-m=.
      '((emacs-lisp . t)
        (shell . nil)))
     (org-special-ctrl-a t "Toggle between beginning/end of headline text/markup")
-    (org-startup-folded 'content))
+    (org-startup-folded 'content)
+    (org-src-window-setup 'current-window
+                          "Edit source with C-c ' in the same window"))
 
   (use-package org-agenda
     :after org
