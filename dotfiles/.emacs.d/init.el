@@ -35,7 +35,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 
 (require 'org)
 (setq vc-follow-symlinks t)
