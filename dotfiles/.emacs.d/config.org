@@ -247,11 +247,23 @@ Disable cursor to more easily learn the proper Emacs key bindings.
 * TODO Completion
 
 #+begin_src emacs-lisp
-  (use-package icomplete
-    :custom
-    (icomplete-in-buffer t "Use icomplete in no-mini buffers")
-    ;; Emacs 27.1: (fido-mode t)
-    (icomplete-mode t))
+  (use-package prescient
+    :straight t
+    :config
+    (prescient-persist-mode +1))
+
+  (use-package selectrum
+    :straight (selectrum :host github :repo "raxod502/selectrum")
+    :after prescient
+    :config
+    (selectrum-mode +1))
+
+  (use-package selectrum-prescient
+    :straight (selectrum-prescient :host github :repo "raxod502/prescient.el"
+                                   :files ("selectrum-prescient.el"))
+    :after selectrum
+    :config
+    (selectrum-prescient-mode +1))
 #+end_src
 
 * TODO Buffer

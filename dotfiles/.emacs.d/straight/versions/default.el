@@ -20,6 +20,8 @@
  ("makey" . "a61781e69d3b451551e269446e1c5f624ab81137")
  ("melpa" . "b8fba59de045c9b5c4836d0cd15075886dc67639")
  ("pkg-info" . "76ba7415480687d05a4353b27fea2ae02b8d9d61")
+ ("prescient.el" . "7fd8c3b8028da4733434940c4aac1209281bef58")
+ ("selectrum" . "548903e07e1c212fb86d29bf914b49f20d76755f")
  ("straight.el" . "ed54b626b0faec36fdaff30c72351d5fb41a6786")
  ("transient" . "a269614c69ad8b2703e6e5093d0017d6afad6cca")
  ("use-package" . "42db6b3d90ee57d0f5947d3b0bf4b0010bdf7b40")
