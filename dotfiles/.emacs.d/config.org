@@ -110,7 +110,7 @@ are extending built-in Emacs features.
        "Remove vc info from modeline"))
 
   (use-package diminish
-    :ensure t)
+    :straight t)
   #+end_src
 
 * TODO History
@@ -212,8 +212,7 @@ are extending built-in Emacs features.
     :hook (after-save . executable-make-buffer-file-executable-if-script-p))
 
   (use-package diff-hl
-    :ensure t
-    :pin melpa-stable
+    :straight t
     :hook
     (dired-mode . diff-hl-dired-mode)
     (magit-post-refresh . diff-hl-magit-post-refresh)
@@ -229,7 +228,7 @@ Disable cursor to more easily learn the proper Emacs key bindings.
 
 #+begin_src emacs-lisp
   (use-package guru-mode
-    :ensure t
+    :straight t
     :diminish
     :custom
     (guru-global-mode 1))
@@ -268,7 +267,7 @@ Disable cursor to more easily learn the proper Emacs key bindings.
 
   (use-package ibuffer-vc
     :after ibuffer
-    :ensure t
+    :straight t
     :init
     (defun ibuffer-set-up-preferred-filters ()
       (ibuffer-vc-set-filter-groups-by-vc-root)
@@ -279,8 +278,7 @@ Disable cursor to more easily learn the proper Emacs key bindings.
     :commands ibuffer-vc-set-filter-groups-by-vc-root)
 
   (use-package buffer-move
-    :ensure t
-    :pin melpa-stable
+    :straight t
     :commands (buf-move-up buf-move-down buf-move-left buf-move-right))
 #+end_src
 
@@ -298,8 +296,7 @@ Show available key bindings after a delay when pressing a prefix.
 
 #+begin_src emacs-lisp
   (use-package which-key
-    :ensure t
-    :pin melpa-stable
+    :straight t
     :diminish
     :custom
     (which-key-mode t))
@@ -309,7 +306,7 @@ Show key bindings for major mode with =C-h C-m= and minor modes with =C-h M-m=.
 
 #+begin_src emacs-lisp
   (use-package discover-my-major
-    :ensure t
+    :straight t
     :bind
     ("C-h C-m" . discover-my-major)
     ("C-h M-m" . discover-my-mode))
@@ -319,7 +316,7 @@ Show key bindings for major mode with =C-h C-m= and minor modes with =C-h M-m=.
 
 #+begin_src emacs-lisp
   (use-package goto-line-preview
-    :ensure t
+    :straight t
     :bind ([remap goto-line] . goto-line-preview))
 
   (use-package ediff-wind
@@ -360,7 +357,7 @@ Show key bindings for major mode with =C-h C-m= and minor modes with =C-h M-m=.
     (wdired-allow-to-change-permissions t "Change permissions with SPC"))
 
   (use-package magit
-    :ensure t
+    :straight t
     :bind
     ("C-x g" . magit-status)
     ("C-c g" . magit-file-dispatch))
@@ -403,7 +400,7 @@ Show key bindings for major mode with =C-h C-m= and minor modes with =C-h M-m=.
 
 #+begin_src emacs-lisp
   (use-package flycheck
-    :ensure t
+    :straight t
     :custom
     (flycheck-check-syntax-automatically
      '(save mode-enabled) "Check only when opening buffer and saving buffer")
@@ -423,8 +420,7 @@ Show key bindings for major mode with =C-h C-m= and minor modes with =C-h M-m=.
 
 #+begin_src emacs-lisp
   (use-package yaml-mode
-    :ensure t
-    :pin melpa-stable
+    :straight t
     :mode ("\\.yml$" . yaml-mode)
     :hook (yaml-mode . subword-mode)) ;; yaml-mode derives from text-mode
 #+end_src
@@ -445,9 +441,8 @@ Show key bindings for major mode with =C-h C-m= and minor modes with =C-h M-m=.
 
 #+begin_src emacs-lisp
   (use-package gitignore-mode
-    :ensure t
-    :defer t
-    :pin melpa-stable)
+    :straight t
+    :defer t)
 #+end_src
 
 ** TODO Org
@@ -501,7 +496,7 @@ Show key bindings for major mode with =C-h C-m= and minor modes with =C-h M-m=.
                   nil nil nil arg))
 
   (use-package exwm
-    :ensure t
+    :straight t
     :custom
     (exwm-randr-workspace-monitor-plist
      '(0 "DP-1" 2 "DP-1" 3 "DP-1" 4 "DP-1" 5 "DP-1")
@@ -654,7 +649,7 @@ Display battery status and date/time in modeline.
           msg))))
 
   (use-package fancy-battery
-    :ensure t
+    :straight t
     :custom
     (fancy-battery-mode-line '(:eval (eu/fancy-battery-mode-line)))
     (battery-update-interval 5)

@@ -18,22 +18,23 @@
 ;; Packages
 ;;
 
-(if (and (version< emacs-version "26.3") (>= libgnutls-version 30600))
-    (defvar gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el"
+                         user-emacs-directory))
+      (bootstrap-url
+       (concat "https://raw.githubusercontent.com"
+               "/raxod502/straight.el/develop/install.el"))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously bootstrap-url
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/"))
-(package-initialize)
-
-(unless (bound-and-true-p package--initialized)
-  (package-refresh-contents))
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(straight-use-package 'use-package)
 
 (eval-when-compile
   (require 'use-package))
