@@ -244,7 +244,14 @@ Disable cursor to more easily learn the proper Emacs key bindings.
     (isearch-allow-scroll 'unlimited))
 #+end_src
 
-* TODO Completion
+* Completion
+
+Use =selectrum= for simple incremental narrowing for finding files (=C-x C-f=),
+switching buffers (=C-x b=), =execute-extended-command= (=M-x=) and other
+built-in selection situations.
+
+Enhance =selectrum= with =prescient= for better sorting of candidates and
+persistence between sessions.
 
 #+begin_src emacs-lisp
   (use-package prescient
