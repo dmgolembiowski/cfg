@@ -234,14 +234,15 @@ Disable cursor to more easily learn the proper Emacs key bindings.
     (guru-global-mode 1))
 #+end_src
 
-* TODO Search
+* Search
+
+Use =ctrlf= for slightly improved searching (=C-s=, =C-r=, =C-M-s=, =C-M-r=).
 
 #+begin_src emacs-lisp
-  (use-package isearch
-    :custom
-    ;; Emacs 27.1: (isearch-lazy-count t)
-    ;; Emacs 27.1: (isearch-yank-on-move t)
-    (isearch-allow-scroll 'unlimited))
+  (use-package ctrlf
+    :straight (ctrlf :host github :repo "raxod502/ctrlf")
+    :config
+    (ctrlf-mode +1))
 #+end_src
 
 * Completion
