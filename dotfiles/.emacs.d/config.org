@@ -208,6 +208,11 @@ are extending built-in Emacs features.
     (whitespace-style '(face tabs tab-mark empty trailing lines-tail))
     :hook ((text-mode prog-mode conf-mode) . eu/enable-whitespace))
 
+  (use-package volatile-highlights
+    :straight t
+    :config
+    (volatile-highlights-mode t))
+
   (use-package executable
     :hook (after-save . executable-make-buffer-file-executable-if-script-p))
 
