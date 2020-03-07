@@ -97,6 +97,11 @@ chmod 700 /boot
 
 file /etc/sysctl.d/50-dmesg-restrict.conf
 
+pkg '
+    debian-security-support
+    debsecan
+    '
+
 ##
 ## Debug
 ##
