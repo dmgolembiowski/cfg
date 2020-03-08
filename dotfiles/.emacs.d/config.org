@@ -241,10 +241,22 @@ Disable cursor to more easily learn the proper Emacs key bindings.
 
 * Search
 
-Use =ctrlf= for slightly improved searching (=C-s=, =C-r=, =C-M-s=, =C-M-r=).
+Use stock =isearch= until =ctrlf= is more mature.
+
+#+begin_src emacs-lisp
+  (use-package isearch
+    :custom
+    ;; Emacs 27.1: (isearch-lazy-count t)
+    ;; Emacs 27.1: (isearch-yank-on-move t)
+    (isearch-allow-scroll 'unlimited))
+#+end_src
+
+With a bit more maturity =ctrlf= should be used for slightly improved
+searching (=C-s=, =C-r=, =C-M-s=, =C-M-r=).
 
 #+begin_src emacs-lisp
   (use-package ctrlf
+    :disabled
     :straight (ctrlf :host github :repo "raxod502/ctrlf")
     :config
     (ctrlf-mode +1))
