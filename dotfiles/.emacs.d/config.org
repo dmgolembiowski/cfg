@@ -188,6 +188,11 @@ are extending built-in Emacs features.
     :bind
     ("M-/" . hippie-expand))
 
+  (use-package crux
+    :straight t
+    :bind
+    ([remap move-beginning-of-line] . crux-move-beginning-of-line))
+
   (use-package paren
     :custom (show-paren-mode 1))
 
