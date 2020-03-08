@@ -215,6 +215,7 @@ are extending built-in Emacs features.
 
   (use-package volatile-highlights
     :straight t
+    :diminish
     :config
     (volatile-highlights-mode t))
 
