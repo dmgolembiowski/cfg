@@ -193,7 +193,9 @@ are extending built-in Emacs features.
     :bind
     ([remap move-beginning-of-line] . crux-move-beginning-of-line)
     ("S-<return>" . crux-smart-open-line)
-    ("C-S-<return>" . crux-smart-open-line-above))
+    ("C-S-<return>" . crux-smart-open-line-above)
+    :config
+    (crux-with-region-or-buffer indent-region))
 
   (use-package paren
     :custom (show-paren-mode 1))
