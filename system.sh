@@ -146,7 +146,7 @@ if role work && false; then
     pkg python-virtualenv
 
     if ! [ -e /opt/az/bin/python3 ]; then
-        virtualenv -p python3 /opt/az
+        python3 -m venv /opt/az
     fi
 
     pip /opt/az 'azure-cli==2.1.0'
@@ -316,7 +316,7 @@ if role wsgi; then
 {% if 'venv' in wsgi[w] %}
 if ! [ -d {{ wsgi[w].venv }}/bin ]; then
         mkdir -p {{ wsgi[w].venv }}
-        virtualenv -p /usr/bin/python3.7 {{ wsgi[w].venv }}
+        python3 -m venv {{ wsgi[w].venv }}
         chown -R gunicorn: {{ wsgi[w].venv }}
 fi
 {% endif %}
@@ -372,11 +372,8 @@ if role feed; then
 
     svc miniflux
 
-
-    pkg virtualenv
-
     if ! [ -e /opt/fluxfilter/bin/python3 ]; then
-        virtualenv -p python3 /opt/fluxfilter
+        python3 -m venv /opt/fluxfilter
     fi
 
     pip /opt/fluxfilter 'miniflux==0.0.10'
