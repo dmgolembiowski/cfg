@@ -153,11 +153,6 @@ if role work && false; then
     file /usr/local/bin/az
     chmod +x /usr/local/bin/az
     file /usr/share/bash-completion/completions/az
-
-    pkg '
-        kubectl
-        bind-tools
-        '
 fi
 
 ##
