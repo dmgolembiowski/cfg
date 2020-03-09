@@ -191,7 +191,9 @@ are extending built-in Emacs features.
   (use-package crux
     :straight t
     :bind
-    ([remap move-beginning-of-line] . crux-move-beginning-of-line))
+    ([remap move-beginning-of-line] . crux-move-beginning-of-line)
+    ("S-<return>" . crux-smart-open-line)
+    ("C-S-<return>" . crux-smart-open-line-above))
 
   (use-package paren
     :custom (show-paren-mode 1))
