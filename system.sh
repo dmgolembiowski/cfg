@@ -137,7 +137,6 @@ if role dev; then
         '
 fi
 
-# TODO: debian support
 if role work; then
     if ! [ -e /opt/az/bin/python3 ]; then
         python3 -m venv /opt/az
