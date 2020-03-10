@@ -10,4 +10,4 @@ unclutter&
 
 redshift -l 59.91:10.74&
 
-exec emacs
+exec i3

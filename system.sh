@@ -17,7 +17,6 @@ ROOT=$(cd "$(dirname "$0")"; pwd -P)
 pkg '
     sudo
     curl
-    mg
     ca-certificates
     '
 
@@ -123,6 +122,7 @@ pkg htop
 
 if role dev; then
     pkg '
+        vim-nox
         man-db
         ncurses-term
         silversearcher-ag
@@ -135,10 +135,6 @@ if role dev; then
         python3-django
         sqlite3
         '
-
-    if role desktop; then
-        pkg emacs
-    fi
 fi
 
 # TODO: debian support
@@ -163,6 +159,9 @@ if role desktop; then
         xserver-xorg-input-libinput
         x11-xserver-utils
         xinit
+        i3-wm
+        i3status
+        xterm
         unclutter-xfixes
         brightnessctl
         brightness-udev
@@ -172,7 +171,6 @@ if role desktop; then
         fonts-ibm-plex
         firefox-esr
         xdg-utils
-        xterm
         physlock
         redshift
         xclip
@@ -666,7 +664,6 @@ _UNNEEDED_PKGS='
                 nano
                 rsyslog
                 tasksel
-                vim.tiny
                 '
 
 if role vm; then

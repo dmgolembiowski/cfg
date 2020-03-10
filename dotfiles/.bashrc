@@ -52,7 +52,10 @@ export LC_ALL LANG
 
 PAGER=less
 LESS=-iFXR
-EDITOR=mg
+EDITOR=vi
+if command -v vim >/dev/null; then
+	EDITOR=vim
+fi
 export PAGER LESS EDITOR
 
 case $PATH in
@@ -105,9 +108,9 @@ for _f in $GOPATH /opt/go; do
 done
 unset _f
 
-if [ "$(tty)" = "/dev/tty1" ]; then
-	exec startx
-fi
+#if [ "$(tty)" = "/dev/tty1" ]; then
+#	exec startx
+#fi
 
 # Check for restarts:
 if [ -e /var/run/reboot-required ]; then

@@ -25,9 +25,6 @@ find $DOTFILES -type f | while read -r f; do
             */xterm*|*/gtk*|*/mpv/*)
                 continue
                 ;;
-            *.emacs.d*|*org-sync*)
-                continue
-                ;;
             *.Xresources|*.xinitrc|*xrandr*)
                 continue
                 ;;
