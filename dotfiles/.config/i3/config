@@ -1,69 +1,49 @@
-font pango:IBM Plex Mono 10
+##
+## Key bindings
+##
 
-# directional keys
+# directional vars
 set $left h
 set $down j
 set $up k
 set $right l
 
-# use Mouse+Mod1 to drag floating windows
-floating_modifier Mod1
-
-# start a terminal
-bindsym Mod1+Shift+Return exec xterm
-
-# kill focused window
-bindsym Mod1+Shift+c kill
-
-# start launcher
-bindsym Mod1+p exec --no-startup-id xterm_menu
-
-# change focus
-bindsym Mod1+$left focus left
-bindsym Mod1+$down focus down
-bindsym Mod1+$up focus up
-bindsym Mod1+$right focus right
-
-# move focused window
-bindsym Mod1+Shift+$left move left
-bindsym Mod1+Shift+$down move down
-bindsym Mod1+Shift+$up move up
-bindsym Mod1+Shift+$right move right
-
-# split in horizontal orientation
-bindsym Mod1+s split h
-
-# split in vertical orientation
-bindsym Mod1+v split v
-
-# enter fullscreen mode for the focused container
-bindsym Mod1+f fullscreen toggle
-
-# workspace names
+# workspace vars
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 
-# switch to workspace
+# window management
+bindsym Mod1+Shift+c kill
+
+bindsym Mod1+$left focus left
+bindsym Mod1+$down focus down
+bindsym Mod1+$up focus up
+bindsym Mod1+$right focus right
+
+bindsym Mod1+Shift+$left move left
+bindsym Mod1+Shift+$down move down
+bindsym Mod1+Shift+$up move up
+bindsym Mod1+Shift+$right move right
+
+bindsym Mod1+s split h
+bindsym Mod1+v split v
+
+bindsym Mod1+f fullscreen toggle
+
 bindsym Mod1+1 workspace $ws1
 bindsym Mod1+2 workspace $ws2
 bindsym Mod1+3 workspace $ws3
 bindsym Mod1+4 workspace $ws4
 bindsym Mod1+5 workspace $ws5
 
-# move focused container to workspace
 bindsym Mod1+Shift+1 move container to workspace $ws1
 bindsym Mod1+Shift+2 move container to workspace $ws2
 bindsym Mod1+Shift+3 move container to workspace $ws3
 bindsym Mod1+Shift+4 move container to workspace $ws4
 bindsym Mod1+Shift+5 move container to workspace $ws5
-
-# restart i3 inplace
-bindsym Mod1+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym Mod1+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window
 mode "resize" {
@@ -77,6 +57,23 @@ mode "resize" {
 }
 
 bindsym Mod1+r mode "resize"
+
+# drag floating windows
+floating_modifier Mod1
+
+# launchers
+bindsym Mod1+Shift+Return exec xterm
+bindsym Mod1+p exec --no-startup-id xterm_menu
+
+# restart/exit
+bindsym Mod1+Shift+r restart
+bindsym Mod1+Shift+q exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Exit' 'i3-msg exit'"
+
+##
+## Style
+##
+
+font pango:IBM Plex Mono 10
 
 bar {
 	status_command i3status
