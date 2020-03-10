@@ -128,9 +128,6 @@ if role dev; then
 		tmux
 		ncdu
 		jq
-		python3-venv
-		python3-django
-		sqlite3
 		'
 fi
 
