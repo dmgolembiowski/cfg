@@ -90,6 +90,8 @@ alias df='df -x squashfs -x tmpfs -x devtmpfs -x fuse.rar2fs'
 
 alias xcp='xclip -selection clipboard'
 
+alias c='curl -LJO'
+
 
 GOPATH=$HOME/src/go
 export GOPATH
