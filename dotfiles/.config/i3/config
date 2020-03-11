@@ -69,6 +69,11 @@ bindsym Mod1+p exec --no-startup-id xterm_menu
 bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+q exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Exit' 'i3-msg exit'"
 
+# window rules
+for_window [class="XtermMenu"] border pixel 2
+for_window [class="XtermMenu"] floating enable
+for_window [class="XtermMenu"] move position center
+
 ##
 ## Style
 ##

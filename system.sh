@@ -120,6 +120,7 @@ pkg htop
 if role dev; then
 	pkg '
 		vim-nox
+		fzy
 		man-db
 		ncurses-term
 		silversearcher-ag
