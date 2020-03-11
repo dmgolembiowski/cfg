@@ -75,6 +75,8 @@ bindsym Mod1+Shift+q exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Exit' 'i3-msg 
 
 font pango:IBM Plex Mono 10
 
+default_border pixel 2
+
 bar {
 	status_command i3status
 	separator_symbol " | "
