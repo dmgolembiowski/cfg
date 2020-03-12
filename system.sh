@@ -163,7 +163,6 @@ if role desktop; then
 		fonts-noto-mono
 		fonts-noto-color-emoji
 		fonts-ibm-plex
-		firefox-esr
 		xdg-utils
 		physlock
 		redshift
@@ -172,6 +171,7 @@ if role desktop; then
 		sxiv
 		mupdf
 		unzip
+		bzip2
 		moreutils
 		'
 
