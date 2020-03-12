@@ -137,6 +137,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Keep search matches in the middle of the window:
 nnoremap * *zzzv
 nnoremap # #zzzv
 nnoremap n nzzzv
@@ -146,12 +147,20 @@ nnoremap N Nzzzv
 ""
 "" Text
 ""
-set wrap
+
+" Highlight column number 80:
 set colorcolumn=80
+
+" Break lines when wrapping at punctuation:
 set linebreak
-silent! set breakindent
+
+" Visually indent each wrapped line:
+set breakindent
+
+" Copy indent from current line when starting a new line:
 set autoindent
 
+" Highlight trailing space when not in insert mode:
 autocmd BufNewFile,BufRead * highlight trail_space ctermbg=1
 autocmd InsertEnter * highlight trail_space ctermbg=NONE
 autocmd InsertLeave * highlight trail_space ctermbg=1
