@@ -172,6 +172,7 @@ if role desktop; then
 		mupdf
 		unzip
 		bzip2
+		libdbus-glib-1-2
 		moreutils
 		'
 
