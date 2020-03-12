@@ -10,3 +10,21 @@ set completion-display-width 0
 set completion-ignore-case on
 set completion-prefix-display-length 3
 set skip-completed-text on
+set editing-mode vi
+
+$if mode=vi
+	set keymap vi-insert
+	"\C-l":clear-screen
+
+	set keymap vi-command
+	"\e[A":redraw-current-line
+	"\e[B":redraw-current-line
+	"\e[C":redraw-current-line
+	"\e[D":redraw-current-line
+
+	set keymap vi-insert
+	"\e[A":redraw-current-line
+	"\e[B":redraw-current-line
+	"\e[C":redraw-current-line
+	"\e[D":redraw-current-line
+$endif

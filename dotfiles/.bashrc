@@ -23,6 +23,8 @@ HISTCONTROL=ignoreboth
 
 unset MAILCHECK
 
+set -o vi
+
 if [[ ${EUID} == 0 ]]; then
 	PS1='\[\033[00;31m\]\w\[\033[0m\] '
 else
