@@ -51,8 +51,101 @@ if ! [ -L $HOME/.bash_profile ]; then
 	ln -sf $HOME/.bashrc $HOME/.bash_profile
 fi
 
+##
+## Systemd user units
+##
+
 if role desktop; then
 	svc pulseaudio.socket --user
+fi
+
+##
+## Vim
+##
+
+vimpack() {
+	local u=$1
+	local n=$2
+	local v=$3
+	local r=$HOME/.vim/pack/dist/start
+	local fresh
+
+	mkdir -p $r
+
+	if [ -d $r/$n/.git ]; then
+		git -C $r/$n fetch -q
+	else
+		fresh=yes
+		echo $n: clone
+		git clone -q https://github.com/$u/$n $r/$n
+	fi
+
+	local h=$(git -C $r/$n rev-parse HEAD)
+
+	if [ "$v" ]; then
+		local th=$(git -C $r/$n rev-list --tags --max-count=1)
+	else
+		local th=$(git -C $r/$n rev-parse origin/HEAD)
+	fi
+
+	if [ "$h" != "$th" ]; then
+		echo $n
+		echo '  cur:' $h
+		echo '  upd:' $th
+
+		git -C $r/$n checkout -q $th
+		vim +'helptags ALL' +q
+
+		# Skip logging if this is a fresh checkout and we're rewinding:
+		if [ "$fresh" != yes ]; then
+			git -C $r/$n log --pretty=oneline $h..$th | sed 's/^/  /'
+		fi
+	fi
+}
+
+vimpurge() {
+	local n=$1
+	local r=$HOME/.vim/pack/dist/start
+
+	if [ -d $r/$n ]; then
+		echo $n rm
+		rm -rf $r/$n
+	fi
+}
+
+if role dev; then
+	# Light color scheme:
+	vimpack cormacrelf vim-colors-github
+
+	# Visualize buffers as tabs:
+	vimpack ap vim-buftabline
+
+	# Comment code (bound to gcc/gc):
+	vimpack tpope vim-commentary
+
+	# Pick files with fzy (bouund to C-p):
+	vimpack srstevenson vim-picker
+
+	# Unix shell commands (:Chmod, :SudoWrite, etc):
+	vimpack tpope vim-eunuch tag
+
+	# Create non-existant directories for new file paths:
+	vimpack duggiefresh vim-easydir tag
+
+	# Reopen files at last edit position:
+	vimpack farmergreg vim-lastplace tag
+
+	# Improved markdown syntax (folding, concealing, extensions):
+	vimpack plasticboy vim-markdown
+
+	# Syntax for jinja templates:
+	vimpack  glench vim-jinja2-syntax
+
+	# Python formatting with black:
+	vimpack psf black tag
+
+	mkdir -p ~/.vim/tmp/undo
+	mkdir -p ~/.vim/tmp/swap
 fi
 
 if role desktop; then
