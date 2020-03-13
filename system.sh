@@ -141,6 +141,17 @@ if role work; then
 	file /usr/local/bin/az
 	chmod +x /usr/local/bin/az
 	file /usr/share/bash-completion/completions/az
+
+	_slv=4.3.2
+	_slf=slack-desktop-${_slv}-amd64.deb
+	_slu=https://downloads.slack-edge.com/linux_releases/$_slf
+	_slcurv=$(apt-cache show slack-desktop | awk '/^Version:/ { print $2 }')
+
+	if [ "$_slcurv" != "$_slv" ]; then
+		curl -L $_slu > /tmp/$_slf
+		apt install /tmp/$_slf
+		rm /tmp/$_slf
+	fi
 fi
 
 ##
