@@ -134,3 +134,8 @@ bindsym Print exec maim -s \
 
 # Lock screen
 bindsym Mod4+l exec --no-startup-id physlock
+
+# Display switching
+bindsym XF86Display exec --no-startup-id xrandr-toggle external
+bindsym Mod1+XF86Display exec --no-startup-id xrandr-toggle internal
+bindsym Control+XF86Display exec --no-startup-id xrandr-toggle both
