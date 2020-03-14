@@ -253,19 +253,6 @@ let g:buftabline_indicators=1
 " vim-picker
 nmap <c-p> <Plug>PickerEdit
 
-" nerdtree
-
-let NERDTreeMinimalUI = 1
-let NERDTreeShowHidden = 1
-let NERDTreeIgnore = ['\.git$[[dir]]']
-
-function NERDTreeSync()
-	if exists("g:NERDTree") && g:NERDTree.IsOpen()
-		NERDTreeFind
-	endif
-endfunction
-autocmd BufWinEnter * :call NERDTreeSync()
-
 " black
 let g:black_linelength = 79
 autocmd BufWritePre *.py execute ':Black'
