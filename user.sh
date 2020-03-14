@@ -31,7 +31,7 @@ find $DOTFILES -type f | while read -r f; do
 		esac
 	fi
 
-	if ! role irc; then
+	if ! role irc && ! role desktop; then
 		case "$f" in
 			*bin/irc)
 				continue
