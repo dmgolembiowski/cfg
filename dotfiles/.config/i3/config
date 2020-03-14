@@ -82,8 +82,35 @@ font pango:IBM Plex Mono 10
 
 default_border pixel 2
 
+set $bg_fo #ffd787
+set $fg_fo #444444
+set $bg_fi #afd7ff
+set $fg_fi #0087af
+set $bg_uf #e4e4e4
+set $fg_uf #444444
+set $bg_ur #ffd7ff
+set $fg_ur #af0000
+
+set $fg_st #4d4d4c
+set $bg_st #eeeeee
+
+client.focused          $bg_fo $bg_fo $fg_fo $bg_fo $bg_fo
+client.focused_inactive $bg_fi $bg_fi $fg_fi $bg_fi $bg_fi
+client.unfocused        $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
+client.urgent           $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
+
 bar {
 	status_command i3status
 	separator_symbol " | "
 	position top
+
+	colors {
+		statusline $fg_st
+		background $bg_st
+
+		focused_workspace  $bg_fo $bg_fo $fg_fo
+		active_workspace   $bg_fi $bg_fi $fg_fi
+		inactive_workspace $bg_st $bg_st $fg_st
+		urgent_workspace   $bg_ur $bg_ur $fg_ur
+	}
 }
