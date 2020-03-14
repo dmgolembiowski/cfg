@@ -1,7 +1,0 @@
-#!/bin/sh
-
-grep -Eoi '\[http[^]]+\]' "$@" |
-     tr -d '[]' |
-     sort |
-     uniq -c |
-     egrep -v '^\s+1 '
