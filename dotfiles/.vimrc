@@ -166,16 +166,33 @@ autocmd InsertEnter * highlight trail_space ctermbg=NONE
 autocmd InsertLeave * highlight trail_space ctermbg=1
 autocmd BufNewFile,BufRead * match trail_space /\s\+$/
 
-set noexpandtab
+" Enable concealing of some syntax (especially markdown):
+set conceallevel=2
+
+" Make <Tab> insert shiftwidth blanks when in front of line. Use
+" tabstop/softtabstop in other places. <BS> will delete shiftwidth number
+" of spaces at start of line:
 set smarttab
+
+" Number of spaces that <Tab> produces while performing editing operations:
 set softtabstop=0
+
+" Number of spaces a <Tab> in the file is displayed as:
 set tabstop=8
+
+" Number of spaces to use for each step of (auto)indent:
 set shiftwidth=8
 
+" Form folds from lines with equal indent:
 set foldmethod=indent
+
+" Maximum nesting of folds made by indentation level:
 set foldnestmax=3
+
+" Make all folds open by default:
 set nofoldenable
 
+" When it makes sence, remove a comment leader when joining lines:
 set formatoptions+=j
 
 ""
@@ -191,6 +208,7 @@ endfunction
 
 command! Spaces :call Spaces(4)
 
+" Setup different levels of space based indent for some syntaxes:
 au FileType python call Spaces(4)
 au FileType html call Spaces(4)
 au FileType jinja.html call Spaces(4)
@@ -199,6 +217,7 @@ au FileType yaml call Spaces(2)
 au FileType markdown call Spaces(4)
 au FileType vimwiki call Spaces(4)
 
+" Mail messages should be broken to a limited width:
 au FileType mail setlocal textwidth=72
 
 
@@ -207,6 +226,7 @@ au FileType mail setlocal textwidth=72
 ""
 let mapleader = ","
 
+" Convenience leader mappings for working with buffers:
 nnoremap <leader>b :ls<CR>
 nnoremap <leader>p :bp<CR>
 nnoremap <leader>n :bn<CR>
@@ -223,10 +243,13 @@ nnoremap <leader>8 :8b<CR>
 nnoremap <leader>9 :9b<CR>
 nnoremap <leader>0 :10b<CR>
 
+" Convenience leader mapping for toggling paste mode (no auto indent):
 nnoremap <leader>i :set invpaste<CR>
 
+" Convenience leader mapping for opening file based on current file's path:
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
+" Convenience leader mapping for disabling search highlight:
 nnoremap <leader>c :noh<CR>
 
 ""
