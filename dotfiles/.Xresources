@@ -15,3 +15,8 @@ Xcursor.size: 32
 
 .xterm*faceName: IBM Plex Mono
 .xterm*faceSize: 10
+
+.xterm*borderColor: #ffffff
+
+*.foreground: #24292e
+*.background: #ffffff
