@@ -256,34 +256,42 @@ nnoremap <leader>c :noh<CR>
 "" Plugins
 ""
 
-" colorscheme
+" true color support for tmux:
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" Light color scheme using true color:
 set background=light
 set termguicolors
 colorscheme github
 
-" netrw
+" netrw tree style listing:
 let g:netrw_liststyle=3
-let g:netrw_banner=0
-nmap - :E %:h/<CR>
 
-" buftabline
+" netrw banner supression:
+let g:netrw_banner=0
+
+" buftabline display when there are more than one buffer:
 let g:buftabline_show=1
+
+" buftabline numbering using actual buffer number:
 let g:buftabline_numbers=1
+
+" buftabline indicator for modified buffers:
 let g:buftabline_indicators=1
 
-" vim-picker
+" vim-picker normal mode binding:
 nmap <c-p> <Plug>PickerEdit
 
-" black
+" black max line length:
 let g:black_linelength = 79
+
+" black automatic fomatting when saving python files:
 autocmd BufWritePre *.py execute ':Black'
 
-" git commit
-function GitCi(n)
+" git sync commit leader binding:
+function GitCi()
 	!git ci -am sync && git push
 endfunction
-
-command! GitCi :call GitCi(4)
+command! GitCi :call GitCi()
 nnoremap <leader>g :GitCi<CR>
