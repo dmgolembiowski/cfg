@@ -95,15 +95,16 @@ set virtualedit+=block
 autocmd InsertLeave * set nocursorline
 autocmd InsertEnter * set cursorline
 
+" Wait 10ms for a key code or mapped key sequence to complete:
 set notimeout
 set ttimeout
 set ttimeoutlen=10
 
+" Do not ask when moving from a buffer with unsaved changes:
 set hidden
 
+" Do not operate on octal numbers with <C-a>/<C-x>:
 set nrformats-=octal
-
-autocmd QuickFixCmdPost *grep* cwindow
 
 
 ""
