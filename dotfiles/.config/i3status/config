@@ -31,6 +31,8 @@ battery all {
 	format = "%status %percentage %remaining"
 	integer_battery_capacity = true
 	hide_seconds = true
+	threshold_type = "percentage"
+	low_threshold = 20
 }
 
 tztime local {
