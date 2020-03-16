@@ -16,6 +16,6 @@ brightness() {
 }
 
 while read line; do
-	bri_tag=$(part brightness "BRI $(brightness)%")
+	bri_tag=$(part brightness "☼ $(brightness)%")
 	echo "${line}" | sed "s#${bat_tag}#${bri_tag},${bat_tag}#"
 done
