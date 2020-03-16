@@ -92,8 +92,11 @@ set display+=lastline
 set virtualedit+=block
 
 " Highlight the line of the cursor only in insert mode:
-autocmd InsertLeave * set nocursorline
-autocmd InsertEnter * set cursorline
+augroup togglecursorline
+	autocmd!
+	autocmd InsertLeave * set nocursorline
+	autocmd InsertEnter * set cursorline
+augroup END
 
 " Wait 10ms for a key code or mapped key sequence to complete:
 set notimeout
@@ -162,10 +165,13 @@ set breakindent
 set autoindent
 
 " Highlight trailing space when not in insert mode:
-autocmd BufNewFile,BufRead * highlight trail_space ctermbg=1
-autocmd InsertEnter * highlight trail_space ctermbg=NONE
-autocmd InsertLeave * highlight trail_space ctermbg=1
-autocmd BufNewFile,BufRead * match trail_space /\s\+$/
+augroup highlighttrailing
+	autocmd!
+	autocmd BufNewFile,BufRead * highlight trail_space ctermbg=1
+	autocmd InsertEnter * highlight trail_space ctermbg=NONE
+	autocmd InsertLeave * highlight trail_space ctermbg=1
+	autocmd BufNewFile,BufRead * match trail_space /\s\+$/
+augroup END
 
 " Enable concealing of some syntax (especially markdown):
 set conceallevel=2
@@ -288,7 +294,10 @@ nmap <c-p> <Plug>PickerEdit
 let g:black_linelength = 79
 
 " black automatic fomatting when saving python files:
-autocmd BufWritePre *.py execute ':Black'
+augroup blackformat
+	autocmd!
+	autocmd BufWritePre *.py execute ':Black'
+augroup END
 
 " git sync commit leader binding:
 function GitCi()
