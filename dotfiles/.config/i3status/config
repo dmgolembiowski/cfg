@@ -18,8 +18,8 @@ disk "/" {
 }
 
 wireless _first_ {
-	format_up = "W: %essid %quality"
-	format_down = "W: down"
+	format_up = "¥: %essid %quality"
+	format_down = "¥: down"
 }
 
 ethernet _first_ {
