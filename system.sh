@@ -158,6 +158,7 @@ if role desktop; then
 		xinit
 		i3-wm
 		i3status
+		bc
 		xterm
 		unclutter-xfixes
 		brightnessctl

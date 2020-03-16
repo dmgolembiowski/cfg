@@ -100,7 +100,7 @@ client.unfocused        $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
 client.urgent           $bg_uf $bg_uf $fg_uf $bg_uf $bg_uf
 
 bar {
-	status_command i3status
+	status_command i3status | ~/.config/i3status/wrapper
 	separator_symbol " | "
 	position top
 
