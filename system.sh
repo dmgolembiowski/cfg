@@ -55,6 +55,15 @@ mkdir -p /var/log/journal
 
 svc systemd-timesyncd
 
+if role desktop; then
+	_blank_cmd='consoleblank=60'
+	if ! grep -q $_blank_cmd /etc/default/grub; then
+		sed -i "s/^\(GRUB_CMDLINE_LINUX_DEF.*\)\"/\1 $_blank_cmd\"/" \
+			/etc/default/grub
+		update-grub
+	fi
+fi
+
 ##
 ## Net
 ##
