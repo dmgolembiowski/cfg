@@ -305,3 +305,20 @@ function GitCi()
 endfunction
 command! GitCi :call GitCi()
 nnoremap <leader>g :GitCi<CR>
+
+" highlight markdown tasks:
+augroup markdowntask
+	autocmd!
+	autocmd Syntax markdown syntax match mkdCheckboxComplete
+				\ /^\s*-\s*\[x\]\s.*$/
+				\ contains=@mkdNonListItem
+	autocmd Syntax markdown highlight link mkdCheckboxComplete Comment
+	autocmd Syntax markdown syntax match mkdCheckboxUrgent
+				\ /^\s*-\s*\[ \]\s\+!\s\+.*$/
+				\ contains=@mkdNonListItem
+	autocmd Syntax markdown highlight link mkdCheckboxUrgent Constant
+	autocmd Syntax markdown syntax match mkdCheckboxCritical
+				\ /^\s*-\s*\[ \]\s\+!!\s\+.*$/
+				\ contains=@mkdNonListItem
+	autocmd Syntax markdown highlight link mkdCheckboxCritical Type
+augroup END
