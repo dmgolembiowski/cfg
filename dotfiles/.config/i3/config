@@ -80,19 +80,19 @@ for_window [class="XtermMenu"] move position center
 
 font pango:IBM Plex Mono 10
 
-default_border pixel 2
+default_border pixel 4
 
-set $bg_fo #ffd787
+set $bg_fo #e5e5e5
 set $fg_fo #444444
-set $bg_fi #afd7ff
+set $bg_fi #f5f5f5
 set $fg_fi #0087af
-set $bg_uf #e4e4e4
+set $bg_uf #f5f5f5
 set $fg_uf #444444
 set $bg_ur #ffd7ff
 set $fg_ur #af0000
 
 set $fg_st #4d4d4c
-set $bg_st #eeeeee
+set $bg_st #ffffff
 
 client.focused          $bg_fo $bg_fo $fg_fo $bg_fo $bg_fo
 client.focused_inactive $bg_fi $bg_fi $fg_fi $bg_fi $bg_fi
