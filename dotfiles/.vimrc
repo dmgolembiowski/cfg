@@ -306,9 +306,26 @@ endfunction
 command! GitCi :call GitCi()
 nnoremap <leader>g :GitCi<CR>
 
-" highlight markdown tasks:
+" markdown task extensions:
+function MarkdownCheckboxToggle()
+	let line = getline('.')
+	let repl = substitute(line, '\[ \]', '\[x\]', '')
+
+	if repl ==? line
+		let repl = substitute(line, '\[x\]', '\[ \]', '')
+	endif
+
+	call setline('.', repl)
+endfunction
+
 augroup markdowntask
 	autocmd!
+
+	autocmd Syntax markdown nnoremap <leader>t
+				\ :call MarkdownCheckboxToggle()<CR>
+	autocmd Syntax markdown vnoremap <leader>t
+				\ :call MarkdownCheckboxToggle()<CR>
+
 	autocmd Syntax markdown syntax match mkdCheckboxComplete
 				\ /^\s*-\s*\[x\]\s.*$/
 				\ contains=@mkdNonListItem
