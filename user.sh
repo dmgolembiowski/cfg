@@ -22,7 +22,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	if role server; then
 		case "$f" in
-			*/xterm*|*i3*|*/gtk*|*/mpv/*)
+			*/xterm*|*herbst*|*/gtk*|*/mpv/*)
 				continue
 				;;
 			*.Xresources|*.xinitrc|*xrandr*)

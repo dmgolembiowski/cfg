@@ -166,8 +166,6 @@ if role desktop; then
 		x11-xserver-utils
 		xinit
 		herbstluftwm
-		i3-wm
-		i3status
 		bc
 		xterm
 		unclutter-xfixes
