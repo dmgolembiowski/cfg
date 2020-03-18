@@ -1,0 +1,125 @@
+#!/bin/sh
+
+hc() {
+	herbstclient "$@"
+}
+
+tags() {
+	seq 1 6
+}
+
+add_tags() {
+	hc rename default 1 || :
+	for i in $(tags) ; do
+		hc add $i
+	done
+}
+
+bind_keys() {
+	local m=$1
+
+	hc keyunbind --all
+
+	# General
+	hc keybind $m-Shift-q quit
+	hc keybind $m-Shift-r reload
+	hc keybind $m-Shift-c close
+
+	# Focus
+	hc keybind $m-h focus left
+	hc keybind $m-j focus down
+	hc keybind $m-k focus up
+	hc keybind $m-l focus right
+
+	# Movement
+	hc keybind $m-Shift-h shift left
+	hc keybind $m-Shift-j shift down
+	hc keybind $m-Shift-k shift up
+	hc keybind $m-Shift-l shift right
+
+	# Splits
+	hc keybind $m-s split bottom 0.5
+	hc keybind $m-v split right 0.5
+	hc keybind $m-r remove
+
+	# Resize
+	local resizestep=0.05
+	hc keybind $m-Control-h resize left +$resizestep
+	hc keybind $m-Control-j resize down +$resizestep
+	hc keybind $m-Control-k resize up +$resizestep
+	hc keybind $m-Control-l resize right +$resizestep
+
+	# Tags
+	for i in $(tags) ; do
+		hc keybind $m-$i use_index $(($i -1))
+		hc keybind $m-Shift-$i move_index $(($i -1))
+	done
+
+	# Layouts
+	hc keybind $m-f fullscreen toggle
+	hc keybind $m-t pseudotile toggle
+
+	# Monitors
+	hc keybind $m-BackSpace cycle_monitor
+
+	# Launchers
+	hc keybind $m-Shift-Return spawn x-terminal-emulator
+	hc keybind $m-p spawn xterm_menu
+
+	# Volume up/down
+	hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume @DEFAULT_SINK@ +5%
+	hc keybind XF86AudioLowerVolume spawn pactl set-sink-volume @DEFAULT_SINK@ -5%
+	hc keybind XF86AudioMute spawn pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+	# Brightness
+	hc keybind XF86MonBrightnessDown spawn brightnessctl set 5%-
+	hc keybind XF86MonBrightnessUp spawn brightnessctl set +5%
+
+	# Screenshots
+	hc keybind Print spawn maim -s \
+	       '~/pic/sc_$(date +"%Y-%m-%d-%H%M%S.png")'
+
+	# Lock screen
+	hc keybind Super-l spawn physlock
+
+	# Display switching
+	hc keybind XF86Display spawn xrandr-toggle external
+	hc keybind $m+XF86Display spawn xrandr-toggle internal
+	hc keybind Control+XF86Display spawn xrandr-toggle both
+
+	hc mouseunbind --all
+	hc mousebind $m-Button1 move
+	hc mousebind $m-Button2 zoom
+	hc mousebind $m-Button3 resize
+}
+
+set_rules() {
+	hc unrule -F
+
+	# New client get focus:
+	hc rule focus=on
+
+	# Pseudotile dialog windows:
+	hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' \
+		pseudotile=on
+
+	# Do not manage notifications and dock:
+	hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' \
+		manage=off
+}
+
+set_config() {
+	local pad_top=$1
+
+	hc set auto_detect_monitors 1
+	hc pad 0 $pad_top
+}
+
+hc emit_hook reload
+
+add_tags
+bind_keys Mod1
+set_rules
+set_config 0
+
+hc unlock

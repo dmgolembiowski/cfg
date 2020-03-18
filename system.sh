@@ -165,6 +165,7 @@ if role desktop; then
 		xserver-xorg-input-libinput
 		x11-xserver-utils
 		xinit
+		herbstluftwm
 		i3-wm
 		i3status
 		bc

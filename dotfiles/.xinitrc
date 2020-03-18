@@ -10,4 +10,4 @@ unclutter&
 
 redshift -l 59.91:10.74&
 
-exec i3
+exec herbstluftwm --lock
