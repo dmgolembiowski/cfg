@@ -76,8 +76,8 @@ bind_keys() {
 	hc keybind XF86MonBrightnessUp spawn brightnessctl set +5%
 
 	# Screenshots
-	hc keybind Print spawn maim -s \
-	       '~/pic/sc_$(date +"%Y-%m-%d-%H%M%S.png")'
+	hc keybind Print spawn sh -c 'maim -s \
+	       ~/pic/ss_$(date +%Y-%m-%d-%H%M%S.png)'
 
 	# Lock screen
 	hc keybind Super-l spawn physlock
