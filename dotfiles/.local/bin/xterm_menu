@@ -1,7 +1,0 @@
-#!/bin/sh
-
-exec xterm \
-	-class XtermMenu \
-	-geometry 40x11 \
-	-e /bin/bash -c \
-		'compgen -c | sort -u | fzy | xargs -r herbstclient spawn'

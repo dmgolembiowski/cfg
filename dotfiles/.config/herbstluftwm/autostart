@@ -64,7 +64,7 @@ bind_keys() {
 
 	# Launchers
 	hc keybind $m-Shift-Return spawn x-terminal-emulator
-	hc keybind $m-p spawn xterm_menu
+	hc keybind $m-p spawn rofi -show run
 
 	# Volume up/down
 	hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume @DEFAULT_SINK@ +5%

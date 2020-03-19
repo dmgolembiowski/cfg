@@ -166,6 +166,7 @@ if role desktop; then
 		x11-xserver-utils
 		xinit
 		herbstluftwm
+		rofi
 		bc
 		xterm
 		unclutter-xfixes
