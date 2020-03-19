@@ -119,7 +119,11 @@ hc emit_hook reload
 
 add_tags
 bind_keys Mod1
+set_theme
 set_rules
-set_config 0
+set_config 26
+
+pkill -u $(id -u) polybar
+polybar main&
 
 hc unlock

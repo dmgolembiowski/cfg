@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ "$(pgrep -x redshift)" ] || exit 0
+
+temp=$(redshift -l 59.91:10.74 -p 2>/dev/null |
+          awk -F: '/^Color temp/ { print $2 }' |
+          tr -dc '[:digit:]')
+
+if [ "$temp" -eq 4500 ]; then
+    echo NIGHT
+else
+    echo DAY
+fi
