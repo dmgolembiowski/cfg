@@ -1,4 +1,4 @@
-xsetroot -solid '#4d4d4c'
+xsetroot -solid '#ffffff'
 
 if [ "$(hostname)" != echo ]; then
     setxkbmap -option "caps:swapescape"

@@ -93,6 +93,25 @@ bind_keys() {
 	hc mousebind $m-Button3 resize
 }
 
+set_theme() {
+	hc set always_show_frame 1
+	hc set smart_frame_surroundings 0
+	hc set frame_gap 8
+	hc set frame_padding 0
+	hc set frame_bg_transparent 1
+	hc set frame_transparent_width 4
+	hc set frame_border_width 0
+	hc set frame_bg_normal_color '#dde2e7'
+	hc set frame_bg_active_color '#c1daec'
+
+	hc set smart_window_surroundings 0
+	hc set window_gap 0
+	hc set window_border_width 4
+	hc set window_border_normal_color '#dde2e7'
+	hc set window_border_active_color '#c1daec'
+	hc set window_border_urgent_color '#fb4934'
+}
+
 set_rules() {
 	hc unrule -F
 
@@ -121,7 +140,7 @@ add_tags
 bind_keys Mod1
 set_theme
 set_rules
-set_config 26
+set_config 18
 
 pkill -u $(id -u) polybar
 polybar main&
