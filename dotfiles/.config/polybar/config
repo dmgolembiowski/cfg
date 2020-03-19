@@ -27,7 +27,6 @@ module-margin-right = 2
 font-0 = IBMPlexMono:size=10;2
 
 modules-left = xworkspaces
-modules-center = xwindow
 modules-right = filesystem cpu memory temperature wlan eth pulseaudio backlight-acpi redshift battery date
 
 tray-position = right
@@ -46,11 +45,6 @@ label-urgent = " %name% "
 label-empty = " %name% "
 
 label-active-foreground = ${colors.red}
-
-[module/xwindow]
-type = internal/xwindow
-
-label = %title:0:60:...%
 
 [module/filesystem]
 type = internal/fs
