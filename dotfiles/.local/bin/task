@@ -1,0 +1,34 @@
+#!/bin/sh
+
+datere='\(202[0-9]\)-\([0-9][0-9]\)-\([0-9][0-9]\)'
+CY=$(date +%Y)
+CM=$(date +%m)
+CD=$(date +%d)
+
+filter="$1"
+
+cmnth() {
+	[ "$1" -le $CY ] && [ "$2" -le $CM ]
+}
+
+format() {
+	local y=$1
+	local m=$2
+	local d=$3
+	local txt=$4
+
+	if [ -z "$filter" -o "$filter" = -p ] && cmnth $y $m && [ "$d" -lt $CD ]; then
+		printf '\033[0;31m%s-%s-%s\033[0m %s\n' $y $m $d "$txt"
+	elif [ -z "$filter" -o "$filter" = -t ] && cmnth $y $m && [ "$d" -eq $CD ]; then
+		printf '\033[0;33m%s-%s-%s\033[0m %s\n' $y $m $d "$txt"
+	elif [ -z "$filter" ]; then
+		printf '%s-%s-%s %s\n' $y $m $d "$txt"
+	fi
+}
+
+sed -n 's/ *- \[ \] '$datere':\? \(.*\)/\1 \2 \3 \4/p' \
+	~/src/notes/*.md |
+	sort -n |
+	while read y m d txt; do
+		format $y $m $d "$txt"
+	done
