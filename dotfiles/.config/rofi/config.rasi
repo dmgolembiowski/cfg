@@ -1,6 +1,5 @@
 configuration {
 	width: 10;
 	lines: 8;
-	matching: "fuzzy";
 	theme: "default";
 }
