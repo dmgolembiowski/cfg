@@ -4,7 +4,7 @@ Xcursor.size: 32
 ! xterm:
 .xterm*metaSendsEscape: true
 .xterm*ScrollBar: false
-.xterm*internalBorder: 4
+.xterm*internalBorder: 8
 .xterm*bellIsUrgent: true
 .xterm*selectToClipboard: true
 .xterm*vt100*geometry: 80x24
