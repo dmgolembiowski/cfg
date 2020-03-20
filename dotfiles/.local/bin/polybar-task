@@ -1,0 +1,27 @@
+#!/bin/sh
+
+run() {
+	local over=$(task -p | wc -l)
+	local today=$(task -t | wc -l)
+	local future=$(task -f | wc -l)
+
+	if [ "$over" -gt 0 ]; then
+		printf '%%{F#d73a49}%s%%{F-} ' $over
+	fi
+
+	if [ "$today" -gt 0 ]; then
+		printf '%%{F#005cc5}%s%%{F-} ' $today
+	fi
+
+	if [ "$future" -gt 0 ]; then
+		printf '%s ' $future
+	fi
+
+	printf '\n'
+}
+
+
+run
+while inotifywait -e close_write -r ~/src/notes >/dev/null 2>&1; do
+	run
+done

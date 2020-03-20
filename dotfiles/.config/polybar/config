@@ -29,6 +29,7 @@ font-0 = IBMPlexMono:size=10;2
 enable-ipc = true
 
 modules-left = xworkspaces
+modules-center = task
 modules-right = filesystem cpu memory temperature wlan eth pulseaudio backlight-acpi redshift battery date
 
 tray-position = right
@@ -47,6 +48,16 @@ label-urgent = " %name% "
 label-empty = " %name% "
 
 label-active-foreground = ${colors.red}
+
+[module/task]
+type = custom/script
+tail = true
+
+exec = ~/.local/bin/polybar-task
+label = %output%
+
+format-prefix = "TASKS "
+format-prefix-foreground = ${colors.fg_light}
 
 [module/filesystem]
 type = internal/fs

@@ -167,6 +167,7 @@ if role desktop; then
 		xinit
 		herbstluftwm
 		rofi
+		inotify-tools
 		bc
 		xterm
 		unclutter-xfixes
