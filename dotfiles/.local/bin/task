@@ -20,8 +20,8 @@ format() {
 	if [ -z "$filter" -o "$filter" = -p ] && cmnth $y $m && [ "$d" -lt $CD ]; then
 		printf '\033[0;31m%s-%s-%s\033[0m %s\n' $y $m $d "$txt"
 	elif [ -z "$filter" -o "$filter" = -t ] && cmnth $y $m && [ "$d" -eq $CD ]; then
-		printf '\033[0;33m%s-%s-%s\033[0m %s\n' $y $m $d "$txt"
-	elif [ -z "$filter" ]; then
+		printf '\033[0;34m%s-%s-%s\033[0m %s\n' $y $m $d "$txt"
+	elif [ -z "$filter" -o "$filter" = -f ]; then
 		printf '%s-%s-%s %s\n' $y $m $d "$txt"
 	fi
 }
