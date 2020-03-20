@@ -15,7 +15,7 @@ format() {
 	local y=$1
 	local m=$2
 	local d=$3
-	local txt=$4
+	local txt="$4"
 
 	if [ -z "$filter" -o "$filter" = -p ] && cmnth $y $m && [ "$d" -lt $CD ]; then
 		printf '\033[0;31m%s-%s-%s\033[0m %s\n' $y $m $d "$txt"
