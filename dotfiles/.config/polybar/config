@@ -26,6 +26,8 @@ module-margin-right = 2
 
 font-0 = IBMPlexMono:size=10;2
 
+enable-ipc = true
+
 modules-left = xworkspaces
 modules-right = filesystem cpu memory temperature wlan eth pulseaudio backlight-acpi redshift battery date
 
