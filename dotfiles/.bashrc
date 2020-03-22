@@ -94,6 +94,8 @@ alias xcp='xclip -selection clipboard'
 
 alias c='curl -LJO'
 
+DEBEMAIL='Eivind Uggedal <eivind@uggedal.com>'
+
 
 GOPATH=$HOME/src/go
 export GOPATH
