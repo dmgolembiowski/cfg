@@ -156,6 +156,14 @@ if role work; then
 fi
 
 ##
+## Pkg
+##
+
+if role pkg; then
+	pkg devscripts
+fi
+
+##
 ## Desktop
 ##
 
