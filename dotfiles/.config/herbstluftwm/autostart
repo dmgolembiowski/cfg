@@ -128,10 +128,7 @@ set_rules() {
 }
 
 set_config() {
-	local pad_top=$1
-
 	hc set auto_detect_monitors 1
-	hc pad 0 $pad_top
 }
 
 hc emit_hook reload
@@ -140,9 +137,9 @@ add_tags
 bind_keys Mod1
 set_theme
 set_rules
-set_config 18
+set_config
 
-pkill -u $(id -u) polybar
-polybar main&
+pkill -u $(id -u) -f $(dirname $0)/panel
+$(dirname $0)/panel&
 
 hc unlock

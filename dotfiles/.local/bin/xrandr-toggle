@@ -27,4 +27,5 @@ case "$1" in
         ;;
 esac
 
-polybar-msg cmd restart
+pkill -u $(id -u) -f .config/herbstluftwm/panel
+.config/herbstluftwm/panel&

@@ -165,6 +165,7 @@ if role pkg; then
 		devscripts
 		equivs
 		git-buildpackage
+		pristine-tar
 		debmake
 		python3-debian
 		licensecheck
@@ -182,6 +183,7 @@ if role desktop; then
 		x11-xserver-utils
 		xinit
 		herbstluftwm
+		lemonbar-xft
 		rofi
 		inotify-tools
 		bc
@@ -205,18 +207,6 @@ if role desktop; then
 		libdbus-glib-1-2
 		moreutils
 		'
-
-	_polyf=polybar_${POLYBAR_V}_amd64_debian.buster.deb
-	_polyu=https://github.com/ayosec/polybar-debian
-	_polyu=$_polyu/releases/download/$POLYBAR_V/$_polyf
-	_polycurv=$(apt-cache show polybar 2>/dev/null |
-		awk '/^Version:/ { print $2 }')
-
-	if [ "$_polycurv" != "$POLYBAR_V" ]; then
-		curl -L $_polyu > /tmp/$_polyf
-		apt install /tmp/$_polyf
-		rm /tmp/$_polyf
-	fi
 
 	svc fstrim.timer
 

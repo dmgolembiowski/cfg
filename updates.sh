@@ -28,5 +28,3 @@ gh() {
 for n in prometheus alertmanager node_exporter; do
 	gh prometheus $n
 done
-
-gh ayosec polybar-debian $POLYBAR_V

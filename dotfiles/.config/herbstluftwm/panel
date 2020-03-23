@@ -1,0 +1,241 @@
+#!/bin/sh
+
+HEIGHT=26
+UNDERLINE=2
+FONT='IBM Plex Mono:style=regular:size=10'
+
+bg='#fff'
+fg='#24292e'
+fg_light='#6a737d'
+red='#d73a49'
+orange='#e36209'
+green='#22863a'
+blue='#005cc5'
+
+c() {
+	herbstclient "$@"
+}
+
+title() {
+	printf -- "%%{F$fg_light}%s%%{F-}" "$1"
+}
+
+get_workspaces() {
+	local t i w=
+
+	for t in $(c tag_status); do
+		i=${t#?}
+		case "$t" in
+			\#*)
+				w="$w %{F$red}$i%{F-} "
+				;;
+			:*)
+				w="$w $i "
+				;;
+			.*)
+				w="$w %{F$fg_light}$i%{F-} "
+				;;
+		esac
+	done
+
+	printf -- 'workspaces %s\n' "$w"
+}
+
+workspaces() {
+	local hook args
+
+	get_workspaces
+
+	c --idle | while read -r hook args; do
+		if [ "$hook" = tag_changed ]; then
+			get_workspaces
+		fi
+	done
+}
+
+temp_colored() {
+	local perc=$1
+	local c=$fg
+
+	# Critical temp is 128
+	[ "$perc" -ge 65 ] && c=$orange
+	[ "$perc" -ge 90 ] && c=$red
+
+	printf -- '%%{F%s}%s°%%{F-}' $c $perc
+}
+
+temp() {
+	local p=/sys/class/thermal/thermal_zone0/temp
+	local t
+
+	while :; do
+		t=$(cat $p)
+		printf 'temp %s %s\n' $(title TEMP) $(temp_colored ${t%???})
+		sleep 5
+	done
+}
+
+get_vol() {
+	v=MUT
+
+	if ! pactl list sinks | grep -q 'Mute: yes$'; then
+		v=$(pactl list sinks | awk '/Volume: front-left:/ { print $5 }')
+	fi
+
+	printf 'vol %s %s\n' $(title VOL) "$v"
+}
+
+vol() {
+	local args
+
+	get_vol
+
+	pactl subscribe | while read -r args; do
+		get_vol
+	done
+}
+
+
+wifi_color() {
+	local perc=$1
+	local c=$green
+
+	# Max quality is 70
+	[ "$perc" -lt 52 ] && c=$fg
+	[ "$perc" -lt 37 ] && c=$orange
+	[ "$perc" -lt 18 ] && c=$red
+
+	printf '%s' $c
+}
+
+wifi() {
+	local iw=/usr/sbin/iw
+	[ -e $iw ] || return 0
+
+	local if=$($iw dev | awk '/\t+Interface/ { print $2 }')
+	local ssid quality
+
+	while :; do
+		ssid=$($iw $if link | awk '/SSID: / { print $2 }')
+		[ "$ssid" ] || continue
+		quality=$(awk /$if:' / { gsub(/\./, "", $3); print $3 }' /proc/net/wireless)
+
+		printf -- 'wifi %s %%{F%s}%s%%{F-}\n' $(title WIFI) $(wifi_color $quality) $ssid
+		sleep 1
+	done
+}
+
+bat_colored() {
+	local state=$1
+	local perc=$2
+	local c=$green
+
+	[ "$perc" -lt 75 ] && c=$fg
+	[ "$perc" -lt 50 ] && c=$orange
+	[ "$perc" -lt 25 ] && c=$red
+	[ "$state" -eq 1 ] && c=$blue
+
+	printf -- '%%{F%s}%s%%{F-}' $c "${perc}%%"
+}
+
+bat() {
+	local sys=/sys/class/power_supply
+	local ac=$sys/AC
+	local output bat state now full perc
+
+	[ -d $ac ] || return 0
+
+	while :; do
+		state=$(cat $ac/online)
+
+		output=
+
+		for bat in $sys/BAT*; do
+			case $bat in
+				*\*)
+					return 0
+					;;
+			esac
+
+			now=$(cat $bat/energy_now)
+			full=$(cat $bat/energy_full)
+			perc=$(expr \( 100 \* $now \) / $full)
+
+			output="$output $(bat_colored $state $perc)"
+		done
+
+		printf -- 'bat %s%s\n' $(title BAT) "$output"
+		sleep 1
+	done
+}
+
+time() {
+	while :; do
+		printf -- "time %%{F$fg_light}%s%%{F-} %s\n" \
+			$(date +'%Y-%m-%d %H:%M')
+		sleep $((60 - $(date +%S)))
+	done
+}
+
+parse() {
+	local event msg
+	local update prev
+	local workspaces time bat wifi task
+
+	while read -r event msg; do
+		update=
+
+		case $event in
+			workspaces|task|temp|vol|wifi|bat|time)
+				eval prev=\$$event
+				if [ "$prev" != "$msg" ]; then
+					eval $event="\$msg"
+					update=yes
+				fi
+				;;
+		esac
+
+		if [ "$update" ]; then
+			printf -- '  %s %%{c} %s %%{r} %s  %s  %s   %s   %s  \n' \
+				"$workspaces" "$task" "$temp" "$vol" "$wifi" "$bat" "$time"
+		fi
+	done
+}
+
+cleanup() {
+	c pad 0 0
+	kill $CHLD 2>/dev/null
+	rm -f $FIFO
+}
+
+trap 'cleanup' INT TERM EXIT
+
+FIFO=$(mktemp -u)
+mkfifo -m600 $FIFO
+
+(workspaces) >$FIFO&
+CHLD="$CHLD $!"
+
+(temp) >$FIFO&
+CHLD="$CHLD $!"
+
+(vol) >$FIFO&
+CHLD="$CHLD $!"
+
+(wifi) >$FIFO&
+CHLD="$CHLD $!"
+
+(bat) >$FIFO&
+CHLD="$CHLD $!"
+
+(time) >$FIFO&
+CHLD="$CHLD $!"
+
+c pad 0 $(($HEIGHT-6))
+
+cat $FIFO | parse | lemonbar \
+  -g x$HEIGHT++ \
+  -u $UNDERLINE \
+  -f "$FONT" \
+  -F $fg \
+  -B $bg \
