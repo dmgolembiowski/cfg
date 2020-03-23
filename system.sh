@@ -160,7 +160,15 @@ fi
 ##
 
 if role pkg; then
-	pkg devscripts
+	pkg '
+		build-essential
+		devscripts
+		equivs
+		git-buildpackage
+		debmake
+		python3-debian
+		licensecheck
+		'
 fi
 
 ##
