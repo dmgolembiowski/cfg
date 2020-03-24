@@ -166,6 +166,7 @@ if role pkg; then
 		equivs
 		git-buildpackage
 		pristine-tar
+		debspawn
 		lintian
 		debmake
 		python3-debian
