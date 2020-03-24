@@ -166,6 +166,7 @@ if role pkg; then
 		equivs
 		git-buildpackage
 		pristine-tar
+		lintian
 		debmake
 		python3-debian
 		licensecheck
