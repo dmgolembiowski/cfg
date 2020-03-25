@@ -166,11 +166,12 @@ if role pkg; then
 		equivs
 		git-buildpackage
 		pristine-tar
-		debspawn
+		cowbuilder
 		lintian
 		debmake
 		python3-debian
 		licensecheck
+		dupload
 		'
 fi
 

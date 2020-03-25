@@ -39,6 +39,14 @@ find $DOTFILES -type f | while read -r f; do
 		esac
 	fi
 
+	if ! role pkg; then
+		case "$f" in
+			*gbp.conf*)
+				continue
+				;;
+		esac
+	fi
+
 	mkdir -p "$(dirname "$dst")"
 
 	if [ ! -L "$dst" -o "$(readlink $dst)" != "$src" ]; then
@@ -170,4 +178,12 @@ fi
 
 if role desktop; then
 	mkdir -p ~/pic
+fi
+
+##
+## Pkg
+##
+
+if role pkg; then
+       tmpl ~/.dupload.conf /home/user/.dupload.conf
 fi
