@@ -30,6 +30,7 @@ pkg '
 echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 
 tmpl /etc/apt/sources.list
+tmpl /etc/apt/auth.conf
 
 for f in norecommends autoremove periodicclean showversions; do
 	file /etc/apt/apt.conf.d/$f

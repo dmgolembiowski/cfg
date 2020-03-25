@@ -11,3 +11,11 @@ deb http://deb.debian.org/debian/ {{ debian.rel }}-updates main contrib non-free
 # {{ debian.rel }}-backports, previously on backports.debian.org
 deb http://deb.debian.org/debian/ {{ debian.rel }}-backports main contrib non-free
 # deb-src http://deb.debian.org/debian/ {{ debian.rel }}-backports main contrib non-free
+
+{% if repo is defined %}
+{% for d in repo.distributions %}
+{% if d.codename == debian.rel %}
+deb [trusted=yes] https://{{ repo.host }} {{ d.codename }} {{ d.components|join(' ') }}
+{% endif %}
+{% endfor %}
+{% endif %}
