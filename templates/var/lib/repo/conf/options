@@ -1,0 +1,2 @@
+basedir /var/lib/repo
+outdir /var/lib/repo/pub

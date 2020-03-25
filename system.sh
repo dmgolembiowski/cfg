@@ -423,6 +423,30 @@ if role feed; then
 fi
 
 ##
+## Repo
+##
+
+if role repo; then
+	pkg reprepro
+
+	grep -q ^repo: /etc/group ||
+		groupadd -r repo
+	grep -q ^repo: /etc/passwd ||
+		useradd -r -d /var/lib/repo -s /bin/bash \
+				-g repo repo
+
+	tmpl /var/lib/repo/.ssh/authorized_keys
+	tmpl /var/lib/repo/conf/distributions
+	tmpl /var/lib/repo/conf/options
+	tmpl /var/lib/repo/conf/incoming
+
+	mkdir -p /var/lib/repo/incoming
+	mkdir -p /var/lib/repo/pub
+
+	chown -R repo: /var/lib/repo
+fi
+
+##
 ## Storage
 ##
 
