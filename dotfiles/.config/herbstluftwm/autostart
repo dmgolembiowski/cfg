@@ -80,7 +80,7 @@ bind_keys() {
 	       ~/pic/ss_$(date +%Y-%m-%d-%H%M%S.png)'
 
 	# Lock screen
-	hc keybind Super-l spawn physlock
+	hc keybind Super-l spawn loginctl lock-session
 
 	# Display switching
 	hc keybind XF86Display spawn xrandr-toggle external
@@ -141,5 +141,7 @@ set_config
 
 pkill -u $(id -u) -f $(dirname $0)/panel
 $(dirname $0)/panel&
+
+xss-lock --transfer-sleep-lock physlock&
 
 hc unlock

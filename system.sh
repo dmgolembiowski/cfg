@@ -201,6 +201,7 @@ if role desktop; then
 		fonts-ibm-plex
 		xdg-utils
 		physlock
+		xss-lock
 		redshift
 		xclip
 		maim
