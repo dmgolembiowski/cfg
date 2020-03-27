@@ -1,8 +1,0 @@
-#!/bin/sh -e
-
-xuser=$(ps -o user= -p $(pgrep Xorg))
-
-if [ "$1" = post ] && [ "$2" = suspend ] && [ "$xuser" ]; then
-	env DISPLAY=:0 XAUTHORITY=/home/$xuser/.Xauthority \
-		setxkbmap -option caps:escape
-fi

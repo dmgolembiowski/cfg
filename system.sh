@@ -223,14 +223,9 @@ if role desktop; then
 
 	file /etc/modprobe.d/hid_apple.conf
 
-	file /etc/X11/xorg.conf.d/00-keyboard.conf
 	file /etc/X11/xorg.conf.d/00-touchpad.conf
 	file /etc/X11/xorg.conf.d/00-pointer.conf
-
-	# Need to reset xkbmap after resume since external keyboard is
-	# connected through the screen which goes to sleep:
-	file /lib/systemd/system-sleep/setxkbmap
-	chmod +x /lib/systemd/system-sleep/setxkbmap
+	file /etc/default/keyboard
 
 	pkg '
 		bluez
