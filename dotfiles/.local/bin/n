@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd ~/src/notes
+git pull
+vim $(ls -1t *.md | head -n1)

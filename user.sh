@@ -25,7 +25,7 @@ find $DOTFILES -type f | while read -r f; do
 			*herbst*|*rofi*|*/gtk*|*/mpv/*)
 				continue
 				;;
-			*.Xresources|*.xinitrc|*xrandr*)
+			*.Xresources|*.xinitrc|*xrandr*|*/vol|*bin/n)
 				continue
 				;;
 		esac
