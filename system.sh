@@ -245,6 +245,16 @@ if role desktop; then
 		mpv
 		i965-va-driver
 		'
+
+	if ! apt-key list 2>/dev/null | grep -q spotify.com; then
+		apt-key adv \
+			--keyserver keyserver.ubuntu.com \
+			--recv-keys 4773BD5E130D1D45
+	fi
+
+	file /etc/apt/sources.list.d/spotify.list
+
+	pkg spotify-client
 fi
 
 if role desktop || role media; then
