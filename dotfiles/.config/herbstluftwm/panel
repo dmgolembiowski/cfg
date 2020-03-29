@@ -76,21 +76,15 @@ temp() {
 }
 
 get_vol() {
-	v=MUT
-
-	if ! pactl list sinks | grep -q 'Mute: yes$'; then
-		v=$(pactl list sinks | awk '/Volume: front-left:/ { print $5 }')
-	fi
-
-	printf 'vol %s %s\n' $(title VOL) "$v"
+	printf 'vol %s %s\n' $(title VOL) "$(command vol get)"
 }
 
 vol() {
-	local args
+	command vol init
 
 	get_vol
 
-	pactl subscribe | while read -r args; do
+	while command vol wait; do
 		get_vol
 	done
 }

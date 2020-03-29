@@ -1,0 +1,33 @@
+#!/bin/sh -e
+
+statef=~/.cache/vol
+
+get_vol() {
+	local v=MUT
+
+	if ! pactl list sinks | grep -q 'Mute: yes$'; then
+		v=$(pactl list sinks | awk '/Volume: front-left:/ { print $5 }')
+	fi
+
+	echo $v
+}
+
+case "$1" in
+	init)
+		echo $(get_vol) > $statef
+		;;
+	wait)
+		inotifywait -e close_write $statef >/dev/null 2>&1
+		;;
+	get)
+		cat $statef
+		;;
+	toggle)
+		pactl set-sink-mute @DEFAULT_SINK@ toggle
+		echo MUT > $statef
+		;;
+	set)
+		pactl set-sink-volume @DEFAULT_SINK@ $2
+		echo $(get_vol) > $statef
+		;;
+esac
