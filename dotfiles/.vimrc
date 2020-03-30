@@ -296,7 +296,7 @@ let g:black_linelength = 79
 " black automatic fomatting when saving python files:
 augroup blackformat
 	autocmd!
-	autocmd BufWritePre *.py execute ':Black'
+	autocmd FileType python autocmd BufWritePre <buffer> execute ':Black'
 augroup END
 
 " git sync commit leader binding:
