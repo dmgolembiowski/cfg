@@ -200,7 +200,7 @@ if role desktop; then
 		fonts-noto-color-emoji
 		fonts-ibm-plex
 		xdg-utils
-		physlock
+		xtrlock
 		xss-lock
 		redshift
 		xclip

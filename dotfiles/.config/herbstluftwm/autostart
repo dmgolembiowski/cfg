@@ -142,6 +142,6 @@ set_config
 pkill -u $(id -u) -f $(dirname $0)/panel
 $(dirname $0)/panel&
 
-xss-lock --transfer-sleep-lock physlock&
+xss-lock --transfer-sleep-lock -- xtrlock -b&
 
 hc unlock
