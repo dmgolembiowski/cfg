@@ -113,7 +113,7 @@ redsh_val() {
 	local temp
 
 	if [ -z "$(pgrep -x redshift)" ]; then
-		echo UNKNOWN
+		fgc $red UNKNOWN
 		return
 	fi
 
@@ -122,9 +122,9 @@ redsh_val() {
 		tr -dc '[:digit:]')
 
 	if [ "$temp" -eq 4500 ]; then
-		echo NIGHT
+		fgc $blue NIGHT
 	else
-		echo DAY
+		fgc $green DAY
 	fi
 }
 
