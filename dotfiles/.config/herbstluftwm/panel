@@ -53,6 +53,36 @@ workspaces() {
 	done
 }
 
+get_task() {
+	local over=$(command task -p | wc -l)
+	local today=$(command task -t | wc -l)
+	local future=$(command task -f | wc -l)
+
+	printf 'task %s ' $(title TASK)
+
+	if [ "$over" -gt 0 ]; then
+		printf '%%{F#d73a49}%s%%{F-} ' $over
+	fi
+
+	if [ "$today" -gt 0 ]; then
+		printf '%%{F#005cc5}%s%%{F-} ' $today
+	fi
+
+	if [ "$future" -gt 0 ]; then
+		printf '%s ' $future
+	fi
+
+	printf '\n'
+}
+
+
+task() {
+	get_task
+	while inotifywait -e close_write -r ~/src/notes >/dev/null 2>&1; do
+		get_task
+	done
+}
+
 temp_colored() {
 	local perc=$1
 	local c=$fg
@@ -207,6 +237,9 @@ FIFO=$(mktemp -u)
 mkfifo -m600 $FIFO
 
 (workspaces) >$FIFO&
+CHLD="$CHLD $!"
+
+(task) >$FIFO&
 CHLD="$CHLD $!"
 
 (temp) >$FIFO&
