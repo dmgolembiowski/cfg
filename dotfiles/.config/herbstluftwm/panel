@@ -87,7 +87,7 @@ task() {
 	done
 }
 
-temp_colored() {
+temp_color() {
 	local perc=$1
 	local c=$fg
 
@@ -95,7 +95,7 @@ temp_colored() {
 	[ "$perc" -ge 65 ] && c=$orange
 	[ "$perc" -ge 90 ] && c=$red
 
-	fgc $c ${perc}°
+	printf '%s' $c
 }
 
 temp() {
@@ -104,7 +104,8 @@ temp() {
 
 	while :; do
 		t=$(cat $p)
-		printf 'temp %s %s\n' $(title TEMP) $(temp_colored ${t%???})
+		printf 'temp %s %s\n' $(title TEMP) \
+			$(fgc $(temp_color ${t%???}) ${t%???}°)
 		sleep 5
 	done
 }
