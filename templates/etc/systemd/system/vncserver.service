@@ -1,0 +1,14 @@
+[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User={{ vncserver.user }}
+
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill 5901 >/dev/null 2>&1 || true'
+ExecStart=/usr/bin/vncserver -fg 5901
+ExecStop=/usr/bin/vncserver -kill 5901
+
+[Install]
+WantedBy=multi-user.target

@@ -242,6 +242,9 @@ if role vncserver; then
 		tigervnc-common
 		tigervnc-standalone-server
 	'
+
+	tmpl /etc/systemd/system/vncserver.service
+	svc vncserver
 fi
 
 if role desktop || role vncserver; then
