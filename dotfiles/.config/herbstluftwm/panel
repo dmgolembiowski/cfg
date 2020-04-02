@@ -105,6 +105,32 @@ temp() {
 	done
 }
 
+redsh_val() {
+	local temp
+
+	if [ -z "$(pgrep -x redshift)" ]; then
+		echo UNKNOWN
+		return
+	fi
+
+	temp=$(command redshift -l 59.91:10.74 -p 2>/dev/null |
+		awk -F: '/^Color temp/ { print $2 }' |
+		tr -dc '[:digit:]')
+
+	if [ "$temp" -eq 4500 ]; then
+		echo NIGHT
+	else
+		echo DAY
+	fi
+}
+
+redsh() {
+	while :; do
+		printf 'redsh %s %s\n' $(title RED) $(redsh_val)
+		sleep 10
+	done
+}
+
 get_vol() {
 	printf 'vol %s %s\n' $(title VOL) "$(command vol get)"
 }
@@ -210,7 +236,7 @@ parse() {
 		update=
 
 		case $event in
-			workspaces|task|temp|vol|wifi|bat|time)
+			workspaces|task|temp|redsh|vol|wifi|bat|time)
 				eval prev=\$$event
 				if [ "$prev" != "$msg" ]; then
 					eval $event="\$msg"
@@ -220,8 +246,8 @@ parse() {
 		esac
 
 		if [ "$update" ]; then
-			printf -- '  %s %%{c} %s %%{r} %s  %s  %s   %s   %s  \n' \
-				"$workspaces" "$task" "$temp" "$vol" "$wifi" "$bat" "$time"
+			printf -- '  %s %%{c} %s %%{r} %s  %s  %s  %s   %s   %s  \n' \
+				"$workspaces" "$task" "$temp" "$redsh" "$vol" "$wifi" "$bat" "$time"
 		fi
 	done
 }
@@ -243,6 +269,9 @@ CHLD="$CHLD $!"
 CHLD="$CHLD $!"
 
 (temp) >$FIFO&
+CHLD="$CHLD $!"
+
+(redsh) >$FIFO&
 CHLD="$CHLD $!"
 
 (vol) >$FIFO&
