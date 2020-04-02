@@ -20,12 +20,28 @@ find $DOTFILES -type f | while read -r f; do
 			;;
 	esac
 
-	if role server; then
+	if ! role desktop; then
 		case "$f" in
-			*herbst*|*rofi*|*/gtk*|*/mpv/*)
+			*herbst*|*rofi*|*/mpv/*)
 				continue
 				;;
-			*.Xresources|*.xinitrc|*xrandr*|*/vol|*bin/n)
+			*.xinitrc|*xrandr*|*/vol|*bin/n)
+				continue
+				;;
+		esac
+	fi
+
+	if ! role desktop && ! role vncserver; then
+		case "$f" in
+			*/gtk*|*.Xresources)
+				continue
+				;;
+		esac
+	fi
+
+	if ! role vncserver; then
+		case "$f" in
+			*/vnc/*|*openbox*)
 				continue
 				;;
 		esac

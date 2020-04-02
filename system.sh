@@ -184,21 +184,18 @@ if role desktop; then
 	pkg '
 		xserver-xorg-core
 		xserver-xorg-input-libinput
-		x11-xserver-utils
 		xinit
 		herbstluftwm
 		lemonbar-xft
 		rofi
 		inotify-tools
 		bc
-		xterm
 		unclutter-xfixes
 		brightnessctl
 		brightness-udev
 		fonts-noto-core
 		fonts-noto-mono
 		fonts-noto-color-emoji
-		fonts-ibm-plex
 		xdg-utils
 		xtrlock
 		xss-lock
@@ -232,6 +229,27 @@ if role desktop; then
 		rfkill
 		'
 	svc bluetooth
+fi
+
+##
+## VNC Server
+##
+
+if role vncserver; then
+	pkg '
+		openbox
+		firefox-esr
+		tigervnc-common
+		tigervnc-standalone-server
+	'
+fi
+
+if role desktop || role vncserver; then
+	pkg '
+		x11-xserver-utils
+		xterm
+		fonts-ibm-plex
+	'
 fi
 
 ##
