@@ -16,8 +16,12 @@ c() {
 	herbstclient "$@"
 }
 
+fgc() {
+	printf -- "%%{F%s}%s%%{F-}" "$1" "$2"
+}
+
 title() {
-	printf -- "%%{F$fg_light}%s%%{F-}" "$1"
+	fgc $fg_light "$1"
 }
 
 get_workspaces() {
@@ -27,13 +31,13 @@ get_workspaces() {
 		i=${t#?}
 		case "$t" in
 			\#*)
-				w="$w %{F$red}$i%{F-} "
+				w="$w $(fgc $red $i) "
 				;;
 			:*)
 				w="$w $i "
 				;;
 			.*)
-				w="$w %{F$fg_light}$i%{F-} "
+				w="$w $(fgc $fg_light $i) "
 				;;
 		esac
 	done
@@ -61,11 +65,11 @@ get_task() {
 	printf 'task %s ' $(title TASK)
 
 	if [ "$over" -gt 0 ]; then
-		printf '%%{F#d73a49}%s%%{F-} ' $over
+		fgc $red "$over "
 	fi
 
 	if [ "$today" -gt 0 ]; then
-		printf '%%{F#005cc5}%s%%{F-} ' $today
+		fgc $blue "$today "
 	fi
 
 	if [ "$future" -gt 0 ]; then
@@ -91,7 +95,7 @@ temp_colored() {
 	[ "$perc" -ge 65 ] && c=$orange
 	[ "$perc" -ge 90 ] && c=$red
 
-	printf -- '%%{F%s}%s°%%{F-}' $c $perc
+	fgc $c ${perc}°
 }
 
 temp() {
@@ -158,6 +162,10 @@ wifi_color() {
 	printf '%s' $c
 }
 
+wifi_quality() {
+	awk /$1:' / { gsub(/\./, "", $3); print $3 }' /proc/net/wireless
+}
+
 wifi() {
 	local iw=/usr/sbin/iw
 	[ -e $iw ] || return 0
@@ -168,14 +176,15 @@ wifi() {
 	while :; do
 		ssid=$($iw $if link | awk '/SSID: / { print $2 }')
 		[ "$ssid" ] || continue
-		quality=$(awk /$if:' / { gsub(/\./, "", $3); print $3 }' /proc/net/wireless)
+		quality=$(wifi_quality $if)
 
-		printf -- 'wifi %s %%{F%s}%s%%{F-}\n' $(title WIFI) $(wifi_color $quality) $ssid
+		printf -- 'wifi %s %s\n' $(title WIFI) \
+			"$(fgc $(wifi_color $quality) "$ssid")"
 		sleep 1
 	done
 }
 
-bat_colored() {
+bat_color() {
 	local state=$1
 	local perc=$2
 	local c=$green
@@ -185,7 +194,7 @@ bat_colored() {
 	[ "$perc" -lt 25 ] && c=$red
 	[ "$state" -eq 1 ] && c=$blue
 
-	printf -- '%%{F%s}%s%%{F-}' $c "${perc}%%"
+	printf -- '%s' $c
 }
 
 bat() {
@@ -211,7 +220,7 @@ bat() {
 			full=$(cat $bat/energy_full)
 			perc=$(expr \( 100 \* $now \) / $full)
 
-			output="$output $(bat_colored $state $perc)"
+			output="$output $(fgc $(bat_color $state $perc) ${perc}%%)"
 		done
 
 		printf -- 'bat %s%s\n' $(title BAT) "$output"
