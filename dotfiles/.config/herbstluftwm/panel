@@ -110,7 +110,7 @@ temp() {
 	done
 }
 
-redsh_val() {
+get_redsh() {
 	local temp
 
 	if [ -z "$(pgrep -x redshift)" ]; then
@@ -131,7 +131,7 @@ redsh_val() {
 
 redsh() {
 	while :; do
-		printf 'redsh %s %s\n' $(title RED) $(redsh_val)
+		printf 'redsh %s %s\n' $(title RED) $(get_redsh)
 		sleep 10
 	done
 }
