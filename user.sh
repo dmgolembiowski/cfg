@@ -41,7 +41,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	if ! role vncserver; then
 		case "$f" in
-			*/vnc/*|*openbox*)
+			*/.vnc/*|*openbox*)
 				continue
 				;;
 		esac
