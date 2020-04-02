@@ -239,7 +239,7 @@ time() {
 parse() {
 	local event msg
 	local update prev
-	local workspaces time bat wifi task
+	local workspaces right task temp redsh vol wifi bat time
 
 	while read -r event msg; do
 		update=
@@ -255,8 +255,9 @@ parse() {
 		esac
 
 		if [ "$update" ]; then
-			printf -- '  %s %%{c} %s %%{r} %s  %s  %s  %s   %s   %s  \n' \
-				"$workspaces" "$task" "$temp" "$redsh" "$vol" "$wifi" "$bat" "$time"
+			right="$temp  $redsh  $vol  $wifi  $bat  $time"
+			printf -- '  %s %%{c} %s %%{r} %s  \n' \
+				"$workspaces" "$task" "$right"
 		fi
 	done
 }
