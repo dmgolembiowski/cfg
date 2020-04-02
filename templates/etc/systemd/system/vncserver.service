@@ -6,9 +6,9 @@ After=syslog.target network.target
 Type=simple
 User={{ vncserver.user }}
 
-ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill 5901 >/dev/null 2>&1 || true'
-ExecStart=/usr/bin/vncserver -fg -localhost yes 5901
-ExecStop=/usr/bin/vncserver -kill 5901
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill ":*" >/dev/null 2>&1 || true'
+ExecStart=/usr/bin/vncserver -fg -localhost yes
+ExecStop=/usr/bin/vncserver -kill ":*"
 
 [Install]
 WantedBy=multi-user.target
