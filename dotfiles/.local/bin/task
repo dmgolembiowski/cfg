@@ -7,8 +7,23 @@ CD=$(date +%d)
 
 filter="$1"
 
-cmnth() {
-	[ "$1" -le $CY ] && [ "$2" -le $CM ]
+prev() {
+	if [ "$1" -lt $CY ]; then
+		return 0
+	elif [ "$1" -eq $CY ]; then
+		if [ "$2" -lt $CM ]; then
+			return 0
+		elif [ "$2" -eq $CM ]; then
+			if [ "$3" -lt $CD ]; then
+				return 0
+			fi
+		fi
+	fi
+	return 1
+}
+
+today() {
+	[ "$1" -eq $CY ] && [ "$2" -eq $CM ] && [ "$3" -eq $CD ]
 }
 
 format() {
@@ -17,9 +32,9 @@ format() {
 	local d=$3
 	local txt="$4"
 
-	if [ -z "$filter" -o "$filter" = -p ] && cmnth $y $m && [ "$d" -lt $CD ]; then
+	if [ -z "$filter" -o "$filter" = -p ] && prev $y $m $d; then
 		printf '\033[0;31m%s-%s-%s\033[0m %s\n' $y $m $d "$txt"
-	elif [ -z "$filter" -o "$filter" = -t ] && cmnth $y $m && [ "$d" -eq $CD ]; then
+	elif [ -z "$filter" -o "$filter" = -t ] && today $y $m $d; then
 		printf '\033[0;34m%s-%s-%s\033[0m %s\n' $y $m $d "$txt"
 	elif [ -z "$filter" -o "$filter" = -f ]; then
 		printf '%s-%s-%s %s\n' $y $m $d "$txt"
