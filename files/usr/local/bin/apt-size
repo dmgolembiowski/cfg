@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+import apt
+from apt.cache import Filter, FilteredCache
+
+MB = 1024 * 1024
+
+
+class InstalledFilter(Filter):
+    def apply(self, pkg):
+        return pkg.is_installed
+
+
+def iter_base_deps(cache, package):
+    deps = []
+    version = package.installed
+    for dep_type in ("Depends", "PreDepends", "Recommends"):
+        deps.extend(version.get_dependencies(dep_type))
+    for dep in deps:
+        for base_dep in dep:
+            if base_dep.name in cache:
+                yield base_dep
+
+
+def main():
+    package_ref_count = {}
+    results = []
+
+    cache = FilteredCache(apt.Cache())
+    cache.set_filter(InstalledFilter())
+    for package in cache:
+        for base_dep in iter_base_deps(cache, package):
+            if base_dep.name in package_ref_count:
+                package_ref_count[base_dep.name] += 1
+            else:
+                package_ref_count[base_dep.name] = 1
+
+    for package in cache:
+        base_deps_size = 0
+        base_deps = []
+        for base_dep in iter_base_deps(cache, package):
+            if package_ref_count[base_dep.name] == 1:
+                base_deps.append(base_dep)
+                base_deps_size += cache[base_dep.name].installed.installed_size
+        total_size = package.installed.installed_size + base_deps_size
+        results.append((total_size, package, base_deps_size, base_deps))
+
+    for total_size, package, base_deps_size, base_deps in sorted(
+        results, reverse=True
+    ):
+        if package.name in package_ref_count:
+            continue
+        if total_size < MB:
+            break
+        self_size = package.installed.installed_size
+        base_dep_count = len(base_deps)
+        print("* {:6.1f}M {}".format(total_size / MB, package.name))
+        if base_dep_count:
+            print("           - {:6.1f}M self".format(self_size / MB))
+            for base_dep in base_deps:
+                size = cache[base_dep.name].installed.installed_size
+                print(
+                    "           - {:6.1f}M {}".format(size / MB, base_dep.name)
+                )
+
+
+if __name__ == "__main__":
+    main()

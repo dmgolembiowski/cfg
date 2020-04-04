@@ -39,6 +39,8 @@ unset f
 
 file /usr/local/bin/apt-backports
 chmod +x /usr/local/bin/apt-backports
+file /usr/local/bin/apt-size
+chmod +x /usr/local/bin/apt-size
 
 pkg openssh-client
 if role server; then
