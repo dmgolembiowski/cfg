@@ -143,6 +143,8 @@ if role dev; then
 fi
 
 if role work; then
+	pkg python3-venv
+
 	if ! [ -e /opt/az/bin/python3 ]; then
 		python3 -m venv /opt/az
 	fi
@@ -431,6 +433,8 @@ if role feed; then
 	file /etc/tmpfiles.d/miniflux.conf
 
 	svc miniflux
+
+	pkg python3-venv
 
 	if ! [ -e /opt/fluxfilter/bin/python3 ]; then
 		python3 -m venv /opt/fluxfilter
