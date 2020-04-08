@@ -32,6 +32,10 @@ echo '%sudo ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 tmpl /etc/apt/sources.list
 tmpl /etc/apt/auth.conf
 
+if [ "$DEBIAN_SRC" = sid ]; then
+	file /etc/apt/preferences.d/99-sid
+fi
+
 for f in norecommends autoremove periodicclean showversions; do
 	file /etc/apt/apt.conf.d/$f
 done

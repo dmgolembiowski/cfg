@@ -3,6 +3,11 @@ deb http://deb.debian.org/debian/ {{ debian.rel }} main non-free contrib
 deb-src http://deb.debian.org/debian/ {{ debian.rel }} main non-free contrib
 {% endif %}
 
+{% if 'src' in debian and debian.src == 'sid' %}
+deb http://deb.debian.org/debian/ sid main non-free contrib
+deb-src http://deb.debian.org/debian/ sid main non-free contrib
+{% endif %}
+
 deb http://security.debian.org/debian-security {{ debian.rel }}/updates main contrib non-free
 {% if 'src' in debian %}
 deb-src http://security.debian.org/debian-security {{ debian.rel }}/updates main contrib non-free
