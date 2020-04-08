@@ -182,6 +182,8 @@ if role pkg; then
 		licensecheck
 		dupload
 		'
+
+	file /etc/pbuilderrc
 fi
 
 ##
