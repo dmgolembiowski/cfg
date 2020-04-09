@@ -28,3 +28,7 @@ gh() {
 for n in prometheus alertmanager node_exporter; do
 	gh prometheus $n
 done
+
+if [ -e $ROOT/env/updates.sh ]; then
+	. $ROOT/env/updates.sh
+fi
