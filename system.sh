@@ -687,6 +687,20 @@ _w_set() {
 }
 
 if role irc; then
+	_tlf=thelounge_${THELOUNGE_V}_all.deb
+	_tlu=https://github.com/thelounge/thelounge
+	_tlu=$_tlu/releases/download/v$THELOUNGE_V/$_tlf
+	_tlcurv=$(apt-cache show thelounge 2>/dev/null |
+		awk '/^Version:/ { print $2 }')
+
+	if [ "$_tlcurv" != "$THELOUNGE_V" ]; then
+		curl -L $_tlu > /tmp/$_tlf
+		apt install /tmp/$_tlf
+		rm /tmp/$_tlf
+	fi
+
+	tmpl /etc/thelounge/config.js
+
 	pkg '
 		weechat
 		weechat-plugins
