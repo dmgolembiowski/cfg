@@ -93,13 +93,6 @@ with the following environment variables:
        - 6697  # znc
       tcp_limit:
         - ssh
-    irc:
-      nick: you
-      oftc:
-        join: '#chan1,#chan2'
-      freenode:
-        sasl: qwer1234
-        join: '#chan1,#chan2'
     tls:
       - subj: domain.tld
         alt: '*.domain.tld'

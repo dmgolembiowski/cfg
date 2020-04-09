@@ -47,14 +47,6 @@ find $DOTFILES -type f | while read -r f; do
 		esac
 	fi
 
-	if ! role irc && ! role desktop; then
-		case "$f" in
-			*bin/irc)
-				continue
-				;;
-		esac
-	fi
-
 	if ! role pkg; then
 		case "$f" in
 			*gbp.conf*)

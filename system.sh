@@ -643,49 +643,6 @@ fi
 ## IRC
 ##
 
-_w_run() {
-	local f=/var/lib/weechat/weechat_fifo
-
-	if ! [ -e $f ]; then
-		echo Missing weechat fifo file
-		exit 1
-	fi
-
-	echo "$1" | sed 's/^/*/' > $f
-}
-
-_w_has() {
-	local kv="$1"
-	local cfg="$2"
-	local r=/var/lib/weechat
-
-	fgrep -q "$kv" $r/$cfg.conf
-}
-
-_w_set() {
-	local set_key=$1
-	local val="$2"
-	local cfg=${set_key%%.*}
-	local cfg_key=$(echo $set_key | cut -d. -f3-)
-
-	if echo "$val" | egrep -vq '^[a-z0-9]{1,14}$'; then
-		val="\"$val\""
-	fi
-
-	case  "$set_key" in
-		*nicks|*realname|*sasl_username|weechat.bar.buflist.items)
-			val="\"$val\""
-			;;
-	esac
-
-
-	if ! _w_has "$cfg_key = $val" $cfg; then
-		echo weechat $set_key $val
-		_w_run "/set $set_key $val"
-		_w_run '/save'
-	fi
-}
-
 if role irc; then
 	_tlf=thelounge_${THELOUNGE_V}_all.deb
 	_tlu=https://github.com/thelounge/thelounge
@@ -700,61 +657,7 @@ if role irc; then
 	fi
 
 	tmpl /etc/thelounge/config.js
-
-	pkg '
-		weechat
-		weechat-plugins
-		'
-	grep -q ^weechat: /etc/group ||
-		groupadd -r weechat
-	grep -q ^weechat: /etc/passwd ||
-		useradd -r -d /var/lib/weechat -s /bin/sh \
-				-g weechat weechat
-
-	mkdir -p /var/lib/weechat
-	chown weechat: /var/lib/weechat
-	chmod 750 /var/lib/weechat
-	file /etc/systemd/system/weechat.service
-	file /var/lib/weechat/.tmux.conf
-
-	svc weechat
-
-	_w_set weechat.plugin.autoload \
-		   '*,!script,!trigger,!xfer,!exec,!fset'
-
-	_w_set weechat.look.buffer_time_format '%H:%M'
-	_w_set weechat.look.prefix_suffix ''
-	_w_set weechat.look.prefix_align none
-	_w_set weechat.look.align_end_of_lines prefix
-
-	_w_set irc.look.highlight_channel '(?-i)$nick:,(?-i)$nick '
-	_w_set irc.look.server_buffer independent
-
-	_w_set weechat.bar.title.hidden on
-	_w_set weechat.bar.status.hidden on
-	_w_set weechat.bar.nicklist.hidden on
-	_w_set weechat.bar.input.items \
-		   '>,[input_search],[input_paste],[scroll],input_text'
-
-	_w_set weechat.bar.buflist.items buflist
-	_w_set weechat.bar.buflist.separator off
-	_w_set buflist.format.number '${number}${if:${number_displayed}? :}'
-
-	_w_set irc.server_default.msg_part ''
-	_w_set irc.server_default.msg_quit ''
-	_w_set irc.server_default.sasl_mechanism plain
-	_w_set irc.server_default.sasl_username $IRC_NICK
-	_w_set irc.server_default.nicks $IRC_NICK
-
-	if ! _w_has 'irc_smart = on;*;irc_smart_filter;*' weechat; then
-		_w_run '/filter add irc_smart * irc_smart_filter *'
-		_w_run '/save'
-	fi
-
-	_w_set logger.look.backlog 0
-	_w_set logger.file.mask '$plugin.$name.log'
-	_w_set logger.mask.irc '$server-$channel-%Y-%m.log'
-	_w_set logger.level.irc 1
+	svc thelounge
 fi
 
 ##

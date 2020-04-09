@@ -1,8 +1,0 @@
-#!/bin/sh
-
-
-if [ "$1" ]; then
-	ssh -t $1 .local/bin/irc
-else
-	exec sudo su - weechat -c 'tmux -L weechat -u2 attach'
-fi

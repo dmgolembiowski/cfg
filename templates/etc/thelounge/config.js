@@ -26,7 +26,7 @@ module.exports = {
 	// For UNIX domain sockets, use `"unix:/absolute/path/to/file.sock"`.
 	//
 	// This value is set to `undefined` by default to listen on all interfaces.
-	host: undefined,
+	host: "127.0.0.1",
 
 	// ### `port`
 	//
@@ -49,7 +49,7 @@ module.exports = {
 	// and will honor the `X-Forwarded-For` header.
 	//
 	// This value is set to `false` by default.
-	reverseProxy: false,
+	reverseProxy: true,
 
 	// ### `maxHistory`
 	//
@@ -180,7 +180,7 @@ module.exports = {
 	//
 	// This value is set to `"The Lounge - https://thelounge.chat"` by
 	// default.
-	leaveMessage: "The Lounge - https://thelounge.chat",
+	leaveMessage: "Bye bye",
 
 	// ## Default network
 
