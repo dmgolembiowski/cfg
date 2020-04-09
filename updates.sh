@@ -49,6 +49,11 @@ for n in prometheus alertmanager node_exporter; do
 	gh prometheus $n
 done
 
+gh pixelb ps_mem
+
+pypi azure-cli
+pypi miniflux
+
 if [ -e $ROOT/env/updates.sh ]; then
 	. $ROOT/env/updates.sh
 fi

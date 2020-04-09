@@ -118,10 +118,9 @@ pkg debian-security-support
 ## Debug
 ##
 
-_psv=3.13
-u=https://raw.githubusercontent.com/pixelb/ps_mem/v$_psv/ps_mem.py
+u=https://raw.githubusercontent.com/pixelb/ps_mem/v$PSMEM_V/ps_mem.py
 b=/usr/local/bin/ps_mem
-if ! grep -q "^# V$_psv" $b 2>/dev/null; then
+if ! grep -q "^# V$PSMEM_V" $b 2>/dev/null; then
 	curl -L $u > $b
 	sed -i 's/env python/env python3/' $b
 	chmod +x $b
@@ -155,7 +154,7 @@ if role work; then
 		python3 -m venv /opt/az
 	fi
 
-	pip /opt/az 'azure-cli==2.1.0'
+	pip /opt/az azure-cli==$AZURECLI_V
 	file /usr/local/bin/az
 	chmod +x /usr/local/bin/az
 	file /usr/share/bash-completion/completions/az
@@ -448,7 +447,7 @@ if role feed; then
 		python3 -m venv /opt/fluxfilter
 	fi
 
-	pip /opt/fluxfilter 'miniflux==0.0.10'
+	pip /opt/fluxfilter miniflux==$MINIFLUX_V
 	tmpl /opt/fluxfilter/bin/fluxfilter
 	chmod +x /opt/fluxfilter/bin/fluxfilter
 
