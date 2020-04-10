@@ -605,7 +605,7 @@ fi
 if role monitored; then
 	pkg moreutils
 
-	_prominst node_exporter $NODE_EXPORTER_V
+	_prominst node_exporter $NODEEXPORTER_V
 	tmpl /etc/systemd/system/node_exporter.service
 
 	mkdir -p /usr/lib/node_exporter
