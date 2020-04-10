@@ -30,6 +30,14 @@ gh() {
 			sed 's/^v//'
 	)
 
+	if [ "$_latest" = null ]; then
+		_latest=$(
+			curl -s https://api.github.com/repos/$u/$n/tags |
+				jq '.[0].name' -j |
+				sed 's/^v//'
+		)
+	fi
+
 	_cmp gh $n "$_latest" "$_cur"
 }
 
