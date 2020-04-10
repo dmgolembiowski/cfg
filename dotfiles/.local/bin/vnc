@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# Convencience wrapper for vnc over ssh tunnel
+
+PORT=5901
+BIND=localhost:$PORT
+
+if [ -z "$1" ]; then
+	echo "Usage: $0 host" 1>&2
+	exit 1
+fi
+
+SSH="ssh $1 -fNL $PORT:$BIND"
+$SSH
+
+vncviewer $BIND&
+CHLD="$!"
+
+echo CHILDREN "$CHLD"
+
+cleanup() {
+	kill $CHLD 2>/dev/null
+	pkill -f "$SSH"
+}
+
+trap 'cleanup' INT TERM EXIT
+
+wait
