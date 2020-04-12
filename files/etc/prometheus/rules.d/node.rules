@@ -10,7 +10,7 @@ groups:
           severity: warning
         annotations:
           summary: "Out of disk space (instance {{ $labels.instance }})"
-          description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          description: "Disk is almost full (< 5% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
       - alert: OutOfInodes
         expr: node_filesystem_files_free / node_filesystem_files * 100 < 10
         for: 5m
