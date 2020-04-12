@@ -147,12 +147,18 @@ svc() {
 }
 
 pip() {
-	local tmpcache
-	local venv=$1
-	local namever=$2
+	local tmpcache pip venv namever
+	if [ $# -eq 1 ]; then
+		namever=$1
+		pip=pip3
+	else
+		venv=$1
+		namever=$2
+		pip=$venv/bin/pip
+	fi
 
-	if ! $venv/bin/pip freeze | grep -q "^$namever"; then
+	if ! $pip freeze | grep -q "^$namever"; then
 		tmpcache=$(mktemp -d)
-		$venv/bin/pip --cache-dir=$tmpcache install $namever
+		$pip --cache-dir=$tmpcache install $namever
 	fi
 }
