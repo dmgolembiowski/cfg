@@ -52,7 +52,7 @@ Setup and config
 2. Setup disks (using sdc/data1 as example):
 
     ```sh
-    gdisk -Z /dev/sdc
+    sgdisk -Z /dev/sdc
     gdisk /dev/sdc <<EOF
     o
     Y
