@@ -49,46 +49,27 @@ Setup and config
 
     apt install --no-install-recommends git openssh-server sudo cryptsetup-run
     ```
-2. Setup disks:
+2. Setup disks (using sdc/data1 as example):
 
     ```sh
-    for disk in sdc sdd sde sdf; do
-        sgdisk -Z /dev/$disk
-    done
-
+    gdisk -Z /dev/sdc
     gdisk /dev/sdc <<EOF
     o
     Y
     n
 
 
-    fd00
+
     w
     Y
     EOF
 
-    sgdisk --backup=table /dev/sdc
-    for disk in sdd sde sdf; do
-        sgdisk --load-backup=table /dev/$disk
-    done
-
-    mdadm --create --verbose /dev/md2 --level=5 --raid-devices=4 /dev/sdc1 /dev/sdd1 /dev/sde1 /dev/sdf1
-
-    cryptsetup luksFormat /dev/md2
-    dd bs=512 count=4 if=/dev/urandom of=/etc/cryptkey_md2 iflag=fullblock
-    cryptsetup luksAddKey /dev/md2 /etc/cryptkey_md2
-    cryptsetup luksOpen --key-file /etc/cryptkey_md2 /dev/md2 md2_crypt
-
-    mkfs.ext4 -m1 -E lazy_itable_init=0 -L data /dev/mapper/md2_crypt
-
-    cat <<EOF >>/etc/crypttab
-    md2_crypt /dev/md2 /etc/cryptkey_md2 luks
-    EOF
-
-    mkdir /data
-    cat <<EOF >>/etc/fstab
-    md2_crypt /dev/md2 /etc/cryptkey_md2 luks
-    EOF
+    cryptsetup luksFormat /dev/sdc1
+    dd bs=512 count=4 if=/dev/urandom of=/etc/cryptkey_data1 iflag=fullblock
+    cryptsetup luksAddKey /dev/sdc1 /etc/cryptkey_data1
+    cryptsetup luksOpen —key-file /etc/cryptkey_data1 /dev/sdc1 data1_crypt
+    printf '%s %s %s %s\n' data1_crypt $(sudo blkid -s UUID /dev/sdc1 | awk '{ print $2 }' | tr -d '"') /etc/cryptkey_data1 luks >> /etc/crypttab
+    mkfs.ext4 -m1 -L data1 /dev/mapper/data1_crypt
     ```
 
 
