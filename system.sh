@@ -206,7 +206,7 @@ if role desktop; then
 		fonts-noto-mono
 		fonts-noto-color-emoji
 		xdg-utils
-		xtrlock
+		i3lock
 		xss-lock
 		redshift
 		xclip

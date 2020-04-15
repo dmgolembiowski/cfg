@@ -22,7 +22,7 @@ find $DOTFILES -type f | while read -r f; do
 
 	if ! role desktop; then
 		case "$f" in
-			*herbst*|*rofi*|*/mpv/*)
+			*herbst*|*rofi*|*/mpv/*|*.png)
 				continue
 				;;
 			*.xinitrc|*xrandr*|*/vol|*bin/n)

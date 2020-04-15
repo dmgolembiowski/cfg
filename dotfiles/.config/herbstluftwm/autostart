@@ -142,6 +142,6 @@ set_config
 pkill -u $(id -u) -f $(dirname $0)/panel
 $(dirname $0)/panel&
 
-xss-lock --transfer-sleep-lock -- xtrlock -b&
+xss-lock --transfer-sleep-lock -- i3lock -i ~/.local/share/andre-benz-JBkwaYMuhdc-unsplash.png --nofork&
 
 hc unlock
