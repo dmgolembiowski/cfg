@@ -7,3 +7,12 @@
 DISTRIBUTION="buster"
 MIRRORSITE=http://deb.debian.org/debian/
 COMPONENTS="main non-free contrib"
+
+EXTRAPACKAGES="ca-certificates"
+{% if repo is defined %}
+{% for d in repo.distributions %}
+{% if d.codename == debian.rel %}
+OTHERMIRROR="deb [trusted=yes] https://{{ repo.user }}:{{ repo.password }}@{{ repo.host }} {{ d.codename }} {{ d.components|join(' ') }}"
+{% endif %}
+{% endfor %}
+{% endif %}

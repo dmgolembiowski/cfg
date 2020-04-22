@@ -182,7 +182,7 @@ if role pkg; then
 		dupload
 		'
 
-	file /etc/pbuilderrc
+	tmpl /etc/pbuilderrc
 fi
 
 ##
