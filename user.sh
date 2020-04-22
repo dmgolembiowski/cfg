@@ -1,7 +1,6 @@
 #!/bin/sh -e
 
 ROOT=$(cd "$(dirname "$0")"; pwd -P)
-DOTFILES=$ROOT/dotfiles
 
 . $ROOT/lib.sh
 
@@ -9,58 +8,60 @@ DOTFILES=$ROOT/dotfiles
 ## Dotfiles
 ##
 
-find $DOTFILES -type f | while read -r f; do
-	rel=${f##$DOTFILES/}
-	src="$DOTFILES/$rel"
-	dst="$HOME/$rel"
+for dots in $ROOT/dotfiles $ROOT/env/dotfiles; do
+	find $dots -type f | while read -r f; do
+		rel=${f##$dots/}
+		src="$dots/$rel"
+		dst="$HOME/$rel"
 
-	case "$f" in
-		'.#'*|*'~')
-			continue
-			;;
-	esac
-
-	if ! role desktop; then
 		case "$f" in
-			*herbst*|*rofi*|*/mpv/*|*.png)
-				continue
-				;;
-			*.xinitrc|*xrandr*|*/vol|*bin/n)
+			'.#'*|*'~')
 				continue
 				;;
 		esac
-	fi
 
-	if ! role desktop && ! role vncserver; then
-		case "$f" in
-			*/gtk*|*.Xresources)
-				continue
-				;;
-		esac
-	fi
+		if ! role desktop; then
+			case "$f" in
+				*herbst*|*rofi*|*mpv*|*.png)
+					continue
+					;;
+				*.xinitrc|*xrandr*|*/vol|*bin/n)
+					continue
+					;;
+			esac
+		fi
 
-	if ! role vncserver; then
-		case "$f" in
-			*/.vnc/*|*openbox*)
-				continue
-				;;
-		esac
-	fi
+		if ! role desktop && ! role vncserver; then
+			case "$f" in
+				*/gtk*|*.Xresources)
+					continue
+					;;
+			esac
+		fi
 
-	if ! role pkg; then
-		case "$f" in
-			*gbp.conf*)
-				continue
-				;;
-		esac
-	fi
+		if ! role vncserver; then
+			case "$f" in
+				*/.vnc/*|*openbox*)
+					continue
+					;;
+			esac
+		fi
 
-	mkdir -p "$(dirname "$dst")"
+		if ! role pkg; then
+			case "$f" in
+				*gbp.conf*)
+					continue
+					;;
+			esac
+		fi
 
-	if [ ! -L "$dst" -o "$(readlink $dst)" != "$src" ]; then
-		printf '%s -> %s\n'  "$src" "$dst"
-		ln -sf "$src" "$dst"
-	fi
+		mkdir -p "$(dirname "$dst")"
+
+		if [ ! -L "$dst" -o "$(readlink $dst)" != "$src" ]; then
+			printf '%s -> %s\n'  "$src" "$dst"
+			ln -sf "$src" "$dst"
+		fi
+	done
 done
 
 if ! [ -L $HOME/.bash_profile ]; then
