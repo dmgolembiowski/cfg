@@ -240,23 +240,7 @@ if role desktop; then
 	svc bluetooth
 fi
 
-##
-## VNC Server
-##
-
-if role vncserver; then
-	pkg '
-		openbox
-		firefox-esr
-		tigervnc-common
-		tigervnc-standalone-server
-	'
-
-	tmpl /etc/systemd/system/vncserver.service
-	svc vncserver
-fi
-
-if role desktop || role vncserver; then
+if role desktop; then
 	pkg '
 		x11-xserver-utils
 		xterm
