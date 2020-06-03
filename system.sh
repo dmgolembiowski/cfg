@@ -471,15 +471,6 @@ if role repo; then
 fi
 
 ##
-## Storage
-##
-
-if role storage; then
-	pkg smartmontools
-	svc smartd
-fi
-
-##
 ## Backup
 ##
 
