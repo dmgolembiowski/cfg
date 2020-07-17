@@ -175,7 +175,7 @@ wifi() {
 	local ssid quality
 
 	while :; do
-		ssid=$($iw $if link | awk '/SSID: / { print $2 }')
+		ssid=$($iw $if link | awk -F: '/SSID: / { print $2 }')
 		[ "$ssid" ] || continue
 		quality=$(wifi_quality $if)
 
