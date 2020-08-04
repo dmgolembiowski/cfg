@@ -2,7 +2,7 @@
 #
 # Convencience wrapper for vnc over ssh tunnel
 
-PORT=5901
+PORT=5900
 BIND=localhost:$PORT
 
 if [ -z "$1" ]; then
