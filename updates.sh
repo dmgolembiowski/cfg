@@ -58,7 +58,6 @@ for n in prometheus alertmanager node_exporter; do
 done
 
 gh pixelb ps_mem
-gh thelounge thelounge
 
 pypi azure-cli
 pypi miniflux
