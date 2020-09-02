@@ -1,5 +1,0 @@
-Name: incoming
-IncomingDir: /var/lib/repo/incoming
-TempDir: /var/lib/repo/tmp
-Allow:{% for d in repo.distributions %} {{ d.codename }}{% endfor %}
-
