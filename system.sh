@@ -418,26 +418,6 @@ if role feed; then
 	file /etc/tmpfiles.d/miniflux.conf
 
 	svc miniflux
-
-	pkg python3-venv
-
-	if ! [ -e /opt/fluxfilter/bin/python3 ]; then
-		python3 -m venv /opt/fluxfilter
-	fi
-
-	pip /opt/fluxfilter miniflux==$MINIFLUX_V
-	tmpl /opt/fluxfilter/bin/fluxfilter
-	chmod +x /opt/fluxfilter/bin/fluxfilter
-
-	mkdir -p /var/log/fluxfilter
-	chown miniflux: /var/log/fluxfilter
-
-	if ! crontab -l -u miniflux | grep -q fluxfilter; then
-		(
-			crontab -l -u miniflux 2>/dev/null
-			echo "* * * * * /opt/fluxfilter/bin/fluxfilter	| ts \%FT\%T\%z >> /var/log/fluxfilter/fluxfilter.log"
-		) | crontab -u miniflux -
-	fi
 fi
 
 ##

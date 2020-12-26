@@ -60,7 +60,6 @@ done
 gh pixelb ps_mem
 
 pypi azure-cli
-pypi miniflux
 
 if [ -e $ROOT/env/updates.sh ]; then
 	. $ROOT/env/updates.sh
