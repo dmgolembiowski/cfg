@@ -409,13 +409,7 @@ fi
 ##
 
 if role feed; then
-	if ! apt-key list 2>/dev/null | grep -q fred@miniflux.net; then
-		curl -fsSL https://apt.miniflux.app/KEY.gpg | apt-key add -
-	fi
-
-	file /etc/apt/sources.list.d/miniflux.list
-
-	pkg miniflux
+	# TODO: manual installed https://github.com/miniflux/v2/releases/download/2.0.26/miniflux_2.0.26_amd64.deb
 
 	tmpl /etc/miniflux.conf
 	chown miniflux: /etc/miniflux.conf

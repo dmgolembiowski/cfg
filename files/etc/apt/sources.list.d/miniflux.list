@@ -1,1 +1,1 @@
-deb https://apt.miniflux.app/ /
+deb https://github.com/miniflux/v2/tree/master/packaging/debian /
