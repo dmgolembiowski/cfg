@@ -276,22 +276,6 @@ if role desktop || role media; then
 fi
 
 ##
-## Mail
-##
-
-if role server; then
-	pkg '
-		nullmailer
-		bsd-mailx
-		'
-
-	tmpl /etc/nullmailer/remotes
-	tmpl /etc/nullmailer/adminaddr
-
-	svc nullmailer
-fi
-
-##
 ## TLS
 ##
 
