@@ -53,8 +53,6 @@ fi
 
 if role vm; then
 	pkg linux-image-cloud-amd64
-else
-	pkg fwupd policykit-1 tpm2-tools intel-microcode
 fi
 
 # Persistend systemd yournal:
@@ -62,34 +60,11 @@ mkdir -p /var/log/journal
 
 svc systemd-timesyncd
 
-if role desktop; then
-	_blank_cmd='consoleblank=60'
-	if ! grep -q $_blank_cmd /etc/default/grub; then
-		sed -i "s/^\(GRUB_CMDLINE_LINUX_DEF.*\)\"/\1 $_blank_cmd\"/" \
-			/etc/default/grub
-		update-grub
-	fi
-fi
-
 ##
 ## Net
 ##
 
 file /etc/systemd/resolved.conf.d/dns_servers.conf
-
-if role desktop; then
-	file /etc/systemd/resolved.conf.d/static.conf
-
-	if ! role vm; then
-		_wlif=$(ip a | awk '/^[0-9]: wl/ { print $2 }' | tr -d :)
-		envfile /etc/wpa_supplicant/wpa_supplicant-${_wlif}.conf
-
-		pkg '
-			iw
-			wavemon
-			'
-	fi
-fi
 
 tmpl /etc/systemd/network/wired.network
 svc systemd-networkd
@@ -145,134 +120,6 @@ if role dev; then
 		ncdu
 		jq
 		'
-fi
-
-if role work; then
-	pkg python3-venv
-
-	if ! [ -e /opt/az/bin/python3 ]; then
-		python3 -m venv /opt/az
-	fi
-
-	pip /opt/az azure-cli==$AZURECLI_V
-	file /usr/local/bin/az
-	chmod +x /usr/local/bin/az
-	file /usr/share/bash-completion/completions/az
-
-	file /etc/apt/sources.list.d/slack.list
-	pkg slack-desktop
-fi
-
-##
-## Pkg
-##
-
-if role pkg; then
-	pkg '
-		build-essential
-		devscripts
-		equivs
-		git-buildpackage
-		pristine-tar
-		cowbuilder
-		lintian
-		debmake
-		python3-debian
-		licensecheck
-		dupload
-		'
-
-	tmpl /etc/pbuilderrc
-fi
-
-##
-## Desktop
-##
-
-if role desktop; then
-	pkg '
-		xserver-xorg-core
-		xserver-xorg-input-libinput
-		xinit
-		herbstluftwm
-		lemonbar-xft
-		rofi
-		inotify-tools
-		bc
-		unclutter-xfixes
-		brightnessctl
-		brightness-udev
-		fonts-noto-core
-		fonts-noto-mono
-		fonts-noto-color-emoji
-		xdg-utils
-		i3lock
-		xss-lock
-		redshift
-		xclip
-		maim
-		sxiv
-		mupdf
-		unzip
-		bzip2
-		libdbus-glib-1-2
-		moreutils
-		'
-
-	svc fstrim.timer
-
-	# Autologin to TTY 1:
-	tmpl /etc/systemd/system/getty@tty1.service.d/override.conf
-
-	file /etc/sysctl.d/disable_watchdog.conf
-	file /etc/modprobe.d/audio_powersave.conf
-
-	file /etc/modprobe.d/hid_apple.conf
-
-	file /etc/X11/xorg.conf.d/00-touchpad.conf
-	file /etc/X11/xorg.conf.d/00-pointer.conf
-	file /etc/default/keyboard
-
-	pkg '
-		bluez
-		rfkill
-		'
-	svc bluetooth
-fi
-
-if role desktop; then
-	pkg '
-		x11-xserver-utils
-		xterm
-		fonts-ibm-plex
-	'
-fi
-
-##
-## Media
-##
-
-if role desktop; then
-	pkg '
-		pulseaudio
-		pulsemixer
-		mpv
-		i965-va-driver
-		'
-
-	if ! apt-key list 2>/dev/null | grep -q spotify.com; then
-		apt-key adv \
-			--keyserver keyserver.ubuntu.com \
-			--recv-keys 4773BD5E130D1D45
-	fi
-
-	file /etc/apt/sources.list.d/spotify.list
-
-	pkg spotify-client
-fi
-
-if role desktop || role media; then
-	pkg lftp
 fi
 
 ##
