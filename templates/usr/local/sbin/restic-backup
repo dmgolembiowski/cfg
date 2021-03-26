@@ -38,9 +38,8 @@ fi
 
 	2>&1 restic forget \
 		-r $DEST \
-		--keep-hourly 24 \
-		--keep-daily 3 \
-		--keep-monthly 6 \
+		--keep-daily 7 \
+		--keep-monthly 3 \
 		--prune || fail forget
 
 ) 9>/run/lock/$(basename $0).lock | ts >>/var/log/backup/${NAME}.log
